@@ -4,7 +4,7 @@ Model RMD_MadsenLAR
 	SurfaceSkin 0 0 "CSHand.png"
 	Path "Models\Weapons\AR\MadsenLAR"
 	Model 0 "MadsenLAR.md3"
-	SurfaceSkin 0 2 "MadsenLAR.png"
+	SurfaceSkin 0 2 "MadsenLAR_Diffuse.png"
 	SurfaceSkin 0 1 "40mmGrenade.png"
 	AngleOffset 90
 	

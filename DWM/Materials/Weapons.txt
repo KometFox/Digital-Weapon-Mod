@@ -15,6 +15,18 @@ material texture "Models/Textures/CSArms/CSHand.png"
 
 //Assault Rifle
 
+material texture "Models/Weapons/AR/MadsenLAR/MadsenLAR_Diffuse.png"
+{
+	normal "Models/Weapons/AR/MadsenLAR/MadsenLAR_NormalGL.png"
+	metallic "Models/Weapons/AR/MadsenLAR/MadsenLAR_Metallic.png"
+	roughness "Models/Weapons/AR/MadsenLAR/MadsenLAR_Roughness.png"
+	ao "Models/Weapons/AR/MadsenLAR/MadsenLAR_AO.png"
+	specularlevel 0.75
+	glossiness 0.45
+}
+
+
+
 material texture "Models/Weapons/MG/M249SAW/M249SAW_Diffuse.png"
 {
 	normal "Models/Weapons/MG/M249SAW/M249SAW_NormalGL.png"
@@ -44,6 +56,16 @@ material texture "Models/Weapons/SMRL/LocustRL_Diffuse.png"
 	metallic "Models/Weapons/SMRL/LocustRL_Metallic.png"
 	roughness "Models/Weapons/SMRL/LocustRL_Roughness.png"
 	ao "Models/Weapons/SMRL/LocustRL_AO.png"
+	specularlevel 0.75
+	glossiness 0.45
+}
+
+material texture "Models/Weapons/SMRL/SMRL_Diffuse.png"
+{
+	normal "Models/Weapons/SMRL/SMRL_NormalGL.png"
+	metallic "Models/Weapons/SMRL/SMRL_Metallic.png"
+	roughness "Models/Weapons/SMRL/SMRL_Roughness.png"
+	ao "Models/Weapons/SMRL/SMRL_AO.png"
 	specularlevel 0.75
 	glossiness 0.45
 }

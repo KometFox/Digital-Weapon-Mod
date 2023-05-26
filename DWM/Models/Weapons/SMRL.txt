@@ -4,7 +4,7 @@ Model SMRL
 	SurfaceSkin 0 0 "CSHand.png"
 	Path "Models\Weapons\SMRL"
 	Model 0 "SMRL.md3"
-	SurfaceSkin 0 2 "SMRL.png"
+	SurfaceSkin 0 2 "SMRL_Diffuse.png"
 	SurfaceSkin 0 1 "SMRLRocket.png"
 
 	//IDLE
