@@ -1,0 +1,425 @@
+Class RMD_WeaponMuzzleFlash : Actor
+{
+	virtual void SpawnMuzzleFlash(Actor PWeapon, Vector3 Origin, Vector3 Offset) {}
+}
+
+Class RMD_BulletMuzzleFlash : RMD_WeaponMuzzleFlash
+{
+	override void SpawnMuzzleFlash(Actor PWeapon, Vector3 Origin, Vector3 Offset)
+	{
+		for ( int i = 0; i < 1; i++ )
+		{
+			let Obj = Spawn("MF_MuzzleFlash", Origin);
+			Obj.Target = PWeapon;
+			Obj.Scale = (0.050, 0.050);
+			RMD_BaseMuzzleFlash(Obj).ofs = Offset;
+			RMD_BaseMuzzleFlash(Obj).vvel = (0, 0, 0);
+		}
+
+		for ( int i = 0; i < 9; i++ )
+		{
+			let Obj = Spawn("MF_MuzzleSparks", Origin);
+			Obj.Target = PWeapon;
+			RMD_BaseMuzzleFlash(Obj).ofs = Offset;
+			RMD_BaseMuzzleFlash(Obj).vvel += (FRandom[FX](2.0 , 8.0),FRandom[FX](-1.2 , 1.2),FRandom[FX](-1.2, 1.2));
+		}
+			
+		for ( int i = 0; i < 4; i++ )
+		{
+			let Obj = Spawn("MF_MuzzleSmoke", Origin);
+			Obj.Target = PWeapon;
+			RMD_BaseMuzzleFlash(Obj).ofs = Offset;
+			RMD_BaseMuzzleFlash(Obj).vvel += (FRandom[FX](0.1, 0.5),FRandom[FX](-0.2, 0.2),FRandom[FX](-0.15, 0.15));
+		}
+	}
+}
+
+Class RMD_BuckshotMuzzleFlash : RMD_WeaponMuzzleFlash
+{
+	override void SpawnMuzzleFlash(Actor PWeapon, Vector3 Origin, Vector3 Offset)
+	{
+		for ( int i = 0; i < 1; i++ )
+		{
+			let Obj = Spawn("MF_MuzzleFlash2", Origin);
+			Obj.Target = PWeapon;
+			Obj.Scale = (0.045, 0.045);
+			RMD_BaseMuzzleFlash(Obj).ofs = Offset;
+			RMD_BaseMuzzleFlash(Obj).vvel = (0, 0, 0);
+		}
+
+		for ( int i = 0; i < 9; i++ )
+		{
+			let Obj = Spawn("MF_MuzzleSparks", Origin);
+			Obj.Target = PWeapon;
+			RMD_BaseMuzzleFlash(Obj).ofs = Offset;
+			RMD_BaseMuzzleFlash(Obj).vvel += (FRandom[FX](2.0 , 8.0),FRandom[FX](-1.2 , 1.2),FRandom[FX](-1.2, 1.2));
+		}
+			
+		for ( int i = 0; i < 4; i++ )
+		{
+			let Obj = Spawn("MF_MuzzleSmoke", Origin);
+			Obj.Target = PWeapon;
+			RMD_BaseMuzzleFlash(Obj).ofs = Offset;
+			RMD_BaseMuzzleFlash(Obj).vvel += (FRandom[FX](0.1, 0.5),FRandom[FX](-0.2, 0.2),FRandom[FX](-0.15, 0.15));
+		}
+	}
+}
+
+Class RMD_HeavyPlasmaFlash : RMD_WeaponMuzzleFlash
+{
+	override void SpawnMuzzleFlash(Actor PWeapon, Vector3 Origin, Vector3 Offset)
+	{
+		for ( int i = 0; i < 1; i++ )
+		{
+			let Obj = Spawn("MF_MuzzleFlash2", Origin);
+			Obj.Target = PWeapon;
+			Obj.Scale = (0.078, 0.078);
+			Obj.A_SetRenderStyle(1.0, STYLE_AddShaded);
+			Obj.SetShade("00a9ff");
+			RMD_BaseMuzzleFlash(Obj).ofs = Offset;
+			RMD_BaseMuzzleFlash(Obj).vvel = (0, 0, 0);
+		}
+
+		for ( int i = 0; i < 9; i++ )
+		{
+			let Obj = Spawn("MF_MuzzleSparks", Origin);
+			Obj.Target = PWeapon;
+			Obj.Scale = (0.2, 0.2);
+			Obj.A_SetRenderStyle(1.0, STYLE_AddShaded);
+			Obj.SetShade("00a9ff");
+			RMD_BaseMuzzleFlash(Obj).ofs = Offset;
+			RMD_BaseMuzzleFlash(Obj).vvel += (FRandom[FX](2.0 , 8.0),FRandom[FX](-1.2 , 1.2),FRandom[FX](-1.2, 1.2));
+		}
+			
+		for ( int i = 0; i < 4; i++ )
+		{
+			let Obj = Spawn("MF_MuzzleSmoke", Origin);
+			Obj.Target = PWeapon;
+			RMD_BaseMuzzleFlash(Obj).ofs = Offset;
+			RMD_BaseMuzzleFlash(Obj).vvel += (FRandom[FX](0.1, 0.5),FRandom[FX](-0.2, 0.2),FRandom[FX](-0.15, 0.15));
+		}
+	}
+	
+}
+
+
+Class RMD_PlasmaFlash : RMD_WeaponMuzzleFlash
+{
+	override void SpawnMuzzleFlash(Actor PWeapon, Vector3 Origin, Vector3 Offset)
+	{
+		for ( int i = 0; i < 1; i++ )
+		{
+			let Obj = Spawn("MF_MuzzleFlash", Origin);
+			Obj.Target = PWeapon;
+			Obj.Scale = (0.038, 0.038);
+			Obj.A_SetRenderStyle(1.0, STYLE_AddShaded);
+			Obj.SetShade("00a4ff");
+			RMD_BaseMuzzleFlash(Obj).ofs = Offset;
+			RMD_BaseMuzzleFlash(Obj).vvel = (0, 0, 0);
+		}
+
+		for ( int i = 0; i < 9; i++ )
+		{
+			let Obj = Spawn("MF_MuzzleSparks", Origin);
+			Obj.Target = PWeapon;
+			Obj.A_SetRenderStyle(1.0, STYLE_AddShaded);
+			Obj.SetShade("00a4ff");
+			RMD_BaseMuzzleFlash(Obj).ofs = Offset;
+			RMD_BaseMuzzleFlash(Obj).vvel += (FRandom[FX](2.0 , 8.0),FRandom[FX](-1.2 , 1.2),FRandom[FX](-1.2, 1.2));
+		}
+			
+		for ( int i = 0; i < 4; i++ )
+		{
+			let Obj = Spawn("MF_MuzzleSmoke", Origin);
+			Obj.Target = PWeapon;
+			RMD_BaseMuzzleFlash(Obj).ofs = Offset;
+			RMD_BaseMuzzleFlash(Obj).vvel += (FRandom[FX](0.1, 0.5),FRandom[FX](-0.2, 0.2),FRandom[FX](-0.15, 0.15));
+		}
+	}
+	
+}
+
+
+Class RMD_RocketMuzzleFlash : RMD_WeaponMuzzleFlash
+{
+	override void SpawnMuzzleFlash(Actor PWeapon, Vector3 Origin, Vector3 Offset)
+	{
+		for ( int i = 0; i < 1; i++ )
+		{
+			let Obj = Spawn("MF_MuzzleFlash2", Origin);
+			Obj.Target = PWeapon;
+			Obj.Scale = (0.05, 0.05);
+			RMD_BaseMuzzleFlash(Obj).ofs = Offset;
+			RMD_BaseMuzzleFlash(Obj).vvel = (0, 0, 0);
+		}
+
+		for ( int i = 0; i < 9; i++ )
+		{
+			let Obj = Spawn("MF_BigSparks", Origin);
+			Obj.Target = PWeapon;
+			RMD_BaseMuzzleFlash(Obj).ofs = Offset;
+			RMD_BaseMuzzleFlash(Obj).vvel += (FRandom[FX](2.0, 15.0),FRandom[FX](-1.2 , 1.2),FRandom[FX](-1.2, 1.2));
+		}
+			
+		for ( int i = 0; i < 8; i++ )
+		{
+			let Obj = Spawn("MF_MuzzleSmoke", Origin);
+			Obj.Target = PWeapon;
+			RMD_BaseMuzzleFlash(Obj).ofs = Offset;
+			RMD_BaseMuzzleFlash(Obj).vvel += (FRandom[FX](2.5, 8.0),FRandom[FX](-0.2, 0.2),FRandom[FX](-0.15, 0.15));
+		}
+	}
+}
+
+
+Class RMD_GrenadeMuzzleFlash : RMD_WeaponMuzzleFlash
+{
+	override void SpawnMuzzleFlash(Actor PWeapon, Vector3 Origin, Vector3 Offset)
+	{
+		for ( int i = 0; i < 1; i++ )
+		{
+			let Obj = Spawn("MF_MuzzleFlash2", Origin);
+			Obj.Target = PWeapon;
+			Obj.Scale = (0.045, 0.045);
+			RMD_BaseMuzzleFlash(Obj).ofs = Offset;
+			RMD_BaseMuzzleFlash(Obj).vvel = (0, 0, 0);
+		}
+
+		for ( int i = 0; i < 9; i++ )
+		{
+			let Obj = Spawn("MF_MuzzleSparks", Origin);
+			Obj.Target = PWeapon;
+			RMD_BaseMuzzleFlash(Obj).ofs = Offset;
+			RMD_BaseMuzzleFlash(Obj).vvel += (FRandom[FX](2.0 , 8.0),FRandom[FX](-1.2 , 1.2),FRandom[FX](-1.2, 1.2));
+		}
+			
+		for ( int i = 0; i < 4; i++ )
+		{
+			let Obj = Spawn("MF_MuzzleSmoke", Origin);
+			Obj.Target = PWeapon;
+			RMD_BaseMuzzleFlash(Obj).ofs = Offset;
+			RMD_BaseMuzzleFlash(Obj).vvel += (FRandom[FX](0.1, 0.5),FRandom[FX](-0.2, 0.2),FRandom[FX](-0.15, 0.15));
+		}
+	}
+}
+
+//------------------------------------------------------------------------------
+//Bullet Based
+//------------------------------------------------------------------------------
+Class MF_MuzzleFlash : RMD_BaseMuzzleFlash
+{
+	Default
+	{
+		+BRIGHT;
+		+ROLLSPRITE;
+		RenderStyle "Add";
+		Alpha 1.0;
+		Scale 1.0;
+		Gravity 0;
+	}
+
+	override void BeginPlay()
+	{
+		Super.BeginPlay();
+	
+		Roll = Random(0, 360);
+	}
+
+
+    States
+    {
+    Spawn:
+	   TNT1 AA 1;
+	   MUZY AB 1;
+       stop;
+    Death:
+       TNT1 A 0;
+       Stop;
+    }
+}
+
+Class MF_MuzzleFlash2: RMD_BaseMuzzleFlash
+{
+	Default
+	{
+		+BRIGHT;
+		+ROLLSPRITE;
+		RenderStyle "Add";
+		Alpha 1.0;
+		Scale 1.0;
+		Gravity 0;
+	}
+
+	override void BeginPlay()
+	{
+		Super.BeginPlay();
+	
+		Roll = Random(0, 360);
+	}
+
+
+    States
+    {
+    Spawn:
+	   TNT1 AA 1;
+	   MUZZ AB 1;
+       stop;
+    Death:
+       TNT1 A 0;
+       Stop;
+    }
+}
+
+Class MF_MuzzleSparks : RMD_BaseMuzzleFlash
+{
+	Default
+	{
+		+BRIGHT;
+		RenderStyle "AddShaded";
+		Alpha 1.0;
+		Scale 0.1;
+		Gravity 0;
+	}
+
+	override void BeginPlay()
+	{
+		Super.BeginPlay();
+	
+		SetShade("ff7c07");
+	}
+
+    States
+    {
+    Spawn:
+	   TNT1 AA 1;
+	   LEGX A 4;
+       LEGX AAA 1 A_FadeOut(0.334);
+       stop;
+    Death:
+       TNT1 A 0;
+       Stop;
+    }
+}
+
+
+
+Class MF_MuzzleSmoke : RMD_BaseMuzzleFlash
+{
+	Default
+	{
+		RenderStyle "Translucent";
+		Alpha 0.10;
+		Scale 0.038;
+	}
+	
+	Override void BeginPlay()
+	{
+		Super.BeginPlay();
+		
+		Roll = frandom(0, 360);	
+	}
+	
+	Override void Tick()
+	{
+		Super.Tick();
+		
+		if (!isFrozen())
+		{
+			A_SetScale(Scale.X * 1.2, Scale.Y * 1.2);	
+		}
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Smoke1", "Smoke2", "Smoke3", "Smoke4");
+		Smoke1:
+			SMOA A 3;
+			SMOA AAA 1 A_FadeOut(0.033);
+			Stop;
+		Smoke2:
+			SMOB A 3;
+			SMOB AAA 1 A_FadeOut(0.033);
+			Stop;
+		Smoke3:
+			SMOC A 3;
+			SMOC AAA 1 A_FadeOut(0.033);
+			Stop;
+		Smoke4:
+			SMOD A 3;
+			SMOD AAA 1 A_FadeOut(0.033);
+			Stop;
+	}
+}
+
+//------------------------------------------------------------------------------
+//Rocket Based
+//------------------------------------------------------------------------------
+
+Class MF_RocketFlash : RMD_BaseMuzzleFlash
+{
+	Default
+	{
+		+BRIGHT;
+		RenderStyle "Add";
+		Alpha 1.0;
+		Scale 1.0;
+		Gravity 0;
+	}
+
+	override void BeginPlay()
+	{
+		Super.BeginPlay();
+	
+		Roll = Random(0, 360);
+	}
+
+
+    States
+    {
+    Spawn:
+	   TNT1 AA 1;
+	   MUZX AB 3;
+       stop;
+    Death:
+       TNT1 A 0;
+       Stop;
+    }
+}
+
+
+
+Class MF_BigSparks : RMD_BaseMuzzleFlash
+{
+	Default
+	{
+		+BRIGHT;
+		RenderStyle "AddShaded";
+		Alpha 1.0;
+		Scale 0.1;
+		Gravity 0;
+	}
+
+	override void BeginPlay()
+	{
+		Super.BeginPlay();
+	
+		SetShade("ff7c07");
+	}
+
+    States
+    {
+    Spawn:
+	   TNT1 AA 1;
+	   LENS C 25;
+       LENS CCC 1 A_FadeOut(0.334);
+       stop;
+    Death:
+       TNT1 A 0;
+       Stop;
+    }
+}
+
+
+

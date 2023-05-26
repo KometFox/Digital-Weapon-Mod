@@ -1,0 +1,75 @@
+Class EmptyBeer1 : Casings
+{
+	Default
+	{
+		Height 12;
+		Radius 9;
+		Speed 4;
+		Scale 1;
+		BounceSound "Items/CanRoll";
+		WallBounceSound "Items/CanRoll";
+		
+		Casings.TimeToLife 350;
+	}
+	
+	States
+	{
+		Spawn:
+			IDLE A 1;
+			Goto Spawn2;
+	}
+}
+
+
+Class EmptyMilk : Casings
+{
+	Default
+	{
+		Height 12;
+		Radius 9;
+		Speed 4;
+		Scale 1;
+		BounceSound "Items/WoodBoxDrop";
+		WallBounceSound "Items/WoodBoxDrop";
+		
+		Casings.TimeToLife 350;
+	}
+	
+	States
+	{
+		Spawn:
+			IDLE A 1;
+			Goto Spawn2;
+	}
+}
+
+
+Class EmptyEnergyCan1 : EmptyBeer1
+{
+	Default
+	{
+		BounceSound "Items/CanRoll";
+		WallBounceSound "Items/CanRoll";
+	}
+}
+
+Class RMD_Litter : Actor
+{
+
+	States
+	{
+		Spawn:
+			IDLE B 0;
+			IDLE B 1200;
+			Stop;
+	}
+}
+
+//Items
+Class MedikitLitter : RMD_Litter {}
+Class StimpackLitter : RMD_Litter {}
+Class RMD_HealthKegLitter : RMD_Litter {}
+
+
+
+

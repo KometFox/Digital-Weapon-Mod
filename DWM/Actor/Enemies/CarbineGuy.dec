@@ -1,0 +1,114 @@
+ACTOR CarbineGuy
+{
+  Health 50
+  Radius 20
+  Height 56
+  Mass 100
+  Speed 6
+  PainChance 100
+  Monster
+  +MISSILEMORE
+  +FLOORCLIP
+  SeeSound "Cudgel/Growl"
+  PainSound "Mutants/Pain"
+  DeathSound "Cudgel/Die"
+  ActiveSound "Mutants/Growl"
+  Obituary "%o was shot to pieces by a Heavy Carbine-wielding zombie."
+  States
+  {
+  Spawn:
+    HCPO AB 10 A_Look
+    Loop
+  See:
+    HCPO AABBCCDD 3 A_Chase
+    Loop
+  Missile:
+    HCPO E 5 A_FaceTarget
+	HCPO F 0 A_quake(2,12,0,128,None)
+	HCPO F 0 A_playsound("HCSHOT",0)
+    HCPO F 2 Bright A_customMissile("CarbineGuyBullet",40,0,random(-4,4),0,random(-4,4))
+	HCPO E 2
+	HCPO F 0 A_playsound("HCSHOT",0)
+    HCPO F 2 Bright A_customMissile("CarbineGuyBullet",40,0,frandom(-2,2),0,frandom(-2,2))
+	HCPO E 2
+	HCPO F 0 A_playsound("HCSHOT",0)
+    HCPO F 2 Bright A_customMissile("CarbineGuyBullet",40,0,frandom(-1,1),0,frandom(-1,1))
+	HCPO E 2
+	HCPO E 1 A_CPosRefire
+	Goto Missile+1
+	Melee:
+    HCPO D 8 A_FaceTarget
+    HCPO E 8 A_custommeleeattack(12,"CarbineGuy/Stabbing")
+	HCPO D 6
+	Goto See
+  Pain:
+    HCPO G 3
+    HCPO G 3 A_Pain
+    Goto See
+  Death:
+    HCPO H 5
+    HCPO I 5 A_Scream
+    HCPO J 5 A_NoBlocking
+    HCPO K 5
+    HCPO L -1
+    Stop
+  XDeath:
+    HCPO M 5 
+    HCPO N 5 A_XScream
+    HCPO O 5 A_NoBlocking
+    HCPO PQR 5
+    HCPO S -1
+    Stop
+  Raise:
+    HCPO L 5
+    HCPO KJIH 5
+    Goto See
+  }
+}
+
+ACTOR CarbineGuyBullet : RMD_BaseBullet
+{
+  Speed 90
+  Damage (18)
+  Scale 0.75
+  SeeSound "CarbineGuy/Firing"
+  States
+  {
+  Spawn:
+    PUFF A 1
+    Loop
+  Crash:
+  Death:
+	TNT1 A 0 A_SpawnItemEx("NewBulletPuff_Small", 0, 0, 1)
+    Stop
+  XDeath:
+	TNT1 A 0 A_SpawnItemEx("NewBlood", 0, 0, 1)
+	Stop
+  }  
+}
+
+
+ACTOR deadcarbineguy1 //20126
+{
+  Height 56
+  Radius 12
+  +SOLID
+  States
+  {
+  Spawn:
+    HCPD A -1
+    Stop
+  }
+}
+
+ACTOR deadcarbineguy2 //20127
+{
+  Height 56
+  Radius 12
+  States
+  {
+  Spawn:
+    HCPD B -1
+    Stop
+  }
+}

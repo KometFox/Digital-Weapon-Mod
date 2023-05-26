@@ -1,0 +1,162 @@
+Model RMD_MP5_Projectile
+{
+	Path "Models\Projectile"
+	Model 0 "NewTracer.md3"
+	Skin 0 "TracerOrange.png"
+	PITCHFROMMOMENTUM
+	Scale 5.0 1.5 1.5
+	
+	FrameIndex Puff A 0 0
+}
+
+Model RMD_EnforcerBullet
+{
+	Path "Models\Projectile"
+	Model 0 "NewTracer.md3"
+	Skin 0 "TracerBlue.png"
+	PITCHFROMMOMENTUM
+	Scale 4.0 1.4 1.4
+
+	FrameIndex Puff A 0 0
+}
+
+Model RMD_CBM3_Projectile
+{
+	Path "Models\Projectile"
+	Model 0 "NewTracer.md3"
+	Skin 0 "TracerOrange.png"
+	PITCHFROMMOMENTUM
+	Scale 4.0 1.4 1.4
+
+	FrameIndex Puff A 0 0
+}
+
+
+Model RMD_E12PR_Plasma
+{
+	Path "Models\Projectile"
+	Model 0 "NewTracer.md3"
+	Skin 0 "TracerBlue.tga"
+	PITCHFROMMOMENTUM
+	Scale 3.0 2.2 2.2
+
+	FrameIndex Puff A 0 0
+}
+
+Model RMD_M25_Bullet
+{
+	Path "Models\Projectile"
+	Model 0 "NewTracer.md3"
+	Skin 0 "TracerOrange.tga"
+	PITCHFROMMOMENTUM
+	Scale 3.25 1.8 1.8
+
+	FrameIndex Puff A 0 0
+}
+
+Model RMD_M16A3_Bullet
+{
+	Path "Models\Projectile"
+	Model 0 "NewTracer.md3"
+	Skin 0 "TracerOrange.tga"
+	PITCHFROMMOMENTUM
+	Scale 3.25 1.9 1.9
+
+	FrameIndex Puff A 0 0
+}
+
+Model RMD_MadsenLAR_Bullet
+{
+	Path "Models\Projectile"
+	Model 0 "NewTracer.md3"
+	Skin 0 "TracerOrange.tga"
+	PITCHFROMMOMENTUM
+	Scale 4.7 2.0 2.0
+
+	FrameIndex Puff A 0 0
+}
+
+Model RMD_M249SAW_Bullet
+{
+	Path "Models\Projectile"
+	Model 0 "NewTracer.md3"
+	Skin 0 "TracerOrange.tga"
+	PITCHFROMMOMENTUM
+	Scale 3.25 1.9 1.9
+
+	FrameIndex Puff A 0 0
+}
+
+Model RMD_Mossberg590Proj
+{
+	Path "Models\Projectile"
+	Model 0 "NewTracer.md3"
+	Skin 0 "TracerOrange.tga"
+	PITCHFROMMOMENTUM
+	Scale 1.5 1.5 1.5
+
+	FrameIndex Puff A 0 0
+}
+
+
+Model SMRL_Rocket
+{
+	Path "Models\Projectile"
+	Model 0 "SMRLROcket.md3"
+	Path "Models\Weapons\SMRL"
+	Skin 0 "SMRL_Rocket.png"
+	PITCHFROMMOMENTUM
+	Scale 3 3 3
+
+	FrameIndex IDLE A 0 0
+}
+
+Model RMD_G20GL_Grenade
+{
+	Path "Models\Projectile"
+	Model 0 "SMRLRocket.md3"
+	Path "Models\Weapons\SMRL"
+	Skin 0 "SMRL_Rocket.png"
+	PITCHFROMMOMENTUM
+	Scale 3 2 2
+
+	FrameIndex IDLE A 0 0
+}
+
+
+Model RMD_M25_Grenade
+{
+	Path "Models\Projectile"
+	Model 0 "SMRLRocket.md3"
+	Path "Models\Weapons\SMRL"
+	Skin 0 "SMRL_Rocket.png"
+	PITCHFROMMOMENTUM
+	Scale 3 2 2
+
+	FrameIndex IDLE A 0 0
+}
+
+Model RMD_Madsen_Grenade
+{
+	Path "Models\Projectile"
+	Model 0 "SMRLRocket.md3"
+	Path "Models\Weapons\SMRL"
+	Skin 0 "SMRL_Rocket.png"
+	PITCHFROMMOMENTUM
+	Scale 3 2 2
+
+	FrameIndex IDLE A 0 0
+}
+
+
+Model RMD_PirateBomb_Bomb
+{
+	Path "Models\Projectile"
+	Model 0 "PirateBombProj.md3"
+	Path "Models\Weapons\Grenade\PirateBomb"
+	Skin 0 "PirateBomb.png"
+	PITCHFROMMOMENTUM
+	Scale 4 4 4
+
+	FrameIndex IDLE A 0 0
+}

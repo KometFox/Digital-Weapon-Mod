@@ -1,0 +1,46 @@
+base Doom;
+Resolution 800, 600;
+height 0;
+monospacefonts true, "0";
+CompleteBorder true;
+
+statusbar normal, ForceScaled
+{
+//The Bars
+drawimage "AmmoBar", -173, 500;
+drawimage "StatBar", 0, 500;
+
+
+//Health and Armor
+DrawBar "RippBar", "RippBar2", Armor (100), Horizontal, 5, -45;
+DrawBar "RippBar", "RippBar2", Health (100), Horizontal, 5, -75;
+
+drawnumber 5, RMDFONT_BIGNUM, YELLOW, Armor, 125, -63;
+drawnumber 5, RMDFONT_BIGNUM, PURPLE, Health, 125, -93;
+
+//Materials
+ininventory Material
+{
+	DrawString CONFONT, CYAN, "Credit:", 64, -30;
+	DrawNumber 7, CONFONT, CYAN, Material, 130, -30;
+}
+
+//Keys
+//The keys are bigger because elese they are hard to see
+drawswitchableimage keyslot 2 && 5, "nullimage", "STKEYS0", "STKEYS3", "STKEYS6", 35, -95;
+drawswitchableimage keyslot 3 && 6, "nullimage", "STKEYS1", "STKEYS4", "STKEYS7", 50, -95;
+drawswitchableimage keyslot 1 && 4, "nullimage", "STKEYS2", "STKEYS5", "STKEYS8", 65, -95;
+
+
+DrawImage "MugBar", 147, -37;
+DrawMugshot "STF", 5, xdeathface, 149, -33;
+
+
+}
+
+statusbar inventory
+{
+drawinventorybar Doom, 8, INDEXFONT, 120, 440;
+}
+
+statusbar automap {}

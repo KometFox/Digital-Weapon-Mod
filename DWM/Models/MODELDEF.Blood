@@ -1,0 +1,21 @@
+Model Base_BloodSpot     
+{
+   Path "models/bloodspot"
+   Model 0 "bloodspot.md3"    
+   Skin 0 "bloodspothd2.png"
+   Model 1 "bloodspot.md3"   
+   Skin 1 "bloodspothd.png"
+   Model 2 "bloodspot.md3"   
+   Skin 2 "bloodspothd3.png"  
+   Model 3 "bloodspot.md3"   
+   Skin 3 "bloodspothd2.png"
+   
+   Scale 40.0 40.0 0.1          
+   
+   FrameIndex BPDL A 0 0  
+   FrameIndex BPDL B 1 0
+   FrameIndex BPDL C 2 0
+   FrameIndex BPDL D 3 0
+   ZOffset 1.3
+}
+

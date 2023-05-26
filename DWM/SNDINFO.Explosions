@@ -1,0 +1,36 @@
+$Random Explosion/HandGrenade {Boom/HandGrenade1 Boom/HandGrenade2 Boom/HandGrenade3}
+$RollOff Explosion/HandGrenade 300 800
+Boom/HandGrenade1 "Sounds/Weapons/Explosion/Grenade/Detonate1.wav"
+Boom/HandGrenade2 "Sounds/Weapons/Explosion/Grenade/Detonate2.wav"
+Boom/HandGrenade3 "Sounds/Weapons/Explosion/Grenade/Detonate3.wav"
+
+$Random Explosion/Grenade {Boom/Grenade1 Boom/Grenade2 Boom/Grenade3}
+$RollOff Explosion/Grenade 300 900
+Boom/Grenade1 "Sounds/Weapons/Explosion/Grenade/Detonate1.wav"
+Boom/Grenade2 "Sounds/Weapons/Explosion/Grenade/Detonate2.wav"
+Boom/Grenade3 "Sounds/Weapons/Explosion/Grenade/Detonate3.wav"
+
+$Random Explosion/BigRocket {Boom/BigRocket1 Boom/BigRocket2 Boom/BigRocket3}
+$RollOff Explosion/BigRocket 500 1500
+Boom/BigRocket1 "Sounds/Weapons/Explosion/BigRocket/Detonate1.ogg"
+Boom/BigRocket2 "Sounds/Weapons/Explosion/BigRocket/Detonate2.ogg"
+Boom/BigRocket3 "Sounds/Weapons/Explosion/BigRocket/Detonate3.ogg"
+
+$Random Explosion/Rocket {Boom/Rocket1 Boom/Rocket2 Boom/Rocket3}
+$RollOff Explosion/Rocket 300 900
+Boom/Rocket1 "Sounds/Weapons/Explosion/Rocket/Detonate1.ogg"
+Boom/Rocket2 "Sounds/Weapons/Explosion/Rocket/Detonate2.ogg"
+Boom/Rocket3 "Sounds/Weapons/Explosion/Rocket/Detonate3.ogg"
+
+$Random Explosion/Barrel {Boom/Barrel1 Boom/Barrel2 Boom/Barrel3}
+$RollOff Explosion/Barrel 400 1700
+Boom/Barrel1 "Sounds/Weapons/Explosion/Grenade/Detonate1.wav"
+Boom/Barrel2 "Sounds/Weapons/Explosion/Grenade/Detonate2.wav"
+Boom/Barrel3 "Sounds/Weapons/Explosion/Grenade/Detonate3.wav"
+
+
+$Random PlasmaBoom {PlasmaBoomA PlasmaBoomC PlasmaBoomB}
+$RollOff PlasmaBoom 950 2000
+PlasmaBoomA "Sounds/Weapons/Energy/PlasmaBoomA.ogg"
+PlasmaBoomB "Sounds/Weapons/Energy/PlasmaBoomB.ogg"
+PlasmaBoomC "Sounds/Weapons/Energy/PlasmaBoomC.ogg"

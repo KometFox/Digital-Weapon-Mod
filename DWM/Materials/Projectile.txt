@@ -1,0 +1,31 @@
+pointlight Rocketflight
+{
+    color 1 0.6 0.32
+    size 45
+}
+
+
+pointlight MediumExplosion_1
+{
+    color 1 0.8 0.75
+    size 200
+}
+
+pointlight MediumExplosion_2
+{
+    color 1 0.8 0.75
+    size 180
+}
+
+
+pointlight MediumExplosion_3
+{
+    color 1 0.8 0.75
+    size 90
+}
+
+pointlight Sparkle_1
+{
+    color 0.15 0.15 0.5
+    size 15
+}

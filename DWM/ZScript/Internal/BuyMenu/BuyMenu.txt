@@ -1,0 +1,720 @@
+/*
+A Class that handles the whole buy menu system.
+TODO: Figure out if its possible to automate the column stuff
+*/
+Class BuyMenuScript : EventHandler
+{
+	bool Enabled; //If the menu is enabled
+	//Elements
+	Array<UIElement> Elements; //Array of Elements it has
+	Array<int> ElementsRow; //The row each element is at
+	int ElementsSel; //The Element it is selected
+	int ElementsLastIndex; 
+	//Other
+	StructKeyArrow KeyArrow; //The Arrow
+
+	Struct StructKeyArrow
+	{
+		Vector2 Position;	
+	}
+
+	//Function for a more easier method to add elements, especially for handling
+	//data of it.
+	void AddElements(UIElement Thing)
+	{
+		//ElementsRow.Grow(10);
+
+		ElementsLastIndex = Thing.Column;
+		//ElementsRow.Insert(ElementsLastIndex, 1);
+		//ElementsRow.Grow(1);
+		//ElementsRow[ElementsLastIndex] += 1;
+		//ElementsRow.Push(1);
+		Elements.Push(Thing);
+	}
+
+	//Function for clearing the UI elements
+	void ClearElements()
+	{
+		Elements.Clear();
+		//ElementsRow.Clear();
+		//ElementsRow.Grow(1);
+	}
+	
+	override void WorldLoaded(WorldEvent e)
+	{
+		//ElementsRow.Grow(10);
+	}
+
+
+	//Function for simplified Text display
+	ui void AddText(String Text, int pos_x, int pos_y)
+	{
+		Screen.DrawText(Confont, Font.CR_BLUE, pos_x, pos_y, Text, DTA_VirtualWidth, 720, DTA_VirtualHeight, 480);
+	}
+	
+	ui void AddImage(TextureID tex, int pos_x, int pos_y)
+	{
+		Screen.DrawTexture(tex, false, pos_x,  pos_y, DTA_KeepRatio, true, DTA_VirtualWidth, 720, DTA_VirtualHeight, 480);
+	}
+
+	
+	//Display stuff
+	override void renderOverlay(RenderEvent e)
+	{
+
+		if (Enabled == True && Elements.size() > 0)
+		{
+			//Display all the elements
+			for (int i = 0; i < Elements.size(); i++)
+			{
+				
+			
+				//Display Text
+				if (Elements[i] is "TextEntry")
+				{
+					TextEntry Pick = TextEntry(Elements[i]); 
+					
+					if (Pick)
+					{
+						if (i == ElementsSel)
+						{
+							AddText(String.Format("[%s]", Pick.Text), Pick.rect_pos.x, Pick.rect_pos.y);
+						}
+						else
+						{
+							AddText(Pick.Text, Pick.rect_pos.x, Pick.rect_pos.y);
+						}
+					}
+					
+				}
+
+				
+				//Display Graphics
+				if (Elements[i] is "BuyMenuItems")
+				{
+					BuyMenuItems Pick = BuyMenuItems(Elements[i]); 
+					
+					if (Pick)
+					{
+						if (i == ElementsSel)
+						{
+							TextureID GrSelect = TexMan.CheckForTexture("64BLUSEL", TexMan.Type_Any);
+						
+							AddImage(GrSelect, Pick.rect_pos.x, Pick.rect_pos.y);
+							AddImage(Pick.Graphic, Pick.rect_pos.x, Pick.rect_pos.y);
+							
+							DisplayItem();
+						}
+						else
+						{
+							AddImage(Pick.Graphic, Pick.rect_pos.x, Pick.rect_pos.y);
+						}
+					}
+					
+				}
+
+
+			}		
+		}
+	}
+	
+	//Display information about the selected Item.
+	ui void DisplayItem()
+	{
+		if (Elements[ElementsSel] is "BuyMenuItems")
+		{
+			BuyMenuItems Pick = BuyMenuItems(Elements[ElementsSel]); 
+			let Player = Players[0].mo; 
+					
+			if (Pick != null && Player != null)
+			{
+					AddText(String.Format("Item: [%s]", Pick.ItemName), 470, 150);
+					AddText(String.Format("Amount: [%d]", Player.CountInv(Pick.ID)), 470, 160);
+					AddText(String.Format("Cost: [%d]", Pick.Cost), 470, 170);
+			}
+		}
+	}
+	
+	//Purchase the items, you good person. 
+	void Purchase(BuyMenuItems Item)
+	{
+		//Failsafe
+		if (Item == null)
+		{
+			return;
+		}
+
+		let Player = Players[0].mo; //The playa
+		int Money = 0; //Good boy points
+		Inventory PItem = Player.FindInventory(Item.ID, false); 
+
+
+
+		//Null checking...
+		if (Player != null)
+		{
+			let BMS = RMD_MoneyHandler(StaticEventHandler.Find('RMD_MoneyHandler'));
+
+			
+			//Check for Items
+			if (PItem)
+			{
+				if (Player.CountInv(Item.ID) >= PItem.MaxAmount)
+				{
+					return;
+				}
+			}
+			
+			//Check for Armor
+			if (Item.Category == "Armor")
+			{
+				Actor ArmorP; //Pointer
+				BasicArmorPickup ArmorItem; //The casting crap
+				Inventory PlayerArmor;
+				BasicArmor PlayerArmorCast;
+				int PlayerArmorPercent; //BasicArmor calculates armor percenatge differntly
+				
+				ArmorP = ArmorP.Spawn(Item.ID);
+				PlayerArmor = Player.FindInventory("BasicArmor");
+				ArmorItem = BasicArmorPickup(ArmorP);
+				PlayerArmorCast = BasicArmor(PlayerArmor);
+				PlayerArmorPercent = PlayerArmorCast.SavePercent * 100;
+								
+				//Console.PrintF("Player Armor P: %d", PlayerArmorPercent);
+				//Console.PrintF("Item Armor P: %d", ArmorItem.SavePercent);
+								
+				if (ArmorItem.SavePercent >= PlayerArmorPercent
+					&& ArmorItem.SaveAmount <= PlayerArmor.Amount)
+				{
+					ArmorP.Die(ArmorP, ArmorP);
+					return;
+				}
+				
+					
+				ArmorP.Die(ArmorP, ArmorP);
+			}
+			
+			//Check for Health
+			if (Item.Category == "Health")
+			{
+				Actor HealthP; //Pointer
+				Inventory HealthItem; //The casting crap
+				
+				HealthP = HealthP.Spawn(Item.ID);
+				HealthItem = Inventory(HealthP);
+				
+				if (Player.Health >= HealthItem.MaxAmount)
+				{
+					HealthP.Die(HealthP, HealthP);
+					return;
+				}
+				
+					
+				HealthP.Die(HealthP, HealthP);
+			}
+			
+			//Check for his geld and if he has enough of it, buy it.
+			if (Player.CountInv("Material") >= Item.Cost)
+			{
+				//Free shit took all my money. 
+				if (Item.Cost > 0)
+				{
+					Player.A_TakeInventory("Material", Item.Cost);
+				}
+			
+				Player.A_GiveInventory(Item.ID, Item.Amount);
+				
+				//Play a sound effect too
+				if (Item.BuySound)
+				{
+					S_StartSound(Item.BuySound, CHAN_VOICE, CHANF_UI|CHANF_NOPAUSE, 1.0);
+				}
+			}
+			//else fail
+			else
+			{
+				//AddText("You have not enough money to buy this.", 250, 250);
+				return; 
+			}
+
+
+			//Save the money after purchase
+			BMS.SaveMoney();
+
+		}
+	
+	
+	}
+	
+	//Lazy alias to reinit the menu stuff
+	void ReinitMenu()
+	{
+		ClearElements();
+		InitMenu();
+	}
+	
+	//Handle the Enter stuff
+	void PressEnter()
+	{
+		ElementsFailsafe();
+	
+		let Item = Entry(Elements[ElementsSel]);		
+		string CMD = Item.Command;
+
+		//The main categories
+		if (CMD == "Weapons")
+		{
+			ReinitMenu();
+			OpenWeaponsMenu();
+		}
+		
+		else if (CMD == "Items")
+		{
+			ReinitMenu();
+			OpenItemsMenu();
+		}
+		
+		//The sub categories
+		//Items
+		else if (CMD == "Ammo")
+		{
+			ReinitMenu();
+			
+			let Obj = new("BM_AmmoItems");
+			
+			AddItems(Obj);		
+		}
+	
+		else if (CMD == "Supplies")
+		{
+			ReinitMenu();
+			
+			let Obj = new("BM_Supplies");
+			
+			AddItems(Obj);
+		}
+		
+		//Weapons
+		else if (CMD == "Pistols")
+		{
+			ReinitMenu();
+			
+			let Obj = new("BM_PistolWeapons");
+			
+			AddItems(Obj);
+			
+		}
+		
+		else if (CMD == "SubmachineGuns")
+		{
+			ReinitMenu();
+			
+			let Obj = new("BM_SMGWeapons");
+			
+			AddItems(Obj);			
+		}
+
+		else if (CMD == "AssaultRifle")
+		{
+			ReinitMenu();
+			
+			let Obj = new("BM_ARWeapons");
+			
+			AddItems(Obj);
+		
+		}
+
+		else if (CMD == "Shotgun")
+		{
+			ReinitMenu();
+			
+			let Obj = new("BM_ShotgunWeapons");
+			
+			AddItems(Obj);			
+		}
+		
+		else if (CMD == "Launcher")
+		{
+			ReinitMenu();
+			
+			let Obj = new("BM_LauncherWeapons");
+			
+			AddItems(Obj);			
+		}		
+		
+		//Purchases
+		else if (CMD == "Buy")
+		{
+			//Double check is double safety
+			if (ElementsSel > 0 && ElementsSel < Elements.Size())
+			{
+				if (Elements[ElementsSel] is "BuyMenuItems")
+				{
+					let Item = BuyMenuItems(Elements[ElementsSel]);
+				
+					Purchase(Item);
+				}
+			}
+		}
+		
+	}
+	
+	void AddItems(BMItems Container)
+	{
+		//Let EventItems = BMItems(Container);
+		int Slot; //The Slots for setting row and column 
+		
+			Container.AddItems();
+			
+			for (int i = 0; i < Container.ArItems.Size(); i++)
+			{
+				let SelectedItem = Container.ArItems[i];
+				
+				if (i < 5)
+				{
+					SelectedItem.rect_pos.x = 80 + (Slot * 70);
+					SelectedItem.rect_pos.y = 60 * 2;
+					SelectedItem.Column = 1;
+				}
+				else if (i < 10)
+				{
+					SelectedItem.rect_pos.x = 80 + (Slot * 70);
+					SelectedItem.rect_pos.y = 60 * 3;
+					SelectedItem.Column = 2;
+				}
+				
+				else if (i < 15)
+				{
+					SelectedItem.rect_pos.x = 80 + (Slot * 70);
+					SelectedItem.rect_pos.y = 60 * 4;
+					SelectedItem.Column = 3;				
+				}
+
+
+				Slot += 1;
+
+				//Make it 5 slots per row;
+				if (Slot >= 5)
+				{
+					Slot = 0;
+				}
+				
+				AddElements(SelectedItem);
+				
+			}
+	}
+	
+	
+	//Element selection fail safe
+	void ElementsFailsafe()
+	{
+		if (ElementsSel >= Elements.Size())
+		{
+			ElementsSel = Elements.Size() -1;
+		}
+		
+		if (ElementsSel < 0)
+		{
+			ElementsSel = 0;
+		}
+	}
+	
+
+	//Get the next Element
+	void Elements_NextItem()
+	{
+		ElementsFailsafe();
+		ElementsSel += 1;
+		
+		if (ElementsSel >= Elements.Size())
+		{
+			ElementsSel = Elements.Size() -1;
+		}
+	}
+	
+	//Get the previous Element
+	void Elements_PreviousItem()
+	{
+		ElementsFailsafe();
+		ElementsSel -= 1;
+		
+		if (ElementsSel < 0)
+		{
+			ElementsSel = 0;
+		}	
+	}
+	/*
+	   0 | 1 | 2 = 0
+	   3 | 4 | 5 = 1
+	   6 | 7 | 8 = 2
+	   
+	   Index = 4;
+	   Column = 1;
+	   
+	*/
+	
+	
+	//Get the element below
+	void Elements_DownItem()
+	{
+		ElementsFailsafe();
+
+		int OldIndex; //The old index
+		int TotalRows; //The Total rows below
+		int MCCalc; //Do some calculation
+		
+		OldIndex = ElementsSel;
+		
+		//Figure out Total Rows first from elements below
+		for (int i = 0; i < Elements.Size(); ++i)
+		{
+			if (Elements[i].Column > Elements[OldIndex].Column)
+			{
+				TotalRows += 1;
+				MCCalc = Elements[i].Column - Elements[OldIndex].Column ;
+
+				if (MCCalc > 1)
+				{
+					Break;
+				}
+			}		
+
+			
+		}
+		
+		//A shitty work around because I can't make the loop to stop -before-
+		//2 at MCCalc
+		if (MCCalc <= 1)
+		{
+			ElementsSel = ElementsSel + TotalRows;
+		}
+		else 
+		{
+			ElementsSel = ElementsSel + TotalRows -1;
+		}
+
+		//Console.PrintF("Calc: %d", MCCalc);
+		//Console.PrintF("TR: %d", TotalRows);
+		
+		
+	}
+	
+	//Get the element above
+	void Elements_UpItem()
+	{
+		ElementsFailsafe();
+
+		int OldIndex; //The old index
+		int TotalRows; //The Total rows below
+		int MCCalc; //Do some calculation
+		
+		OldIndex = ElementsSel;
+		
+		//Figure out Total Rows first from elements below
+		for (int i = Elements.Size() -1; i > 0; i--)
+		{
+			if (Elements[i].Column < Elements[OldIndex].Column)
+			{
+				TotalRows += 1;
+				MCCalc = Elements[OldIndex].Column - Elements[i].Column;
+
+				if (MCCalc > 1)
+				{
+					Break;
+				}
+			}		
+			
+		}
+		
+		//A shitty work around because I can't make the loop to stop -before-
+		//2 at MCCalc
+		if (MCCalc <= 1)
+		{
+			ElementsSel = TotalRows - ElementsSel;
+			//Failsafe
+			if (ElementsSel < 0)
+			{
+				ElementsSel = 0;
+			}
+		}
+		else 
+		{
+			ElementsSel = ElementsSel - TotalRows +1;
+		}
+		
+
+		//Console.PrintF("Calc: %d", MCCalc);
+		//Console.PrintF("TR: %d", TotalRows);	
+	}
+	
+	
+	void CursorMover(string MoveTo)
+	{
+		if (MoveTo == "RIGHT")
+		{
+			Elements_NextItem();	
+		}
+		else if (MoveTo == "LEFT")
+		{
+			Elements_PreviousItem();
+		}
+		else if (MoveTo == "DOWN")
+		{
+			Elements_DownItem();
+		}
+		else if (MoveTo == "UP")
+		{
+			Elements_UpItem();
+		}
+	
+	}
+	
+	//Detect player input
+	override bool InputProcess (InputEvent e)
+	{
+	
+		//Prevent from sending stuff when the menu is not open...
+		if (Enabled == True)
+		{
+			if (e.Type == InputEvent.Type_KeyDown && e.KeyScan == InputEvent.Key_LeftArrow)		
+			{		
+				SendNetworkEvent("PRESS_LEFT");
+			}
+			
+			else if (e.Type == InputEvent.Type_KeyDown && e.KeyScan == InputEvent.Key_RightArrow)
+			{
+				SendNetworkEvent("PRESS_RIGHT");
+			}
+
+			else if (e.Type == InputEvent.Type_KeyDown && e.KeyScan == InputEvent.Key_DownArrow)
+			{
+				SendNetworkEvent("PRESS_DOWN");
+			}
+
+			else if (e.Type == InputEvent.Type_KeyDown && e.KeyScan == InputEvent.Key_UpArrow)
+			{
+				SendNetworkEvent("PRESS_UP");
+			}
+			
+			else if (e.Type == InputEvent.Type_KeyDown && e.KeyScan == InputEvent.Key_Enter)
+			{
+				SendNetworkEvent("ENTER");
+			}		
+
+		}
+
+		return false;	
+	}
+
+	//The networking processing.
+	override void NetworkProcess(ConsoleEvent e)
+	{
+
+		//Menu Opening
+		if (e.Name == "BUYMENU")
+		{
+			if (Enabled == False)
+			{
+//				Console.PrintF("Opening Menu");
+				//Initalize the Menu
+				InitMenu();
+
+				Enabled = True;
+				CallACS("RMD_FreezePlayer");
+			}
+			else
+			{
+//				Console.PrintF("Closing Menu");
+				//Clear upon closing
+				ClearElements();
+
+				Enabled = False;
+				CallACS("RMD_UnfreezePlayer");
+			}
+			
+		}
+		
+		/*
+		if (e.Name = "BM_BuyAmmo1")
+		{
+			BuyAmmo(Ammo1);
+		}
+		else if (e.Name = "BM_BuyAmmo2)
+		{
+			BuyAmmo(Ammo2);
+		}
+		*/
+		
+		//Detect Keys
+		if (Enabled == True)
+		{
+			if (e.Name == "PRESS_LEFT")
+			{
+				CursorMover("LEFT");
+			}
+			
+			else if (e.Name == "PRESS_RIGHT")
+			{
+				CursorMover("RIGHT");
+			}		
+
+			else if (e.Name == "PRESS_DOWN")
+			{
+				CursorMover("DOWN");
+			}
+			
+			else if (e.Name == "PRESS_UP")
+			{
+				CursorMover("UP");
+			}
+			
+			else if (e.Name == "ENTER")
+			{
+				PressEnter();
+			}
+		
+		}
+		
+		
+	
+	}	
+
+}
+
+//The UI elements...
+Class UIElement
+{
+	Vector2 rect_pos; //the position
+	int Row;  //The row
+	int Column;  //The column
+}
+
+//Interactable Element
+Class Entry : UIElement
+{
+	String Text; //The text to display
+	String Command; //The command to send
+	
+	String GetText()
+	{
+		return Text;
+	}
+	
+	String GetCommand()
+	{
+		return Command;
+	}
+}
+
+//Interactable Text Element
+Class TextEntry : Entry
+{
+
+}
+
+//Interactable Graphic Element
+Class GraphicEntry : Entry
+{
+	TextureID Graphic; //The graphic to display
+}
+

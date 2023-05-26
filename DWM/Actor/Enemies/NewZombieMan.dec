@@ -1,0 +1,90 @@
+ACTOR Cudgel : ZombieMan
+{
+  Health 24
+  PainChance 100
+  Tag "Cudgel"
+  SeeSound "Cudgel/Growl"
+  PainSound "Mutants/Pain"
+  DeathSound "Cudgel/Die"
+  ActiveSound "Mutants/Growl"
+  HitObituary "%o was clubbed to dead by a Cudgel."
+  Obituary "%o got perforated by a Cudgel."  
+  DamageFactor M_Aura, 0
+  Dropitem "Clip", 0
+  States
+  {
+  Spawn:
+    POSS AB 10 A_Look
+    Loop
+  See:
+	TNT1 A 0 A_JumpIfInTargetLOS("Missile", 50, JLOSF_DEADNOJUMP, 650)
+    POSS AABBCCDD 4 A_Chase("Missile","Missile",CHF_NOPLAYACTIVE)
+	TNT1 A 0 A_Jump(32,"Growl")
+	TNT1 A 0 A_Jump(100,"See_Aggression")
+    Loop
+  See_Aggression:
+	TNT1 A 0 A_JumpIfInTargetLOS("Missile_Prec", 80, JLOSF_DEADNOJUMP, 1500)
+	POSS A 4 A_Chase("Missile","Missile",CHF_NOPLAYACTIVE)
+	Goto See
+	
+  Growl:
+	TNT1 A 0 A_PlaySound("Cudgel/Growl")
+	Goto See
+	
+  Missile:
+    POSS EEEEEE 2 A_FaceTarget(5,30)
+    POSS FFF 6 A_CustomMissile("Cudgel_Bullet", 40,0,+frandom(-6,6),CMF_OFFSETPITCH,+frandom(-6,6))
+    POSS E 2 A_FaceTarget
+	POSS E 2
+	TNT1 A 0 A_Jump(50,"Missile")
+    Goto See
+  Missile_Prec:
+    POSS EEE 2 A_FaceTarget(5,30)
+    POSS FF 3 A_CustomMissile("Cudgel_Bullet", 40,0,+frandom(-0.8,0.8),CMF_OFFSETPITCH,+frandom(-0.8,0.8))
+	POSS E 2
+    Goto See
+  Pain:
+    POSS G 3
+    POSS G 3 A_Pain
+    Goto See
+  Death:
+    POSS H 5
+    POSS I 5 A_Scream
+    POSS J 5 A_NoBlocking
+    POSS K 5
+    POSS L -1
+    Stop
+  XDeath:
+    POSS M 5
+    POSS N 5 A_XScream
+    POSS O 5 A_NoBlocking
+    POSS PQRST 5
+    POSS U -1
+    Stop
+  Raise:
+    POSS K 5
+    POSS JIH 5
+    Goto See
+  }
+}
+
+ACTOR Cudgel_Bullet : RMD_BaseBullet
+{
+  Speed 100
+  Damage (8)
+  Scale 0.75
+  SeeSound "SMG/Firing"
+  States
+  {
+  Spawn:
+    PUFF A 1
+    Loop
+  Crash:
+  Death:
+	TNT1 A 0 A_SpawnItemEx("NewBulletPuff_Small", 0, 0, 1)
+    Stop
+  XDeath:
+	TNT1 A 0 A_SpawnItemEx("NewBlood", 0, 0, 1)
+	Stop
+  }  
+}

@@ -1,0 +1,22 @@
+class RMD_ExplosiveBarrel : ExplosiveBarrel
+{
+	Default
+	{
+		DeathSound "Explosion/Barrel";
+		Obituary "$OB_BARREL";
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		IDLE A 1;
+		Loop;
+	Death:
+		TNT1 A 0 BRIGHT A_Scream;
+		TNT1 A 0 BRIGHT A_Explode;
+		TNT1 A 0 BRIGHT A_SpawnItemEx("RMD_BarrelExplosionSpawner", 0, 0, 0);
+		TNT1 A 1050 BRIGHT A_BarrelDestroy;
+		TNT1 A 10 A_Respawn;
+		Wait;
+	}
+}

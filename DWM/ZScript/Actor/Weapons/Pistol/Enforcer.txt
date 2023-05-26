@@ -1,0 +1,222 @@
+class RMD_Enforcer : BaseWeapon
+{
+
+	Default
+	{
+		Weapon.SlotNumber 2;
+		Weapon.SelectionOrder 1;
+		Weapon.AmmoUse 0;
+		Weapon.AmmoGive 0;
+		Weapon.AmmoType "Clip";
+		Inventory.PickupMessage "$GOTCHAINGUN";
+		Inventory.AltHudIcon "PIENF";
+		Obituary "$OB_MPCHAINGUN";
+		Tag "Enforcer";
+		
+		BaseWeapon.IronSight IRON_INACTIVE;
+		
+		BaseWeapon.MagazineMax 12;
+		BaseWeapon.Magazine 12;	
+	}
+	
+	action state ReloadCheck()
+	{
+		return B_ReloadGoTo(
+								"ReadyReal", 
+								"IronReady", 
+								"IronSightDeselect", 
+								"ReloadNow", 
+								Invoker.AmmoType1,
+								Invoker.Magazine,
+								Invoker.MagazineMax, 
+								0);
+	}
+	
+
+	Action void FireBullets()
+	{
+		//Check for Ammo
+		if (Invoker.Magazine <= 0 && Invoker.IronSight == IRON_ACTIVE)
+		{
+			SetWeaponState("IronReady");
+			Return;
+		}
+		else if (Invoker.Magazine <= 0 && Invoker.IronSight == IRON_INACTIVE)
+		{
+			SetWeaponState("ReadyReal");
+			Return;
+		}	
+	
+		Invoker.Magazine -= 1;
+		RMD_BARINFO.Set_Mag(invoker.Magazine);
+		
+		if (Invoker.IronSight == IRON_INACTIVE)
+		{
+			//A_FireProjectile("RMD_EnforcerBullet",frandom(-0.5, 0.5), 1, 0, 4, CMF_AIMDIRECTION,frandom(-0.4, 0.4
+			A_FireBullets(0.5, 0.5, 1, 19, "URPG_RicochetEffect", BULLETFIRE, 0, null);
+			
+			//Effect
+			B_MuzzleFlash("RMD_BulletMuzzleFlash", (12, 1.5, -0.5));	
+			B_SpawnCasing("PistolCase", (8, -3.0, -1.5));
+		}
+
+		else
+		{
+			//A_FireProjectile("RMD_EnforcerBullet",frandom(-0.2, 0.2), 1, 0, 4, CMF_AIMDIRECTION,frandom(-0.14, 0.14));
+			A_FireBullets(0.2, 0.2, 1, 19, "URPG_RicochetEffect", BULLETFIRE, 0, null);
+			
+			B_MuzzleFlash("RMD_BulletMuzzleFlash", (12, 0, -1.0));	
+			B_SpawnCasing("PistolCase", (7, 0, -2.0));
+		}	
+
+		A_StartSound("Enforcer/Fire", CHAN_WEAPON);
+		A_AlertMonsters();
+	}
+	
+	Action state FireCheck()
+	{
+		if (Invoker.IronSight == IRON_ACTIVE)
+			return ResolveState("IronFireNow");	
+		else
+			return ResolveState("FireNow");		
+	}
+
+
+
+	States
+	{
+
+	Ready:
+		CHGG A 0;
+		TNT1 A 0 
+		{
+			A_Jump(256, "Init");
+		
+		}
+	
+	Init:
+		TNT1 A 0 
+		{
+				TakeCounterItem();
+				RMD_BARINFO.Set_Mag(invoker.Magazine);
+				RMD_BARINFO.SetAmmoIcon("AMMOSMG");
+				RMD_BARINFO.SetAmmo1("None");
+		}
+		Goto ReadyReal;
+		
+	ReadyReal:
+		CHGG A 0;
+		IDLE A 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB);
+		Loop;	
+
+	Deselect:
+		SELC FEDCBA 1;
+		SELC A 1 A_Lower(int.max);
+		Wait;
+		
+	Select:
+		TNT1 A 0 
+		{
+				A_StartSound("Pistol/Select", CHAN_WEAPON +5);
+				A_TakeInventory("Reloading", 99);
+				RMD_BARINFO.Set_Mag(invoker.Magazine);
+				RMD_BARINFO.SetAmmoIcon("AMMOSMG");
+				RMD_BARINFO.SetAmmo1("None");
+		}
+		SELC ABCDEF 1;
+		SELC F 1 A_Raise(100);
+        Wait;
+			
+	//Ironsight Mode
+	IronReady:
+		IRON D 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB);
+		Loop;
+		
+	IronSightAnim:
+		TNT1 A 0 A_SetCrosshair(99);
+		IRON ABCD 2 A_ZoomFactor(2.15);
+		Goto IronReady;
+		
+	IronSightDeselect:
+		TNT1 A 0  A_SetCrosshair(0);
+		IRON DCBA 2 A_ZoomFactor(1.0);
+		TNT1 A 0
+		{
+			Invoker.IronSight = IRON_INACTIVE;
+			
+			if (CountInv("GotoReload") > 0)
+			{
+				Return A_Jump(256, "ReloadNow");
+			}
+
+			Return A_Jump(256, "ReadyReal");			
+		}
+		Goto ReadyReal;
+		
+	AltFire:
+		TNT1 A 0 B_GoToIronSight("IronSightAnim", "IronSightDeselect");
+		Goto ReadyReal;
+		
+	Fire:
+		TNT1 A 0 FireCheck();
+		Goto ReadyReal;
+		
+	FireNow:
+		FIRE A 1 FireBullets();
+		FIRE BC 1;
+		FIRE DEF 3;
+		FIRE A 0 A_ReFire;
+		Goto ReadyReal;
+		
+	IronFireNow:
+		IFIR A 1 FireBullets();
+		IFIR BC 1;
+		IFIR DEF 3;
+		IFIR A 0 A_ReFire;
+		Goto IronReady;	
+	
+	Reload:
+		TNT1 A 0 ReloadCheck();
+		Goto ReadyReal;
+
+	ReloadNow:
+		TNT1 A 0 A_TakeInventory("GotoReload", 1);
+		REL1 ABCDEF 3;
+		TNT1 A 0
+		{
+			A_StartSound("Enforcer/MagOut", CHAN_WEAPON);
+			A_FireProjectile("PistolMagSpawn",-5,0,8,-4);
+		}
+		REL1 GHIJK 3;
+		TNT1 A 0
+		{
+			A_StartSound("Enforcer/MagIn", CHAN_WEAPON +1);
+			
+			//ReloadMagazine(PRIMARY, Invoker.MagazineMax, 0);
+			Invoker.Magazine = Invoker.MagazineMax;
+			RMD_BARINFO.Set_Mag(invoker.Magazine);
+	
+			Return A_Jump(0, "ReadyReal");	
+		}
+		REL1 MNO 3;		
+		Goto ReadyReal;
+		
+	}
+}
+
+
+Class RMD_EnforcerBullet : RMD_BaseBullet
+{
+
+Default
+	{
+		//Normal Damage
+		RMD_BaseBullet.ImpactDamage 24; 
+		RMD_BaseBullet.DamageRand1 3.75;
+		//Nerfed Damage
+		RMD_BaseBullet.HealthDamage 500;
+		
+		Scale 0.75;
+		Decal "RMD_Pistol_BulletHoles";
+	}
+}

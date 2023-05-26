@@ -1,0 +1,32 @@
+//Weapons
+#Include "Models/Weapons/Enforcer.txt"
+#Include "Models/Weapons/PirateBomb.txt"
+#Include "Models/Weapons/MP5.txt"
+#Include "Models/Weapons/CBM2.txt"
+#Include "Models/Weapons/Mossberg590.txt"
+#Include "Models/Weapons/M16A3.txt"
+#Include "Models/Weapons/M25.txt"
+#Include "Models/Weapons/MadsenLAR.txt"
+#Include "Models/Weapons/M249SAW.txt"
+#Include "Models/Weapons/FT12.txt"
+#Include "Models/Weapons/KestrelGL.txt"
+#Include "Models/Weapons/LocustRL.txt"
+#Include "Models/Weapons/SMRL.txt"
+#Include "Models/Weapons/E12PR.txt"
+#Include "Models/Weapons/E20PC.txt"
+
+//Other
+#Include "Models/Weapons/Beer.txt"
+#Include "Models/Weapons/EnergyDrink.txt"
+
+//Other
+#Include "Models/MODELDEF.Decorations"
+#Include "Models/MODELDEF.Euro"
+#Include "Models/MODELDEF.Key"
+#Include "Models/MODELDEF.Particles"
+#Include "Models/MODELDEF.Projectiles"
+#Include "Models/MODELDEF.Items"
+#Include "Models/MODELDEF.Litter"
+
+//Particles
+#Include "Models/Particles/MODELDEF.GrenadeBoom"

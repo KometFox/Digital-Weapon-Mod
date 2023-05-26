@@ -1,0 +1,104 @@
+//------------------------------------------------------------------------------
+//Generic
+//------------------------------------------------------------------------------
+
+Shotgun/Select "Sounds/Weapons/Common/Select/Shotgun.ogg"
+RocketLauncher/Select "Sounds/Weapons/Common/Select/Rocket.ogg"
+GrenadeLauncher/Select "Sounds/Weapons/Common/Select/Rocket.ogg"
+AssaultRifle/Select "Sounds/Weapons/Common/Select/Assault.ogg"
+MachineGun/Select "Sounds/Weapons/Common/Select/MachineGun.ogg"
+SMG/Select "Sounds/Weapons/Common/Select/SMG.ogg"
+Pistol/Select "Sounds/Weapons/Common/Select/Pistol.ogg"
+Plasma/Select "Sounds/Weapons/Common/Select/Plasma.ogg"
+
+//------------------------------------------------------------------------------
+//Casings
+//------------------------------------------------------------------------------
+$Random Case/Rifle {
+					RifleCase1
+					RifleCase2
+					RifleCase3}
+					
+RifleCase1 "Sounds/Weapons/Casings/RifleCase1.ogg"
+RifleCase2 "Sounds/Weapons/Casings/RifleCase2.ogg"
+RifleCase3 "Sounds/Weapons/Casings/RifleCase3.ogg"
+
+$Rolloff RifleCase1 600 800
+$Rolloff RifleCase2 600 800
+$Rolloff RifleCase3 600 800
+
+
+$Random Case/Pistol {
+					PistolCase1
+					PistolCase2
+					PistolCase3}
+					
+PistolCase1 "Sounds/Weapons/Casings/BulletCase1.ogg"
+PistolCase2 "Sounds/Weapons/Casings/BulletCase2.ogg"
+PistolCase3 "Sounds/Weapons/Casings/BulletCase3.ogg"
+
+$Rolloff PistolCase1 600 800
+$Rolloff PistolCase2 600 800
+$Rolloff PistolCase3 600 800
+
+
+$Random Case/Shot {
+					ShotCase1
+					ShotCase2
+					ShotCase3}
+					
+ShotCase1 "Sounds/Weapons/Casings/ShotCase1.ogg"
+ShotCase2 "Sounds/Weapons/Casings/ShotCase2.ogg"
+ShotCase3 "Sounds/Weapons/Casings/ShotCase3.ogg"
+
+$Random Case/40MM {
+					40MMCase1
+					40MMCase2
+					40MMCase3}
+					
+40MMCase1 "Sounds/Weapons/Casings/40MMCase1.ogg"
+40MMCase2 "Sounds/Weapons/Casings/40MMCase2.ogg"
+40MMCase3 "Sounds/Weapons/Casings/40MMCase3.ogg"
+
+$Random Case/Mag {
+					MagCase1
+					MagCase2
+					MagCase3}
+					
+MagCase1 "Sounds/Weapons/Casings/MagCase1.lmp"
+MagCase2 "Sounds/Weapons/Casings/MagCase2.lmp"
+MagCase3 "Sounds/Weapons/Casings/MagCase3.lmp"
+
+//------------------------------------------------------------------------------
+//Bullets
+//------------------------------------------------------------------------------
+$Random Bullet/Impact {
+					BulletImpact1 
+					BulletImpact2 
+					BulletImpact3
+					BulletImpact4}
+
+BulletImpact1 "Sounds/Weapons/Bullet/BulletImpact1.wav"
+BulletImpact2 "Sounds/Weapons/Bullet/BulletImpact2.wav"
+BulletImpact3 "Sounds/Weapons/Bullet/BulletImpact3.wav"
+BulletImpact4 "Sounds/Weapons/Bullet/BulletImpact4.wav"
+
+$Random Bullet/Armor {
+						BulletArmor1 
+						BulletArmor2 
+						BulletArmor3}
+						
+BulletArmor1 "Sounds/Weapons/Bullet/BulletArmor1.wav"
+BulletArmor2 "Sounds/Weapons/Bullet/BulletArmor2.wav"
+BulletArmor3 "Sounds/Weapons/Bullet/BulletArmor3.wav"
+
+$Random Bullet/Flesh {
+						BulletFlesh1 
+						BulletFlesh2 
+						BulletFlesh3 
+						BulletFlesh4}
+						
+BulletFlesh1 "Sounds/Weapons/Bullet/BulletFlesh1.wav"
+BulletFlesh2 "Sounds/Weapons/Bullet/BulletFlesh2.wav"
+BulletFlesh3 "Sounds/Weapons/Bullet/BulletFlesh3.wav"
+BulletFlesh3 "Sounds/Weapons/Bullet/BulletFlesh4.wav"

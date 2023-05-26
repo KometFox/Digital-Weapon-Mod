@@ -1,0 +1,109 @@
+/*
+A Class that handles CVAR values.
+*/
+Class RMD_CVARHandler : StaticEventHandler
+{
+	//INTERNAL
+	string EName;
+
+	//--------------------------------------------------------------------------
+	//Decoration Options
+	//--------------------------------------------------------------------------
+	int RMDV_BarrelTypes; //Barrel Types
+	
+	//Particle Effect
+	int RMDV_ParticleLowQuality;
+	
+	//Money
+	int RMDV_MonsterMoneyDrop;
+	int RMDV_MoneyMagnetType;
+	
+	//--------------------------------------------------------------------------
+	//Player Settings
+	//--------------------------------------------------------------------------
+	
+	//--------------------------------------------------------------------------
+	//Weapon Settings
+	//--------------------------------------------------------------------------
+	int RMDV_WeaponReload; //Allow Clip/Mag reload?
+
+	//Weapon Damage
+	float RMDV_BulletDamage; //Bullet Damage
+	float RMDV_PlasmaDamage; //Plasma Damage
+	float RMDV_LightExplosiveDamage; //Explosion Damage
+	float RMDV_HeavyExplosiveDamage; //Explosion Damage
+
+	//Initalize the CVAR values
+	void InitCVARvalues()
+	{
+		//Decorations
+		CVar RMD_BarrelTypes = CVar.FindCVar("RMDC_BarrelTypes");
+		
+		RMDV_BarrelTypes = RMD_BarrelTypes.GetInt();
+
+		//Particles
+		CVar RMD_ParticleLowQuality = CVar.FindCVar("RMDC_LowEffect");
+
+		RMDV_ParticleLowQuality = RMD_ParticleLowQuality.GetInt();
+
+		CVar RMD_MonsterMoneyDrop = CVar.FindCVar("RMDC_MonsterMoneyDrop");
+		CVar RMD_MoneyMagnetType = CVar.FindCVar("RMDC_MoneyMagnetType");
+		
+		RMDV_MonsterMoneyDrop = RMD_MonsterMoneyDrop.GetInt();
+		RMDV_MoneyMagnetType = RMD_MoneyMagnetType.GetInt();
+	
+		//Weapon Settings
+		CVar RMD_WeaponReload = CVar.FindCVar("RMDC_WeaponReload");
+
+		RMDV_WeaponReload = RMD_WeaponReload.GetInt();
+		
+		//Weapon Damage
+		CVar RMD_BulletDamage = CVar.FindCVar("RMDC_BulletDamage");
+		CVar RMD_PlasmaDamage = CVar.FindCVar("RMDC_PlasmaDamage");
+		CVar RMD_LightExplosiveDamage = CVar.FindCVar("RMDC_LightExplosiveDamage");
+		CVar RMD_HeavyExplosiveDamage = CVar.FindCVar("RMDC_HeavyExplosiveDamage");
+
+		RMDV_BulletDamage = RMD_BulletDamage.GetFloat();
+		RMDV_PlasmaDamage = RMD_PlasmaDamage.GetFloat();
+		RMDV_LightExplosiveDamage = RMD_LightExplosiveDamage.GetFloat();
+		RMDV_HeavyExplosiveDamage = RMD_HeavyExplosiveDamage.GetFloat();
+		
+		return;
+	}
+	
+	//Load the CVAR on new game.
+	override void NewGame()
+	{
+		InitCVARvalues();
+		
+		return;
+	}
+		
+	//When the world is loaded.
+	override void WorldLoaded(WorldEvent e)
+	{
+		InitCVARvalues();
+		
+		return;
+	}
+	
+	//Look for a NETEVENT.
+	override void NetworkProcess(ConsoleEvent e)
+	{
+		if (e.Name)
+		{
+			EName = e.Name;
+			EName = EName.MakeUpper();
+		}
+
+
+		//Allow reloading of CVAR values.
+		if (EName == "RELOADCVAR")
+		{
+			InitCVARvalues();
+			Console.PrintF("console variables are reloaded!");
+		}
+		
+	}
+	
+}

@@ -1,0 +1,14 @@
+//Red effects
+
+//Blue effects
+//BlueSpark = "80:111=[0, 74, 100]"
+
+//Green Effects
+
+
+//Plasma
+PlasmaBrightBlue = "0:255=#[0, 83, 99]"
+PlasmaBlue = "0:255=#[0, 17, 99]"
+
+//Explosions
+ExplosionYellow ="0:255=#[99, 55, 0]"

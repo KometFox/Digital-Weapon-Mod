@@ -1,0 +1,32 @@
+/*
+A Class to define custom fonts. Code taken from Nash
+*/
+
+class MyFonts : Thinker
+{
+	//FONT 
+	Font RMDFONT_BIGNUM;
+
+	MyFonts Init()
+	{
+		RMDFONT_BIGNUM = "RMDFONT_BIGNUM";
+		
+		//What?
+		ChangeStatNum(STAT_STATIC);
+		
+		return self;
+	}
+
+	//Some kind of getter function
+	static MyFonts Get()
+	{
+		ThinkerIterator it = ThinkerIterator.Create("MyFonts", STAT_STATIC);
+		let Pointer = MyFonts(it.Next());
+		
+		if (Pointer == null)
+		{
+			Pointer = new("MyFonts").Init();
+		}
+		return Pointer;
+	}
+}

@@ -1,0 +1,119 @@
+//------------------------------------------------------------------------------
+//Armor
+//------------------------------------------------------------------------------
+Class RMD_ArmorBase : ArmorBonus
+{
+	Default
+	{
+		Inventory.Pickupmessage "Got some armor?";
+		Inventory.PickupSound "Items/SmallArmorCell";
+		Armor.Savepercent 50;
+		Armor.Saveamount 1;
+		Armor.Maxsaveamount 500;
+		-COUNTITEM
+		-INVENTORY.ALWAYSPICKUP
+	}
+
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		Angle = Random[Angle](0, 360);	
+	}
+
+	
+	States
+	{
+		Spawn:
+			IDLE AA 1;
+			loop;
+	}
+}
+
+//The Armor cell for regeneration
+Class RegenArmorCell : RMD_ArmorBase
+{
+	Default
+	{
+		Inventory.Pickupmessage "Charged up your armor a little. <+2 Armor>";
+		Inventory.PickupSound "Items/SmallArmorCell";
+		Armor.Savepercent 50;
+		Armor.Saveamount 2;
+		Armor.Maxsaveamount 100;
+	}
+}
+
+//------------------------------------------------------------------------------
+//Items
+//------------------------------------------------------------------------------
+Class ArmorShard: RMD_ArmorBase
+{
+	Default
+	{
+		Inventory.Pickupmessage "Picked up a armor shard. <+5 Armor>";
+		Inventory.PickupSound "Items/ArmorShard";
+		Armor.Saveamount 5;
+		Armor.Maxsaveamount 1000;
+	}
+}
+
+
+Class RMD_GreenArmor : RMD_ArmorBase
+{
+	Default
+	{
+		Inventory.Pickupmessage "Picked up a medium armor. <+250 Armor>";
+		Inventory.PickupSound "Items/GreenArmor";
+		Armor.Saveamount 250;
+	}
+}
+
+Class RMD_BlueArmor : RMD_ArmorBase
+{
+	Default
+	{
+		Inventory.Pickupmessage "Picked up a heavy armor. <+500 Armor>";
+		Inventory.PickupSound "Items/BlueArmor";
+		Armor.Saveamount 500;
+	}
+}
+
+//------------------------------------------------------------------------------
+//Shop Items
+//------------------------------------------------------------------------------
+
+
+Class RMD_LightArmor : BasicArmorPickup
+{
+	Default
+	{
+		Inventory.Pickupmessage "Picked up a light armor. <+150 Armor>";
+		Inventory.PickupSound "Items/MediumArmorCell";
+		Armor.Savepercent 50;
+		Armor.Saveamount 150;
+	}
+}
+
+Class RMD_MediumArmor : BasicArmorPickup
+{
+	Default
+	{
+		Inventory.Pickupmessage "Picked up a medium armor. <+250 Armor>";
+		Inventory.PickupSound "Items/MediumArmorCell";
+		Armor.Savepercent 50;
+		Armor.Saveamount 250;
+	}
+}
+
+Class RMD_HeavyArmor : BasicArmorPickup
+{
+	Default
+	{
+		Inventory.Pickupmessage "Picked up a heavy armor. <+500 Armor>";
+		Inventory.PickupSound "Items/MediumArmorCell";
+		Armor.Savepercent 50;
+		Armor.Saveamount 500;
+	}
+}
+
+

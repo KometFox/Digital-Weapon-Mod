@@ -1,0 +1,302 @@
+//------------------------------------------------------------------------------
+//Explosion (Additive)
+//------------------------------------------------------------------------------
+Class RMD_Boom5Fast : RMD_BaseParticle
+{
+	Default
+	{
+		RenderStyle "Add";
+		Alpha 1.0;
+		+Bright;
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			BOM5 ABCDEFGHIJKLMNOPQRSTUVWX 1; 
+			Stop;
+
+	}
+}
+
+Class RMD_Boom6 : RMD_BaseParticle
+{
+
+	Default
+	{
+		RenderStyle "Add";
+		Alpha 1.0;
+		+Bright;
+	}
+	
+	override void BeginPlay()
+	{
+		Super.BeginPlay();
+		
+		Roll = Random[FX](0, 360);
+		Angle = Random[FX](0, 360);	
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			BOM1 ABCDEFGHIJKLMNOPQRSTUV 1; 
+			Stop;
+	}
+}
+//------------------------------------------------------------------------------
+//Other
+//------------------------------------------------------------------------------
+Class RMD_Shockwave : RMD_BaseParticle
+{
+	Default
+	{
+		RenderStyle "AddShaded";
+		Alpha 1.0;
+		+Bright;
+	}
+	
+	Override void Tick()
+	{
+		Super.Tick();
+		
+		if (!isFrozen())
+		{
+			A_SetScale(Scale.X * 1.25, Scale.Y * 1.25);	
+		}
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			SHOK AAAAAAAAA 1; 
+			Stop;
+
+	}
+}
+
+
+Class RMD_Smoke : RMD_BaseParticle
+{
+	Default
+	{
+		RenderStyle "Translucent";
+		Alpha 0.4;
+	}
+	
+	Override void BeginPlay()
+	{
+		Super.BeginPlay();
+		
+		Roll = frandom(0, 360);	
+	}
+	
+	Override void Tick()
+	{
+		Super.Tick();
+		
+		if (!isFrozen())
+		{
+			A_SetScale(Scale.X * 1.065, Scale.Y * 1.065);	
+		}
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Smoke1", "Smoke2", "Smoke3", "Smoke4");
+		Smoke1:
+			SMOA A 18;
+			SMOA AAAAAAAAAA 1 A_FadeOut(0.04);
+			Stop;
+		Smoke2:
+			SMOB A 18;
+			SMOB AAAAAAAAAA 1 A_FadeOut(0.04);
+			Stop;
+		Smoke3:
+			SMOC A 18;
+			SMOC AAAAAAAAAA 1 A_FadeOut(0.04);
+			Stop;
+		Smoke4:
+			SMOD A 18;
+			SMOD AAAAAAAAAA 1 A_FadeOut(0.04);
+			Stop;
+	}
+}
+
+
+
+
+Class RMD_DarkSmoke : RMD_Smoke
+{
+	Default
+	{
+		RenderStyle "Translucent";
+		Alpha 1.5;
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Smoke1", "Smoke2", "Smoke3", "Smoke4");
+		Smoke1:
+			SMXA A 18;
+			SMXA AAAAAAAAAA 1 A_FadeOut(0.15);
+			Stop;
+		Smoke2:
+			SMXB A 18;
+			SMXB AAAAAAAAAA 1 A_FadeOut(0.15);
+			Stop;
+		Smoke3:
+			SMXC A 18;
+			SMXC AAAAAAAAAA 1 A_FadeOut(0.15);
+			Stop;
+		Smoke4:
+			SMXD A 18;
+			SMXD AAAAAAAAAA 1 A_FadeOut(0.15);
+			Stop;
+	}
+}
+Class RMD_BBGSmoke : RMD_Smoke
+{
+	Default
+	{
+		RenderStyle "Translucent";
+		Alpha 0.8;
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Smoke1", "Smoke2", "Smoke3", "Smoke4");
+		Smoke1:
+			SMYA A 18;
+			SMYA AAAAAAAAAA 1 A_FadeOut(0.08);
+			Stop;
+		Smoke2:
+			SMYB A 18;
+			SMYB AAAAAAAAAA 1 A_FadeOut(0.08);
+			Stop;
+		Smoke3:
+			SMYC A 18;
+			SMYC AAAAAAAAAA 1 A_FadeOut(0.08);
+			Stop;
+		Smoke4:
+			SMYD A 18;
+			SMYD AAAAAAAAAA 1 A_FadeOut(0.08);
+			Stop;
+	}
+}
+
+
+Class RMD_Flare : RMD_BaseParticle
+{
+	Default
+	{
+		RenderStyle "AddShaded";
+		+Bright;
+		Alpha 0.6;
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			LENS C 6;
+			LENS CCCCC 1 A_FadeOut(0.12);
+			Stop;	
+	}
+}
+
+
+Class RMD_Emberspawner : Actor
+{
+	Default
+	{
+		Radius 4;
+		Height 4;
+		Speed 18;
+		PROJECTILE;
+		RenderStyle "AddShaded";
+		+THRUGHOST;
+		+MISSILE;
+		-NOGRAVITY;
+		Gravity 1;
+		Alpha 1.0;
+		Scale 3.0;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 SetShade("Red");
+	Spawn2:
+		LEGZ A 1;
+		Loop;
+	Death:
+		TNT1 A 0 A_SpawnItemEx("RMD_Ember", random (-15, 15), random(-15, 15));
+		Stop;
+	}
+}
+
+Class RMD_Ember : RMD_ModelSparks
+{
+	Default
+	{
+		RenderStyle "Add";
+		+Bright;
+		
+		BounceFactor 0.001;
+		WallBounceFactor 0.001;
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_SetScale(1.2, 1.2);
+			TNT1 A 0 A_ChangeVelocity(0, 0, 0, CVF_REPLACE);
+			CFCF ABCDEFGHIJKLM 2;
+			CFCF ABCDEFGHIJKLM 2;
+			CFCF ABCDEFGHIJKLM 2;
+			Goto Death;
+		Death:
+			CFCF NOP 2;
+			Stop;
+			
+	}
+}
+
+Class RMD_EmberShaded : RMD_ModelSparks
+{
+	Default
+	{
+		RenderStyle "AddShaded";
+		+Bright;
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_SetScale(1.2, 1.2);
+			TNT1 A 0 A_ChangeVelocity(0, 0, 0, CVF_REPLACE);
+			CFCF ABCDEFGHIJKLM 2;
+			CFCF ABCDEFGHIJKLM 2;
+			CFCF ABCDEFGHIJKLM 2;
+			Goto Death;
+		Death:
+			CFCF NOP 2;
+			Stop;
+			
+	}
+}
+
+
+

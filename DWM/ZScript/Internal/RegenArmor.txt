@@ -1,0 +1,61 @@
+Class RegenativeArmor : EventHandler
+{
+	PlayerPawn Player[8];
+
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		//Get the players first
+		for (int index = 0; index < MAXPLAYERS; index++)
+		{
+			if (Players[Index].mo)
+			{
+				Player[Index] = Players[Index].mo;
+			}		
+		}
+	
+	
+	}
+
+
+	// PLAY scope : collect data
+	override void WorldTick()	// PLAY scope
+	{
+	
+		for (int index = 0; index < Player.size(); index++)
+		{
+			int Tics = 0;
+
+			if (Player[Index])
+			{	
+				Inventory PArmor = Player[Index].FindInventory("ArmorHitDelay");
+				
+				if (PArmor)
+				{
+					int ArmorDelay = PArmor.Amount;
+			
+					if (ArmorDelay > 0)
+					{
+						ArmorDelay--;
+						Player[Index].SetInventory("ArmorHitDelay", ArmorDelay);
+					}
+
+					if (ArmorDelay == 0 && Tics == 0)
+					{
+						Player[Index].GiveInventory("RegenArmorCell", 3);
+					}
+				}
+
+
+				Tics++;
+				
+				if (Tics > 2)
+				{
+					Tics = 0;
+				}
+				
+			}		
+		}
+	}
+
+}

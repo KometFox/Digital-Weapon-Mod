@@ -1,0 +1,253 @@
+class RMD_M249SAW : BaseWeapon
+{
+	double ScopeZoom; 
+
+	Default
+	{
+		Weapon.SelectionOrder 10;
+		Weapon.SlotNumber 5;
+		Weapon.AmmoUse 0;
+		Weapon.AmmoGive 0;
+		Weapon.AmmoType "RMD_MGBullets";
+		Inventory.PickupMessage "$GOTCHAINGUN";
+		Inventory.AltHudIcon "PIM249SW";
+		Obituary "$OB_MPCHAINGUN";
+		Tag "M249 SAW";
+		
+		BaseWeapon.IronSight IRON_INACTIVE;
+		
+		BaseWeapon.MagazineMax 250;
+		BaseWeapon.Magazine 250; 
+	}
+	
+	action void C_SpawnCasing(Class<Actor> Obj = "PistolCase", Vector3 COffset = (0, 0, 0), int PAngle = 0)
+	{
+		Vector3 x, y, z;
+		int Ydir = 1;
+		[x, y, z] = dt_Matrix4.GetAxes(pitch, angle, roll);
+		Vector3 origin = Vec2OffsetZ(0,0,player.viewz) + 10.0 * x + 3.0 * y - 1.8  * z;
+
+	
+		origin += x * (1.0 + COffset.x) + ydir * y * (6.0 + COffset.y) -z * (2.0 + COffset.z);		
+		let C = Spawn(Obj, origin);
+		C.vel = x*FRandom[Junk](-0.5, 0.5) + y * ydir * FRandom[Junk](1.5,3) + z * FRandom[Junk](1.5,2);	
+	}	
+	
+	Action void FireBullets()
+	{
+		if (Invoker.IronSight == IRON_INACTIVE)
+		{
+			A_FireProjectile("RMD_M249SAW_Bullet",frandom(-0.7, 0.7), 1, 6, 4, CMF_AIMDIRECTION,frandom(-0.7, 0.7));
+			
+			B_MuzzleFlash("RMD_BulletMuzzleFlash", (15, 2.6, -1.5));	
+			C_SpawnCasing("RifleCase", (6, 3.0, -1.0), 90);
+		}
+		else
+		{
+			A_FireProjectile("RMD_M249SAW_Bullet",frandom(-0.3, 0.3), 1, 0, 4, CMF_AIMDIRECTION,frandom(-0.3, 0.3));
+			
+			C_SpawnCasing("RifleCase", (12, 15.0, -0.5), 90);
+		}
+
+
+		Invoker.Magazine -= 1;
+		RMD_BARINFO.Set_Mag(invoker.Magazine);
+			
+		A_AlertMonsters();
+		A_StartSound("M249SAW/Fire", CHAN_WEAPON);
+	}
+
+	States
+	{
+		
+	Ready:
+		CHGG A 0;
+		TNT1 A 0 
+		{
+			A_Jump(256, "Init");
+		
+		}
+		Goto Init;
+		
+	Init:
+		TNT1 A 0 
+		{
+				TakeCounterItem();
+				RMD_BARINFO.Set_Mag(invoker.Magazine);
+				RMD_BARINFO.SetAmmoIcon("AMMOMG");
+				RMD_BARINFO.SetAmmo1("RMD_MGBullets");
+				A_ZoomFactor(invoker.ScopeZoom = 1.0, ZOOM_INSTANT);
+		}
+		Goto ReadyReal;
+		
+	ReadyReal:
+		IDLE A 0;
+		IDLE A 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB);
+		Loop;
+
+	Deselect:
+		TNT1 A 0 A_StopSound(CHAN_WEAPON);
+		SEL1 JIHGFEDCBA 1;
+		SEL1 A 1 A_Lower(int.max);
+		Wait;
+		
+	Select:
+		TNT1 A 0 
+		{
+				A_StartSound("MachineGun/Select", CHAN_WEAPON +5);
+				A_TakeInventory("Reloading", 99);
+				RMD_BARINFO.Set_Mag(invoker.Magazine);
+				RMD_BARINFO.SetAmmoIcon("AMMOMG");
+				RMD_BARINFO.SetAmmo1("RMD_MGBullets");
+		}
+		SEL1 ABCDEFGHIJ 1;
+		SEL1 J 1 A_Raise(int.max);
+        Wait;
+			
+	//Ironsight Mode
+	IronReady:
+		SCOA B 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB);
+		Loop;
+		
+	IronSightAnim:
+		IRO1 A 0 A_SetCrosshair(99);
+		IRO1 ABCD 2 A_ZoomFactor(1.8);
+		Goto IronReady;
+		
+	//Ironsight Mode
+	IronSightDeselect:
+		IDLE A 0 
+		{
+			A_SetCrosshair(0);
+			A_ZoomFactor(invoker.ScopeZoom = 1.0, ZOOM_INSTANT);
+		}
+		IDLE A 7;
+		IDLE A 0
+		{
+			if (CountInv("GotoReload") > 0)
+			{
+				Return A_Jump(256, "ReloadNow");
+			}
+
+			Return A_Jump(256, "ReadyReal");			
+		}
+		Goto ReadyReal;
+		
+	AltFire:
+		TNT1 A 0 B_GoToIronSight("AltHold", "IronSightDeselect");
+		Goto Ready;
+		
+	AltHold:
+		SCOA B 1
+		{
+			if ( Invoker.ScopeZoom <= 8.0 )
+			{
+				A_ZoomFactor(Invoker.ScopeZoom *= 1.1);
+				Invoker.ScopeZoom = min(Invoker.ScopeZoom, 8.1);
+			}
+		}
+		TNT1 A 0 A_Refire("AltHold");
+		Goto IronReady;
+		
+	Fire:
+		TNT1 A 0
+		{
+		
+			if (MagLeft(Invoker.Magazine))
+			{
+				if (Invoker.IronSight == IRON_ACTIVE)
+				{
+					Return A_Jump(256, "IronFireNow");
+				}
+				else
+				{	
+					Return A_Jump(256, "FireNow");				
+				}
+			}
+		
+		
+			//If it has no ammo left
+			if (Invoker.IronSight == IRON_ACTIVE)
+			{
+				Return A_Jump(256, "IronReady");
+			}
+			
+			else
+			{
+				Return A_Jump(256, "ReadyReal");				
+			}		
+			
+		}
+		Goto ReadyReal;
+		
+	FireNow:
+		FIR1 A 1 FireBullets();
+		FIR1 BCD 1;
+		IDLE A 0 A_ReFire;
+		FIR1 EFGH 1;
+		Goto ReadyReal;
+		
+	IronFireNow:
+		SCOA B 1 FireBullets();
+		SCOA BBB 1;
+		SCOA B 0 A_ReFire;
+		SCOA BBBB 1;
+		Goto IronReady;	
+		
+	Reload:
+		TNT1 A 0 ReloadCheck();
+		Goto ReadyReal;
+
+	ReloadNow:
+		TNT1 A 0 A_TakeInventory("GotoReload", 1);
+		//Cock
+		REL1 ABCDEFGHIJKLMNOPQR 2;
+		REL1 R 2 A_StartSound("M249SAW/Bolt", CHAN_WEAPON);
+		//Hatch Open
+		REL1 STUVWXYZ 2;
+		REL2 ABC 2; 
+		REL2 D 2 A_StartSound("M249SAW/HatchOpen", CHAN_WEAPON);
+		//Belt Touch;
+		REL2 EFGHIJKL 2;
+		REL2 M 2 A_StartSound("M249SAW/Belt", CHAN_WEAPON +1);
+		//Mag Out
+		REL2 NOPQR 2;
+		REL2 S 2
+		{
+			A_FireProjectile("MGMagSpawn",-5,0,8,-4);
+			A_StartSound("M249SAW/MagOut", CHAN_WEAPON +2);
+		}
+		//Mag In
+		REL2 TUVWXYZ 2;
+		REL3 AB 2;
+		REL3 C 2
+		{
+			A_StartSound("M249SAW/MagIn", CHAN_WEAPON +2);
+			
+			ReloadMagazine(PRIMARY, Invoker.MagazineMax, Invoker.MagazineMax);				
+			RMD_BARINFO.Set_Mag(invoker.Magazine);
+		}
+		//Hatch Close
+		REL3 DEFGHIJK 2;
+		REL3 L 2 A_StartSound("M249SAW/HatchClose", CHAN_WEAPON);
+		REL3 MNOPQRS 2;
+		Goto ReadyReal;		
+	}
+}
+
+
+Class RMD_M249SAW_Bullet : RMD_BaseBullet
+{
+
+Default
+	{		
+		//Normal Damage
+		RMD_BaseBullet.ImpactDamage 18; 
+		RMD_BaseBullet.DamageRand1 3.6;
+		//Nerfed Damage
+		RMD_BaseBullet.HealthDamage 800;		
+		
+		Scale 0.75;
+		Decal "RMD_SMG_BulletHoles";
+	}
+}

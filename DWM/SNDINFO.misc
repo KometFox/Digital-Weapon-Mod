@@ -1,0 +1,114 @@
+//------------------------------------------------------------------------------
+//Menu
+//------------------------------------------------------------------------------
+menu/choose		sfx04
+menu/activate	sfx04
+menu/backup		sfx01
+menu/prompt		butonek
+menu/dismiss	sfx05
+menu/clear		sfx05
+menu/cursor     sfx01
+menu/change     sfx00
+menu/invalid    sfx07
+
+
+//Objects sound effect
+Items/CanRoll "Sounds/Items/CanRoll.ogg"
+Items/GlassRoll "Sounds/Items/GlassRoll.ogg"
+Items/WoodBoxDrop "Sounds/Items/CardboardDrop.ogg"
+
+generic/heartbeat HeartB
+generic/Psy_Blackout PsyBlack
+generic/Tinnitus Tinnit
+
+//------------------------------------------------------------------------------
+//Items
+//------------------------------------------------------------------------------
+player/largedrink	VOD1
+player/mediumdrink	VOD2
+pickup/Armor DSARMOR1
+pickup/Backpack DSBACK
+pickup/Map MAP
+pickup/weapon DSWPNUP
+$random pickup/material {DSMAT1 DSMAT2}
+
+use/WaterBottle S_WATER
+
+//Powerups
+Items/Invisibility "Sounds/Items/PowerUps/Invisibility.ogg"
+Items/Invulnerability "Sounds/Items/PowerUps/Invulnerability.ogg"
+
+//Key
+misc/k_pkup "Sounds/Items/Key/KeyCard.ogg"
+
+//Food and Drinks
+Items/Drink "Sounds/Items/Drink.ogg"
+items/Eat "Sounds/Items/Eating.ogg"
+
+Beer/Open "Sounds/Weapons/Other/Beer/Open.ogg"
+Beer/Drink "Sounds/Weapons/Other/Beer/Drink.ogg"
+
+$random Player/Drink {player/drink1 player/drink2}
+player/drink1 "Sounds/Items/Health/Drink1.ogg"
+player/drink2 "Sounds/Items/Health/Drink2.ogg"
+
+//Health
+Items/EnergyDrinkPick "Sounds/Items/Health/EnergyDrinkPick.ogg"
+Items/SuperHealth "Sounds/Items/Health/SuperHealth.ogg"
+Items/UTHealth "Sounds/Items/Health/UTHealth.ogg"
+Items/UTSuperHealth "Sounds/Items/Health/UTSuperHealth.ogg"
+
+//Armor
+Items/ArmorShard "Sounds/Items/Armor/ArmorShard.ogg"
+Items/GreenArmor "Sounds/Items/Armor/GreenArmor.wav"
+Items/BlueArmor "Sounds/Items/Armor/BlueArmor.wav"
+
+
+pickup/Suit SuitPick
+
+//Data 
+Items/FloppyPick "Sounds/Items/Data/FloppyPick.wav"
+Items/HDDPick "Sounds/Items/Data/FloppyPick.wav"
+
+$Volume Items/FloppyPick 0.85
+$Volume Items/HDDPick 0.85
+
+$Random Items/MoneyPick {Money1 Money2}
+
+Money1 "Sounds/Items/Data/Money1.ogg"
+Money2 "Sounds/Items/Data/Money2.ogg"
+
+Items/EuroPick "Sounds/Items/Data/EuroPick.ogg"
+
+Item/Bandage BANDA
+
+//Ammo Items
+Items/SMGBullet "Sounds/Items/Ammo/SMGPickup.ogg"
+Items/ARBullet "Sounds/Items/Ammo/MagPickup.wav"
+Items/MGBullet "Sounds/Items/Ammo/MGBoxPickup.wav"
+Items/Shells "Sounds/Items/Ammo/ShotBoxPickup.wav"
+Items/SmallRocket "Sounds/Items/Ammo/GrenadePickup.wav"
+Items/LargeRocket "Sounds/Items/Ammo/RocketPickup.wav"
+Items/Cells "Sounds/Items/Ammo/CellPickup.wav"
+Items/Fuel "Sounds/ITems/Ammo/FuelPickup.wav"
+
+$Volume Items/Shells 0.65
+
+//Weapon Items
+Items/SMG "Sounds/Items/Weapon/Assault.wav" 
+Items/SG "Sounds/Items/Weapon/Shotgun.ogg"
+Items/AR "Sounds/Items/Weapon/Assault.wav"
+Items/RL "Sounds/Items/Weapon/RLauncher.wav"
+
+//------------------------------------------------------------------------------
+//Blood
+//------------------------------------------------------------------------------
+$random blood/impact {DSGIB1 DSGIB2 DSGIB3 DSGIB4} 
+DSGIB1 DSGIB1
+DSGIB2 DSGIB2
+DSGIB3 DSGIB3
+DSGIB4 DSGIB4
+$Volume DSGIB1 0.3
+$Volume DSGIB2 0.3
+$Volume DSGIB3 0.3
+$Volume DSGIB4 0.3

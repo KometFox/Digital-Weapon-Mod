@@ -1,0 +1,492 @@
+/*
+The script that contains the Buy Menu functionalities.
+
+It handles keeping track of various items which is then available for purchase
+to the player in exchange for credits.
+*/
+
+//The class Container for containing items.
+Class BuyMenuItems
+{
+	string ID; //The actuall class name of the Item
+	string ItemName; //The Item name 
+	TextureID Sprite; //The Sprite
+	string Category; //The category it belongs to
+	int Cost; //How much it cost
+    int Amount; //How much to give
+	
+	//INTERNAL
+	int Row; //The row the item is at
+	int Column; //The Column the item is at	
+}
+
+
+Class BuyMenuScript : EventHandler
+{
+	bool Toggle, showpic;
+	S_Cursor Cursor;
+	
+	String CurrentCategory; //Current Category
+	
+	Array<String> Categories; //List of Categories
+	Array<String> WeaponCategories; //List of Weapon Categories
+	
+	
+	
+	Array<BuyMenuItems> IntItems; //Internal Items
+	Array<BuyMenuItems> ItemsShow; //Items to show
+	
+	Enum E_Menu
+	{
+		MENU_ = 0,
+		SUBMACHINEGUNS = 1,
+	}
+
+	Struct S_Cursor
+	{
+		int row, column;
+	}
+	
+
+	override void WorldLoaded(WorldEvent e) 
+	{
+		//Selected Category
+		CurrentCategory = "Items";
+		
+		//The Main Category
+		Categories.push("Items");
+		Categories.push("Weapons");
+		
+		//The Weapon Category
+		WeaponCategories.push("SMG");
+//		WeaponCategories.push("Shotguns");
+//		WeaponCategories.push("Launchers");
+		
+	}
+
+	void AddItems(BuyMenuItems Items)
+	{
+		IntItems.Push(Items);
+	}
+
+
+//------------------------------------------------------------------------------
+//RENDERING CODE
+//------------------------------------------------------------------------------
+//Items display
+	ui void RenderItems(TextureID tex, int count0, int count1, int shift_x, int shift_y, int pos_x, int pos_y)
+	{
+		Screen.DrawTexture(tex, false, (count0 * shift_x) + pos_x, (count1 * shift_y) + pos_y, DTA_KeepRatio, true, DTA_VirtualWidth, 1024 * 2, DTA_VirtualHeight, 768 * 2);
+	}
+
+	ui void RenderItems_Text(String Text, int sele, int count0, int count1, int shift_x, int shift_y, int pos_x, int pos_y)
+	{
+		Switch(sele)
+		{
+			case(0):
+				Screen.DrawText(Confont, Font.CR_DARKGREEN, (count0 * shift_x) + pos_x, (count1 * shift_y) + pos_y, Text);
+				break;
+			case(1):
+				Screen.DrawText(Confont, Font.CR_GREEN, (count0 * shift_x) + pos_x, (count1 * shift_y) + pos_y, Text);
+				break;
+		}
+}
+
+//Other text display
+	ui void AddText(String Text, int pos_x, int pos_y)
+	{
+		//Screen.DrawText(Confont, Font.CR_DARKGREEN, pos_x, pos_y, String.Format("[%s]", category[menui]), DTA_VirtualWidth, 1024, DTA_VirtualHeight, 768);
+		Screen.DrawText(Confont, Font.CR_DARKGREEN, pos_x, pos_y, Text, DTA_VirtualWidth, 720, DTA_VirtualHeight, 480);
+	}
+
+
+	//A Function that overrites a array so that it display a different set of
+	//items depending on its category.
+	void SetItems(String Category)
+	{
+		let Me = BuyMenuScript(EventHandler.Find('BuyMenuScript'));
+			
+		//Clear the array first
+		ItemsShow.Clear();
+			
+		if (Me.IntItems.size() <= 0)
+		{
+			return;
+		}
+		else
+		{
+
+			for (int i = 0; i < Me.IntItems.size(); i++)
+			{
+			
+				//Loop through the Categories
+				if (Me.IntItems[i].Category == Category)
+				{	
+					//Console.PrintF("Adding Items: %s", IntItems[i].ItemName);
+					ItemsShow.push(IntItems[i]);
+				}
+				
+			}
+		}
+	}
+
+//The display functionalitie of the script, its meant to display what menu and 
+//category is being selected right now so that the player sees what he's 
+//interacting with
+override void renderOverlay(RenderEvent e)	// UI scope
+{
+	let Me = BuyMenuScript(EventHandler.Find('BuyMenuScript'));
+
+	//Text, Item position
+	int item_pos_x, item_pos_y, item_shift_x, item_shift_y;
+	int text_pos_x, text_pos_y, text_shift_x, text_shift_y;
+
+	
+	//Some default position for the items
+	//TODO: Handle variable size of Resolution
+	//Item
+	item_pos_x = 700;
+	item_pos_y = 400;
+	item_shift_x = 140;
+	item_shift_y = 150;
+	//Text
+	text_pos_x = 680;
+	text_pos_y = 380;
+	text_shift_x = 150;
+	text_shift_y = 200;
+
+	if (Showpic)
+	{
+		
+		//Display the categories:
+		
+		//Items
+		Me.AddText(String.Format("%s", Me.Categories[0]), 200, 50);
+		//Weapons
+		Me.AddText(String.Format("%s", Me.Categories[1]), 280, 50);
+		
+		
+	
+		//Pistol Menu
+		
+		//SMG Menu
+		
+		//Shotgun Menu
+		
+		//Assault Rifle Menu
+		
+		//Grenades Menu
+			
+		//Heavy Weapons Menu
+			
+		//Launchers Menu
+				
+		//Energy Weapons Menu
+		
+
+		
+		
+		//Some failsafe
+		if (Me.ItemsShow.Size() > 0)
+		{
+			//Loop through the selected items
+			for (int row = 0; row < Me.ItemsShow.Size(); row++)
+			{
+				
+				//Display the Items
+				RenderItems(Me.ItemsShow[row].Sprite, 0, 30 * row, item_shift_x, item_shift_y, item_pos_x, item_pos_y);
+				
+				//The selected Items
+				/*
+				if (Cursor.Row == i0 && Cursor.Column == i1)
+				{
+					RenderITems_Text("[*]", 0, i1, i0, text_shift_x, text_shift_y, text_pos_x, text_pos_y);
+				}
+				else
+				{
+					RenderITems_Text("[ ]", 0, i1, i0, text_shift_x, text_shift_y, text_pos_x, text_pos_y);
+				}
+				*/
+			
+			}		
+		
+		}
+
+		//Display other Info about the selected Items.
+
+
+
+
+		//Loop through the items and display them.
+		/*
+		for (int i0 = 0; i0 < array_d1; i0++)
+		{
+			for (int i1 = 0; i1 < array_d2; i1++)
+			{
+				RenderItems(EV_Items.Items[i0][i1].Sprite, i1, i0, item_shift_x, item_shift_y, item_pos_x, item_pos_y);
+				if (Cursor.Row == i0 && Cursor.Column == i1)
+				{
+					RenderITems_Text("[*]", 0, i1, i0, text_shift_x, text_shift_y, text_pos_x, text_pos_y);
+				}
+				else
+				{
+					RenderITems_Text("[ ]", 0, i1, i0, text_shift_x, text_shift_y, text_pos_x, text_pos_y);
+				}
+			}				
+		}
+		*/
+				
+	}
+}
+
+//------------------------------------------------------------------------------
+//INPUT CODE
+//------------------------------------------------------------------------------
+//The Cursor Mover function
+//What it does is that it moves the cursor to a row and/or column
+//It needs a limitation set, in order to prevent a array overflow
+void CursorMover(string move_to, int max_row, int max_column)
+{
+	if (move_to == "RIGHT")
+	{
+		if (Cursor.column < max_column)
+		{
+			Cursor.column += 1;
+		}	
+	}
+	else if (move_to == "LEFT")
+	{
+		if (Cursor.column > 0)
+		{
+			Cursor.column -= 1;
+		}	
+	}
+
+	else if (move_to == "DOWN")
+	{
+		if (Cursor.row < max_row)
+		{
+			Cursor.row += 1;
+		}
+	}
+	else if (move_to == "UP")
+	{
+		if (Cursor.row > 0)
+		{
+			Cursor.row -= 1;
+		}	
+	}
+
+}
+
+
+//Function to check what entries are being pressed
+void CheckMenu(ConsoleEvent E)
+{
+
+
+
+
+}
+
+
+//Something about Keys detection
+override bool InputProcess (InputEvent e)
+{
+
+	if (e.Type == InputEvent.Type_KeyDown)
+	{
+		SendNetworkEvent("TOGGLE_BUYMENU", e.KeyScan);
+    }
+	
+	return false;	
+}
+
+//The whole behind the scene function to make this Buy Menu script work
+//It basically has some part for checking what current categories there is
+//And then adding some liimitations to it so that the cursor does not cause 
+//a overflow.
+override void NetworkProcess(ConsoleEvent e)
+{        
+	int menu_selection, row_limit, column_limit;
+	menu_selection = 0;
+	
+	let Me = BuyMenuScript(EventHandler.Find('BuyMenuScript'));
+
+	
+	int FO1, FO2;
+	int BA1, BA2;
+	int ML1, ML2;
+	int MR1, MR2;
+	int Con1, Con2;
+	[FO1, FO2] = Bindings.GetKeysForCommand("+forward");
+	[BA1, BA2] = Bindings.GetKeysForCommand("+back");
+	[ML1, ML2] = Bindings.GetKeysForCommand("+moveleft");
+	[MR1, MR2] = Bindings.GetKeysForCommand("+moveright");
+	[Con1, Con2] = Bindings.GetKeysForCommand("+use");
+
+	if (e.Name == "TOGGLE_BUYMENU" && Toggle == True)   
+	{
+
+		/*
+		//Items Menu
+		if (CurrentCategory == "Items")
+		{
+			row_limit = 0;
+			column_limit = Me.Categories.Size() -1;
+			//SetItems("SMG");
+		}
+		//Weapon Menu
+		else if (CurrentCategory == "Weapons")
+		{
+			row_limit = 0;
+			column_limit = Me.Categories.Size() -1;
+		}
+		*/
+		
+		
+		//Weapon Sub Menu
+		
+		//DEBUG
+		if (
+		(FO1 && FO1 == e.Args[0]) || (FO2 && FO2 == e.Args[0]) ||
+		(BA1 && BA1 == e.Args[0]) || (BA2 && BA2 == e.Args[0]) ||
+		(ML1 && ML1 == e.Args[0]) || (ML2 && ML2 == e.Args[0]) ||
+		(MR1 && MR1 == e.Args[0]) || (MR2 && MR2 == e.Args[0]))
+		{
+			//Console.PrintF("Cursor Row: %d Cursor Column: %d", Me.Cursor.Row, Me.Cursor.Column);
+			Console.PrintF("Categorie: %s", CurrentCategory);
+		
+		}
+
+
+		
+		if ((FO1 && FO1 == e.Args[0]) || (FO2 && FO2 == e.Args[0]))
+		{
+		//	Console.PrintF("Cursor UP");
+			CursorMover("UP", row_limit, column_limit);
+		}
+		else if ((BA1 && BA1 == e.Args[0]) || (BA2 && BA2 == e.Args[0]))
+		{
+		//	Console.PrintF("Cursor Down");
+			CursorMover("DOWN", row_limit, column_limit);
+		}
+		else if ((ML1 && ML1 == e.Args[0]) || (ML2 && ML2 == e.Args[0]))		
+		{		
+		//	Console.PrintF("Cursor Left");
+			CursorMover("LEFT", row_limit, column_limit);
+		}
+		else if ((MR1 && MR1 == e.Args[0]) || (MR2 && MR2 == e.Args[0]))
+		{
+		//	Console.PrintF("Cursor Right");
+			CursorMover("RIGHT", row_limit, column_limit);
+		}
+
+		else if ((Con1 && Con1 == e.Args[0]) || (Con1 && Con1 == e.Args[0]))
+		{
+			//SendNetworkEvent("ENTER", e.KeyScan);
+		}
+		
+	
+	}		
+	
+}
+	
+	
+
+
+override void WorldTick()	// PLAY scope
+{
+
+	if (Toggle == True)
+	{
+		Showpic = True;
+	}
+	else
+	{
+		Showpic = False;
+		Cursor.row = 0;
+		Cursor.column = 0;
+	}
+
+}
+
+
+static void BuyMenu_OpenMenu(Actor self)
+{
+	BuyMenuScript Event;
+	Event = BuyMenuScript(EventHandler.Find("BuyMenuScript"));
+	let Player = Players[0].mo;
+	
+	//TODO: A better method of freezing the player
+	
+	if (Player != null)
+	{
+		if (self.CountInv("RMD_BuyMenuItem") == 1)
+		{
+			Event.toggle = false; 
+			self.SetInventory("RMD_BuyMenuItem", 2);
+			CallACS("RMD_UnfreezePlayer");
+		}
+		
+		else if (self.CountInv("RMD_BuyMenuItem") == 2)
+		{
+			Event.toggle = true;
+			self.SetInventory("RMD_BuyMenuItem", 1);
+			CallACS("RMD_FreezePlayer");
+		}
+	}
+}
+
+
+}
+
+
+Class RMD_BuyMenuItem : CustomSpecialItem
+{
+
+	Default
+	{
+		Inventory.Icon "FGRSB0";
+		Inventory.PickupMessage "Picked up: HPI Cube";
+		Inventory.Amount 1;
+		Inventory.MaxAmount 2;
+		Inventory.InterHubAmount 2;
+		Tag "HPI Cube";	
+	}
+
+	States
+	{
+
+		Use:
+			TNT1 A 0;
+			TNT1 A 0
+			{
+				//CallScript(self);
+			}
+			Fail;
+
+	}
+
+	static void CallScript(Actor self)
+	{
+
+		let handler = BuyMenuScript(EventHandler.Find('BuyMenuScript'));
+
+		if (handler == null) {}	
+		else
+		{
+			let player = PlayerPawn(self);
+
+			if (player != null)
+			{
+
+				handler.BuyMenu_OpenMenu(player);
+
+			}
+		}
+
+	}
+
+}
+

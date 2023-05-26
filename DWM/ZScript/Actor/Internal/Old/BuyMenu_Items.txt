@@ -1,0 +1,44 @@
+//The New 
+Class BuyMenuRegisterItem : EventHandler
+{
+	int RowCount; 
+	
+	
+	Static Void AddItems(BuyMenuItems Items)
+	{
+		let Handler = BuyMenuScript(EventHandler.Find('BuyMenuScript'));
+	
+		Handler.AddItems(Items);
+	}
+}
+
+//A Class that adds SMG weapons 
+Class BM_SMGWeapons : EventHandler
+{
+
+	override void WorldLoaded(WorldEvent e) 
+	{
+		let Handler = BuyMenuRegisterItem(EventHandler.Find('BuyMenuRegisterItem'));
+		
+		let Wepon = new("BuyMenuItems");
+		
+		Wepon.ID = "MP5";
+		Wepon.ItemName = "MP5";
+		Wepon.Sprite = TexMan.CheckForTexture("CHGGA0", TexMan.Type_Any);
+		Wepon.Category = "SMG";
+		Wepon.Cost = 750;
+		Wepon.Amount = 1;
+		Handler.AddItems(Wepon);	
+
+		Wepon.ID = "CBM3";
+		Wepon.ItemName = "Benelli CB-M3";
+		Wepon.Sprite = TexMan.CheckForTexture("CHGGA0", TexMan.Type_Any);
+		Wepon.Category = "SMG";
+		Wepon.Cost = 600;
+		Wepon.Amount = 1;
+		Handler.AddItems(Wepon);	
+	
+	}
+
+}
+

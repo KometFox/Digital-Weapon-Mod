@@ -1,0 +1,158 @@
+Thanks to these people, groups and organization for providing assets.
+Disclaimer: None of the assets here are made by me and belong to their respective authors.
+
+[Authors]
+-No0b_101
+ -Sprites
+ 
+-Matt
+ -Code 
+
+-Jer Sypault
+ -Sounds
+
+-Jarewill
+ -Code
+ 
+-Player704
+ -Code
+  
+-Dr_Cosmobyte
+ -Sounds
+ 
+-alascokevin1 (Port)
+ -Decals
+ 
+-Ellie
+ -Decals
+  
+-Isomeric Gamer
+ -Decals
+ 
+-foxidimi 
+ -Decals 
+ 
+-PotatoSmash PH 
+ -Muzzle Flash
+
+-Mak3ttaja 
+  -Rigging
+  -Model
+ 
+-Jammonstrald
+  -Sounds
+ 
+-Sergeant Mark IV
+
+-Geo-Dragon
+ 
+-Fuzzballfox
+ 
+-Demonologist
+ 
+-skepticist
+ 
+-Ribbiks
+ 
+-Team TNS
+
+-Perkristian
+
+-Sig Floyd
+
+-Marisa Kirisame
+ -Code
+
+-Cherno
+ -Shader
+
+[Groups]
+-Sven Co-op modders
+-GameBanana
+-Epic Games
+-Bandai Namco
+-Valve Software
+-Epic Games
+-Runestorm
+-ZDoom Forum
+
+[Sources]
+-Gamebanana.com
+-p3dm.ru
+-gamemodd.com
+-moddb.com
+
+[Games and mods]
+-Brutal Doom (GZDoom/Zandronum)
+ -Sounds
+
+-Insanity Brutality (Doom)
+ -Sounds
+ 
+-Final Doomer Mod (GZDoom)
+ -Sounds
+ -Sprites
+ -Fonts
+
+-Aracnocide Mod (GZDoom)
+ -Sounds
+
+-Lambda Mod (GZDoom)
+ -Code
+ -Sounds
+ -Models
+
+-Crossfire Mod (Doom)
+ -Sounds
+
+-MetaDoom Mod (GZDoom)
+ -Sounds
+ 
+-Unreal RPG Mod (Doom)
+ -Particles
+ -Sprites
+
+-Insanity Brutality (Doom)
+ -Sounds
+
+-Tortured Transmission (Zandronum)
+ -Sounds
+
+-Zage Mod (Doom)
+ -Sounds
+
+-Sargasso (Doom)
+ -Mugshot
+ 
+ -Flak_M (GZDoom)
+  -Code
+
+-Ballistic Weapons Mod (UT2004)
+ -Sounds
+ -Sprites
+ -Textures
+
+-Killing Floor
+ -Sounds
+
+-Counter Strike 1.6
+ -Music
+
+-Half Life 
+ -Sounds
+ -Models
+
+-Unreal Tournament
+ -Sounds
+    
+-Insurgency 2 
+ -Sounds
+ 
+-Insurgency 2 Sven Co-op mod
+ -Sounds
+ 
+-Jamms Weapon Sound Pack
+ -Sounds
+ 
+ 
+  

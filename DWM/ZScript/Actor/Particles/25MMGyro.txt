@@ -1,0 +1,83 @@
+Class RMD_25mmGyroExplosion : Actor
+{
+
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 
+			{
+
+				//Explosion
+				for (int i = 0; i < 8; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25)).unit()*FRandom[FX](0.0, 0.0);
+					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
+					let Particle = Spawn("RMD_Boom6", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.65, 0.65);
+				}
+				
+				let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
+				int CVAR_LowQuality = CVARS.RMDV_ParticleLowQuality;;
+		
+				if (CVAR_LowQuality == 1)
+				{
+					Return;
+				}
+				
+				//Shockwave
+				for (int i = 0; i < 1; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25)).unit()*FRandom[FX](0.0, 0.0);
+					Vector3 RPos = (frandom(-2, 2), frandom(-2, 2), frandom(-2, 2));
+					let Particle = Spawn("RMD_Shockwave", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.07, 0.07);
+					Particle.SetShade("9adbff");
+				}
+				//Smoke
+				for (int i = 0; i < 8; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-40.0, 40.0), FRandom[FX](-40.0, 40.0), FRandom[FX](-50.0, 50.0)).unit()*FRandom[FX](2.0, 5.0);
+					Vector3 RPos = (frandom(-2, 2), frandom(-2, 2), frandom(-1, 1));
+					let Particle = Spawn("RMD_Smoke", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.13, 0.13);
+				}
+					
+				//Spark
+				for (int i = 0; i < 2; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25)).unit()*FRandom[FX](2.0, 4.0);
+					Vector3 RPos = (frandom(-15, 15), frandom(-15, 15), frandom(0, 8));
+					let Particle = Spawn("RMD_EmberShaded", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.3, 0.3);
+					Particle.SetShade("ff5c0a");
+				}
+				
+				//Flare
+				for (int i = 0; i < 1; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25)).unit()*FRandom[FX](0.01, 0.01);
+					Vector3 RPos = (frandom(-8, 8), frandom(-8, 8), frandom(-4, 4));
+					let Particle = Spawn("RMD_Flare", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.4, 0.4);
+					Particle.SetShade("9adbff");
+				}
+				
+
+
+			}
+			Stop;
+			
+	}
+}
+

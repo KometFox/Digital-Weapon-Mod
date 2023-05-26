@@ -1,0 +1,336 @@
+Class RMD_M25RocketExplosion : Actor
+{
+
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 
+			{
+
+				//Explosion
+				for (int i = 0; i < 4; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25)).unit()*FRandom[FX](2.5, 5.0);
+					Vector3 RPos = (frandom(-8, 8), frandom(-8, 8), frandom(-4, 4));
+					let Particle = Spawn("M25_Boom", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.1, 0.1);
+				}
+
+				let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
+				int CVAR_LowQuality = CVARS.RMDV_ParticleLowQuality;;
+		
+				if (CVAR_LowQuality == 1)
+				{
+					Return;
+				}
+
+				//Smoke
+				for (int i = 0; i < 10; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-70.0, 70.0), FRandom[FX](-70.0, 70.0), FRandom[FX](-50.0, 50.0)).unit()*FRandom[FX](3.0, 7.0);
+					Vector3 RPos = (frandom(-8, 8), frandom(-8, 8), frandom(-4, 4));
+					let Particle = Spawn("M25_Smoke", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.15, 0.15);
+				}
+					
+				//Spark
+				for (int i = 0; i < 10; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25)).unit()*FRandom[FX](12.0, 40.0);
+					Vector3 RPos = (frandom(-8, 8), frandom(-8, 8), frandom(-4, 4));
+					let Particle = Spawn("M25_Spark", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.11, 0.11);
+				}
+				
+				//Trail
+				for (int i = 0; i < 3; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25)).unit()*FRandom[FX](10.0, 20.0);
+					let Particle = Spawn("RMD_M25RocketExplosionTrail", Pos);
+					
+					Particle.Vel = PVel;
+				}
+
+				//Flare
+				for (int i = 0; i < 1; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25)).unit()*FRandom[FX](0.01, 0.01);
+					Vector3 RPos = (frandom(-8, 8), frandom(-8, 8), frandom(-4, 4));
+					let Particle = Spawn("M25_Flare", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (6.0, 6.0);
+				}
+
+
+			}
+			Stop;
+			
+	}
+}
+
+
+Class M25_Boom : RMD_BaseParticle
+{
+	Default
+	{
+		RenderStyle "Add";
+		Alpha 1.0;
+		+Bright;
+	}
+	
+	Override void BeginPlay()
+	{
+		Super.BeginPlay();
+		
+		Roll = frandom(0, 360);	
+	}
+	
+	Override void Tick()
+	{
+		Super.Tick();
+		
+		if (!isFrozen())
+		{
+			A_SetScale(Scale.X * 1.12, Scale.Y * 1.12);	
+		}
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			XPPA B 8;
+			XPPA BBBBBBBBBBBB 1 A_FadeOut(0.12);
+			Stop;
+
+	}
+}
+
+Class M25_Smoke : RMD_BaseParticle
+{
+	Default
+	{
+		RenderStyle "Translucent";
+		Alpha 0.6;
+	}
+	
+	Override void BeginPlay()
+	{
+		Super.BeginPlay();
+		
+		Roll = frandom(0, 360);	
+	}
+	
+	Override void Tick()
+	{
+		Super.Tick();
+		
+		if (!isFrozen())
+		{
+			A_SetScale(Scale.X * 1.065, Scale.Y * 1.065);	
+		}
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Smoke1", "Smoke2", "Smoke3", "Smoke4");
+		Smoke1:
+			SMOA A 20;
+			SMOA AAAAAAAAAA 1 A_FadeOut(0.075);
+			Stop;
+		Smoke2:
+			SMOB A 20;
+			SMOB AAAAAAAAAA 1 A_FadeOut(0.075);
+			Stop;
+		Smoke3:
+			SMOC A 20;
+			SMOC AAAAAAAAAA 1 A_FadeOut(0.075);
+			Stop;
+		Smoke4:
+			SMOD A 20;
+			SMOD AAAAAAAAAA 1 A_FadeOut(0.075);
+			Stop;
+	}
+}
+
+
+Class M25_Spark : RMD_ModelSparks
+{
+	Default
+	{
+		RenderStyle "Add";
+		+Bright;
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			SPRK A 8;
+			SPRK AAAAAAAAAA 1 A_FadeOut(0.1);
+			Stop;	
+	}
+}
+
+
+
+Class M25_Flare : RMD_BaseParticle
+{
+	Default
+	{
+		RenderStyle "Add";
+		+Bright;
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			SPRK AAAAAAAA 1 A_FadeOut(0.125);
+			Stop;	
+	}
+}
+
+//------------------------------------------------------------------------------
+//Explosion Trail
+//------------------------------------------------------------------------------
+Class RMD_M25RocketExplosionTrail : RMD_ModelSparks
+{
+	
+	Default
+	{
+		Gravity 0.27;
+	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+	
+		if (!isFrozen())
+		{
+			if (true)
+			{
+				Vector3 PVel = (FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1)).unit()*FRandom[FX](0.05, 0.05);
+				Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
+				let Particle = Spawn("M25_Fire", Pos + RPos);
+					
+				Particle.Vel = PVel;
+				Particle.Scale = (0.25, 0.25);			
+			}	
+
+			if (true)
+			{
+				Vector3 PVel = (FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1)).unit()*FRandom[FX](0.05, 0.05);
+				Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
+				let Particle = Spawn("M25_Smoke", Pos + RPos);
+					
+				Particle.Vel = PVel;
+				Particle.Scale = (0.03, 0.03);			
+			}
+		}
+	
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 15;
+			Stop;
+	}
+
+}
+
+
+
+
+Class M25_Fire : RMD_BaseParticle
+{
+	Default
+	{
+		RenderStyle "Add";
+		+Bright;
+	}
+	
+	Override void BeginPlay()
+	{
+		Super.BeginPlay();
+		
+		Roll = frandom(0, 360);	
+	}
+	
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			BOM1 BDFHJLNPRTVX 1
+			{
+				A_SetScale(Scale.X * 1.03, Scale.Y * 1.03);
+			}
+			Stop;	
+	}
+}
+
+
+
+Class M25_Smoke2 : RMD_BaseParticle
+{
+	Default
+	{
+		RenderStyle "Translucent";
+		Alpha 0.8;
+	}
+	
+	Override void BeginPlay()
+	{
+		Super.BeginPlay();
+		
+		Roll = frandom(0, 360);	
+	}
+	
+	Override void Tick()
+	{
+		Super.Tick();
+		
+		if (!isFrozen())
+		{
+			A_SetScale(Scale.X * 1.065, Scale.Y * 1.065);	
+		}
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Smoke1", "Smoke2", "Smoke3", "Smoke4");
+		Smoke1:
+			SMOA A 7;
+			SMOA AAAAAAAAAA 1 A_FadeOut(0.075);
+			Stop;
+		Smoke2:
+			SMOB A 7;
+			SMOB AAAAAAAAAA 1 A_FadeOut(0.075);
+			Stop;
+		Smoke3:
+			SMOC A 7;
+			SMOC AAAAAAAAAA 1 A_FadeOut(0.075);
+			Stop;
+		Smoke4:
+			SMOD A 7;
+			SMOD AAAAAAAAAA 1 A_FadeOut(0.075);
+			Stop;
+	}
+}
+
+

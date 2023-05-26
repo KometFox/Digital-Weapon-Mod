@@ -1,0 +1,33 @@
+//Hacky method to access a actor properties
+Class HackyItem : Actor
+{
+	Actor Junk; //The junk to spawn
+	
+	//Assign a Pointer to variable "Junk"
+	Actor AssignJunk(class<Actor> Thing)
+	{
+		Junk = Spawn(Thing);
+		
+		return Junk;
+	}
+	
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0
+			{
+				//Get rid of it...
+				if (Junk)
+				{
+					Console.PrintF("GOT JUNK!");
+					//Junk.A_Die();
+				}
+			
+			}
+			Stop;
+	
+	}
+
+}

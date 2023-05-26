@@ -1,0 +1,220 @@
+/*
+This script is used as a helper method to determine a item drop which is 
+randomized
+*/
+
+//Class for Items with weights chance to it.
+Class WeightedItemContainer
+{
+	Class<Actor> Item; //The Item
+	int Amount; //How much it should spawn
+	float RollWeight; //How much weight it has
+
+	//Internal
+	float AccWeight; //Accumulated Weight
+	bool Picked; //Internal value
+}
+
+//It needs to be inserted a array of a class because of how the picking system
+//is designed. 
+class ItemDrop_WeightedRoll 
+{
+	float TotalWeight;	
+	
+	//ZScript doesn't support dictionary, so a array needs to be used instead. 
+	void InitProbability(array<WeightedItemContainer> Items)
+	{
+		TotalWeight = 0.0;
+		int ArraySize = Items.Size(); //Size of the array
+		
+		for (int I = 0; I < ArraySize; I++)
+		{
+			TotalWeight += Items[I].RollWeight;
+			Items[I].AccWeight = TotalWeight; 
+		}
+	}
+	
+	int PickSomeObject(array<WeightedItemContainer> Items)
+	{
+		float Roll = frandom(0.0, TotalWeight);
+		int ArraySize = Items.Size();
+		
+		for (int I = 0; I < ArraySize; I++)
+		{
+			if (Items[I].AccWeight > Roll)
+			{
+				return I;			
+			}
+		}	
+		
+		return 0;
+	}
+}
+
+
+
+//Class for Probability calculation 
+class Probability 
+{
+	static bool CoinFloat(Float Chance)
+	{
+		Chance = Clamp(Chance, 0, 1.0);
+		float Coin_ = frandom(0, 1.0);
+		float Calculation = 1.0 - Chance;
+
+		//The 0 is a special case.
+		if (Chance == 0)
+		{
+			return false;
+		}
+			
+		if (Coin_ >= Calculation)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	static bool CoinInt(int Chance)
+	{
+		Chance = Clamp(Chance, 0, 100);
+		int Coin_ = random(0, 100);
+		int Calculation = 100 - Chance;
+
+		//The 0 is a special case.
+		if (Chance == 0)
+		{
+			return false;
+		}
+			
+		if (Coin_ >= Calculation)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+	}
+
+}
+
+
+//The Functionalities
+class RMD_DropBase : Actor
+{
+	Array<WeightedItemContainer> Drops; 
+	
+	//This  function is needed to initalize some values.	
+	void InitDrops()
+	{
+		//0 is needed as a "sentinel" value.
+		//The Container
+		let Container = new("WeightedItemContainer");
+		Container.Item = "ExplosiveBarrel"; //Shouldn't be spawning anything. TODO: Error Actor instead. 
+		Container.Amount = 0;
+		Container.RollWeight = 0; //0 chance of appearing.
+		//The Array
+		Drops.push(Container);
+	}
+	
+	//Used for adding items to the container
+	void AddItems(class<actor> VItem, int VAmount, float VRollWeight)
+	{
+		//The Container
+		let Container = new("WeightedItemContainer");
+		Container.Item = VItem;
+		Container.Amount = VAmount;
+		Container.RollWeight = VRollWeight;
+		//The Array
+		Drops.push(Container);
+	}
+	
+	//Do some decision making in order to drop items based on a weighted roll
+	void DropItems()
+	{		
+		let WeightRoll = new("ItemDrop_WeightedRoll");
+		int ArrayAmount = Drops.Size();
+		int ToDrop = 0;
+		
+		WeightRoll.InitProbability(Drops);
+		
+		for (int I = 0; I < ArrayAmount; I++)
+		{
+			ToDrop = WeightRoll.PickSomeObject(Drops);
+
+			//Skip this Item...
+			if (Drops[ToDrop].Amount == 0)
+			{
+				continue;
+			}
+
+			if (Drops[ToDrop].Picked == false && ToDrop < ArrayAmount)
+			{
+				Drops[ToDrop].Picked = true;
+				LootSpawn(ToDrop);
+				break;
+			}
+			else
+			{
+				break;
+			}
+		}
+
+	}
+
+	//Used for spawning the loot.
+	void LootSpawn(int ToDrop)
+	{
+		if (Drops[ToDrop].Amount == 0)
+		{
+			return;
+		}
+	
+		for (Int Amount = 0; Amount < Drops[ToDrop].Amount; Amount++)
+		{
+			//Got some hint from Player701. This part is necessary to so that
+			//The postbeginplay() part of MaterialBase Class works as excepted.
+			
+			bool Success; 
+			Actor MObject; 
+			[Success, MObject] = A_SpawnItemEx(Drops[ToDrop].Item, 0, 0, 0);
+			
+			
+			//Actor MObject = Spawn(Drops[ToDrop].Item, Pos);
+			
+			/*
+			if (MObject is "Inventory")
+			{
+				Inventory(MObject).bDropped = false;
+			}
+			*/
+			
+		}
+	}
+	
+	override void BeginPlay()
+	{
+		//Initalize some values.
+		InitDrops();
+		
+		Console.PrintF("Master: %p", Master);
+		Console.PrintF("Target: %p", Target);
+		Console.PrintF("Tracer: %p", Tracer);
+	}
+	
+		
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 1 Dropitems(); //Spawn the sweet loot. 
+			Stop;
+	}
+
+}
+

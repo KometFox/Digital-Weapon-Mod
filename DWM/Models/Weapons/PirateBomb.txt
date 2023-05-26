@@ -1,0 +1,40 @@
+Model RMD_PirateBomb
+{
+	Path "Models\Textures\CSArms"
+	SurfaceSkin 0 0 "CSHand.png"
+	Path "Models\Weapons\Grenade\PirateBomb"
+	Model 0 "PirateBomb.md3"
+	SurfaceSkin 0 1 "PirateBomb.png"
+
+	//IDLE
+	FrameIndex IDLE A 0 1
+	//SELECT
+	FrameIndex SELC A 0 2
+	FrameIndex SELC B 0 3
+	FrameIndex SELC C 0 4
+	FrameIndex SELC D 0 5
+	FrameIndex SELC E 0 6
+	FrameIndex SELC F 0 7
+	//PULLPIN
+	FrameIndex PLPI A 0 8
+	FrameIndex PLPI B 0 9
+	FrameIndex PLPI C 0 10
+	FrameIndex PLPI D 0 11
+	FrameIndex PLPI E 0 12 //Pin Pulled
+	FrameIndex PLPI F 0 13
+	FrameIndex PLPI G 0 14
+	FrameIndex PLPI H 0 15
+	FrameIndex PLPI I 0 16
+	FrameIndex PLPI J 0 17
+	FrameIndex PLPI K 0 18
+	//THROW
+	FrameIndex THRO A 0 19
+	FrameIndex THRO B 0 20
+	FrameIndex THRO C 0 21
+	FrameIndex THRO D 0 22 //Hold Bomb
+	FrameIndex THRO E 0 23
+	FrameIndex THRO F 0 24
+	FrameIndex THRO G 0 25 //Throw Bomb
+	FrameIndex THRO H 0 26
+	FrameIndex THRO I 0 27
+}

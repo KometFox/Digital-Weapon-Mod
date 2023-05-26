@@ -1,0 +1,13 @@
+#Include "Models/Particles/MODELDEF.cases"
+
+//Spark Tracer
+Model URPG_Sparks      
+{
+   Path "Models/Projectile/Sparks"   
+   Model 0 "tracer.md3" 
+   Path "Models/Projectile"
+   Skin 0 "OldTracer.tga"     
+   Scale 1.5 7.5 7.5
+   PITCHFROMMOMENTUM 
+   FrameIndex SPKO S 0 0         
+}

@@ -1,0 +1,82 @@
+Class RMD_ItemShineSpawner : Actor
+{
+
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 
+			{
+			
+				for (int i = 0; i < 1; i++)
+				{
+					Vector3 PVel = (FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1), FRandom[FX](0, 1.0)).unit()*FRandom[FX](0.3, 1.0);
+					Vector3 RPos = (frandom(-0.2, 0.2), frandom(-0.2, 0.2), frandom(-0.2, 0.2));
+					let Particle = Spawn("SFX_Itemshine_Spark", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.05, 0.05);
+					Particle.SetShade("0c72ff");
+				}
+				
+				/*
+				Vector3 PVel = (FRandom[FX](-5.0, 5.0), FRandom[FX](-5.0, 5.0), FRandom[FX](0, 8.0)).unit()*FRandom[FX](0, 0);
+				Vector3 RPos = (frandom(-0.4, 0.4), frandom(-0.4, 0.4), frandom(-0.4, 0.4));
+				let Particle = Spawn("SFX_ItemShine_Flare", Pos + RPos);
+					
+				Particle.Vel = PVel;
+				Particle.Scale = (0.15, 0.15);
+				Particle.SetShade("0c72ff");
+				*/
+			}
+			Stop;
+			
+	}
+}
+
+
+Class SFX_Itemshine_Spark : RMD_BaseParticle
+{
+	Default
+	{
+		RenderStyle "AddShaded";
+		+Bright;
+		+NoInteraction;
+		RenderRadius 8;
+		
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			SPRK A 25;
+			SPRK AAA 1 A_FadeOut(0.33);
+			Stop;	
+	}
+}
+
+
+
+
+
+Class SFX_ItemShine_Flare : RMD_BaseParticle
+{
+	Default
+	{
+		RenderStyle "AddShaded";
+		+Bright;
+		+NoInteraction;
+		RenderRadius 3;
+		Alpha 0.8;
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			LENS CCC 1 A_FadeOut(0.266);
+			Stop;	
+	}
+}
+

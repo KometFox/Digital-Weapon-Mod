@@ -1,0 +1,569 @@
+/*
+A Class to test out some menu shit
+TODO: Improve handling of Elements
+*/
+Class MenuTest : EventHandler
+{
+	bool Enabled; //If the menu is enabled
+	//Elements
+	Array<UIElement> Elements; //Array of Elements it has
+	Array<int> ElementsRow; //The row each element is at
+	int ElementsSel; //The Element it is selected
+	int ElementsLastIndex; 
+	//Other
+	StructKeyArrow KeyArrow; //The Arrow
+
+
+	Struct StructKeyArrow
+	{
+		Vector2 Position;	
+	}
+
+	void AddElements(UIElement Thing)
+	{
+		ElementsLastIndex = Thing.Column;
+		ElementsRow[ElementsLastIndex] += 1;
+		Elements.Push(Thing);
+	}
+
+	//Do some initalization
+	override void WorldLoaded(WorldEvent e) 
+	{
+		ElementsRow.Resize(50); //Add some buffer
+
+		//Block A
+		if (1 == 1)
+		{
+			let Elementy = new("TextEntry");
+
+			Elementy.rect_pos.x = 300;
+			Elementy.rect_pos.y = 100;
+			Elementy.Text = "1";
+			Elementy.Command = "1";
+			Elementy.Column = 0;
+			AddElements(Elementy);
+		}		
+
+		if (1 == 1)
+		{
+			let Elementy = new("TextEntry");
+
+			Elementy.rect_pos.x = 340;
+			Elementy.rect_pos.y = 100;
+			Elementy.Text = "2";
+			Elementy.Command = "2";
+			Elementy.Column = 0;
+			AddElements(Elementy);
+		}
+		
+		if (1 == 1)
+		{
+			let Elementy = new("TextEntry");
+
+			Elementy.rect_pos.x = 380;
+			Elementy.rect_pos.y = 100;
+			Elementy.Text = "3";
+			Elementy.Command = "3";
+			Elementy.Column = 0;
+			AddElements(Elementy);
+		}		
+		
+		//Block B
+		if (1 == 1)
+		{
+			let Elementy = new("TextEntry");
+
+			Elementy.rect_pos.x = 300;
+			Elementy.rect_pos.y = 140;
+			Elementy.Text = "4";
+			Elementy.Command = "4";
+			Elementy.Column = 1;
+			AddElements(Elementy);
+		}		
+
+		if (1 == 1)
+		{
+			let Elementy = new("TextEntry");
+
+			Elementy.rect_pos.x = 340;
+			Elementy.rect_pos.y = 140;
+			Elementy.Text = "5";
+			Elementy.Command = "5";
+			Elementy.Column = 1;
+			AddElements(Elementy);
+		}
+		
+		
+		if (1 == 1)
+		{
+			let Elementy = new("TextEntry");
+
+			Elementy.rect_pos.x = 380;
+			Elementy.rect_pos.y = 140;
+			Elementy.Text = "6";
+			Elementy.Command = "6";
+			Elementy.Column = 1;
+			AddElements(Elementy);
+		}
+		
+		if (1 == 1)
+		{
+			let Elementy = new("TextEntry");
+
+			Elementy.rect_pos.x = 420;
+			Elementy.rect_pos.y = 140;
+			Elementy.Text = "7";
+			Elementy.Command = "7";
+			Elementy.Column = 1;
+			AddElements(Elementy);
+		}			
+		
+		//Block C
+		if (1 == 1)
+		{
+			let Elementy = new("TextEntry");
+
+			Elementy.rect_pos.x = 300;
+			Elementy.rect_pos.y = 180;
+			Elementy.Text = "8";
+			Elementy.Command = "8";
+			Elementy.Column = 2;
+			AddElements(Elementy);
+		}		
+
+		if (1 == 1)
+		{
+			let Elementy = new("TextEntry");
+
+			Elementy.rect_pos.x = 340;
+			Elementy.rect_pos.y = 180;
+			Elementy.Text = "9";
+			Elementy.Command = "9";
+			Elementy.Column = 2;
+			AddElements(Elementy);
+		}
+		
+		
+		if (1 == 1)
+		{
+			let Elementy = new("TextEntry");
+
+			Elementy.rect_pos.x = 380;
+			Elementy.rect_pos.y = 180;
+			Elementy.Text = "10";
+			Elementy.Command = "10";
+			Elementy.Column = 2;
+			AddElements(Elementy);
+		}	
+	
+	}
+
+	//Function for simplified Text display
+	ui void AddText(String Text, int pos_x, int pos_y)
+	{
+		Screen.DrawText(Confont, Font.CR_BLUE, pos_x, pos_y, Text, DTA_VirtualWidth, 720, DTA_VirtualHeight, 480);
+	}
+	
+	//Display stuff
+	override void renderOverlay(RenderEvent e)
+	{
+
+		if (Enabled == True && Elements.size() > 0)
+		{
+			//Display all the elements
+			for (int i = 0; i < Elements.size(); i++)
+			{
+				
+			
+				//Display Text
+				if (Elements[i] is "TextEntry")
+				{
+					TextEntry Pick = TextEntry(Elements[i]); 
+					
+					if (Pick)
+					{
+						if (i == ElementsSel)
+						{
+							AddText(String.Format("[%s]", Pick.Text), Pick.rect_pos.x, Pick.rect_pos.y);
+						}
+						else
+						{
+							AddText(Pick.Text, Pick.rect_pos.x, Pick.rect_pos.y);
+						}
+					}
+					
+				}
+				
+				//Display Graphics
+
+
+			}		
+		}
+	}
+	
+
+	//Get the next Element
+	void Elements_NextItem()
+	{
+		ElementsSel += 1;
+		
+		if (ElementsSel >= Elements.Size())
+		{
+			ElementsSel = Elements.Size() -1;
+		}
+	}
+	
+	//Get the previous Element
+	void Elements_PreviousItem()
+	{
+		ElementsSel -= 1;
+		
+		if (ElementsSel < 0)
+		{
+			ElementsSel = 0;
+		}	
+	}
+	
+	//Get the element below
+	void Elements_DownItem()
+	{
+		int NewSelc = ElementsSel + ElementsRow[Elements[ElementsSel].Column];
+		
+		//Failsafe
+		if (NewSelc >= Elements.size())
+		{
+			NewSelc = Elements.size() -1;
+		}
+		
+		//New Selection
+		ElementsSel = NewSelc;
+	}
+	
+	//Get the element above
+	//Bleh its not really a good solution since a simple logic change is
+	//not working correctly.
+	void Elements_UpItem()
+	{
+		int CurrentColumn = Elements[ElementsSel].Column;
+		int Counter = 0; //Keep track how many elements it passed through
+		int MiniCol = 0; //Minimum Total row of Previous column
+		int NewIndex = 0; //The new Index
+		
+		//Reverse loop through the elements till a lower column 
+		//value is found
+		for (int i = ElementsSel; i > 0; i--)
+		{		
+			Counter += 1;
+			
+			if (Elements[i].Column < CurrentColumn)
+			{
+				MiniCol = i;
+				break;
+			}	
+
+		}
+		
+		int PreCounter = Counter - MiniCol;
+
+		//Make sure to not use the PreCounter number if its less than MiniCol
+		if (PreCounter < MiniCol)
+		{
+			PreCounter = MiniCol;
+		}
+
+		//Do the main stuff
+		MiniCol = PreCounter;
+		CurrentColumn = Elements[MiniCol].Column;
+
+	
+		//Do a failsafe first
+		NewIndex = ElementsSel - ElementsRow[CurrentColumn];
+		
+		if (NewIndex < 0)
+		{
+			NewIndex = 0;		
+		}
+		
+		ElementsSel = NewIndex;
+
+	}	
+	
+	void CursorMover(string MoveTo)
+	{
+		if (MoveTo == "RIGHT")
+		{
+			Elements_NextItem();	
+		}
+		else if (MoveTo == "LEFT")
+		{
+			Elements_PreviousItem();
+		}
+		else if (MoveTo == "DOWN")
+		{
+			Elements_DownItem();
+		}
+		else if (MoveTo == "UP")
+		{
+			Elements_UpItem();
+		}
+	
+	}
+	
+	//Detect player input
+	override bool InputProcess (InputEvent e)
+	{
+	
+		//Prevent from sending stuff when the menu is not open...
+		if (Enabled == True)
+		{
+			if (e.Type == InputEvent.Type_KeyDown && e.KeyScan == InputEvent.Key_LeftArrow)		
+			{		
+				Console.PrintF("Pressed Left");
+				SendNetworkEvent("PRESS_LEFT");
+			}
+			
+			else if (e.Type == InputEvent.Type_KeyDown && e.KeyScan == InputEvent.Key_RightArrow)
+			{
+				Console.PrintF("Pressed Right");
+				SendNetworkEvent("PRESS_RIGHT");
+			}
+
+			else if (e.Type == InputEvent.Type_KeyDown && e.KeyScan == InputEvent.Key_DownArrow)
+			{
+				Console.PrintF("Pressed Down");
+				SendNetworkEvent("PRESS_DOWN");
+			}
+
+			else if (e.Type == InputEvent.Type_KeyDown && e.KeyScan == InputEvent.Key_UpArrow)
+			{
+				Console.PrintF("Pressed Up");
+				SendNetworkEvent("PRESS_UP");
+			}
+
+		}
+
+		return false;	
+	}
+
+	//The networking processing.
+	override void NetworkProcess(ConsoleEvent e)
+	{
+		int row_limit, column_limit;
+
+		//Menu Opening
+		if (e.Name == "TESTMENU")
+		{
+			if (Enabled == False)
+			{
+				Console.PrintF("Opening Menu");
+				Enabled = True;
+				CallACS("RMD_FreezePlayer");
+			}
+			else
+			{
+				Console.PrintF("Closing Menu");
+				Enabled = False;
+				CallACS("RMD_UnfreezePlayer");
+			}
+			
+		}
+		
+		//Detect Keys
+		if (Enabled == True)
+		{
+			if (e.Name == "PRESS_LEFT")
+			{
+				CursorMover("LEFT");
+			}
+			
+			else if (e.Name == "PRESS_RIGHT")
+			{
+				CursorMover("RIGHT");
+			}		
+
+			else if (e.Name == "PRESS_DOWN")
+			{
+				CursorMover("DOWN");
+			}
+			
+			else if (e.Name == "PRESS_UP")
+			{
+				CursorMover("UP");
+			}
+		
+		}
+		
+		
+	
+	}	
+
+}
+
+
+
+//The UI elements...
+Class UIElement
+{
+	Vector2 rect_pos; //the position
+	int Row;  //The row
+	int Column;  //The column
+}
+
+//Selectable Text Element
+Class TextEntry : UIElement
+{
+	String Text; //The text to display
+	String Command; //The command to send
+	
+	String GetText()
+	{
+		return Text;
+	}
+	
+	String GetCommand()
+	{
+		return Command;
+	}
+	
+	void SetColumn(int Value)
+	{
+		Column = Value;
+		
+		if (Column < 0)
+		{
+			Column = 0;
+		}
+	}	
+}
+
+
+
+/*
+MENUTEST JUNK
+		//Block A
+		if (1 == 1)
+		{
+			let Elementy = new("TextEntry");
+
+			Elementy.rect_pos.x = 300;
+			Elementy.rect_pos.y = 100;
+			Elementy.Text = "1";
+			Elementy.Command = "1";
+			Elementy.Column = 0;
+			AddElements(Elementy);
+		}		
+
+		if (1 == 1)
+		{
+			let Elementy = new("TextEntry");
+
+			Elementy.rect_pos.x = 340;
+			Elementy.rect_pos.y = 100;
+			Elementy.Text = "2";
+			Elementy.Command = "2";
+			Elementy.Column = 0;
+			AddElements(Elementy);
+		}
+		
+		if (1 == 1)
+		{
+			let Elementy = new("TextEntry");
+
+			Elementy.rect_pos.x = 380;
+			Elementy.rect_pos.y = 100;
+			Elementy.Text = "3";
+			Elementy.Command = "3";
+			Elementy.Column = 0;
+			AddElements(Elementy);
+		}		
+		
+		//Block B
+		if (1 == 1)
+		{
+			let Elementy = new("TextEntry");
+
+			Elementy.rect_pos.x = 300;
+			Elementy.rect_pos.y = 140;
+			Elementy.Text = "4";
+			Elementy.Command = "4";
+			Elementy.Column = 1;
+			AddElements(Elementy);
+		}		
+
+		if (1 == 1)
+		{
+			let Elementy = new("TextEntry");
+
+			Elementy.rect_pos.x = 340;
+			Elementy.rect_pos.y = 140;
+			Elementy.Text = "5";
+			Elementy.Command = "5";
+			Elementy.Column = 1;
+			AddElements(Elementy);
+		}
+		
+		
+		if (1 == 1)
+		{
+			let Elementy = new("TextEntry");
+
+			Elementy.rect_pos.x = 380;
+			Elementy.rect_pos.y = 140;
+			Elementy.Text = "6";
+			Elementy.Command = "6";
+			Elementy.Column = 1;
+			AddElements(Elementy);
+		}
+		
+		if (1 == 1)
+		{
+			let Elementy = new("TextEntry");
+
+			Elementy.rect_pos.x = 420;
+			Elementy.rect_pos.y = 140;
+			Elementy.Text = "7";
+			Elementy.Command = "7";
+			Elementy.Column = 1;
+			AddElements(Elementy);
+		}			
+		
+		//Block C
+		if (1 == 1)
+		{
+			let Elementy = new("TextEntry");
+
+			Elementy.rect_pos.x = 300;
+			Elementy.rect_pos.y = 180;
+			Elementy.Text = "8";
+			Elementy.Command = "8";
+			Elementy.Column = 2;
+			AddElements(Elementy);
+		}		
+
+		if (1 == 1)
+		{
+			let Elementy = new("TextEntry");
+
+			Elementy.rect_pos.x = 340;
+			Elementy.rect_pos.y = 180;
+			Elementy.Text = "9";
+			Elementy.Command = "9";
+			Elementy.Column = 2;
+			AddElements(Elementy);
+		}
+		
+		
+		if (1 == 1)
+		{
+			let Elementy = new("TextEntry");
+
+			Elementy.rect_pos.x = 380;
+			Elementy.rect_pos.y = 180;
+			Elementy.Text = "10";
+			Elementy.Command = "10";
+			Elementy.Column = 2;
+			AddElements(Elementy);
+		}
+
+*/
+

@@ -1,0 +1,487 @@
+//------------------------------------------------------------------------------
+//Dynamic Damage Falloff effect
+//------------------------------------------------------------------------------
+Class RMD_DamageFalloff 
+{
+	static float Calc(int SpawnHealth, int HealthDamage, int Damage)
+	{	
+		if (SpawnHealth > HealthDamage)
+			return 1.5;
+		
+		return 1.0;
+	}
+}
+
+//------------------------------------------------------------------------------
+//Base Bullet
+//------------------------------------------------------------------------------
+Class RMD_BaseBullet : FastProjectile
+{
+	//Normal Damage
+	int ImpDamage; //Impact Damage
+	
+	//Nerfed Damage
+	int HealthDamage; //At which point the DamageMin overtakes normal damage
+	
+	//Randomizer
+	float DamageRand1; //The randomizer value
+	float DamageRand2; //The randomizer value
+
+	property ImpactDamage:ImpDamage;
+	property HealthDamage:HealthDamage;
+	property DamageRand1:DamageRand1;
+
+	Default
+	{
+		Height 6;
+		Radius 3;
+		Speed 150;
+		MissileHeight 8;
+		//MissileType "RMD_BulletSmoke";
+		ProjectileKickBack 22;
+		PROJECTILE;
+		Decal "Bulletchip";
+		RenderStyle "Add";
+		-NOEXTREMEDEATH;
+		+BRIGHT;
+	}
+	
+	Override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		float CVAR_BulletDamage = CVar.FindCVar("RMDC_BulletDamage").GetFloat();
+		
+		/*
+		if (CVARS)
+		{
+			CVAR_BulletDamage = CVARS;
+			//Console.Printf("BulletDamage: %f", CVAR_BulletDamage);
+			//Console.PrintF("Got CVAR");
+		}
+		else
+		{
+			//Console.Printf("BulletDamage: %f", CVAR_BulletDamage);
+			//Console.PrintF("Got no CVAR");
+		}
+		*/
+	
+		//Console.Printf("BulletDamage: %f", CVAR_BulletDamage);
+	
+		//Normal Damage
+		ImpDamage *= FRandom(1.0, DamageRand1);	
+		ImpDamage *= CVAR_BulletDamage;
+	}
+	
+	
+	
+	//Add damage fall off effect against strong monsters
+	Override int SpecialMissileHit (Actor Victim)
+	{
+		int VictimHP = Victim.SpawnHealth();
+		int GibHealth = Victim.GibHealth;
+		
+		Class<Actor> BloodEffect = Victim.GetBloodType(0);
+		Actor Blood;
+		
+		//If its a stupid magic number...
+		if (GibHealth == -2147483648)
+		{
+			GibHealth = Victim.SpawnHealth();
+		}
+		else if (GibHealth < 0)
+		{
+			GibHealth = abs(Victim.GibHealth);
+		}
+		
+	
+		if (!Victim.player && Victim.BShootable)
+		{
+			//Prevent the blood spawning.
+			if (!Victim.BNoblood && BloodEffect)
+			{
+				Blood = Spawn(BloodEffect, Pos);
+			}
+		
+			//TODO: Add support for "non bleeding" blood actors
+			else if (!BloodEffect || Victim.BNoblood)
+			{
+				Spawn("URPG_BulletArmorImpact", Pos);
+			}
+
+			if (VictimHP > HealthDamage && HealthDamage != 0)
+			{
+				float Logart = 1.0;
+				int NewDamage = 1;
+			
+				Logart = RMD_DamageFalloff.Calc(VictimHP, HealthDamage, ImpDamage);
+				NewDamage = ImpDamage / Logart;
+				
+				//Prevent overkill from small arms
+				//Fixing the damn overkill is harder than I thought.
+				//and Magic numbers are bad
+				bool DamageCheck = (Victim.BIsMonster &&
+									NewDamage >= GibHealth &&
+									NewDamage >= Victim.Health);
+								
+				if (DamageCheck)
+				{
+					victim.DamageMobj(self, target, GibHealth, damagetype, 0);
+				}
+				else
+				{
+					victim.DamageMobj(self, target, NewDamage, damagetype, 0);
+				}
+				
+				return 0;
+			}
+
+			else
+			{
+				//Prevent overkill from small arms
+				bool DamageCheck = (Victim.BIsMonster &&
+									ImpDamage >= GibHealth &&
+									ImpDamage >= Victim.Health);		
+		
+				if (DamageCheck)
+				{
+					victim.DamageMobj(self, target, GibHealth, damagetype, 0);
+				}
+				else
+				{
+					victim.DamageMobj(self, target, ImpDamage, damagetype, 0);
+				}
+
+				return 0;			
+			}
+			
+			return -1;
+		}
+		
+		//Pass through objects that cannot be shooted down.
+		else if (!Victim.Player && !Victim.BShootable)
+		{
+			return 1;
+		}
+		
+		//Else return something else.
+		return -1;
+	}
+	
+	
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0
+		{
+			Actor Flare;
+				
+			Flare = Spawn("RMD_BasebulletFlare", Pos, ALLOW_REPLACE);
+						
+			If (Flare)
+			{
+				Flare.Target = Self;
+				Flare.SetShade("ffba1d");
+			}			
+		}
+	
+	Spawn1:
+		PUFF A 1;
+		Loop;
+	Death: //Wall
+		TNT1 A 0 A_SpawnItemEx("URPG_RicochetEffect", 0, 0, 1);
+		TNT1 A 0 A_StartSound("Bullet/Impact");
+		Stop;
+	Crash: //Non Bleeding
+		TNT1 A 0 A_SpawnItemEx("URPG_BulletArmorImpact", 0, 0, 1);
+		TNT1 A 0 A_StartSound("Bullet/Armor");
+		Stop;
+	XDeath: //Bleeding
+		TNT1 A 0 A_SpawnItemEx("URPG_FleshImpact", 0, 0, 1);
+		TNT1 A 0 A_StartSound("Bullet/Flesh");
+		Stop;
+	}
+	
+}
+
+
+Class RMD_BasebulletFlare : RMD_BaseParticle
+{
+
+	Default
+	{
+		RenderStyle "AddShaded";
+		Alpha 0.5;
+		Scale 0.135;
+		+Bright;
+	}
+	
+	Override Void Tick()
+	{
+		Super.Tick();
+		
+		//Code taken from Lambda mod, thanks.
+		if (!isFrozen())
+		{				
+			if	(Target || (Target && Target.Health>0))
+			{
+				A_Warp(AAPTR_TARGET, flags:WARPF_INTERPOLATE);
+			}
+			
+			else
+			{
+				Destroy();
+			}
+		}
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay;
+			TNT1 A 0;
+		Spawn2:
+			LENS BB 1;
+			Loop;
+	}
+}
+
+
+//------------------------------------------------------------------------------
+//Base Projectile
+//------------------------------------------------------------------------------
+Class BaseProjectileFast : FastProjectile
+{
+	int ImpDmg; //Impact Damage
+	int SplashDmg; //Splash Damage
+	int FSplashDmg; //Full Damage
+	int SplashRad; //Splash Radius
+
+	float NerfDmgRand; //Nerfed damage randomizer
+	float NormalDmgRand; //Normal damage randomizer
+	
+	property ImpactDamage:ImpDmg;
+	property SplashDamage:SplashDmg;
+	property FullSplashDamage: FSplashDmg;
+	property SplashRadius:SplashRad;
+	property NerfDamageRandom:NerfDmgRand;
+	property NormalDamageRandom:NormalDmgRand;
+	
+	//Mixin FastProjectileTick;
+	
+	Default
+	{
+		Speed 10;
+		Radius 8;
+		Height 8;
+		SeeSound "";
+		DeathSound "";
+		Gravity 0.0;
+		ProjectileKickback 40;
+		MissileHeight 8;
+		Decal "RMD_SmallExplosion";
+		Projectile;
+		-DEHEXPLOSION;
+		-ROCKETTRAIL;
+		-NOGRAVITY;
+		+FORCERADIUSDMG;
+	}
+
+	States
+	{
+	Spawn:
+		IDLE A 1 NoDelay;
+		Stop;
+	Death:
+		TNT1 A 0 A_Explode(SplashDmg * Frandom(1.0, NormalDmgRand), SplashRad, XF_HURTSOURCE, 1, FSplashDmg);			
+		TNT1 A 0 A_Jump(256, "Explode");
+		Goto Explode;
+	Explode:
+		TNT1 A 0;
+		Stop;
+	}
+}
+
+
+Class BaseProjectile : Actor
+{
+	int ImpDmg; //Impact Damage
+	int SplashDmg; //Splash Damage
+	int FSplashDmg; //Full Damage
+	int SplashRad; //Splash Radius
+
+	float NerfDmgRand; //Nerfed damage randomizer
+	float NormalDmgRand; //Normal damage randomizer
+	
+	property ImpactDamage:ImpDmg;
+	property SplashDamage:SplashDmg;
+	property FullSplashDamage: FSplashDmg;
+	property SplashRadius:SplashRad;
+	property NerfDamageRandom:NerfDmgRand;
+	property NormalDamageRandom:NormalDmgRand;
+	
+	Default
+	{
+		Speed 10;
+		Radius 8;
+		Height 8;
+		SeeSound "";
+		DeathSound "";
+		Gravity 0.0;
+		ProjectileKickback 40;
+		Decal "RMD_SmallExplosion";
+		Projectile;
+		-DEHEXPLOSION;
+		-ROCKETTRAIL;
+		-NOGRAVITY;
+		+FORCERADIUSDMG;
+	}
+
+	States
+	{
+	Spawn:
+		IDLE A 1 NoDelay;
+		Stop;
+	Death:
+		TNT1 A 0 A_Explode(SplashDmg * Frandom(1.0, NormalDmgRand), SplashRad, XF_HURTSOURCE, 1, FSplashDmg);			
+		TNT1 A 0 A_Jump(256, "Explode");
+		Goto Explode;
+	Explode:
+		TNT1 A 0;
+		Stop;
+	}
+}
+
+//------------------------------------------------------------------------------
+//Light Explosives
+//------------------------------------------------------------------------------
+Class LightExplosives : BaseProjectile
+{
+
+	Override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
+		float CVAR_LightExplosiveDamage = 1.0;
+		
+		if (CVARS)
+		{
+			CVAR_LightExplosiveDamage = CVARS.RMDV_LightExplosiveDamage;
+		}	
+	
+		//Impact Damage
+		ImpDmg *= FRandom(1.0, NormalDmgRand);
+		ImpDmg *= CVAR_LightExplosiveDamage;
+				
+		//Splash Damage
+		SplashDmg *= FRandom(1.0, NormalDmgRand);	
+		SplashDmg *= CVAR_LightExplosiveDamage;
+	}
+	
+	Default
+	{
+		DamageType "Explosive";
+	}
+
+}
+
+
+Class LightExplosivesFast : BaseProjectileFast
+{
+
+	Override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
+		float CVAR_LightExplosiveDamage = 1.0;
+		
+		if (CVARS)
+		{
+			CVAR_LightExplosiveDamage = CVARS.RMDV_LightExplosiveDamage;
+		}	
+	
+		//Impact Damage
+		ImpDmg *= FRandom(1.0, NormalDmgRand);
+		ImpDmg *= CVAR_LightExplosiveDamage;
+				
+		//Splash Damage
+		SplashDmg *= FRandom(1.0, NormalDmgRand);	
+		SplashDmg *= CVAR_LightExplosiveDamage;
+	}
+	
+	Default
+	{
+		DamageType "Explosive";
+	}
+
+}
+//------------------------------------------------------------------------------
+//Heavy Explosives
+//------------------------------------------------------------------------------
+Class HeavyExplosives : BaseProjectile
+{
+
+	Override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
+		float CVAR_HeavyExplosiveDamage = 1.0;
+		
+		if (CVARS)
+		{
+			CVAR_HeavyExplosiveDamage = CVARS.RMDV_HeavyExplosiveDamage;
+		}	
+	
+		//Impact Damage
+		ImpDmg *= FRandom(1.0, NormalDmgRand);
+		ImpDmg *= CVAR_HeavyExplosiveDamage;
+				
+		//Splash Damage
+		SplashDmg *= FRandom(1.0, NormalDmgRand);	
+		SplashDmg *= CVAR_HeavyExplosiveDamage;
+	}
+	
+	Default
+	{
+		DamageType "Explosive";
+	}
+
+}
+
+
+Class HeavyExplosivesFast : BaseProjectileFast
+{
+
+	Override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
+		float CVAR_HeavyExplosiveDamage = 1.0;
+		
+		if (CVARS)
+		{
+			CVAR_HeavyExplosiveDamage = CVARS.RMDV_HeavyExplosiveDamage;
+		}	
+	
+		//Impact Damage
+		ImpDmg *= FRandom(1.0, NormalDmgRand);
+		ImpDmg *= CVAR_HeavyExplosiveDamage;
+				
+		//Splash Damage
+		SplashDmg *= FRandom(1.0, NormalDmgRand);	
+		SplashDmg *= CVAR_HeavyExplosiveDamage;
+	}
+	
+	Default
+	{
+		DamageType "Explosive";
+	}
+
+}
+
+

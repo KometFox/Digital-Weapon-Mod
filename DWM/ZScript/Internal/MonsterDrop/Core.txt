@@ -1,0 +1,534 @@
+//TODO: More refined method to determine the drop types
+//The more dangerous and/or difficult a monster is, the better the loot drop. 
+//TODO: Try using CheckReplacement() and CheckReplacee() functions 
+
+Class AmmoDropper : EventHandler
+{
+
+	override void WorldThingDied (worldevent E)
+	{
+
+		if (e.thing.bIsmonster && !e.thing.bFriendly)
+		{
+			let ScoreCalc = ID_ScoreCalculator(EventHandler.Find('ID_ScoreCalculator'));
+			let ItemDropper = ID_ItemDropGenerator(EventHandler.Find('ID_ItemDropGenerator'));
+			int Score;
+
+			ScoreCalc.SetMonster(E.Thing);
+			Score = ScoreCalc.CalculateScore();		
+			
+			ItemDropper.SetMon(E.Thing);
+			ItemDropper.SetMonScore(Score);
+			ItemDropper.GenerateItemMonsterDrop();
+			
+		}
+	}
+}
+
+//Math Functions
+Class ID_Math
+{
+	static int Volume3DRectangular(int Length, int Width, int Height)
+	{
+		int Volume; 
+		Volume = Length + Width + Height;
+		
+		return Volume;
+	}
+
+}
+
+
+//Generic function for calculating score. 
+Class ID_ScoreCalculator : EventHandler
+{
+	Int MonsterScore; //How much score a monster has 
+	Actor MonsterObj; //The Monster Object
+
+	void SetMonster(Actor MObj)
+	{
+		let Mine = ID_ScoreCalculator(EventHandler.Find('ID_ScoreCalculator'));
+	
+		if (MObj)
+		{
+			Mine.MonsterObj = MObj;
+		}
+	}
+	
+	Static int CalculateScore()
+	{
+		let Mine = ID_ScoreCalculator(EventHandler.Find('ID_ScoreCalculator'));
+		int Score; //The Score of a Monster
+		int Volume; //Volume of the Monster
+		
+		//Give a big bonus when its a boss, and a lously check to make sure
+		//Arachnotron and Fatso doesn't "count" as boss. 
+		if (Mine.MonsterObj.bBoss && Mine.MonsterObj.GetSpawnHealth() >= 1000)
+		{
+			Score += 100;
+		}
+	
+		//Bonus for aggressive monster
+		if (Mine.MonsterObj.bMissileMore)
+		{
+			Score += 50;
+		}
+		
+		//Bonus for even more aggressive monster
+		if (Mine.MonsterObj.bMissileEvenMore)
+		{
+			Score += 50;
+		}
+		
+		//Monster Health
+		if (Mine.MonsterObj.GetSpawnHealth() >= 20)
+		{
+			int MHealth;
+			MHealth = Mine.MonsterObj.GetSpawnHealth(); 
+			
+			Score += MHealth;
+			//Score += (MHealth * 0.90);
+		}
+		
+		//Check for its size...
+		//Rough check if the monster in question is a Lost Soul
+		if (Mine.MonsterObj.Radius <= 16 
+		&& Mine.MonsterObj.bFloat
+		&& Mine.MonsterObj.GetSpawnHealth() <= 100)
+		{
+			Score -= 250;
+		}
+		
+		//Else half of the score? 
+		else if (Mine.MonsterObj.Radius <= 16 
+		&& Mine.MonsterObj.bFloat)
+		{
+			Score = (Score * 0.50);		
+		}
+		
+		//Another check for non floating monster. 
+		else if 
+		(Mine.MonsterObj.Radius <= 16 
+		)
+		{
+			Score = (Score * 0.80);		
+		}
+		
+		if (Mine.MonsterObj.Radius >= 20)
+		{
+			Score = (Score * (Mine.MonsterObj.Radius / 15));
+		
+		}
+		
+		
+		return Score;
+	}
+
+}
+
+//Class for generating Item drops based on score value of monster and 
+//indivudal item score. 
+Class ID_ItemDropGenerator : EventHandler
+{
+	int MonScore; //How much score the Monster has
+	Actor Mon; //The Monster
+	PlayerPawn Player; //The Player 
+
+	Static void SetMon(Actor Mon)
+	{
+		let Mine = ID_ItemDropGenerator(EventHandler.Find('ID_ItemDropGenerator'));
+
+		if (Mon)
+		{
+			Mine.Mon = Mon;
+		}
+	}
+	
+	Static void SetMonScore(Int Score)
+	{
+		let Mine = ID_ItemDropGenerator(EventHandler.Find('ID_ItemDropGenerator'));
+
+		Mine.MonScore = Score;
+	}
+
+	Static void SetPlayer(PlayerPawn Player)
+	{
+		let Mine = ID_ItemDropGenerator(EventHandler.Find('ID_ItemDropGenerator'));
+
+		if (Player)
+		{
+			Mine.Player = Player;
+		}
+	}
+
+	//Drop the Item to Monster Position
+	//TODO: Improve the formula, the loot drop chance should be fairly low.
+	//But when it drops, then its plenty of items being dropped. 
+	Static void GenerateItemMonsterDrop()
+	{
+
+		let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
+		int CVAR_Enabled = CVARS.RMDV_MonsterMoneyDrop;
+		
+		if (CVAR_Enabled == 0)
+		{
+			Return;
+		}
+
+	
+		let Mine = ID_ItemDropGenerator(EventHandler.Find('ID_ItemDropGenerator'));
+		Actor Drop;
+		float ChanceB;
+
+		/*
+		ChanceB = Mine.Mon.GetSpawnHealth() / 85;
+		if (ChanceB >= 1.3)
+		{
+			ChanceB = 1.3;
+		}
+		*/
+		ChanceB = 1.0;
+
+		if (Mine.MonScore >= 1500)
+		{
+			Drop = Mine.Mon.Spawn("ID_BossDrop", Mine.Mon.Pos);
+			let Dropy = ID_DropBase(Drop);
+ 
+			
+			if (Dropy)
+			{
+				Dropy.MyChance = Dropy.MyChance * ChanceB;
+			}
+			
+			else if (Drop)
+			{
+				Drop.Destroy();
+			}
+		}
+
+		else if (Mine.MonScore >= 1000)
+		{
+			Drop = Mine.Mon.Spawn("ID_RareDrop", Mine.Mon.Pos);
+			let Dropy = ID_DropBase(Drop);
+			
+			if (Dropy)
+			{
+				Dropy.MyChance = Dropy.MyChance * ChanceB;
+			}
+			
+			else if (Drop)
+			{
+				Drop.Destroy();
+			}
+		}
+
+		else if (Mine.MonScore >= 500)
+		{
+			Drop = Mine.Mon.Spawn("ID_AverageDrop", Mine.Mon.Pos);
+			let Dropy = ID_DropBase(Drop);
+			
+			if (Dropy)
+			{
+				Dropy.MyChance = Dropy.MyChance * ChanceB;
+			}
+			
+			else if (Drop)
+			{
+				Drop.Destroy();
+			}
+		}
+			
+		else if (Mine.MonScore >= 400)
+		{
+			Drop = Mine.Mon.Spawn("ID_UncommonDrop", Mine.Mon.Pos);
+			let Dropy = ID_DropBase(Drop);
+			
+			if (Dropy)
+			{
+				Dropy.MyChance = Dropy.MyChance * ChanceB;
+			}
+			
+			else if (Drop)
+			{
+				Drop.Destroy();
+			}
+		}
+			
+		else if (Mine.MonScore >= 100)
+		{
+			Drop = Mine.Mon.Spawn("ID_UncommonDrop", Mine.Mon.Pos);
+			let Dropy = ID_DropBase(Drop);
+			
+			if (Dropy)
+			{
+				Dropy.MyChance = Dropy.MyChance * ChanceB;
+			}
+			
+			else if (Drop)
+			{
+				Drop.Destroy();
+			}
+		}
+			
+		else if (Mine.MonScore >= 30)
+		{
+			Drop = Mine.Mon.Spawn("ID_CommonDrop", Mine.Mon.Pos);
+			let Dropy = ID_DropBase(Drop);
+			
+			if (Dropy)
+			{
+				Dropy.MyChance = Dropy.MyChance * ChanceB;
+			}
+			
+			else if (Drop)
+			{
+				Drop.Destroy();
+			}
+		}
+			
+		else if (Mine.MonScore > 0)
+		{
+			Mine.Mon.Spawn("ID_VeryCommonDrop", Mine.Mon.Pos);
+			
+			
+		}
+	}
+	
+	//Or to the Player when the cvar for it is set. 
+
+}
+
+//The Functionalities
+class ID_DropBase : Actor
+{
+	Array<LB_ChanceItems> Drops; 
+	//Array<ID_DropContainer> Drops;
+	int MyChance; //Chance to drop the loot "bag". 
+	const MaxChance = 100;
+	
+	/*
+	//Old Weighted Roll based
+	void AddItems(class<actor> VItem, int VAmount, float VRollWeight)
+	{
+		//The Container
+		let Container = new("LB_WeightedItems");
+		Container.Item = VItem;
+		Container.Amount = VAmount;
+		Container.RollWeight = VRollWeight;
+		//The Array
+		Drops.push(Container);
+	}
+	
+	void InitDrops(int VRollWeight)
+	{
+		//0 is needed as a "sentinel" value.
+		//The Container
+		let Container = new("LB_WeightedItems");
+		Container.Item = "ExplosiveBarrel"; //Shouldn't be spawning anything. TODO: Error Actor instead. 
+		Container.Amount = 0;
+		Container.RollWeight = VRollWeight; //0 chance of appearing.
+		//The Array
+		Drops.push(Container);
+	}
+	
+	void DropItems()
+	{		
+		let WeightRoll = new("LB_WeightedRoll");
+		int ArrayAmount = Drops.Size();
+		int ToDrop = 0;
+		
+		WeightRoll.InitProbability(Drops);
+		
+		for (int I = 0; I < ArrayAmount; I++)
+		{
+			ToDrop = WeightRoll.PickSomeObject(Drops);
+
+			//Skip this Item...
+			if (Drops[ToDrop].Amount == 0)
+			{
+				continue;
+			}
+
+			if (Drops[ToDrop].Picked == false && ToDrop < ArrayAmount)
+			{
+				Drops[ToDrop].Picked = true;
+				LootSpawn(ToDrop);
+			}
+			else
+			{
+				continue;
+			}
+		}
+
+	}
+	
+	*/
+
+	void InitDrops(float Chance)
+	{
+		//0 is needed as a "sentinel" value.
+		//The Container
+		let Container = new("LB_ChanceItems");
+		Container.Item = ""; //Shouldn't be spawning anything. TODO: Error Actor instead. 
+		Container.Amount = 0;
+		Container.Chance = Chance; //0 chance of appearing.
+		//The Array
+		Drops.push(Container);
+	}
+	
+	//Floated Chance instead
+	void AddItems(class<actor> VItem, int VAmount, float VChance)
+	{
+		//The Container
+		let Container = new("LB_ChanceItems");
+		Container.Item = VItem;
+		Container.Amount = VAmount;
+		Container.Chance = VChance;
+		//The Array
+		Drops.push(Container);
+	}
+	
+
+	void DropItems()
+	{
+		int ArrayAmount = Drops.Size();
+		int Index = 0;
+		
+		while (Index < ArrayAmount)
+		{
+			for (int x = 0; x < Drops[Index].Amount; x++)
+			{
+				Bool DropIt = False;
+				DropIt = LB_GenericFunc.PerctChance(Drops[Index].Chance);
+
+				if (DropIt == True)
+				{	
+					LootSpawn(Index);
+				}		
+			}		
+	
+			Index++;
+		}			
+	}
+
+		
+	void LootSpawn(int ToDrop)
+	{
+		Actor Item;
+		Bool Bool_;
+			
+		[Bool_, Item] = A_SpawnItemEx(Drops[ToDrop].Item, 0, 0, 0, +frandom(-2, 2), +frandom(-2, 2), +frandom(0, 10));
+			
+		if (Item && Item is "MaterialBase")
+		{
+			MaterialBase Money = MaterialBase(Item); 
+			
+			Money.Temp = True;			
+		}		
+	}
+
+
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 1 
+			{
+				bool Roll;
+				
+				Roll = LB_GenericFunc.ProbabilityInt(MyChance);
+				if (Roll == true)
+				{
+					Dropitems();
+				}
+			}
+			Stop;
+	}
+
+}
+
+//Generic class for the Item, time to hoard it player.
+Class LootBoxes : CustomInventory
+{
+	Default
+	{
+		+INVENTORY.INVBAR;
+		+INVENTORY.HUBPOWER;
+		+INVENTORY.PERSISTENTPOWER;
+		+CANPASS;
+		-SOLID;
+		-BLOCKEDBYSOLIDACTORS;
+		Inventory.PickupSound "LBItems/GenericPickup";
+		Inventory.UseSound "LBItems/GenericUse";
+	}
+	
+	//Default States
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+		Idle:
+			IDL1 A 10500; //TODO: Manual clean up instead of 5 minutes? 
+			IDL1 AAAAAAAAAAAAAA 1
+			{
+				A_SetScale(Invoker.Scale.X * 0.90, Invoker.Scale.Y * 0.90);
+			}
+			Stop;	
+	}
+
+}
+
+//Generic Class for the Dropped item from the Boxes
+Class LootBoxDropped : Actor
+{
+	Default
+	{
+		BounceType "Hexen";
+		BounceFactor 2.0;
+		BounceCount 2;	
+		+USEBOUNCESTATE;
+		-CANPASS;
+		-SOLID;
+		-BLOCKEDBYSOLIDACTORS;
+	}	
+	
+	//TODO: Move over to common func
+	void SpawnItem(Class<Actor> Item, Int Amount, Float Chance)
+	{
+		bool CanDrop = LB_GenericFunc.ProbabilityFloat(Chance);
+		
+		//Console.PrintF("CanDrop: %s", CanDrop);
+		
+		if (CanDrop)
+		{
+			for (int Count; Count < Amount; Count++)
+			{
+				A_SpawnItemEx(Item, 0, 0, 0, +frandom(-2.5, 2.5), +frandom(-2.5, 2.5), +frandom(1.0, 3.5), 0, SXF_ABSOLUTEANGLE);
+			}
+		
+		}
+	}
+	
+	//Some Default States
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			Goto Idle;
+		Idle:
+			IDL1 A 1 A_CheckFloor("SpawnItem");
+			Loop;
+		SpawnItem:
+			IDL2 A 0;
+			Goto Death;
+		Death:
+			TNT1 A 0 A_ChangeVelocity(0, 0, 0, CVF_REPLACE);
+			IDL2 AAAAAAAAAAAAAA 2
+			{
+				A_SetScale(Invoker.Scale.X * 0.90, Invoker.Scale.Y * 0.90);
+			}
+			Stop;
+	}
+
+
+}

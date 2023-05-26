@@ -1,0 +1,90 @@
+AddOptionMenu "OptionsMenu"
+{
+	SubMenu "Renamon Doom Options", "Renamon Doom Settings"
+}
+
+OptionMenu "Renamon Doom Settings" 
+{
+	Title "Doom Settings"
+
+	StaticText "Note: In order to reload the CVAR values while ingame you should be using."
+	StaticText "'netevent reloadcvar' without the ' part in the console."
+	StaticText ""
+	
+	SubMenu "[Weapon Settings]", "RMD_Weapons"
+	SubMenu "[Decorations]", "RMD_Decorations"
+	
+	StaticText "<Particles>"
+	Option "Effect Quality:", "RMDC_LowEffect", "ParticleEffect"
+	
+	StaticText ""
+	
+	StaticText "<Money>"
+	Option "Money Magnet Type:", "RMDC_MoneyMagnetType", "MagnetType"
+	Option "Monsters Drop Money:", "RMDC_MonsterMoneyDrop", "Disabled"
+	
+}
+
+OptionMenu "RMD_Weapons" 
+{
+	Title "<Weapons>"
+	StaticText ""
+	StaticText "Here you can change settings related to weapons."
+
+	StaticText "<Weapon Reload>"
+	Option "Reload:", "RMDC_WeaponReload", "Enabled"
+	StaticText ""
+
+	StaticText "<Weapon Damage>"
+	StaticText "Multiplier for weapon damages"
+	Slider "Bullets:", "RMDC_BulletDamage", 0.5, 10.0, 0.1
+	Slider "Plasma:", "RMDC_PlasmaDamage", 0.5, 10.0, 0.1
+	Slider "Light Explosives:", "RMDC_LightExplosiveDamage", 0.1, 10.0, 0.1
+	Slider "Heavy Explosives:", "RMDC_HeavyExplosiveDamage", 0.1, 10.0, 0.1
+	StaticText ""
+}
+
+OptionMenu "RMD_Decorations" 
+{
+	Title "<Decoration>"
+	StaticText ""
+	StaticText "Here you can change settings related to decorations."
+
+	StaticText "<Explosive Barrels>"
+	StaticText "What barrels it should spawn."
+	Option "Barrel Types:", "RMDC_BarrelTypes", "RMD_BarrelOption"
+}
+
+OptionValue "Enabled"
+{
+	0, "Enabled"
+	1, "Disabled"
+}
+
+OptionValue "Disabled"
+{
+	0, "Disabled"
+	1, "Enabled"
+}
+
+OptionValue "ParticleEffect"
+{
+	0, "High"
+	1, "Low"
+}
+
+OptionValue "MagnetType"
+{
+	0, "Collision Based"
+	1, "Magnet Based"
+
+}
+
+
+//Decorations
+OptionValue "RMD_BarrelOption"
+{
+    0, "Doom"
+	1, "Vanilla Like"
+	2, "Mix it Up"
+}

@@ -1,0 +1,182 @@
+//The Base Class
+Class RMD_Player : DoomPlayer
+{
+	Inventory PArmor;
+	Bool Initalized;
+
+	Default
+	{
+		Player.MaxHealth 200;
+		Health 200;
+	
+		Player.StartItem "Clip", 999; //WorkAround
+		Player.StartItem "RMD_HealthAmmo", 100;
+		Player.StartItem "RMD_MediumArmor", 1; //Armor
+		Player.StartItem "RMD_Enforcer", 1; //Basic Weapon
+		Player.StartItem "RMD_EnergyDrink", 1;
+		-NOSKIN;
+		
+		DamageFactor "PlayerFire", 0;	
+	}
+
+	/*
+	override int DamageMobj (Actor inflictor, Actor source, int damage, Name mod, int flags, double angle) 
+	{
+		//Make sure the damage is above zero.
+		if (Damage > 0 && Self && Health > 0)
+		{
+			Inventory MyArmor = FindInventory("BasicArmor", 0);
+
+			//Do some logartihimic scaling. Clamping is not needed because
+			//The delayor is a item.
+			int Log = RMD_Math.Log(Damage, 1.17);
+			int NewDamage = Damage * Log;
+			
+			GiveInventory("ArmorHitDelay", NewDamage);	
+		}	
+	
+		Super.DamageMobj(Inflictor, Source, Damage, Mod, flags, angle);
+		return Damage;
+	}
+	*/
+
+	States
+	{
+	Spawn:
+		PLAY A 1 NoDelay;
+		Goto NeoSpawn;
+	
+	NeoSpawn:
+		PLAY A 1;
+		Loop;	
+	See:
+		PLAY ABCD 4;
+		Loop;
+	Missile:
+		PLAY E 12;
+		Goto NeoSpawn;
+	Melee:
+		PLAY F 6 BRIGHT;
+		Goto Missile;
+	Pain:
+		PLAY G 4;
+		PLAY G 4 A_Pain;
+		Goto NeoSpawn;
+	Death:
+		PLAY H 0 A_PlayerSkinCheck("AltSkinDeath");
+		Goto Death1;
+	Death1:
+		PLAY H 10;
+		PLAY I 10 A_PlayerScream;
+		PLAY J 10 A_NoBlocking;
+		PLAY KLM 10;
+		PLAY N -1;
+		Stop;
+	XDeath:
+		PLAY O 0 A_PlayerSkinCheck("AltSkinXDeath");
+		Goto XDeath1;
+	XDeath1:
+		PLAY O 5;
+		PLAY P 5 A_XScream;
+		PLAY Q 5 A_NoBlocking;
+		PLAY RSTUV 5;
+		PLAY W -1;
+		Stop;
+	AltSkinDeath:
+		PLAY H 6;
+		PLAY I 6 A_PlayerScream;
+		PLAY JK 6;
+		PLAY L 6 A_NoBlocking;
+		PLAY MNO 6;
+		PLAY P -1;
+		Stop;
+	AltSkinXDeath:
+		PLAY Q 5 A_PlayerScream;
+		PLAY R 0 A_NoBlocking;
+		PLAY R 5 A_SkullPop;
+		PLAY STUVWX 5;
+		PLAY Y -1;
+		Stop;
+	}
+
+}
+
+
+Class Renamon : RMD_Player
+{
+	Default
+	{
+		Player.DisplayName "Renamon";
+		Player.SoundClass "Renamon";
+		Player.Face "SWF";
+	}
+	
+	States
+	{
+	Spawn:
+		RENZ A 1 NoDelay;
+		Goto NeoSpawn;
+	
+	NeoSpawn:
+		RENZ A 1;
+		Loop;	
+	See:
+		RENZ ABCD 4;
+		Loop;
+	Missile:
+		RENZ E 12;
+		Goto NeoSpawn;
+	Melee:
+		RENZ F 6 BRIGHT;
+		Goto Missile;
+	Pain:
+		RENZ G 4;
+		RENZ G 4 A_Pain;
+		Goto NeoSpawn;
+	Death:
+		RENZ H 0 A_PlayerSkinCheck("AltSkinDeath");
+		Goto Death1;
+	Death1:
+		RENZ H 10;
+		RENZ I 10 A_PlayerScream;
+		RENZ J 10 A_NoBlocking;
+		RENZ KLM 10;
+		RENZ N -1;
+		Stop;
+	XDeath:
+		RENZ O 0 A_PlayerSkinCheck("AltSkinXDeath");
+		Goto XDeath1;
+	XDeath1:
+		RENZ O 5;
+		RENZ P 5 A_XScream;
+		RENZ Q 5 A_NoBlocking;
+		RENZ RSTUV 5;
+		RENZ W -1;
+		Stop;
+	AltSkinDeath:
+		RENZ H 6;
+		RENZ I 6 A_PlayerScream;
+		RENZ JK 6;
+		RENZ L 6 A_NoBlocking;
+		RENZ MNO 6;
+		RENZ P -1;
+		Stop;
+	AltSkinXDeath:
+		RENZ Q 5 A_PlayerScream;
+		RENZ R 0 A_NoBlocking;
+		RENZ R 5 A_SkullPop;
+		RENZ STUVWX 5;
+		RENZ Y -1;
+		Stop;
+	}
+}
+
+Class D3Marine : RMD_Player
+{
+	Default
+	{
+		Player.DisplayName "UAC Marine";
+		Player.SoundClass "D3Marine";
+		Player.Face "STF";
+	}
+}

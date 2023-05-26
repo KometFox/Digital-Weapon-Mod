@@ -1,0 +1,95 @@
+Model RMD_M25
+{
+	Path "Models\Textures\CSArms"
+	SurfaceSkin 0 0 "CSHand.png"
+	Path "Models\Weapons\AR\M25"
+	Model 0 "M25AR.md3"
+	SurfaceSkin 0 1 "M25AR.png"
+
+	//IDLE
+	FrameIndex IDLE A 0 1
+	//SELECT
+	FrameIndex SELC A 0 2
+	FrameIndex SELC B 0 3
+	FrameIndex SELC C 0 4
+	FrameIndex SELC D 0 5
+	FrameIndex SELC E 0 6
+	FrameIndex SELC F 0 7
+	//FIRE
+	FrameIndex FIRE A 0 8
+	FrameIndex FIRE B 0 9
+	FrameIndex FIRE C 0 10
+	FrameIndex FIRE D 0 11
+	FrameIndex FIRE E 0 12
+	FrameIndex FIRE F 0 13
+	//RELOAD MAG
+	FrameIndex RLA1 A 0 14
+	FrameIndex RLA1 B 0 15
+	FrameIndex RLA1 C 0 16
+	FrameIndex RLA1 D 0 17
+	FrameIndex RLA1 E 0 18
+	FrameIndex RLA1 F 0 19
+	FrameIndex RLA1 G 0 20
+	FrameIndex RLA1 H 0 21
+	FrameIndex RLA1 I 0 22
+	FrameIndex RLA1 J 0 23 //Mag Out
+	FrameIndex RLA1 K 0 24
+	FrameIndex RLA1 L 0 25
+	FrameIndex RLA1 M 0 26
+	FrameIndex RLA1 N 0 27
+	FrameIndex RLA1 O 0 28
+	FrameIndex RLA1 P 0 29 //Mag In
+	FrameIndex RLA1 Q 0 30
+	FrameIndex RLA1 R 0 31
+	FrameIndex RLA1 S 0 32
+	FrameIndex RLA1 T 0 33
+	FrameIndex RLA1 U 0 34
+	FrameIndex RLA1 V 0 35 //Cocking
+	FrameIndex RLA1 W 0 36
+	FrameIndex RLA1 X 0 37
+	FrameIndex RLA1 Y 0 38
+	FrameIndex RLA1 Z 0 39
+	FrameIndex RLA2 A 0 40
+	FrameIndex RLA2 B 0 41
+	FrameIndex RLA2 C 0 42
+	//RELOAD NADE DRUM
+	FrameIndex RLB1 A 0 43
+	FrameIndex RLB1 B 0 44
+	FrameIndex RLB1 C 0 45
+	FrameIndex RLB1 D 0 46
+	FrameIndex RLB1 E 0 47
+	FrameIndex RLB1 F 0 48
+	FrameIndex RLB1 G 0 49 //Mag Out
+	FrameIndex RLB1 H 0 50
+	FrameIndex RLB1 I 0 51
+	FrameIndex RLB1 J 0 52
+	FrameIndex RLB1 K 0 53
+	FrameIndex RLB1 L 0 54
+	FrameIndex RLB1 M 0 55 //Mag In
+	FrameIndex RLB1 N 0 56
+	FrameIndex RLB1 O 0 57
+	//IRONSIGHT SWITCH
+	FrameIndex IRON A 0 58
+	FrameIndex IRON B 0 59
+	FrameIndex IRON C 0 60
+	FrameIndex IRON D 0 61
+	//IRONSIGHT FIRE
+	FrameIndex IFIR A 0 62
+	FrameIndex IFIR B 0 63
+	FrameIndex IFIR C 0 64
+	FrameIndex IFIR D 0 65
+	FrameIndex IFIR E 0 66
+	FrameIndex IFIR F 0 67
+	//IRONSIGHT GRENADE SWITCH
+	FrameIndex IRND A 0 68
+	FrameIndex IRND B 0 69
+	FrameIndex IRND C 0 70
+	FrameIndex IRND D 0 71
+	//IRONSIGHT GRENADE FIRE
+	FrameIndex IFIN A 0 72
+	FrameIndex IFIN B 0 73
+	FrameIndex IFIN C 0 74
+	FrameIndex IFIN D 0 75
+	FrameIndex IFIN E 0 76
+	FrameIndex IFIN F 0 77
+}

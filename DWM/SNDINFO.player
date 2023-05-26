@@ -1,0 +1,98 @@
+//------------------------------------------------------------------------------
+//Renamon
+//------------------------------------------------------------------------------
+//Jump, Land
+$playeralias	Renamon	    female	*jump		 renamon/jump
+$playeralias	Renamon		female	*land			RENALAND
+RENALAND RENALAND
+
+//Hurt
+$playeralias	Renamon		female	*pain100		Renamon/Pain	
+$playeralias	Renamon		female	*pain75			*pain100
+$playeralias	Renamon		female	*pain50			*pain100
+$playeralias	Renamon		female	*pain25			*pain100
+$random Renamon/Pain {RENAHUR1 RENAHUR2}
+RENAHUR1 RENAHUR1
+RENAHUR2 RENAHUR1
+
+//Dead
+$playeralias	Renamon	female	*wimpydeath		*death
+$playeralias	Renamon	female	*crazydeath		*death
+$playeralias	Renamon	female	*xdeath			*death
+$playeralias	Renamon	female	*gibbed			*death
+$playeralias	Renamon	female	*death			Renamon_Death
+$random Renamon_Death {RENADIE1 RENADIE2 RENADIE3 }
+RENADIE1 RENADIE1
+RENADIE2 RENADIE2
+RENADIE3 RENADIE3
+
+//Misc
+$playersound	Renamon	female	*grunt			RENAHM
+$playersound	Renamon	female	*usefail		rmhump
+
+$random Renamon/Grunt {RENAHM rmhump}
+RENAHM RENAHM
+rmhump rmhump
+
+$random Renamon/Laugh {rmlau rmlau}
+rmlau rmlau
+
+Renamon/Jump "Sounds/Player/FemaleJump.ogg"
+
+//------------------------------------------------------------------------------
+//Doom 3 Marine
+//------------------------------------------------------------------------------
+//Jump, Land
+$playeralias	D3Marine    male	*jump		 D3Marine/Jump
+$playeralias	D3Marine	male	*land		 D3Marine/Land
+D3Marine/Jump "Sounds/Player/D3Marine/Jump.ogg"
+D3Marine/Land "Sounds/Player/D3Marine/Step1.ogg"
+
+//Hurt
+$playeralias	D3Marine	male	*pain100		D3Marine/Pain100
+$playeralias	D3Marine	male	*pain75			D3Marine/Pain75
+$playeralias	D3Marine	male	*pain50			D3Marine/Pain50
+$playeralias	D3Marine	male	*pain25			D3Marine/Pain25
+D3Marine/Pain100 "Sounds/Player/D3Marine/Pain100.ogg"
+D3Marine/Pain75 "Sounds/Player/D3Marine/Pain75.ogg"
+D3Marine/Pain50 "Sounds/Player/D3Marine/Pain50.ogg"
+D3Marine/Pain25 "Sounds/Player/D3Marine/Pain25.ogg"
+
+//Dead
+$playeralias	D3Marine male	*wimpydeath		D3Marine/Death
+$playeralias	D3Marine male	*crazydeath		D3Marine/Death
+$playeralias	D3Marine male	*xdeath			D3Marine/GibDeath
+$playeralias	D3Marine male	*gibbed			D3Marine/GibDeath
+$playeralias	D3Marine male	*death			D3Marine/Death
+$Random D3Marine/Death {
+						D3Marine_Death1
+						D3Marine_Death1}
+						
+D3Marine_Death1 "Sounds/Player/D3Marine/Death.ogg"
+D3Marine_Death2 "Sounds/Player/D3Marine/Death2.ogg"
+D3Marine/GibDeath "Sounds/Player/D3Marine/Gib.ogg"
+
+//Misc
+$playeralias	D3Marine male	*grunt			D3Marine/Grunt
+$playeralias	D3Marine male	*usefail		D3Marine/Hump
+D3Marine/Grunt "Sounds/Player/D3Marine/No.ogg"
+D3Marine/Hump "Sounds/Player/D3Marine/Off.ogg"
+
+
+//------------------------------------------------------------------------------
+//Walking
+//------------------------------------------------------------------------------
+//Walking, Ground
+$random Walking/Ground {t_earth1 t_earth2 t_earth3 t_earth4}
+$random step/default  {t_earth1 t_earth2 t_earth3 t_earth4}
+t_earth1 t_earth1
+t_earth2 t_earth2
+t_earth3 t_earth3
+t_earth4 t_earth4
+
+//Walking, Water
+$random floor/water {t_water1 t_water2 t_water3 t_water4}
+t_water1 t_water1
+t_water2 t_water2
+t_water3 t_water3
+t_water4 t_water4

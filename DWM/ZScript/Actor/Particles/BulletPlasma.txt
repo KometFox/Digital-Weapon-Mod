@@ -1,0 +1,141 @@
+Class RMD_BulletPlasmaImpact : Actor
+{
+
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 
+			{
+
+				//Explosion
+				for (int i = 0; i < 5; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](0.45, 4.5);
+					Vector3 RPos = (frandom(-8, 8), frandom(-8, 8), frandom(-8, 8));
+					let Particle = Spawn("RMD_BulletPlasmaImpact_Boom", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.75, 0.75);
+					Particle.SetShade("00afff");
+				}
+				
+				let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
+				int CVAR_LowQuality = CVARS.RMDV_ParticleLowQuality;;
+		
+				if (CVAR_LowQuality == 1)
+				{
+					Return;
+				}
+				
+				//Smoke
+				for (int i = 0; i < 3; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](1.0, 3.0);
+					Vector3 RPos = (frandom(-10, 10), frandom(-10, 10), frandom(-10, 10));
+					let Particle = Spawn("RMD_DarkSmoke", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.07, 0.07);
+					Particle.SetShade("00165c");
+				}
+					
+				//Spark
+				for (int i = 0; i < 7; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](8.0, 15.0);
+					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 8));
+					let Particle = Spawn("RMD_BulletPlasma_Sparks", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.SetShade("46b5ff");
+				}
+				
+				//Flare
+				for (int i = 0; i < 1; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25)).unit()*FRandom[FX](0.01, 0.01);
+					Vector3 RPos = (frandom(-8, 8), frandom(-8, 8), frandom(-4, 4));
+					let Particle = Spawn("RMD_BulletPlasmaImpact_Flare", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.25, 0.25);
+					Particle.SetShade("0054ff");
+				}
+			}
+			Stop;
+			
+	}
+}
+
+
+Class RMD_BulletPlasma_Sparks : RMD_ModelSparks
+{
+	Default
+	{
+		+BRIGHT;
+		RenderStyle "AddShaded";
+		Alpha 1.0;
+		Scale 0.04;
+	}
+
+	override void BeginPlay()
+	{
+		float ScaleV = Frandom[FX](0.05, 0.08);
+	
+		Scale.X += ScaleV;
+		Scale.Y += ScaleV;
+		Speed = random(5, 10);
+		Gravity = frandom(0.7,0.95);
+	}
+
+    States
+    {
+    Spawn:
+	   SPRK A 7 BRIGHT;
+       SPRK AAAAAAAAAA 1 Bright A_FadeOut(0.1);
+       stop;
+    Death:
+       TNT1 A 0;
+       Stop;
+    }
+}
+
+Class RMD_BulletPlasmaImpact_Boom : RMD_BaseParticle
+{
+	Default
+	{
+		RenderStyle "AddShaded";
+		Alpha 1.0;
+		+Bright;
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			FIR9 ACEGIKMNOP 1; 
+			Stop;
+
+	}
+}
+
+Class RMD_BulletPlasmaImpact_Flare : RMD_BaseParticle
+{
+	Default
+	{
+		RenderStyle "AddShaded";
+		+Bright;
+		Alpha 1.0;
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			LENS C 4;
+			LENS CCCC 1 A_FadeOut(0.25);
+			Stop;	
+	}
+}
+

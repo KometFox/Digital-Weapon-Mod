@@ -1,0 +1,462 @@
+class RMD_M25 : BaseWeapon
+{
+	Enum E_FireMode
+	{
+		BULLET = 0, 
+		GRENADE = 1,
+	}
+
+	Default
+	{
+		Weapon.SlotNumber 5;
+		Weapon.SelectionOrder 1;
+		Weapon.AmmoUse 0;
+		Weapon.AmmoGive 0;
+		Weapon.AmmoType1 "RMD_ARBullets";
+		Weapon.AmmoType2 "RMD_Grenades";
+		Inventory.PickupMessage "$GOTCHAINGUN";
+		Inventory.AltHudIcon "PIM25";
+		Obituary "$OB_MPCHAINGUN";
+		Tag "M25 Assault Rifle";
+		
+		BaseWeapon.IronSight IRON_INACTIVE;
+		BaseWeapon.FireMode BULLET;
+		
+		BaseWeapon.MagazineMax 50;
+		BaseWeapon.Magazine 50;	
+		
+		BaseWeapon.MagazineMax2 6;
+		BaseWeapon.Magazine2 6;
+	}
+	
+	action state ReloadCheck()
+	{
+		if (Invoker.FireMode == GRENADE)
+			return B_ReloadGoTo(
+								"ReadyReal", 
+								"IronReady", 
+								"IronSightDeselect", 
+								"ReloadNadeNow",
+								Invoker.AmmoType2, 
+								Invoker.Magazine2,
+								Invoker.MagazineMax2, 
+								1);
+		else 
+			return B_ReloadGoTo(
+								"ReadyReal", 
+								"IronReady", 
+								"IronSightDeselect", 
+								"ReloadNow",
+								Invoker.AmmoType1, 
+								Invoker.Magazine,
+								Invoker.MagazineMax, 
+								1);
+	}
+	
+	
+	//Blam blam
+	Action Void FireBullets()
+	{
+		//Check for Ammo
+		if (Invoker.Magazine <= 0 && Invoker.IronSight == IRON_ACTIVE)
+		{
+			SetWeaponState("IronReady");
+			Return;
+		}
+		else if (Invoker.Magazine <= 0 && Invoker.IronSight == IRON_INACTIVE)
+		{
+			SetWeaponState("ReadyReal");
+			Return;
+		}		
+			
+		if (Invoker.IronSight == IRON_INACTIVE)
+		{
+			A_FireProjectile("RMD_M25_Bullet",frandom(-0.7, 0.7), 1, 6, 4, CMF_AIMDIRECTION,frandom(-0.5, 0.5));
+			//A_FireBullets(0.7, 0.7, 1, 10 * frandom(1.0, 1.9), "URPG_RicochetEffect", BULLETFIRE, 0, null);
+			
+			B_MuzzleFlash("RMD_BulletMuzzleFlash", (13, 2.7, -2.0));	
+			B_SpawnCasing("RifleCase", (12, -7.0, -2.0));
+		}
+		
+		else if (Invoker.IronSight == IRON_ACTIVE)
+		{
+			A_FireProjectile("RMD_M25_Bullet",frandom(-0.3, 0.3), 1, 0, 4, CMF_AIMDIRECTION,frandom(-0.3, 0.3));
+			//A_FireBullets(0.7, 0.7, 1, 10 * frandom(1.0, 1.9), "URPG_RicochetEffect", BULLETFIRE, 0, null);
+			
+			B_MuzzleFlash("RMD_BulletMuzzleFlash",(10, 0, -0.5));
+			B_SpawnCasing("RifleCase", (12, 0.0, -2.5));
+		}
+
+		Invoker.Magazine -= 1;
+		RMD_BARINFO.Set_Mag(invoker.Magazine);	
+		A_StartSound("M25/Fire", CHAN_WEAPON, 0, 2.5);
+		A_AlertMonsters();
+	}
+
+	//Ka-Pow
+	Action Void FireGrenade()
+	{
+		//Check for Ammo
+		if (Invoker.Magazine2 <= 0 && Invoker.IronSight == IRON_ACTIVE)
+		{
+			SetWeaponState("IronReady");
+			Return;
+		}
+		else if (Invoker.Magazine2 <= 0 && Invoker.IronSight == IRON_INACTIVE)
+		{
+			SetWeaponState("ReadyReal");
+			Return;
+		}	
+		
+		if (Invoker.IronSight == IRON_INACTIVE)
+		{
+			A_FireProjectile("RMD_M25_Grenade",frandom(-0.6, 0.6), 1, 0, 4, CMF_AIMDIRECTION,frandom(-0.6, 0.6));
+
+			B_MuzzleFlash("RMD_GrenadeMuzzleFlash", (15, 3.0, -2.0));	
+			B_SpawnCasing("GrenadeCase", (12, -7.0, -2.0));
+		}
+		else if (Invoker.IronSight == IRON_ACTIVE)
+		{
+			A_FireProjectile("RMD_M25_Grenade",frandom(-0.2, 0.2), 1, 0, 4, CMF_AIMDIRECTION,frandom(-0.2, 0.2));	
+
+			B_MuzzleFlash("RMD_GrenadeMuzzleFlash", (15, 0, -0.5));	
+			B_SpawnCasing("GrenadeCase", (12, -4.0, -0.5));
+		}
+		
+		Invoker.Magazine2 -= 1;
+		RMD_BARINFO.Set_Mag(invoker.Magazine2);		
+		A_StartSound("M25/GrenadeFire", CHAN_WEAPON);
+	}
+	
+	
+	
+	Action Void SetAmmoIcon(int Type)
+	{
+		Switch(Type)
+		{
+			case BULLET:
+				RMD_BARINFO.Set_Mag(invoker.Magazine);
+				RMD_BARINFO.SetAmmoIcon("AMMOAR");
+				RMD_BARINFO.SetAmmo1("RMD_ARBullets");
+				Break;
+				
+			case GRENADE:
+				RMD_BARINFO.Set_Mag(invoker.Magazine2);
+				RMD_BARINFO.SetAmmoIcon("AMMONADE");
+				RMD_BARINFO.SetAmmo1("RMD_Grenades");
+				Break;
+		}
+	
+	
+	}
+	
+	Action void SwitchFireMode()
+	{
+		if (Invoker.FireMode == BULLET)
+		{
+			Invoker.FireMode = GRENADE;
+			SetAmmoIcon(GRENADE);
+		}
+		else
+		{
+			Invoker.FireMode = BULLET;
+			SetAmmoIcon(BULLET);
+		}
+	}
+	
+	
+	
+
+	States
+	{
+
+	Ready:
+		CHGG A 0;
+		IDLE A 0 
+		{
+			A_Jump(256, "Init");
+		}
+		Goto Init;
+	
+	Init:
+		IDLE A 0 
+		{
+				TakeCounterItem();
+				SetAmmoIcon(Invoker.FireMode);
+		}
+		Goto ReadyReal;
+	
+	ReadyReal:
+		IDLE A 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB | WRF_ALLOWUSER1);
+		Loop;
+		
+	//Ironsight Mode
+	IronReady:
+		IRON D 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB | WRF_ALLOWUSER1);
+		Loop;
+		
+	Deselect:
+		SELC FEDCBA 1 A_Lower;
+		SELC A 1 A_Lower;
+		TNT1 A 0 A_Lower(100);
+		Loop;
+		
+	Select:
+		TNT1 A 0 
+		{
+				A_StartSound("AssaultRifle/Select", CHAN_WEAPON +5);
+				A_TakeInventory("Reloading", 99);
+				SetAmmoIcon(Invoker.FireMode);
+		}
+		SELC ABCDEF 1 A_Raise;
+		IDLE A 1 A_Raise(100);
+        Goto ReadyReal;
+			
+	User1: //Select Firemode
+		"####" "#" 0 SwitchFireMode();
+		"####" "#" 6;
+		"####" "#" 0
+		{
+			if (Invoker.IronSight == IRON_ACTIVE)
+			{
+				Return A_Jump(256, "IronReady");
+				
+			}
+			else if (Invoker.IronSight == IRON_INACTIVE)
+			{
+				Return A_Jump(256, "ReadyReal");
+			}
+		
+			Return A_Jump(256, "Ready");
+		}
+		Goto Ready;
+
+	//Ironsight Mode
+	IronSightAnim:
+		TNT1 A 0 A_SetCrosshair(99);
+		IRON ABCD 2 A_ZoomFactor(2.25);
+		Goto IronReady;
+		
+	IronSightDeselect:
+		TNT1 A 0  A_SetCrosshair(0);
+		IRON DCBA 2 A_ZoomFactor(1.0);
+		TNT1 A 0
+		{
+			Invoker.IronSight = IRON_INACTIVE;
+			
+			if (CountInv("GotoReload") > 0)
+			{
+				if (Invoker.FireMode == BULLET)
+				{
+					Return A_Jump(256, "ReloadNow");
+				}
+				else if (Invoker.FireMode == GRENADE)
+				{
+					Return A_Jump(256, "ReloadNadeNow");
+				}
+			}
+
+			Return A_Jump(256, "ReadyReal");			
+		}
+		Goto ReadyReal;
+		
+	AltFire:
+		TNT1 A 0 B_GoToIronSight("IronSightAnim", "IronSightDeselect");
+		Goto ReadyReal;
+		
+	Fire:
+		TNT1 A 0
+		{
+		
+			if (Invoker.FireMode == BULLET)
+			{
+			
+				if (Invoker.IronSight == IRON_ACTIVE)
+				{
+					Return A_Jump(256, "IronFireNow");
+				}
+				else
+				{
+					Return A_Jump(256, "FireNow");				
+				}
+				
+				Return A_Jump(256, "ReadyReal");
+			}
+
+			else if (Invoker.FireMode == GRENADE)
+			{	
+				if (Invoker.IronSight == IRON_ACTIVE)
+				{
+					Return A_Jump(256, "IronFireGrenadeNow");
+				}
+				else
+				{
+					Return A_Jump(256, "FireGrenadeNow");				
+				}
+				
+				Return A_Jump(256, "ReadyReal");
+			}
+			
+			Return A_Jump(256, "ReadyReal");		
+		}
+		Goto ReadyReal;
+
+	//Bullets
+	FireNow:
+		FIRE A 1 FireBullets();
+		FIRE BCD 1;
+		FIRE A 0 A_ReFire("FireNow");
+		FIRE EF 1;
+		Goto ReadyReal;
+		
+	IronFireNow:
+		IFIR A 1 FireBullets();
+		IFIR BCD 1;
+		IFIR A 0 A_ReFire("IronFireNow");
+		IFIR EF 1;
+		Goto IronReady;	
+		
+	//Grenade
+	FireGrenadeNow:
+		FIRE A 1 FireGrenade();
+		FIRE BCDEF 2;
+		FIRE F 10;
+		FIRE A 0 A_ReFire("FireGrenadeNow");
+		Goto ReadyReal;
+		
+	IronFireGrenadeNow:
+		IFIR A 1 FireGrenade();
+		IFIR BCDEF 2;
+		IFIR F 10;
+		IFIR A 0 A_ReFire("IronFireGrenadeNow");
+		Goto IronReady;		
+		
+		
+	Reload:
+	TNT1 A 0 ReloadCheck();			
+	Goto ReadyReal;
+		
+	//The Magazine
+	ReloadNow:
+		TNT1 A 0 A_TakeInventory("GotoReload", 1);
+		RLA1 ABCDEFGHIJ 2;
+		TNT1 A 0
+		{
+			A_StartSound("M25/MagOut", CHAN_WEAPON +1);
+			A_FireProjectile("EmptyMagSpawn",-5,0,8,-4);
+		}
+		RLA1 KL 2;
+		RLA1 M 10;
+		TNT1 A 0;
+		RLA1 NOP 2;
+		TNT1 A 0
+		{
+			A_StartSound("M25/MagIn", CHAN_WEAPON +2);
+			
+			ReloadMagazine(PRIMARY, Invoker.MagazineMax, Invoker.MagazineMax);				
+			RMD_BARINFO.Set_Mag(invoker.Magazine);
+	
+			Return A_Jump(0, "ReadyReal");	
+		}
+		RLA1 QRSTUV 2;		
+		TNT1 A 0 A_StartSound("M25/Cocking", CHAN_WEAPON +3);
+		RLA1 WXYZ 2;
+		RLA2 ABC 2;
+		Goto ReadyReal;
+
+	//The Grenade Drum
+	ReloadNadeNow:
+		TNT1 A 0 A_TakeInventory("GotoReload", 1);
+		RLB1 ABCDEFG 3;
+		TNT1 A 0
+		{
+			A_StartSound("M25/GrenMagOut", CHAN_WEAPON);
+		}
+		RLB1 HI 3;
+		RLB1 J 10; //Add some delay
+		RLB1 KLM 3;
+		TNT1 A 0
+		{
+			A_StartSound("M25/GrenMagIn", CHAN_WEAPON +1);
+			
+			ReloadMagazine(SECONDARY, Invoker.MagazineMax2, Invoker.MagazineMax2);				
+			RMD_BARINFO.Set_Mag(invoker.Magazine2);
+	
+			Return A_Jump(0, "ReadyReal");	
+		}
+		RLB1 NO 2;		
+		Goto ReadyReal;		
+		
+	//FuckingMother
+	Template:
+		IRND A 0;
+		IFIN A 0;
+		Goto Ready;
+	}
+}
+
+
+
+Class RMD_M25_Bullet : RMD_BaseBullet
+{
+	Default
+	{		
+		//Normal Damage
+		RMD_BaseBullet.ImpactDamage 13; 
+		RMD_BaseBullet.DamageRand1 3.7;
+		//Nerfed Damage
+		RMD_BaseBullet.HealthDamage 300;		
+		
+		Scale 0.75;
+		Decal "RMD_AR_BulletHoles";
+	}
+}
+
+
+Class RMD_M25_Grenade : LightExplosives
+{
+	Default
+	{
+		Speed 45;
+		Decal "RMD_SmallExplosion";
+		Gravity 0.35;
+		//Impact 
+		BaseProjectile.ImpactDamage 0;
+		//Splash 
+		BaseProjectile.SplashDamage 100;
+		BaseProjectile.FullSplashDamage 70;
+		BaseProjectile.SplashRadius 100;
+		//Randomizer
+		BaseProjectile.NormalDamageRandom 1.4;
+		BaseProjectile.NerfDamageRandom 1.4;
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay
+			{
+				Actor Flare;
+						
+				Flare = Spawn("RMD_SMRL_Flare", Pos, ALLOW_REPLACE);
+						
+				If (Flare)
+				{
+					Flare.Target = Self;
+					Flare.Scale = (0.23, 0.23);
+					Flare.SetShade("Lavender");	
+				}			
+			}
+			Goto SpawnLoop;
+		SpawnLoop:	
+			IDLE A 1 A_SpawnItemEx("RMD_GrenadeTrail", 0, 0, 0);
+			Loop;
+		Explode:
+			TNT1 A 0 
+			{
+				A_StartSound("Explosion/Grenade", 90);
+				A_SpawnItemEx("RMD_25mmExplosionSpawner", 0, 0, 0);
+			}
+			Stop;	
+	}
+}

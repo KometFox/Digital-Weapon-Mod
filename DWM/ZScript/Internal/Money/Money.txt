@@ -1,0 +1,82 @@
+/*
+Make the Player Geld permament. 
+Caution: You should be careful with modifying it as it could lead to odd results
+and in extreme cases even the loss of ingame data money. 
+*/
+Class RMD_MoneyHandler : StaticEventHandler
+{
+	PlayerPawn Player; //The Player
+	int Money; //The Money
+
+	//Save the money cvar
+	void SaveMoney()
+	{
+		int PlayerGeld;
+		CVar Geld = CVar.FindCVAR("RMDC_Money");
+		
+		if (Players[0].mo)
+		{
+			Player = Players[0].mo;
+			PlayerGeld = Player.CountInv("Material");
+			
+			Geld.SetInt(0); //Make it to 0 before saving it. 
+			Geld.SetInt(PlayerGeld); 
+		}
+		
+		return;
+	}
+
+	//Load the Money cvar
+	void LoadMoney()
+	{
+		CVar Geld = CVar.FindCVar("RMDC_Money");
+
+		if (Players[0].mo)
+		{
+			Player = Players[0].mo;
+			Player.A_SetInventory("Material", Geld.GetInt());
+		}
+		
+		return;
+	}
+
+	override void NewGame()
+	{
+		LoadMoney();	
+		
+		return;
+	}
+		
+	override void WorldLoaded(WorldEvent e)
+	{
+		//Unneeded?
+		/*
+		if (e.IsSaveGame == True)
+		{
+			LoadMoney();	
+		}
+		else
+		{
+			LoadMoney();
+		}
+		*/
+		
+		LoadMoney();	
+		
+		return;
+	}
+	
+	override void WorldUnloaded(WorldEvent e)
+	{
+		if (e.IsSaveGame == True)
+		{
+			SaveMoney();	
+		}	
+		else
+		{	
+			return;
+		}
+		
+		return;	
+	}
+}

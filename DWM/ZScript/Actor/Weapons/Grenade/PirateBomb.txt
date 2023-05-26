@@ -1,0 +1,195 @@
+class RMD_PirateBomb : BaseWeapon
+{
+
+	Default
+	{
+		Weapon.SlotNumber 6;
+		Weapon.SelectionOrder 0;
+		Weapon.AmmoUse 0;
+		Weapon.AmmoGive 0;
+		Weapon.AmmoType "RMD_Grenades";
+		Inventory.PickupMessage "$GOTCHAINGUN";
+		Inventory.AltHudIcon "PIPIBOMB";
+		Obituary "$OB_MPCHAINGUN";
+		Tag "Pirate Bomb";
+		
+		BaseWeapon.MagazineMax 1;
+		BaseWeapon.Magazine 1;	
+	}
+	
+	
+	Action Void A_InitGun()
+	{
+		TakeCounterItem();
+		RMD_BARINFO.Set_Mag(invoker.Magazine);
+		RMD_BARINFO.SetAmmoIcon("AMMONADE");
+		RMD_BARINFO.SetAmmo1("RMD_Grenades");
+	}
+	
+	Action Void A_ChargeThrow()
+	{
+		A_GiveInventory("GrenadeThrowPower", 2);
+		
+		if (CountInv("GrenadeThrowPower") >= 45)
+		{
+			A_SetInventory("GrenadeThrowPower", 45);
+		}
+		
+		RMD_BARINFO.SetThrowPower(CountInv("GrenadeThrowPower"));
+		
+		
+	}
+	
+	Action Void A_ThrowBomb()
+	{
+			Actor Proj;
+			int ThrowPower = CountInv("GrenadeThrowPower");
+		
+
+			A_TakeInventory(Invoker.AmmoType1, 1);
+			Proj = A_FireProjectile("RMD_PirateBomb_Bomb", frandom(0, 0), 1, 0, 4, CMF_AIMDIRECTION,frandom(0, 0));	
+			A_StartSound("Grenade/Throw", CHAN_WEAPON +2, 0, 0.8);
+			ThrowPower = clamp(ThrowPower, 15, 45);
+			
+			if (Proj)
+			{
+				Proj.Vel *= ThrowPower;
+				//Proj.Gravity = Proj.Gravity / (ThrowPower / 10);
+			}
+			
+			A_TakeInventory("GrenadeThrowPower", 1000);
+			RMD_BARINFO.SetThrowPower(CountInv("GrenadeThrowPower"));
+	}
+	
+	
+	States
+	{
+	
+	Ready:
+		CHGG A 0;
+		TNT1 A 0 
+		{
+			A_Jump(256, "Init");
+		
+		}
+	
+	Init:
+		TNT1 A 0 A_InitGun();
+		Goto ReadyReal;
+		
+	ReadyReal:
+		CHGG A 0;
+		IDLE A 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB);
+		Loop;	
+
+	Deselect:
+		SELC FEDCBA 1 A_Lower;
+		SELC A 1 A_Lower;
+		TNT1 A 0 A_Lower(100);
+		Loop;
+		
+	Select:
+		TNT1 A 0 A_StartSound("HandGrenade/Select", CHAN_WEAPON +5);
+		TNT1 A 0 A_InitGun();
+		SELC ABCDEF 1 A_Raise;
+		IDLE A 1 A_Raise(100);
+        Goto ReadyReal;
+	
+	
+	Fire:
+		SELC F 1 
+		{
+			if (CountInv(Invoker.AmmoType1) > 0)
+			{
+				return ResolveState("FireNow");
+			}			
+			
+			return ResolveState("ReadyReal");
+		}
+		Goto ReadyReal;
+	
+	FireNow:
+		PLPI ABCDE 1;
+		TNT1 A 0 A_StartSound("Grenade/PullPin", CHAN_WEAPON, 0, 0.75); 
+		PLPI FGHIJK 1;
+		THRO ABCD 1 
+		{
+			A_ChargeThrow();
+		}
+		Goto FireLoop;
+		
+	FireLoop:
+		THRO D 1;
+		THRO D 1 
+		{
+			A_ReFire("FireLoop");
+			A_WeaponReady(WRF_NOFIRE | WRF_NOBOB);
+			A_ChargeThrow();
+		}
+		Goto ThrowBomb;
+	
+	ThrowBomb:
+		THRO EFG 2;
+		TNT1 A 0 A_ThrowBomb();
+		THRO HI 2;
+		SELC A 1;
+		SELC B 1; //Add Delay
+		TNT1 A 0;
+		SELC CDEF 1;
+		Goto ReadyReal;	
+	}
+	
+	
+	
+}
+
+
+Class RMD_PirateBomb_Bomb : LightExplosives
+{
+	Default
+	{
+		Speed 1;
+		Decal "RMD_SmallExplosion";
+		Gravity 1.0;
+		//Impact 
+		BaseProjectile.ImpactDamage 0;
+		//Splash 
+		BaseProjectile.SplashDamage 250;
+		BaseProjectile.FullSplashDamage 75;
+		BaseProjectile.SplashRadius 100;
+		//Randomizer
+		BaseProjectile.NormalDamageRandom 1.0;
+		BaseProjectile.NerfDamageRandom 1.0;
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay
+			{
+				Actor Flare;
+						
+				Flare = Spawn("RMD_SMRL_Flare", Pos, ALLOW_REPLACE);
+						
+				If (Flare)
+				{
+					Flare.Target = Self;
+					Flare.Scale = (0.23, 0.23);
+					Flare.SetShade("Lavender");	
+				}			
+			}
+			Goto SpawnLoop;
+		SpawnLoop:	
+			IDLE A 1 A_SpawnItemEx("RMD_GrenadeTrail", 0, 0, 0);
+			Loop;
+		Explode:
+			TNT1 A 0 
+			{
+				A_StartSound("Explosion/HandGrenade", 90, 0, 0.8);
+				A_SpawnItemEx("RMD_25mmExplosionSpawner", 0, 0, 0);
+				A_AlertMonsters(800);
+			}
+			Stop;	
+	}
+}
+

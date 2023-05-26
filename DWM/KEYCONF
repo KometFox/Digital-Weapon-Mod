@@ -1,0 +1,26 @@
+//This is safe to remove, for any case you want to use 
+//different class.
+clearplayerclasses 
+addplayerclass "D3Marine"
+addplayerclass "Renamon"
+
+
+addkeysection "Mod Configuration" RMOD_Controls
+
+//Weapons
+addmenukey "Reload Weapon" +Reload
+addmenukey "Ironsight Mode" +AltAttack
+addmenukey "Switch Firemode" +User1
+
+//Shop Menu
+addmenukey "Open Shop Menu" RMD_TestMenuOpen
+alias RMD_TestMenuOpen "NetEvent BUYMENU"
+
+
+/*
+TODO...
+addmenukey "Buy Primary Ammo" RMD_BuyAmmo1
+alias RMD_BuyAmmo1 "NetEvent BM_BuyAmmo1"
+addmenukey "Buy Secondary Ammo" RMD_BuyAmmo2
+alias RMD_BuyAmmo2 "NetEvent BM_BuyAmmo2"
+*/

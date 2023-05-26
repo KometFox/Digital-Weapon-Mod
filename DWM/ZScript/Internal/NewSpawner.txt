@@ -1,0 +1,18 @@
+/*
+A different implementation of the random spawner.
+*/
+
+Class RMD_Spawner : RandomSpawner
+{
+	
+	override void BeginPlay()
+	{
+		Super.BeginPlay();
+
+		Console.PrintF("Tracer: %p", tracer);
+		Console.PrintF("Target: %p", target);
+		Console.PrintF("Master: %p", master);
+	}
+
+
+}

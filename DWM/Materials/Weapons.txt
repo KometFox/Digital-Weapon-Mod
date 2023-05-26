@@ -1,0 +1,82 @@
+//Hands
+material texture "Models/Textures/CSArms/CSHand.png"
+{
+	normal "Models/Textures/CSArms/CSHand_NormalGL.png"
+	metallic "Models/Textures/CSArms/CSHand_Metallic.png"
+	roughness "Models/Textures/CSArms/CSHand_Roughness.png"
+	ao "Models/Textures/CSArms/CSHand_AO.png"
+	specularlevel 0.35
+	glossiness 0.25
+}
+
+//Pistols
+
+//Submachine Guns
+
+//Assault Rifle
+
+material texture "Models/Weapons/MG/M249SAW/M249SAW_Diffuse.png"
+{
+	normal "Models/Weapons/MG/M249SAW/M249SAW_NormalGL.png"
+	metallic "Models/Weapons/MG/M249SAW/M249SAW_Metallic.png"
+	roughness "Models/Weapons/MG/M249SAW/M249SAW_Roughness.png"
+	ao "Models/Weapons/MG/M249SAW/M249SAW_AO.png"
+	specularlevel 0.75
+	glossiness 0.45
+}
+
+//Shotgun
+material texture "Models/Weapons/Shotgun/Mossberg590/Mossberg590_Diffuse.png"
+{
+	normal "Models/Weapons/Shotgun/Mossberg590/Mossberg590_NormalGL.png"
+	metallic "Models/Weapons/Shotgun/Mossberg590/Mossberg590_Metallic.png"
+	roughness "Models/Weapons/Shotgun/Mossberg590/Mossberg590_Roughness.png"
+	ao "Models/Weapons/Shotgun/Mossberg590/Mossberg590_AO.png"
+	specularlevel 0.75
+	glossiness 0.45
+}
+
+
+//Launchers
+material texture "Models/Weapons/SMRL/LocustRL_Diffuse.png"
+{
+	normal "Models/Weapons/SMRL/LocustRL_NormalGL.png"
+	metallic "Models/Weapons/SMRL/LocustRL_Metallic.png"
+	roughness "Models/Weapons/SMRL/LocustRL_Roughness.png"
+	ao "Models/Weapons/SMRL/LocustRL_AO.png"
+	specularlevel 0.75
+	glossiness 0.45
+}
+
+
+//Energy
+material texture "Models/Weapons/Energy/E12PR/E12PR_Diffuse.png"
+{
+	normal "Models/Weapons/Energy/E12PR/E12PR_NormalGL.png"
+	metallic "Models/Weapons/Energy/E12PR/E12PR_Metallic.png"
+	roughness "Models/Weapons/Energy/E12PR/E12PR_Roughness.png"
+	ao "Models/Weapons/Energy/E12PR/E12PR_AO.png"
+	specularlevel 0.75
+	glossiness 0.45
+}
+
+material texture "Models/Weapons/Energy/E2OPC/E20PC_Diffuse.png"
+{
+	normal "Models/Weapons/Energy/E2OPC/E20PC_NormalGL.png"
+	metallic "Models/Weapons/Energy/E2OPC/E20PC_Metallic.png"
+	roughness "Models/Weapons/Energy/E2OPC/E20PC_Roughness.png"
+	ao "Models/Weapons/Energy/E2OPC/E20PC_AO.png"
+	specularlevel 0.75
+	glossiness 0.45
+}
+
+
+material texture "Models/Weapons/Energy/FT12/FT12_Diffuse.png"
+{
+	normal "Models/Weapons/Energy/FT12/FT12_NormalGL.png"
+	metallic "Models/Weapons/Energy/FT12/FT12_Metallic.png"
+	roughness "Models/Weapons/Energy/FT12/FT12_Roughness.png"
+	ao "Models/Weapons/Energy/FT12/FT12_AO.png"
+	specularlevel 0.75
+	glossiness 0.45
+}

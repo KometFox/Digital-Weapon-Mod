@@ -1,0 +1,133 @@
+//------------------------------------------------------------------------------
+//Coin
+//------------------------------------------------------------------------------
+Model CoinGreen
+{
+	Path "Models\Money\DataCube"
+	Model 0 "DataCube.md3"
+	Skin 0 "DataCubeGreen.png"
+	
+	//ROTATING
+	USEACTORPITCH
+	USEACTORROLL
+	Offset 0 0 15
+	Scale 0.5 0.5 0.5
+	PitchOffset 90
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model CoinBlue
+{
+	Path "Models\Money\DataCube"
+	Model 0 "DataCube.md3"
+	Skin 0 "DataCubeBlue.png"
+	
+	//ROTATING
+	USEACTORPITCH
+	USEACTORROLL
+	Offset 0 0 15
+	Scale 0.5 0.5 0.5
+	PitchOffset 90
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model CoinYellow
+{
+	Path "Models\Money\DataCube"
+	Model 0 "DataCube.md3"
+	Skin 0 "DataCubeYellow.png"
+	
+	//ROTATING
+	USEACTORPITCH
+	USEACTORROLL
+	Offset 0 0 15
+	Scale 0.5 0.5 0.5
+	PitchOffset 90
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model CoinPurple
+{
+	Path "Models\Money\DataCube"
+	Model 0 "DataCube.md3"
+	Skin 0 "DataCubePurple.png"
+	
+	//ROTATING
+	USEACTORPITCH
+	USEACTORROLL
+	Offset 0 0 15
+	Scale 0.5 0.5 0.5
+	PitchOffset 90
+	
+	FrameIndex IDLE A 0 0
+}
+
+//------------------------------------------------------------------------------
+//Euro
+//------------------------------------------------------------------------------
+Model EuroGreen
+{
+	Path "Models\Money\Euro"
+	Model 0 "Euro.md3"
+	Skin 0 "EuroGreen.png"
+	
+	//ROTATING
+	USEACTORPITCH
+	USEACTORROLL
+	Offset 0 0 7
+	Scale 5 5 5
+	RollOffset 90
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model EuroBlue
+{
+	Path "Models\Money\Euro"
+	Model 0 "Euro.md3"
+	Skin 0 "EuroBlue.png"
+	
+	//ROTATING
+	USEACTORPITCH
+	USEACTORROLL
+	Offset 0 0 7
+	Scale 5 5 5
+	RollOffset 90
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model EuroYellow
+{
+	Path "Models\Money\Euro"
+	Model 0 "Euro.md3"
+	Skin 0 "EuroYellow.png"
+	
+	//ROTATING
+	USEACTORPITCH
+	USEACTORROLL
+	Offset 0 0 7
+	Scale 5 5 5
+	RollOffset 90
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model EuroPurple
+{
+	Path "Models\Money\Euro"
+	Model 0 "Euro.md3"
+	Skin 0 "EuroPurple.png"
+	
+	//ROTATING
+	USEACTORPITCH
+	USEACTORROLL
+	Offset 0 0 7
+	Scale 5 5 5
+	RollOffset 90
+	
+	FrameIndex IDLE A 0 0
+}

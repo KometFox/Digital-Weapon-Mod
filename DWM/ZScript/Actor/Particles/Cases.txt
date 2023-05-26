@@ -1,0 +1,557 @@
+//------------------------------------------------------------------------------
+//Default
+//------------------------------------------------------------------------------
+Class Casings : Actor
+{
+	int TTL;
+	
+	property TimeToLife:TTL;
+	
+	const RestAngle = 90;
+	
+
+	Default
+	{
+		speed 7;
+		Gravity 0.4;
+		RenderStyle "Normal";
+		BounceType "Doom";
+		BounceFactor 0.40;
+		WallBounceFactor 0.40;
+		Alpha 1;
+		Mass 5;
+		Height 3;
+		Radius 3;
+		PROJECTILE;
+		-NOGRAVITY
+		-NOBLOCKMAP
+		+THRUACTORS
+		+NOTELEPORT
+		+FORCEXYBILLBOARD
+		
+		Casings.TimeToLife 700;
+	}
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		Angle = random(0, 360);
+	
+	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+	
+		if (!isFrozen())
+		{
+			TTL -= 1;
+				
+			//Fadeout effect
+			if (TTL <= 10)
+			{
+				A_FadeOut(0.1);
+			}
+			
+			//When timer runs out, just die.
+			if (TTL <= 0)
+			{
+				Die(self, self);
+			}
+		}
+	
+	}
+	
+	States
+	{
+	
+		Spawn2:
+			"####" "#" 1
+			{
+				A_JumpIf(waterlevel >= 1, "Death");
+				Angle += 12;
+				Pitch += 12;				
+			}
+			Loop; 
+
+		Spawn3:
+			"####" "#" 1
+			{
+				A_JumpIf(waterlevel >= 1, "Death");
+				Angle += 12;
+				Pitch += 12;				
+			}
+			Loop;
+
+		Death:
+			"####" "#" 1
+			{
+				Pitch = 90;
+				Roll = random(0, 360);
+			}
+			Goto Death2;
+			
+		Death2:
+			"####" "#" 1;
+			Loop;
+			
+		Crash:
+			#### # 1;
+			Loop;
+	}	
+}
+
+//------------------------------------------------------------------------------
+//Magazine
+//------------------------------------------------------------------------------
+
+Class EmptyMagSpawn : Actor
+{
+	Default
+	{
+		Speed 20;
+		PROJECTILE;
+		+NOCLIP
+	}
+	States
+	{
+		Spawn:
+			TNT1 AA 1 A_SpawnProjectile("EmptyMag",random(0, -5), 0, random(85, 95), 2, 1);
+			Stop;
+	}
+}
+
+
+Class EmptyMag : Casings
+{
+	Default
+	{
+		Height 12;
+		Radius 9;
+		Speed 4;
+		Scale 1.01;
+		BounceSound "Case/Mag";
+		WallBounceSound "Case/Mag";
+	}
+	
+	States
+	{
+		Spawn:
+			EMAG A 1;
+			Goto Spawn2;
+	}
+}
+
+
+Class PistolMagSpawn : Actor
+{
+	Default
+	{
+		Speed 20;
+		PROJECTILE;
+		+NOCLIP
+	}
+	States
+	{
+		Spawn:
+			TNT1 AA 1 A_SpawnProjectile("PistolMag",random(0, -5), 0, random(85, 95), 2, 1);
+			Stop;
+	}
+}
+
+
+Class PistolMag : Casings
+{
+	Default
+	{
+		Height 12;
+		Radius 9;
+		Speed 4;
+		Scale 1.01;
+		BounceSound "Case/Mag";
+		WallBounceSound "Case/Mag";
+	}
+	
+	States
+	{
+		Spawn:
+			EMAG A 1;
+			Goto Spawn2;
+	}
+}
+
+
+Class SMGMagSpawn : Actor
+{
+	Default
+	{
+		Speed 20;
+		PROJECTILE;
+		+NOCLIP
+	}
+	States
+	{
+		Spawn:
+			TNT1 AA 1 A_SpawnProjectile("SMGMag",random(0, -5), 0, random(85, 95), 2, 1);
+			Stop;
+	}
+}
+
+
+Class SMGMag : Casings
+{
+	Default
+	{
+		Height 12;
+		Radius 9;
+		Speed 4;
+		Scale 1.01;
+		BounceSound "Case/Mag";
+		WallBounceSound "Case/Mag";
+	}
+	
+	States
+	{
+		Spawn:
+			EMAG A 1;
+			Goto Spawn2;
+	}
+}
+
+
+Class MGMagSpawn : Actor
+{
+	Default
+	{
+		Speed 20;
+		PROJECTILE;
+		+NOCLIP
+	}
+	States
+	{
+		Spawn:
+			TNT1 AA 1 A_SpawnProjectile("MGMag",random(0, -5), 0, random(85, 95), 2, 1);
+			Stop;
+	}
+}
+
+
+Class MGMag : Casings
+{
+
+	Default
+	{
+		Height 12;
+		Radius 9;
+		Speed 4;
+		Scale 1.01;
+		BounceSound "Case/Mag";
+		WallBounceSound "Case/Mag";
+	}
+	
+	States
+	{
+		Spawn:
+			EMAG A 1;
+			Goto Spawn2;
+	}
+}
+
+
+//------------------------------------------------------------------------------
+//Pistol
+//------------------------------------------------------------------------------
+Class PistolCaseSpawn : Actor
+{
+	Default
+	{
+		Speed 12;
+	}
+	States
+	{
+		Spawn:
+			TNT1 AA 1 A_SpawnProjectile("PistolCase",0 , 0, random(-35, -65), 2, random(25, 45));
+			Stop;
+	}
+}
+
+
+Class PistolCase : Casings
+{
+	Mixin CaseTrail;
+
+	Default
+	{
+		Scale 0.14;
+		Speed 4;
+		BounceSound "Case/Pistol";
+		WallBounceSound "Case/Pistol";
+	}
+	
+	States
+	{
+		Spawn:
+			CAS1 A 2;
+			Goto Spawn3;
+	}
+}
+
+//------------------------------------------------------------------------------
+//Rifle
+//------------------------------------------------------------------------------
+Class RifleCaseSpawn : Actor
+{
+	Default
+	{
+		Speed 10;
+	}
+	States
+	{
+		Spawn:
+			TNT1 AA 1 A_SpawnProjectile("RifleCase",0 , 0, random(-55, -80), 2, random(20, 40));
+			Stop;
+	}
+}
+
+
+Class RifleCase : Casings
+{
+	Mixin CaseTrail;
+
+	Default
+	{
+		Scale 0.14;
+		Speed 4;
+		BounceSound "Case/Rifle";
+		WallBounceSound "Case/Rifle";
+	}
+	
+	States
+	{
+		Spawn:
+			556C A 1;
+			Goto Spawn3;			
+	}
+}
+
+//------------------------------------------------------------------------------
+//Shell
+//------------------------------------------------------------------------------
+Class ShellCaseSpawn : Actor
+{
+	Default
+	{
+		Speed 12;
+	}
+	States
+	{
+		Spawn:
+			TNT1 AA 1 A_SpawnProjectile("ShellCase",0 , 0, random(-35, -65), 2, random(25, 45));
+			Stop;
+	}
+}
+
+
+Class ShellCase : Casings
+{
+	Mixin CaseTrail;
+
+	Default
+	{
+		Scale 0.20;
+		Speed 4;
+		BounceSound "Case/Shot";
+		WallBounceSound "Case/Shot";
+	}
+	
+	States
+	{
+		Spawn:
+			12CS A 1;
+			Goto Spawn3;
+	}
+}
+
+
+//------------------------------------------------------------------------------
+//Launcher Discard
+//------------------------------------------------------------------------------
+
+
+//------------------------------------------------------------------------------
+//Grenade Case
+//------------------------------------------------------------------------------
+Class GrenadeCaseSpawn : Actor
+{
+	Default
+	{
+		Speed 10;
+	}
+	States
+	{
+		Spawn:
+			TNT1 AA 1 A_SpawnProjectile("GrenadeCase",0 , 0, random(-55, -80), 2, random(20, 40));
+			Stop;
+	}
+}
+
+
+Class GrenadeCase : Casings
+{
+	Mixin CaseTrail;
+
+	Default
+	{
+		Scale 0.8;
+		Speed 4;
+		BounceSound "Case/40mm";
+		WallBounceSound "Case/40mm";
+	}
+	
+	States
+	{
+		Spawn:
+			40MM A 1;
+			Goto Spawn3;
+	}
+}
+
+//------------------------------------------------------------------------------
+//Grenade Case
+//------------------------------------------------------------------------------
+Class RocketCaseSpawn : Actor
+{
+	Default
+	{
+		Speed 10;
+	}
+	States
+	{
+		Spawn:
+			TNT1 AA 1 A_SpawnProjectile("RocketCase",0 , 0, random(-55, -80), 2, random(20, 40));
+			Stop;
+	}
+}
+
+
+Class RocketCase : Casings
+{
+	Mixin CaseTrail;
+
+
+	Default
+	{
+		Scale 0.8;
+		Speed 5;
+		BounceSound "Case/40mm";
+		WallBounceSound "Case/40mm";
+	}
+	
+	
+	States
+	{
+		Spawn:
+			40MM A 1;
+			Goto Spawn3;
+	}
+}
+
+
+
+
+Class RMD_CaseSmoke : RMD_BaseParticle
+{
+	Default
+	{
+		RenderStyle "Translucent";
+		Alpha 0.25;
+		YScale 0.045;
+		XScale 0.045;
+		Gravity 0.35;
+		-NoGravity
+	}
+	
+	Override void BeginPlay()
+	{
+		Super.BeginPlay();
+		
+		Roll = frandom(0, 360);	
+	}
+	
+	Override void Tick()
+	{
+		Super.Tick();
+		
+		if (!isFrozen())
+		{
+			A_SetScale(Scale.X * 1.065, Scale.Y * 1.065);	
+		}
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Smoke1", "Smoke2", "Smoke3", "Smoke4");
+		Smoke1:
+			SMOA A 4;
+			SMOA AAAAA 1 A_FadeOut(0.06);
+			Stop;
+		Smoke2:
+			SMOB A 4;
+			SMOB AAAAA 1 A_FadeOut(0.06);
+			Stop;
+		Smoke3:
+			SMOC A 4;
+			SMOC AAAAA 1 A_FadeOut(0.06);
+			Stop;
+		Smoke4:
+			SMOD A 4;
+			SMOD AAAAA 1 A_FadeOut(0.06);
+			Stop;
+	}
+}
+
+Mixin Class CaseTrail
+{	
+	int TrailTimer;
+	
+	action void TrailEffect()
+	{
+		for (int i = 0; i < 2; ++i)
+		{
+			Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 2.5)).unit()*FRandom[FX](0.25, 0.5);
+			Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
+			let Particle = Spawn("RMD_CaseSmoke", invoker.Pos + RPos);
+					
+			Particle.Vel = PVel;
+			Particle.Scale = (0.01, 0.01);
+		}
+	}
+	
+	States
+	{
+		Spawn3:
+			"####" "#" 1
+			{
+				Angle += 12;
+				Pitch += 12;	
+				
+				A_JumpIf(Waterlevel >= 2, "Death");
+				
+				if (TrailTimer > 30)
+				{
+					return ResolveState("Spawn2");
+				}
+
+				TrailTimer++;
+				
+				return A_Jump(0, "Spawn3");
+			}			
+			"####" "#" 0 TrailEffect();
+			Loop;
+	}
+}
+
+

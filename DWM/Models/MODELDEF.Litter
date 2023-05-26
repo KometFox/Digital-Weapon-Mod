@@ -1,0 +1,77 @@
+Model EmptyBeer1
+{
+	Path "Models\Items\HealthBonus"
+	Model 0 "Baltika3.md3"
+	SurfaceSkin 0 0 "Baltika3.png"
+	Scale 4 4 4 
+	
+	USEACTORPITCH
+	USEACTORROLL
+	FrameIndex IDLE A 0 0
+	RollOffset 90
+}
+
+Model EmptyMilk
+{
+	Path "Models\Items\HealthBonus"
+	Model 0 "Milk.md3"
+	SurfaceSkin 0 0 "Milk.png"
+	Scale 0.35 0.35 0.35
+
+	USEACTORPITCH
+	USEACTORROLL	
+	FrameIndex IDLE A 0 0
+}
+
+Model EmptyEnergyCan1
+{
+	Path "Models\Items\HealthBonus"
+	Model 0 "EnergyCan.md3"
+	Path "Models\Weapons\Other"
+	SurfaceSkin 0 0 "Energy.png"
+	Scale 4 4 4 
+	
+	USEACTORPITCH
+	USEACTORROLL
+	FrameIndex IDLE A 0 0
+	RollOffset 90
+}
+
+
+Model MedikitLitter
+{
+	Path "Models\Items\Medkit"
+	Model 0 "Medkit.md3"
+	SurfaceSkin 0 0 "Medkit.png"
+	Scale 0.5 0.5 0.5
+	
+	FrameIndex IDLE A 0 0
+	FrameIndex IDLE B 0 1
+}
+
+Model StimpackLitter
+{
+	Path "Models\Items\Stimpack"
+	Model 0 "Stimpack.md3"
+	SurfaceSkin 0 0 "Stimpack.png"
+	Scale 1 1 1
+	
+	FrameIndex IDLE A 0 0
+	FrameIndex IDLE B 0 1
+}
+
+Model RMD_HealthKegLitter
+{
+	Path "Models\Items\HealthKeg"
+	Model 0 "HealthKeg.md3"
+	SurfaceSkin 0 0 "EmptyKeg.png"
+	Scale 1 1 1
+	
+	FrameIndex IDLE A 0 0
+	FrameIndex IDLE B 0 1
+}
+
+
+
+
+

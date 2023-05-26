@@ -1,0 +1,33 @@
+Model RMD_FT12FlameThrower
+{
+	Path "Models\Textures\CSArms"
+	SurfaceSkin 0 0 "CSHand.png"
+	Path "Models\Weapons\Energy\FT12"
+	Model 0 "FT12FlameThrower.md3"
+	SurfaceSkin 0 1 "FT12_Diffuse.png"
+	
+	//IDLE
+	FrameIndex IDLE A 0 1
+	//SELECT
+	FrameIndex SELC A 0 2
+	FrameIndex SELC B 0 3
+	FrameIndex SELC C 0 4
+	FrameIndex SELC D 0 5
+	//FIRE
+	FrameIndex FIRE A 0 8
+	FrameIndex FIRE B 0 9
+	FrameIndex FIRE C 0 10
+	FrameIndex FIRE D 0 11
+	//RELOAD
+	FrameIndex REL1 A 0 14
+	FrameIndex REL1 B 0 15 //Mag Out
+	FrameIndex REL1 C 0 16
+	FrameIndex REL1 D 0 17
+	FrameIndex REL1 E 0 18
+	FrameIndex REL1 F 0 19 
+	FrameIndex REL1 G 0 20
+	FrameIndex REL1 H 0 21
+	FrameIndex REL1 I 0 22
+	FrameIndex REL1 J 0 23 //Mag In
+	FrameIndex REL1 K 0 24 
+}

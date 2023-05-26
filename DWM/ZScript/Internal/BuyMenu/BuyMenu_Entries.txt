@@ -1,0 +1,105 @@
+//Main Menu
+//------------------------------------------------------------------------------
+//COLUMN 0
+//------------------------------------------------------------------------------
+Extend Class BuyMenuScript
+{
+	void InitMenu()
+	{
+		let Elementy = new("TextEntry");
+		Elementy.rect_pos.x = 250;
+		Elementy.rect_pos.y = 100;
+		Elementy.Text = "Items";
+		Elementy.Command = "Items";
+		Elementy.Column = 0;
+		AddElements(Elementy);
+
+		Elementy = new("TextEntry");
+		Elementy.rect_pos.x = 340;
+		Elementy.rect_pos.y = 100;
+		Elementy.Text = "Weapons";
+		Elementy.Command = "Weapons";
+		Elementy.Column = 0;
+		AddElements(Elementy);	
+	}
+
+
+}
+//------------------------------------------------------------------------------
+//COLUMN 1 (ITEMS)
+//------------------------------------------------------------------------------
+Extend Class BuyMenuScript 
+{
+	//The Weapon SubMenu
+	void OpenItemsMenu()
+	{
+		let Elementy = new("TextEntry");
+		Elementy.rect_pos.x = 150;
+		Elementy.rect_pos.y = 130;
+		Elementy.Text = "Ammo";
+		Elementy.Command = "Ammo";
+		Elementy.Column = 1;
+		AddElements(Elementy);
+
+		Elementy = new("TextEntry");
+		Elementy.rect_pos.x = 150;
+		Elementy.rect_pos.y = 138;
+		Elementy.Text = "Supply";
+		Elementy.Command = "Supplies";
+		Elementy.Column = 2;
+		AddElements(Elementy);
+	}
+}
+
+//------------------------------------------------------------------------------
+//COLUMN 1 (WEAPONS)
+//------------------------------------------------------------------------------
+//Weapon Submenu
+Extend Class BuyMenuScript 
+{
+	//The Weapon SubMenu
+	void OpenWeaponsMenu()
+	{
+	
+		let Elementy = new("TextEntry");
+		Elementy.Column = 1;
+		Elementy.rect_pos.x = 150;
+		Elementy.rect_pos.y = 130 + (Elementy.Column * 9);
+		Elementy.Text = "Pistols";
+		Elementy.Command = "Pistols";
+		AddElements(Elementy);	
+	
+		Elementy = new("TextEntry");
+		Elementy.Column = 2;
+		Elementy.rect_pos.x = 150;
+		Elementy.rect_pos.y = 130 + (Elementy.Column * 9);
+		Elementy.Text = "Submachine Guns";
+		Elementy.Command = "SubmachineGuns";
+		AddElements(Elementy);	
+
+		Elementy = new("TextEntry");
+		Elementy.Column = 3;
+		Elementy.rect_pos.x = 150;
+		Elementy.rect_pos.y = 130 + (Elementy.Column * 9);
+		Elementy.Text = "Assault Rifle";
+		Elementy.Command = "AssaultRifle";
+		AddElements(Elementy);	
+
+		Elementy = new("TextEntry");
+		Elementy.Column = 4;
+		Elementy.rect_pos.x = 150;
+		Elementy.rect_pos.y = 130 + (Elementy.Column * 9);
+		Elementy.Text = "Shotgun";
+		Elementy.Command = "Shotgun";
+		AddElements(Elementy);	
+
+		Elementy = new("TextEntry");
+		Elementy.Column = 5;
+		Elementy.rect_pos.x = 150;
+		Elementy.rect_pos.y = 130 + (Elementy.Column * 9);
+		Elementy.Text = "Launcher";
+		Elementy.Command = "Launcher";
+		AddElements(Elementy);	
+	}
+}
+
