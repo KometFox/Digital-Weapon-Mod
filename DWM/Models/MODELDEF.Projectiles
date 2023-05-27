@@ -102,9 +102,9 @@ Model RMD_Mossberg590Proj
 Model SMRL_Rocket
 {
 	Path "Models\Projectile"
-	Model 0 "SMRLROcket.md3"
+	Model 0 "SMRLRocket.md3"
 	Path "Models\Weapons\SMRL"
-	Skin 0 "SMRL_Rocket.png"
+	Skin 0 "SMRLRocket.png"
 	PITCHFROMMOMENTUM
 	Scale 3 3 3
 
@@ -116,7 +116,7 @@ Model RMD_G20GL_Grenade
 	Path "Models\Projectile"
 	Model 0 "SMRLRocket.md3"
 	Path "Models\Weapons\SMRL"
-	Skin 0 "SMRL_Rocket.png"
+	Skin 0 "SMRLRocket.png"
 	PITCHFROMMOMENTUM
 	Scale 3 2 2
 
@@ -129,7 +129,7 @@ Model RMD_M25_Grenade
 	Path "Models\Projectile"
 	Model 0 "SMRLRocket.md3"
 	Path "Models\Weapons\SMRL"
-	Skin 0 "SMRL_Rocket.png"
+	Skin 0 "SMRLRocket.png"
 	PITCHFROMMOMENTUM
 	Scale 3 2 2
 
@@ -141,7 +141,7 @@ Model RMD_Madsen_Grenade
 	Path "Models\Projectile"
 	Model 0 "SMRLRocket.md3"
 	Path "Models\Weapons\SMRL"
-	Skin 0 "SMRL_Rocket.png"
+	Skin 0 "SMRLRocket.png"
 	PITCHFROMMOMENTUM
 	Scale 3 2 2
 

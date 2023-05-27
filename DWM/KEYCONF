@@ -16,11 +16,9 @@ addmenukey "Switch Firemode" +User1
 addmenukey "Open Shop Menu" RMD_TestMenuOpen
 alias RMD_TestMenuOpen "NetEvent BUYMENU"
 
+//TODO...
+//addmenukey "Buy Primary Ammo" RMD_BuyAmmo1
+//alias RMD_BuyAmmo1 "NetEvent BM_BuyAmmo1"
+//addmenukey "Buy Secondary Ammo" RMD_BuyAmmo2
+//alias RMD_BuyAmmo2 "NetEvent BM_BuyAmmo2"
 
-/*
-TODO...
-addmenukey "Buy Primary Ammo" RMD_BuyAmmo1
-alias RMD_BuyAmmo1 "NetEvent BM_BuyAmmo1"
-addmenukey "Buy Secondary Ammo" RMD_BuyAmmo2
-alias RMD_BuyAmmo2 "NetEvent BM_BuyAmmo2"
-*/

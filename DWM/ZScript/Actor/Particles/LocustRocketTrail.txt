@@ -26,9 +26,9 @@ Class RMD_LocustRocketTrail : RMD_BaseParticle
 					let Particle = Spawn("RMD_LocustRL_Fire", Pos + RPos);
 					
 					Particle.Vel = PVel;
-					Particle.Scale = (0.18, 0.18);
+					Particle.Scale = (0.095, 0.095);
 					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-					Particle.SetShade("ff8f19");
+					Particle.SetShade("fd6518");
 				}				
 				
 				if (true)
@@ -38,7 +38,7 @@ Class RMD_LocustRocketTrail : RMD_BaseParticle
 					let Particle = Spawn("RMD_LocustRL_Smoke", Pos + RPos);
 					
 					Particle.Vel = PVel;
-					Particle.Scale = (0.3, 0.30);			
+					Particle.Scale = (0.22, 0.22);			
 				}				
 				
 			}

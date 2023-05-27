@@ -148,7 +148,7 @@ Class RMD_RocketMuzzleFlash : RMD_WeaponMuzzleFlash
 		{
 			let Obj = Spawn("MF_MuzzleFlash2", Origin);
 			Obj.Target = PWeapon;
-			Obj.Scale = (0.05, 0.05);
+			Obj.Scale = (0.0995, 0.0995);
 			RMD_BaseMuzzleFlash(Obj).ofs = Offset;
 			RMD_BaseMuzzleFlash(Obj).vvel = (0, 0, 0);
 		}
@@ -157,6 +157,7 @@ Class RMD_RocketMuzzleFlash : RMD_WeaponMuzzleFlash
 		{
 			let Obj = Spawn("MF_BigSparks", Origin);
 			Obj.Target = PWeapon;
+			Obj.Scale = (0.025, 0.025);
 			RMD_BaseMuzzleFlash(Obj).ofs = Offset;
 			RMD_BaseMuzzleFlash(Obj).vvel += (FRandom[FX](2.0, 15.0),FRandom[FX](-1.2 , 1.2),FRandom[FX](-1.2, 1.2));
 		}
@@ -228,13 +229,12 @@ Class MF_MuzzleFlash : RMD_BaseMuzzleFlash
 
     States
     {
-    Spawn:
-	   TNT1 AA 1;
-	   MUZY AB 1;
-       stop;
-    Death:
-       TNT1 A 0;
-       Stop;
+		Spawn:
+			MUZY AB 1;
+			Stop;
+		Death:
+			TNT1 A 0;
+			Stop;
     }
 }
 
@@ -258,16 +258,15 @@ Class MF_MuzzleFlash2: RMD_BaseMuzzleFlash
 	}
 
 
-    States
-    {
-    Spawn:
-	   TNT1 AA 1;
-	   MUZZ AB 1;
-       stop;
-    Death:
-       TNT1 A 0;
-       Stop;
-    }
+	States
+	{
+		Spawn:
+			AAMZ AB 2;
+			Stop;
+		Death:
+			TNT1 A 0;
+			Stop;
+	}
 }
 
 Class MF_MuzzleSparks : RMD_BaseMuzzleFlash
@@ -379,8 +378,7 @@ Class MF_RocketFlash : RMD_BaseMuzzleFlash
     States
     {
     Spawn:
-	   TNT1 AA 1;
-	   MUZX AB 3;
+	   AAMZ AB 3;
        stop;
     Death:
        TNT1 A 0;

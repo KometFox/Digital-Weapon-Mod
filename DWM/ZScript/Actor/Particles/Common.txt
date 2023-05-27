@@ -30,9 +30,9 @@ Class RMD_Boom6 : RMD_BaseParticle
 		+Bright;
 	}
 	
-	override void BeginPlay()
+	override void PostBeginPlay()
 	{
-		Super.BeginPlay();
+		Super.PostBeginPlay();
 		
 		Roll = Random[FX](0, 360);
 		Angle = Random[FX](0, 360);	
@@ -42,7 +42,18 @@ Class RMD_Boom6 : RMD_BaseParticle
 	{
 		Spawn:
 			TNT1 A 0;
-			BOM1 ABCDEFGHIJKLMNOPQRSTUV 1; 
+			TNT1 A 0 A_Jump(256, "Sprite1", "Sprite2", "Sprite3");
+		Sprite1:
+			BOM1 A 0; 
+			Goto Loopy;
+		Sprite2:
+			BOM2 A 0; 
+			Goto Loopy;
+		Sprite3:
+			BOM3 A 0; 
+			Goto Loopy;
+		Loopy:
+			"####" ABCDEFGHIJKLMNOPQRSTUV 2;
 			Stop;
 	}
 }
@@ -87,9 +98,9 @@ Class RMD_Smoke : RMD_BaseParticle
 		Alpha 0.4;
 	}
 	
-	Override void BeginPlay()
+	Override void PostBeginPlay()
 	{
-		Super.BeginPlay();
+		Super.PostBeginPlay();
 		
 		Roll = frandom(0, 360);	
 	}

@@ -345,6 +345,10 @@ States
 		
 		}
 		Goto Init;
+		
+	Init:
+		CHGG A 0 A_Jump(256, "ReadyReal");
+		Goto ReadyReal;
 	
 	ReadyReal:
 		CHGG A 0;

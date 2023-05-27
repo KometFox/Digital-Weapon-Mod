@@ -82,12 +82,12 @@ material texture "Models/Weapons/Energy/E12PR/E12PR_Diffuse.png"
 	glossiness 0.45
 }
 
-material texture "Models/Weapons/Energy/E2OPC/E20PC_Diffuse.png"
+material texture "Models/Weapons/Energy/E20PC/E20PC_Diffuse.png"
 {
-	normal "Models/Weapons/Energy/E2OPC/E20PC_NormalGL.png"
-	metallic "Models/Weapons/Energy/E2OPC/E20PC_Metallic.png"
-	roughness "Models/Weapons/Energy/E2OPC/E20PC_Roughness.png"
-	ao "Models/Weapons/Energy/E2OPC/E20PC_AO.png"
+	normal "Models/Weapons/Energy/E20PC/E20PC_NormalGL.png"
+	metallic "Models/Weapons/Energy/E20PC/E20PC_Metallic.png"
+	roughness "Models/Weapons/Energy/E20PC/E20PC_Roughness.png"
+	ao "Models/Weapons/Energy/E20PC/E20PC_AO.png"
 	specularlevel 0.75
 	glossiness 0.45
 }
