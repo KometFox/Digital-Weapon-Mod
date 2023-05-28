@@ -58,12 +58,12 @@ material texture "Models/Weapons/Shotgun/MolotVPO208/MolotVPO208_Diffuse.png"
 	glossiness 0.45
 }
 
-material texture "Models/Weapons/Shotgun/MolotVPO208/MololtBullet_Diffuse.png"
+material texture "Models/Weapons/Shotgun/MolotVPO208/MolotBullet_Diffuse.png"
 {
-	normal "Models/Weapons/Shotgun/MolotVPO208/MololtBullet_NormalGL.png"
-	metallic "Models/Weapons/Shotgun/MolotVPO208/MololtBullet_Metallic.png"
-	roughness "Models/Weapons/Shotgun/MolotVPO208/MololtBullet_Roughness.png"
-	ao "Models/Weapons/Shotgun/MolotVPO208/MololtBullet_AO.png"
+	normal "Models/Weapons/Shotgun/MolotVPO208/MolotBullet_NormalGL.png"
+	metallic "Models/Weapons/Shotgun/MolotVPO208/MolotBullet_Metallic.png"
+	roughness "Models/Weapons/Shotgun/MolotVPO208/MolotBullet_Roughness.png"
+	ao "Models/Weapons/Shotgun/MolotVPO208/MolotBullet_AO.png"
 	specularlevel 0.75
 	glossiness 0.45
 }

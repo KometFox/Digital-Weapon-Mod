@@ -310,7 +310,7 @@ static int Get_Magazine()
 	}
 		
 	//Marisa Kirisame Flak_M.pk3 code. 
-	action void B_SpawnCasing(Class<Actor> Obj = "PistolCase", Vector3 COffset = (0, 0, 0), int PAngle = 0)
+	action Actor B_SpawnCasing(Class<Actor> Obj = "PistolCase", Vector3 COffset = (0, 0, 0), int PAngle = 0)
 	{
 		Vector3 x, y, z;
 		int Ydir = -1;
@@ -320,7 +320,9 @@ static int Get_Magazine()
 	
 		origin += x * (1.0 + COffset.x) + ydir * y * (6.0 + COffset.y) -z * (2.0 + COffset.z);		
 		let C = Spawn(Obj, origin);
-		C.vel = x*FRandom[Junk](-0.5, 0.5) + y * ydir * FRandom[Junk](1.5,3) + z * FRandom[Junk](1.5,2);	
+		C.vel = x*FRandom[Junk](-0.5, 0.5) + y * ydir * FRandom[Junk](1.5,3) + z * FRandom[Junk](1.5,2);
+		
+		return C;
 	}		
 		
 	action void B_MuzzleFlash(Class<RMD_WeaponMuzzleFlash> Particle = "RMD_BulletMuzzleFLash", Vector3 POffset = (0, 0, 0))
@@ -331,7 +333,7 @@ static int Get_Magazine()
 
 		let Obj = Spawn(Particle, Origin);
 		Obj.Target = self;
-		RMD_WeaponMuzzleFlash(Obj).SpawnMuzzleFlash(Self, Origin, POffset);
+		RMD_WeaponMuzzleFlash(Obj).SpawnMuzzleFlash(Self, Origin, POffset);		
 	}
 
 States
