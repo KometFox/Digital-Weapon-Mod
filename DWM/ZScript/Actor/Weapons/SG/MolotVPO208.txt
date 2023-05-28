@@ -17,8 +17,8 @@ class RMD_MolotVPO208 : BaseWeapon
 		Inventory.AltHudIcon "PIMOL208";
 		BaseWeapon.IronSight IRON_INACTIVE;
 
-		BaseWeapon.MagazineMax 10;
-		BaseWeapon.Magazine 10;
+		BaseWeapon.MagazineMax 15;
+		BaseWeapon.Magazine 15;
 		
 	}
 	
@@ -202,7 +202,7 @@ class RMD_MolotVPO208 : BaseWeapon
 		TNT1 A 0
 		{
 			A_StartSound("MolotVPO208/ClipInsert");
-			Invoker.Magazine = Invoker.MagazineMax;
+			ReloadMagazine(PRIMARY, Invoker.MagazineMax, Invoker.MagazineMax);	
 			RMD_BARINFO.Set_Mag(invoker.Magazine);
 		}
 		//Handle Push
@@ -225,8 +225,8 @@ Class RMD_MolotVPO208Proj : RMD_BaseBullet
 	Default
 	{
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 22; 
-		RMD_BaseBullet.DamageRand1 3.4;
+		RMD_BaseBullet.ImpactDamage 10; 
+		RMD_BaseBullet.DamageRand1 3.5;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 1000;
 		
