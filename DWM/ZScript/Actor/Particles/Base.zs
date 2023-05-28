@@ -13,6 +13,13 @@ Class RMD_BaseParticle : Actor
 }
 
 
+Mixin Class Mix_ParticleSpawner 
+{
+	const FXFLAG = SXF_TRANSFERPOINTERS | SXF_TRANSFERTRANSLATION;
+}
+
+
+
 Class RMD_BaseMuzzleFlash : RMD_BaseParticle
 {
 	//Code from Flak_M.pk3

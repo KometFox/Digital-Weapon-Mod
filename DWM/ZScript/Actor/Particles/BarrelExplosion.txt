@@ -17,8 +17,8 @@ Class RMD_BarrelExplosionSpawner : Actor
 					
 					Particle.Vel = PVel;
 					Particle.Scale = (0.8, 0.8);
-					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-					Particle.SetShade("ff2f19");
+					Particle.A_SetRenderStyle(0.995, STYLE_Add);
+					Particle.A_SetTranslation("ExplosionOrange");
 				}
 				
 				let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
@@ -61,6 +61,8 @@ Class RMD_BarrelExplosionSpawner : Actor
 					
 					Particle.Vel = PVel;
 					Particle.Scale = (0.4, 0.4);
+					Particle.A_SetRenderStyle(0.995, STYLE_Add);
+					Particle.A_SetTranslation("ExplosionOrange");		
 				}
 				
 				//Flare

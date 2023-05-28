@@ -143,9 +143,11 @@ Class BM_ARWeapons : BMItems
 Class BM_ShotgunWeapons : BMItems 
 {
 
+
+
 		override void AddItems()
 		{
-			//AoM Shotgun 
+			//Mossberg 590 
 			let Item = new("BuyMenuItems");
 			Item.ID = "RMD_Mossberg590";
 			Item.ItemName = "Mossberg 590";
@@ -153,6 +155,17 @@ Class BM_ShotgunWeapons : BMItems
 			Item.Command = "Buy";
 			Item.BuySound = "Shotgun/Select";
 			Item.Cost = 400;
+			Item.Amount = 1;
+			ArItems.Push(Item);
+			
+			//Molot VPO-208
+			Item = new("BuyMenuItems");
+			Item.ID = "RMD_MolotVPO208";
+			Item.ItemName = "Molot VPO-208";
+			Item.Graphic = TexMan.CheckForTexture("PIMOL208", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Shotgun/Select";
+			Item.Cost = 500;
 			Item.Amount = 1;
 			ArItems.Push(Item);
 		}

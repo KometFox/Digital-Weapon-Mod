@@ -20,6 +20,7 @@
 #Include "ZScript/Actor/Weapons/MG/M249SAW.txt"
 //Shotgun
 #Include "ZScript/Actor/Weapons/SG/Mossberg590.txt"
+#Include "ZScript/Actor/Weapons/SG/MolotVPO208.txt"
 //Explosive Weapons
 #Include "ZScript/Actor/Weapons/RL/SMRL.txt"
 #Include "ZScript/Actor/Weapons/RL/LocustRL.txt"

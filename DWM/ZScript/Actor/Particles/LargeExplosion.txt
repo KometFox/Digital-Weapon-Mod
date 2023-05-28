@@ -11,15 +11,15 @@ Class RMD_LargeExplosionSpawner : Actor
 				//Explosion
 				for (int i = 0; i < 22; ++i)
 				{
-					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](2.5, 8.5);
+					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](2.5, 6.5);
 					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
 					let Particle = Spawn("RMD_Boom6", Pos + RPos);
 					
 					Particle.Vel = PVel;
 					Particle.Roll = Random(0, 360);
-					Particle.Scale = (0.95, 0.95);
-					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-					Particle.SetShade("ff2f19");
+					Particle.Scale = (0.7, 0.7);
+					Particle.A_SetRenderStyle(0.995, STYLE_Add);
+					Particle.A_SetTranslation("ExplosionOrange");
 				}
 				
 				
@@ -62,6 +62,8 @@ Class RMD_LargeExplosionSpawner : Actor
 					
 					Particle.Vel = PVel;
 					Particle.Scale = (0.4, 0.4);
+					Particle.A_SetRenderStyle(0.995, STYLE_Add);
+					Particle.A_SetTranslation("ExplosionOrange");
 				}
 				
 				//Trail
@@ -199,8 +201,8 @@ Class RMD_LargeBoom_Trail : RMD_ModelSparks
 					
 				Particle.Vel = PVel;
 				Particle.Scale = (0.16, 0.16);
-				Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-				Particle.SetShade("ff2f19");
+				Particle.A_SetRenderStyle(0.995, STYLE_Add);
+				Particle.A_SetTranslation("ExplosionOrange");
 			}
 		
 			if (true)

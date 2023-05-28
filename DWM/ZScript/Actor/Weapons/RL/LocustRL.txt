@@ -26,12 +26,12 @@ class RMD_LocustRL : BaseWeapon
 		if (Invoker.IronSight == IRON_INACTIVE)
 		{
 			A_FireProjectile("RMD_LocustRL_Rocket", 0, 1, 6, 4, CMF_AIMDIRECTION,0);
-			B_MuzzleFlash("RMD_GrenadeMuzzleFlash", (15, 3.3, -1.95));	
+			B_MuzzleFlash("RMD_GrenadeMuzzleFlash", (10, 3.3, -1.95));	
 		}
 		else
 		{
 			A_FireProjectile("RMD_LocustRL_Rocket", 0, 1, 0, 4, CMF_AIMDIRECTION,0);
-			B_MuzzleFlash("RMD_GrenadeMuzzleFlash", (15, 0.0, -1.0));	
+			B_MuzzleFlash("RMD_GrenadeMuzzleFlash", (7, 0.0, -1.0));	
 		}
 
 		Invoker.Magazine -= 1;

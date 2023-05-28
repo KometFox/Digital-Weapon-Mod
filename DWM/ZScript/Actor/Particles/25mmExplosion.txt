@@ -18,8 +18,8 @@ Class RMD_25mmExplosionSpawner : Actor
 					Particle.Vel = PVel;
 					Particle.Roll = Random(0, 360);
 					Particle.Scale = (0.3, 0.3);
-					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-					Particle.SetShade("ff2f19");
+					Particle.A_SetRenderStyle(0.995, STYLE_Add);
+					Particle.A_SetTranslation("ExplosionOrange");
 				}
 				
 				
@@ -62,6 +62,8 @@ Class RMD_25mmExplosionSpawner : Actor
 					
 					Particle.Vel = PVel;
 					Particle.Scale = (0.4, 0.4);
+					Particle.A_SetRenderStyle(0.995, STYLE_Add);
+					Particle.A_SetTranslation("ExplosionOrange");
 				}
 				
 				//Flare
@@ -178,8 +180,8 @@ Class RMD_25mmExplosionTrail : RMD_ModelSparks
 					
 				Particle.Vel = PVel;
 				Particle.Scale = (0.09, 0.09);
-				Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-				Particle.SetShade("ff2f19");
+				Particle.A_SetRenderStyle(0.995, STYLE_Add);
+				Particle.A_SetTranslation("ExplosionOrange");
 			}
 		
 			if (true)

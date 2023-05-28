@@ -54,6 +54,13 @@ AoMShotgun/CockEnd "Sounds/Weapons/SG/AoMShotgun/CockEnd.ogg"
 AoMShotgun/Cocking "Sounds/Weapons/SG/AoMShotgun/CockA.ogg"
 AoMShotgun/Insert "Sounds/Weapons/SG/AoMShotgun/LoadShell.ogg"
 
+
+MolotVPO208/Fire "Sounds/Weapons/SG/MolotVPO208/Fire.wav"
+MolotVPO208/ClipInsert "Sounds/Weapons/SG/MolotVPO208/ClipInsert.wav"
+MolotVPO208/HandlePull "Sounds/Weapons/SG/MolotVPO208/HandlePull.ogg"
+MolotVPO208/HandlePush "Sounds/Weapons/SG/MolotVPO208/HandlePush.ogg"
+
+
 //------------------------------------------------------------------------------
 //Launchers
 //------------------------------------------------------------------------------

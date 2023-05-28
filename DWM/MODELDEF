@@ -4,6 +4,7 @@
 #Include "Models/Weapons/MP5.txt"
 #Include "Models/Weapons/CBM2.txt"
 #Include "Models/Weapons/Mossberg590.txt"
+#Include "Models/Weapons/MolotVPO208.txt"
 #Include "Models/Weapons/M16A3.txt"
 #Include "Models/Weapons/M25.txt"
 #Include "Models/Weapons/MadsenLAR.txt"

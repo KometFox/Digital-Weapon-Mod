@@ -28,7 +28,7 @@ Class RMD_LocustRocketTrail : RMD_BaseParticle
 					Particle.Vel = PVel;
 					Particle.Scale = (0.095, 0.095);
 					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-					Particle.SetShade("fd6518");
+					Particle.SetShade("fd3118");
 				}				
 				
 				if (true)

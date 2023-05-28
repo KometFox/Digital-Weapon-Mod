@@ -211,8 +211,8 @@ Class RMD_EnforcerBullet : RMD_BaseBullet
 Default
 	{
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 24; 
-		RMD_BaseBullet.DamageRand1 3.75;
+		RMD_BaseBullet.ImpactDamage 28; 
+		RMD_BaseBullet.DamageRand1 4.25;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 500;
 		

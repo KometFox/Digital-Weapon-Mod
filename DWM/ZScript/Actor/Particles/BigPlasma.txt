@@ -19,7 +19,7 @@ Class RMD_BigPlasmaSpawner : Actor
 					Particle.Roll = Random(0, 360);
 					Particle.Scale = (1.25, 1.25);
 					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-					Particle.SetShade("30c7ff");
+					Particle.SetShade("30C7FF");
 				}
 				
 				let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
@@ -66,7 +66,7 @@ Class RMD_BigPlasmaSpawner : Actor
 					Particle.Vel = PVel;
 					Particle.Scale = (0.1, 0.1);
 					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-					Particle.SetShade("1653ff");
+					Particle.SetShade("30C7FF");
 				}
 				
 				//Flare
@@ -176,8 +176,8 @@ Class RMD_BigPlasmaTrail : RMD_ModelSparks
 					
 				Particle.Vel = PVel;
 				Particle.Scale = (0.15, 0.15);
-				//Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-				//Particle.SetShade("1721b7");;
+				Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
+				Particle.SetShade("30C7FF");
 			}
 		
 			if (true)

@@ -242,8 +242,8 @@ Class RMD_M249SAW_Bullet : RMD_BaseBullet
 Default
 	{		
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 18; 
-		RMD_BaseBullet.DamageRand1 3.6;
+		RMD_BaseBullet.ImpactDamage 10;
+		RMD_BaseBullet.DamageRand1 3.75;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 800;		
 		

@@ -1,6 +1,7 @@
 Class RMD_40mmExplosionSpawner : Actor
 {
-
+	Mixin Mix_ParticleSpawner;
+	
 	States
 	{
 		Spawn:
@@ -13,14 +14,17 @@ Class RMD_40mmExplosionSpawner : Actor
 				{
 					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](2.0, 7.0);
 					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
-					let Particle = Spawn("RMD_Boom6", Pos + RPos);
+					Actor Particle;
+					Bool Spawned;
 					
+					[Spawned, Particle] = A_SpawnItemEx("RMD_Boom6", flags: FXFLAG);
+					
+					Particle.TeleportMove(Pos + RPos, false);
 					Particle.Vel = PVel;
 					Particle.Roll = Random(0, 360);
-					Particle.Scale = (0.5, 0.5);
-					Particle.A_SetRenderStyle(1.0, STYLE_Add);
-					Particle.Translation = int(0xFF2F19);
-
+					Particle.Scale = (0.65, 0.65);
+					Particle.A_SetRenderStyle(0.995, STYLE_Add);
+					Particle.A_SetTranslation("ExplosionOrange");
 				}
 				
 				let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
@@ -62,6 +66,8 @@ Class RMD_40mmExplosionSpawner : Actor
 					
 					Particle.Vel = PVel;
 					Particle.Scale = (0.4, 0.4);
+					Particle.A_SetRenderStyle(0.995, STYLE_Add);
+					Particle.A_SetTranslation("ExplosionOrange");
 				}
 				
 				//Flare
@@ -97,7 +103,7 @@ Class RMD_40mm_Ember : RMD_ModelSparks
 {
 	Default
 	{
-		RenderStyle "Add";
+		RenderStyle "Normal";
 		+Bright;
 		
 		BounceFactor 0.001;
@@ -126,6 +132,8 @@ Class RMD_40mm_Ember : RMD_ModelSparks
 //------------------------------------------------------------------------------
 Class RMD_40mmExplosionTrail : RMD_ModelSparks
 {
+	Mixin Mix_ParticleSpawner;
+	
 	
 	Default
 	{
@@ -142,25 +150,32 @@ Class RMD_40mmExplosionTrail : RMD_ModelSparks
 		{
 			if (true)
 			{
-				Vector3 PVel = (FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1)).unit()*FRandom[FX](0.05, 0.05);
+				Vector3 PVel = (FRandom[FX](-0.15, 0.15), FRandom[FX](-0.15, 0.15), FRandom[FX](-0.15, 1.25)).unit()*FRandom[FX](0.2, 0.4);
 				Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
-				let Particle = Spawn("RMD_40mmExplosionTrail_Fire", Pos + RPos);
+				Actor Particle;
+				Bool Spawned;
 					
+				[Spawned, Particle] = A_SpawnItemEx("RMD_40mmExplosionTrail_Fire", flags: FXFLAG);					
+				
+				Particle.TeleportMove(Pos + RPos, false);
 				Particle.Vel = PVel;
-				Particle.Scale = (0.12, 0.12);
-				Particle.A_SetRenderStyle(1.0, STYLE_Add);
-				Particle.Translation = int(0xFF2F19);
+				Particle.Scale = (0.07, 0.07);
+				Particle.A_SetRenderStyle(0.995, STYLE_Add);
+				Particle.A_SetTranslation("ExplosionOrange");
 			}
 		
 			if (true)
 			{
-				Vector3 PVel = (FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1)).unit()*FRandom[FX](0.05, 0.05);
+				Vector3 PVel = (FRandom[FX](-0.15, 0.15), FRandom[FX](-0.15, 0.15), FRandom[FX](-0.15, 1.25)).unit()*FRandom[FX](0.2, 0.4);
 				Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
-				let Particle = Spawn("RMD_40mmExplosionTrail_Smoke", Pos + RPos);
+				Actor Particle;
+				Bool Spawned;
 					
+				[Spawned, Particle] = A_SpawnItemEx("RMD_40mmExplosionTrail_Smoke", flags: FXFLAG);					
+				
+				Particle.TeleportMove(Pos + RPos, false);
 				Particle.Vel = PVel;
-				Particle.Scale = (0.05, 0.05);	
-				Particle.SetShade("2d2d2d");
+				Particle.Scale = (0.085, 0.085);
 			}
 		}
 	}
@@ -180,7 +195,6 @@ Class RMD_40mmExplosionTrail_Fire : RMD_ModelSparks
 {
 	Default
 	{
-		RenderStyle "Add";
 		+Bright;
 		-NoGravity;
 		Gravity -0.5;

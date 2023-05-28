@@ -1,4 +1,6 @@
+//------------------------------------------------------------------------------
 //Hands
+//------------------------------------------------------------------------------
 material texture "Models/Textures/CSArms/CSHand.png"
 {
 	normal "Models/Textures/CSArms/CSHand_NormalGL.png"
@@ -9,12 +11,17 @@ material texture "Models/Textures/CSArms/CSHand.png"
 	glossiness 0.25
 }
 
+//------------------------------------------------------------------------------
 //Pistols
+//------------------------------------------------------------------------------
 
+//------------------------------------------------------------------------------
 //Submachine Guns
+//------------------------------------------------------------------------------
 
+//------------------------------------------------------------------------------
 //Assault Rifle
-
+//------------------------------------------------------------------------------
 material texture "Models/Weapons/AR/MadsenLAR/MadsenLAR_Diffuse.png"
 {
 	normal "Models/Weapons/AR/MadsenLAR/MadsenLAR_NormalGL.png"
@@ -37,7 +44,30 @@ material texture "Models/Weapons/MG/M249SAW/M249SAW_Diffuse.png"
 	glossiness 0.45
 }
 
+
+//------------------------------------------------------------------------------
 //Shotgun
+//------------------------------------------------------------------------------
+material texture "Models/Weapons/Shotgun/MolotVPO208/MolotVPO208_Diffuse.png"
+{
+	normal "Models/Weapons/Shotgun/MolotVPO208/MolotVPO208_NormalGL.png"
+	metallic "Models/Weapons/Shotgun/MolotVPO208/MolotVPO208_Metallic.png"
+	roughness "Models/Weapons/Shotgun/MolotVPO208/MolotVPO208_Roughness.png"
+	ao "Models/Weapons/Shotgun/MolotVPO208/MolotVPO208_AO.png"
+	specularlevel 0.75
+	glossiness 0.45
+}
+
+material texture "Models/Weapons/Shotgun/MolotVPO208/MololtBullet_Diffuse.png"
+{
+	normal "Models/Weapons/Shotgun/MolotVPO208/MololtBullet_NormalGL.png"
+	metallic "Models/Weapons/Shotgun/MolotVPO208/MololtBullet_Metallic.png"
+	roughness "Models/Weapons/Shotgun/MolotVPO208/MololtBullet_Roughness.png"
+	ao "Models/Weapons/Shotgun/MolotVPO208/MololtBullet_AO.png"
+	specularlevel 0.75
+	glossiness 0.45
+}
+
 material texture "Models/Weapons/Shotgun/Mossberg590/Mossberg590_Diffuse.png"
 {
 	normal "Models/Weapons/Shotgun/Mossberg590/Mossberg590_NormalGL.png"
@@ -49,7 +79,9 @@ material texture "Models/Weapons/Shotgun/Mossberg590/Mossberg590_Diffuse.png"
 }
 
 
+//------------------------------------------------------------------------------
 //Launchers
+//------------------------------------------------------------------------------
 material texture "Models/Weapons/SMRL/LocustRL_Diffuse.png"
 {
 	normal "Models/Weapons/SMRL/LocustRL_NormalGL.png"
@@ -71,7 +103,9 @@ material texture "Models/Weapons/SMRL/SMRL_Diffuse.png"
 }
 
 
-//Energy
+//------------------------------------------------------------------------------
+//Energy Weapons
+//------------------------------------------------------------------------------
 material texture "Models/Weapons/Energy/E12PR/E12PR_Diffuse.png"
 {
 	normal "Models/Weapons/Energy/E12PR/E12PR_NormalGL.png"

@@ -37,23 +37,42 @@ Class RMD_Boom6 : RMD_BaseParticle
 		Roll = Random[FX](0, 360);
 		Angle = Random[FX](0, 360);	
 	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+		
+		if (!Level.IsFrozen())
+		{
+			A_SetScale(Scale.X * 1.0175, Scale.Y * 1.0175);	
+		}	
+	}
 
 	States
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 0 A_Jump(256, "Sprite1", "Sprite2", "Sprite3");
+			TNT1 A 0 
+			{
+				if (random(0, 1) == 1)
+					return ResolveState("Sprite1");
+				else if (random(0, 1) == 1)
+					return ResolveState("Sprite2");
+				else 
+					return ResolveState("Sprite3");			
+			}
+			Goto Sprite1;
 		Sprite1:
 			BOM1 A 0; 
 			Goto Loopy;
 		Sprite2:
-			BOM2 A 0; 
+			BOM1 A 0; 
 			Goto Loopy;
 		Sprite3:
-			BOM3 A 0; 
+			BOM1 A 0; 
 			Goto Loopy;
 		Loopy:
-			"####" ABCDEFGHIJKLMNOPQRSTUV 2;
+			"####" ABCDEFGHIJKLMNOPQRSTUV 1;
 			Stop;
 	}
 }
@@ -103,6 +122,7 @@ Class RMD_Smoke : RMD_BaseParticle
 		Super.PostBeginPlay();
 		
 		Roll = frandom(0, 360);	
+		Angle = Random[FX](0, 360);	
 	}
 	
 	Override void Tick()
