@@ -22,11 +22,11 @@ class RMD_M25 : BaseWeapon
 		BaseWeapon.IronSight IRON_INACTIVE;
 		BaseWeapon.FireMode BULLET;
 		
-		BaseWeapon.MagazineMax 50;
-		BaseWeapon.Magazine 50;	
+		BaseWeapon.MagazineMax 60;
+		BaseWeapon.Magazine 60;	
 		
-		BaseWeapon.MagazineMax2 6;
-		BaseWeapon.Magazine2 6;
+		BaseWeapon.MagazineMax2 8;
+		BaseWeapon.Magazine2 8;
 	}
 	
 	action state ReloadCheck()
@@ -402,10 +402,10 @@ Class RMD_M25_Bullet : RMD_BaseBullet
 	Default
 	{		
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 9; 
+		RMD_BaseBullet.ImpactDamage 10; 
 		RMD_BaseBullet.DamageRand1 3.25;
 		//Nerfed Damage
-		RMD_BaseBullet.HealthDamage 300;		
+		RMD_BaseBullet.HealthDamage 200;		
 		
 		Scale 0.75;
 		Decal "RMD_AR_BulletHoles";

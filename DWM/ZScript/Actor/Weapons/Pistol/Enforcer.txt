@@ -15,8 +15,8 @@ class RMD_Enforcer : BaseWeapon
 		
 		BaseWeapon.IronSight IRON_INACTIVE;
 		
-		BaseWeapon.MagazineMax 12;
-		BaseWeapon.Magazine 12;	
+		BaseWeapon.MagazineMax 14;
+		BaseWeapon.Magazine 14;	
 	}
 	
 	action state ReloadCheck()

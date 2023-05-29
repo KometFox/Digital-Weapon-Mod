@@ -16,8 +16,8 @@ class RMD_M249SAW : BaseWeapon
 		
 		BaseWeapon.IronSight IRON_INACTIVE;
 		
-		BaseWeapon.MagazineMax 250;
-		BaseWeapon.Magazine 250; 
+		BaseWeapon.MagazineMax 300;
+		BaseWeapon.Magazine 300; 
 	}
 	
 	action void C_SpawnCasing(Class<Actor> Obj = "PistolCase", Vector3 COffset = (0, 0, 0), int PAngle = 0)
@@ -242,10 +242,10 @@ Class RMD_M249SAW_Bullet : RMD_BaseBullet
 Default
 	{		
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 10;
+		RMD_BaseBullet.ImpactDamage 14;
 		RMD_BaseBullet.DamageRand1 3.75;
 		//Nerfed Damage
-		RMD_BaseBullet.HealthDamage 800;		
+		RMD_BaseBullet.HealthDamage 275;		
 		
 		Scale 0.75;
 		Decal "RMD_SMG_BulletHoles";

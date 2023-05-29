@@ -15,8 +15,8 @@ class RMD_KestrelGL : BaseWeapon
 		
 		BaseWeapon.IronSight IRON_INACTIVE;
 		
-		BaseWeapon.MagazineMax 8;
-		BaseWeapon.Magazine 8;
+		BaseWeapon.MagazineMax 10;
+		BaseWeapon.Magazine 10;
 		
 	}
 

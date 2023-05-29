@@ -17,8 +17,8 @@ class RMD_M16A3 : BaseWeapon
 		
 		BaseWeapon.IronSight IRON_INACTIVE;
 		
-		BaseWeapon.MagazineMax 60;
-		BaseWeapon.Magazine 60;	
+		BaseWeapon.MagazineMax 70;
+		BaseWeapon.Magazine 70;	
 	}
 	
 	Action state ReloadCheck()
@@ -231,10 +231,10 @@ Class RMD_M16A3_Bullet : RMD_BaseBullet
 	Default
 	{		
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 9; 
-		RMD_BaseBullet.DamageRand1 3.35;
+		RMD_BaseBullet.ImpactDamage 11; 
+		RMD_BaseBullet.DamageRand1 3.45;
 		//Nerfed Damage
-		RMD_BaseBullet.HealthDamage 400;		
+		RMD_BaseBullet.HealthDamage 240;		
 		
 		Scale 0.75;
 		Decal "RMD_AR_BulletHoles";

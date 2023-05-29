@@ -13,8 +13,8 @@ class RMD_Mossberg590 : BaseWeapon
 		Inventory.AltHudIcon "PISHOT1";
 		BaseWeapon.IronSight IRON_INACTIVE;
 
-		BaseWeapon.MagazineMax 14;
-		BaseWeapon.Magazine 14;
+		BaseWeapon.MagazineMax 18;
+		BaseWeapon.Magazine 18;
 		
 	}
 	
@@ -95,7 +95,7 @@ class RMD_Mossberg590 : BaseWeapon
 	
 	IronSightAnim:
 		TNT1 A 0 A_SetCrosshair(99);
-		IRO1 ABCD 2 A_ZoomFactor(1.5);
+		IRO1 ABCD 2 A_ZoomFactor(1.8);
 		Goto IronReady;
 		
 	IronSightDeselect:
@@ -175,7 +175,6 @@ class RMD_Mossberg590 : BaseWeapon
 		TNT1 A 0 ReloadCheck();
 		Goto Ready;
 
-	//Bleh I screwed up with the animation. 
 	ReloadNow:
 		REL1 ABCDEFGHI 2 A_WeaponReady();
 		REL1 J 2
@@ -203,7 +202,7 @@ class RMD_Mossberg590 : BaseWeapon
 		{
 			A_StartSound("AoMShotgun/Insert", CHAN_WEAPON);
 			
-			ReloadSingle(PRIMARY, 2, 2);				
+			ReloadSingle(PRIMARY, 3, 3);				
 			RMD_BARINFO.Set_Mag(invoker.Magazine);
 			
 			if (invoker.Magazine == invoker.MagazineMax)
@@ -231,8 +230,8 @@ Class RMD_Mossberg590Proj : RMD_BaseBullet
 	Default
 	{
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 8; 
-		RMD_BaseBullet.DamageRand1 3.0;
+		RMD_BaseBullet.ImpactDamage 10; 
+		RMD_BaseBullet.DamageRand1 3.25;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 1000;
 		

@@ -22,8 +22,8 @@ class RMD_MadsenLAR : BaseWeapon
 		BaseWeapon.IronSight IRON_INACTIVE;
 		BaseWeapon.FireMode BULLET;
 		
-		BaseWeapon.MagazineMax 45;
-		BaseWeapon.Magazine 45;	
+		BaseWeapon.MagazineMax 60;
+		BaseWeapon.Magazine 60;	
 		
 		BaseWeapon.MagazineMax2 1;
 		BaseWeapon.Magazine2 1;
@@ -397,10 +397,10 @@ Class RMD_MadsenLAR_Bullet : RMD_BaseBullet
 	Default
 	{		
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 9; 
-		RMD_BaseBullet.DamageRand1 3.5;
+		RMD_BaseBullet.ImpactDamage 12; 
+		RMD_BaseBullet.DamageRand1 3.6;
 		//Nerfed Damage
-		RMD_BaseBullet.HealthDamage 350;		
+		RMD_BaseBullet.HealthDamage 250;		
 		
 		Scale 0.75;
 		Decal "RMD_AR_BulletHoles";
