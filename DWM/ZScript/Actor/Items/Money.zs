@@ -164,7 +164,7 @@ Class MaterialBase : CustomInventory
 		
 		//Expensive Option
 		MagnetLoop:
-			"####" "#" 1 A_CheckProximity("Magnet","RMD_Player", 130, 1, CPXF_CHECKSIGHT|CPXF_SETTARGET|CPXF_ANCESTOR);
+			"####" "#" 7 A_CheckProximity("Magnet","RMD_Player", 130, 1, CPXF_CHECKSIGHT|CPXF_SETTARGET|CPXF_ANCESTOR);
 			Goto CondCheck;
 		
 		//Cheap option
@@ -205,7 +205,7 @@ Class MaterialBase : CustomInventory
 				A_recoil(-5.0);
 				A_ChangeVelocity (0, 0, frandom(0.4,0.6),CVF_RELATIVE );
 			}
-			"####" "#" 0 A_CheckRange(130, "CondCheck");
+			"####" "#" 0 A_CheckRange(130, "MagnetLoop");
 			Loop;
 			
 		PickUp:
