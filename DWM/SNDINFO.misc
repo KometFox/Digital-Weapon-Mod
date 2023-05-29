@@ -69,6 +69,7 @@ pickup/Suit SuitPick
 //Ingots
 Items/IngotTake "Sounds/Items/Data/IngotTake.ogg"
 Items/IngotTake2 "Sounds/Items/Data/IngotTake2.ogg"
+Items/CrystalTake "Sounds/Items/Data/CrystalTake.ogg"
 
 Item/Bandage BANDA
 

@@ -1,3 +1,4 @@
+#Include "Materials/GLDEFS.MuzzleLights.txt"
 #Include "Materials/GLDEFS.Projectile.txt"
 #Include "Materials/GLDEFS.Weapons.txt"
 #Include "Materials/GLDEFS.Money.txt"

@@ -1,3 +1,6 @@
+//------------------------------------------------------------------------------
+//Ingots
+//------------------------------------------------------------------------------
 material texture "Models/Money/Ingot/DwarfIngot_Diffuse.png"
 {
 	normal "Models/Money/Ingot/DwarfIngot_NormalGL.png"
@@ -34,6 +37,50 @@ material texture "Models/Money/Ingot/SteelIngot_Diffuse.png"
 	metallic "Models/Money/Ingot/SteelIngot_Metallic.png"
 	roughness "Models/Money/Ingot/SteelIngot_Roughness.png"
 	ao "Models/Money/Ingot/SteelIngot_AO.png"
+	specularlevel 1.25
+	glossiness 0.65
+}
+
+//------------------------------------------------------------------------------
+//Crystal
+//------------------------------------------------------------------------------
+material texture "Models/Money/Crystal/GreenGrystal_Diffuse.png"
+{
+	normal "Models/Money/Crystal/Grystal_NormalGL.png"
+	metallic "Models/Money/Crystal/Grystal_Metallic.png"
+	roughness "Models/Money/Crystal/Grystal_Roughness.png"
+	ao "Models/Money/Crystal/Grystal_AO.png"
+	specularlevel 1.25
+	glossiness 0.65
+}
+
+material texture "Models/Money/Crystal/BlueGrystal_Diffuse.png"
+{
+	normal "Models/Money/Crystal/Grystal_NormalGL.png"
+	metallic "Models/Money/Crystal/Grystal_Metallic.png"
+	roughness "Models/Money/Crystal/Grystal_Roughness.png"
+	ao "Models/Money/Crystal/Grystal_AO.png"
+	specularlevel 1.25
+	glossiness 0.65
+}
+
+material texture "Models/Money/Crystal/YellowGrystal_Diffuse.png"
+{
+	normal "Models/Money/Crystal/Grystal_NormalGL.png"
+	metallic "Models/Money/Crystal/Grystal_Metallic.png"
+	roughness "Models/Money/Crystal/Grystal_Roughness.png"
+	ao "Models/Money/Crystal/Grystal_AO.png"
+	specularlevel 1.25
+	glossiness 0.65
+}
+
+
+material texture "Models/Money/Crystal/PurpleGrystal_Diffuse.png"
+{
+	normal "Models/Money/Crystal/Grystal_NormalGL.png"
+	metallic "Models/Money/Crystal/Grystal_Metallic.png"
+	roughness "Models/Money/Crystal/Grystal_Roughness.png"
+	ao "Models/Money/Crystal/Grystal_AO.png"
 	specularlevel 1.25
 	glossiness 0.65
 }

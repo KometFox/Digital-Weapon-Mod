@@ -303,8 +303,17 @@ Class CoinGreen : RMD_CoinBase
 	{
 		//Inventory.PickupMessage "Picked up a black floppy <+5 Data>";
 		Inventory.PickupMessage "";
-		MaterialBase.Money 25;
+		MaterialBase.Money 10;
 	}
+}
+
+Class CrystalGreen : CoinGreen 
+{
+	Default
+	{
+		Inventory.PickupSound "Items/CrystalTake";
+	}
+
 }
 
 Class CoinBlue : RMD_CoinBase 
@@ -313,9 +322,19 @@ Class CoinBlue : RMD_CoinBase
 	{
 		//Inventory.PickupMessage "Picked up a blue floppy <+10 Data>";
 		Inventory.PickupMessage "";
-		MaterialBase.Money 50;
+		MaterialBase.Money 30;
 	}
 }
+
+Class CrystalBlue : CoinBlue 
+{
+	Default
+	{
+		Inventory.PickupSound "Items/CrystalTake";
+	}
+
+}
+
 
 Class CoinYellow : RMD_CoinBase 
 {
@@ -323,9 +342,19 @@ Class CoinYellow : RMD_CoinBase
 	{
 		//Inventory.PickupMessage "Picked up a yellow floppy <+25 Data>";
 		Inventory.PickupMessage "";
-		MaterialBase.Money 100;
+		MaterialBase.Money 50;
 	}
 }
+
+Class CrystalYellow : CoinYellow 
+{
+	Default
+	{
+		Inventory.PickupSound "Items/CrystalTake";
+	}
+
+}
+
 
 Class CoinPurple : RMD_CoinBase 
 {
@@ -333,8 +362,16 @@ Class CoinPurple : RMD_CoinBase
 	{
 		//Inventory.PickupMessage "Picked up a purple floppy <+50 Data>";
 		Inventory.PickupMessage "";
-		MaterialBase.Money 200;
+		MaterialBase.Money 100;
 	}
 }
 
+Class CrystalPurple : CoinPurple 
+{
+	Default
+	{
+		Inventory.PickupSound "Items/CrystalTake";
+	}
+
+}
 

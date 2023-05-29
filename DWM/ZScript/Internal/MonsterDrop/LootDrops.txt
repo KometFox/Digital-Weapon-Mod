@@ -7,11 +7,9 @@ Class ID_VeryCommonDrop : ID_DropBase
 	override void BeginPlay()
 	{
 		InitDrops(20);
-		MyChance = 70;		
+		MyChance = 85;		
 		AddItems("RMD_StimEnergy", 1, 15.0);
-		AddItems("CoinGreen", 5, 10.0);
-		AddItems("CoinBlue", 1, 2.5);
-		AddItems("EuroGreen", 1, 4.0);
+		AddItems("CrystalGreen", 5, 15.0);
 	}
 }
 
@@ -20,12 +18,10 @@ Class ID_CommonDrop : ID_DropBase
 	override void BeginPlay()
 	{
 		InitDrops(20);
-		MyChance = 50;	
+		MyChance = 70;	
 		AddItems("RMD_StimEnergy", 1, 20.0);
-		AddItems("CoinGreen", 5, 12.0);
-		AddItems("CoinBlue", 2, 4.5);
-		AddItems("EuroGreen", 1, 6.5);
-		AddItems("EuroBlue", 1, 2.5);
+		AddItems("CrystalGreen", 7, 20.0);
+		AddItems("CrystalBlue", 2, 8.0);
 	}
 }
 
@@ -36,14 +32,11 @@ Class ID_UncommonDrop : ID_DropBase
 	override void BeginPlay()
 	{
 		InitDrops(20);
-		MyChance = 40;
+		MyChance = 60;
 		AddItems("RMD_StimEnergy", 1, 35.0);
-		AddItems("CoinGreen", 7, 12.0);
-		AddItems("CoinBlue", 3, 4.5);
-		AddItems("CoinYellow", 1, 3.5);
-		AddItems("EuroGreen", 1, 8.5);
-		AddItems("EuroBlue", 1, 7.5);
-		AddItems("EuroYellow", 1, 4.5);
+		AddItems("CrystalGreen", 9, 25.0);
+		AddItems("CrystalBlue", 4, 15.0);
+		AddItems("CrystalYellow", 2, 10.0);
 	}
 }
 
@@ -55,14 +48,11 @@ Class ID_AverageDrop : ID_DropBase
 	override void BeginPlay()
 	{
 		InitDrops(20);
-		MyChance = 35;
+		MyChance = 50;
 		AddItems("RMD_MedikitEnergy", 1, 25.0);
-		AddItems("CoinGreen", 10, 14.0);
-		AddItems("CoinBlue", 7, 6.0);
-		AddItems("CoinYellow", 2, 4.5);
-		AddItems("EuroGreen", 5, 9.0);
-		AddItems("EuroBlue", 3, 8.0);
-		AddItems("EuroYellow", 2, 5.0);
+		AddItems("CrystalGreen", 12, 25.0);
+		AddItems("CrystalBlue", 5, 17.5);
+		AddItems("CrystalYellow", 3, 12.5);
 	}
 }
 
@@ -74,13 +64,11 @@ Class ID_RareDrop : ID_DropBase
 	override void BeginPlay()
 	{
 		InitDrops(20);
-		MyChance = 30;
+		MyChance = 50;
 		AddItems("RMD_MedikitEnergy", 1, 40.0);
-		AddItems("CoinBlue", 7, 15.0);
-		AddItems("CoinYellow", 4, 7.5);
-		AddItems("EuroBlue", 4, 10.0);
-		AddItems("EuroYellow", 3, 5.25);
-
+		AddItems("CrystalGreen", 12, 25.0);
+		AddItems("CrystalBlue", 7, 17.5);
+		AddItems("CrystalYellow", 5, 15.0);
 	}
 }
 
@@ -91,11 +79,11 @@ Class ID_BossDrop : ID_DropBase
 	override void BeginPlay()
 	{
 		InitDrops(20);
-		MyChance = 85;
+		MyChance = 100;
 		AddItems("RMD_MedikitEnergy", 1, 75.0);
-		AddItems("CoinYellow", 3, 75.0);
-		AddItems("CoinPurple", 2, 40.0);
-		AddItems("EuroYellow", 2, 50.0);
-		AddItems("EuroPurple", 1, 40.0);
+		AddItems("CrystalGreen", 12, 40.0);
+		AddItems("CrystalBlue", 8, 25.5);
+		AddItems("CrystalYellow", 6, 22.25);
+		AddItems("CrystalPurple", 4, 15.0);
 	}
 }

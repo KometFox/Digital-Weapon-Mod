@@ -1,3 +1,6 @@
+//------------------------------------------------------------------------------
+//Single Ingot
+//------------------------------------------------------------------------------
 Model CoinGreen
 {
 	Path "Models\Money\Ingot"
@@ -51,7 +54,62 @@ Model CoinPurple
 }
 
 //------------------------------------------------------------------------------
-//Euro
+//Crystals
+//------------------------------------------------------------------------------
+Model CrystalGreen
+{
+	Path "Models\Money\Crystal"
+	Model 0 "Crystal.md3"
+	Skin 0 "GreenCrystal_Diffuse.png"
+	
+	USEACTORPITCH
+	USEACTORROLL
+	Scale 2.5 2.5 2.5
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model CrystalBlue
+{
+	Path "Models\Money\Crystal"
+	Model 0 "Crystal.md3"
+	Skin 0 "BlueCrystal_Diffuse.png"
+	
+	USEACTORPITCH
+	USEACTORROLL
+	Scale 2.5 2.5 2.5
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model CrystalYellow
+{
+	Path "Models\Money\Crystal"
+	Model 0 "Crystal.md3"
+	Skin 0 "YellowCrystal_Diffuse.png"
+	
+	USEACTORPITCH
+	USEACTORROLL
+	Scale 2.5 2.5 2.5
+	
+	FrameIndex IDLE A 0 0
+}
+
+
+Model CrystalPurple
+{
+	Path "Models\Money\Crystal"
+	Model 0 "Crystal.md3"
+	Skin 0 "PurpleCrystal_Diffuse.png"
+	
+	USEACTORPITCH
+	USEACTORROLL
+	Scale 2.5 2.5 2.5
+	
+	FrameIndex IDLE A 0 0
+}
+//------------------------------------------------------------------------------
+//Ingot Stacks
 //------------------------------------------------------------------------------
 Model EuroGreen
 {
