@@ -230,7 +230,9 @@ Class MF_MuzzleFlash : RMD_BaseMuzzleFlash
     States
     {
 		Spawn:
-			MUZY AAB 1;
+			MUZY A 1 Light("MuzzleFlash2");
+			MUZY A 1 Light("MuzzleFlash3");
+			MUZY B 1 Light("MuzzleFlash4");
 			Stop;
 		Death:
 			TNT1 A 0;
@@ -261,7 +263,9 @@ Class MF_MuzzleFlash2: RMD_BaseMuzzleFlash
 	States
 	{
 		Spawn:
-			AAMZ AAB 1;
+			AAMZ A 1 Light("MuzzleFlash2");
+			AAMZ A 1 Light("MuzzleFlash3");
+			AAMZ B 1 Light("MuzzleFlash4");			
 			Stop;
 		Death:
 			TNT1 A 0;
@@ -375,14 +379,17 @@ Class MF_RocketFlash : RMD_BaseMuzzleFlash
 	}
 
 
-    States
+	States
     {
-    Spawn:
-	   AAMZ AB 3;
-       stop;
-    Death:
-       TNT1 A 0;
-       Stop;
+		Spawn:	
+			AAMZ A 1 Light("MuzzleFlash1");
+			AAMZ A 1 Light("MuzzleFlash2");
+			AAMZ B 1 Light("MuzzleFlash3");
+			AAMZ B 1 Light("MuzzleFlash4");
+			Stop;
+		Death:
+			TNT1 A 0;
+			Stop;
     }
 }
 

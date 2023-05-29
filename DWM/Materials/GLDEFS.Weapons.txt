@@ -7,8 +7,8 @@ material texture "Models/Textures/CSArms/CSHand.png"
 	metallic "Models/Textures/CSArms/CSHand_Metallic.png"
 	roughness "Models/Textures/CSArms/CSHand_Roughness.png"
 	ao "Models/Textures/CSArms/CSHand_AO.png"
-	specularlevel 0.35
-	glossiness 0.25
+//	specularlevel 0.35
+//	glossiness 0.25
 }
 
 //------------------------------------------------------------------------------
@@ -28,8 +28,8 @@ material texture "Models/Weapons/AR/MadsenLAR/MadsenLAR_Diffuse.png"
 	metallic "Models/Weapons/AR/MadsenLAR/MadsenLAR_Metallic.png"
 	roughness "Models/Weapons/AR/MadsenLAR/MadsenLAR_Roughness.png"
 	ao "Models/Weapons/AR/MadsenLAR/MadsenLAR_AO.png"
-	specularlevel 0.75
-	glossiness 0.45
+//	specularlevel 0.75
+//	glossiness 0.45
 }
 
 
@@ -40,8 +40,8 @@ material texture "Models/Weapons/MG/M249SAW/M249SAW_Diffuse.png"
 	metallic "Models/Weapons/MG/M249SAW/M249SAW_Metallic.png"
 	roughness "Models/Weapons/MG/M249SAW/M249SAW_Roughness.png"
 	ao "Models/Weapons/MG/M249SAW/M249SAW_AO.png"
-	specularlevel 0.75
-	glossiness 0.45
+//	specularlevel 0.75
+//	glossiness 0.45
 }
 
 
@@ -54,8 +54,8 @@ material texture "Models/Weapons/Shotgun/MolotVPO208/MolotVPO208_Diffuse.png"
 	metallic "Models/Weapons/Shotgun/MolotVPO208/MolotVPO208_Metallic.png"
 	roughness "Models/Weapons/Shotgun/MolotVPO208/MolotVPO208_Roughness.png"
 	ao "Models/Weapons/Shotgun/MolotVPO208/MolotVPO208_AO.png"
-	specularlevel 0.75
-	glossiness 0.45
+//	specularlevel 0.75
+//	glossiness 0.45
 }
 
 material texture "Models/Weapons/Shotgun/MolotVPO208/MolotBullet_Diffuse.png"
@@ -64,8 +64,8 @@ material texture "Models/Weapons/Shotgun/MolotVPO208/MolotBullet_Diffuse.png"
 	metallic "Models/Weapons/Shotgun/MolotVPO208/MolotBullet_Metallic.png"
 	roughness "Models/Weapons/Shotgun/MolotVPO208/MolotBullet_Roughness.png"
 	ao "Models/Weapons/Shotgun/MolotVPO208/MolotBullet_AO.png"
-	specularlevel 0.75
-	glossiness 0.45
+//	specularlevel 0.75
+//	glossiness 0.45
 }
 
 material texture "Models/Weapons/Shotgun/Mossberg590/Mossberg590_Diffuse.png"
@@ -74,8 +74,8 @@ material texture "Models/Weapons/Shotgun/Mossberg590/Mossberg590_Diffuse.png"
 	metallic "Models/Weapons/Shotgun/Mossberg590/Mossberg590_Metallic.png"
 	roughness "Models/Weapons/Shotgun/Mossberg590/Mossberg590_Roughness.png"
 	ao "Models/Weapons/Shotgun/Mossberg590/Mossberg590_AO.png"
-	specularlevel 0.75
-	glossiness 0.45
+//	specularlevel 0.75
+//	glossiness 0.45
 }
 
 
@@ -88,8 +88,8 @@ material texture "Models/Weapons/SMRL/LocustRL_Diffuse.png"
 	metallic "Models/Weapons/SMRL/LocustRL_Metallic.png"
 	roughness "Models/Weapons/SMRL/LocustRL_Roughness.png"
 	ao "Models/Weapons/SMRL/LocustRL_AO.png"
-	specularlevel 0.75
-	glossiness 0.45
+//	specularlevel 0.75
+//	glossiness 0.45
 }
 
 material texture "Models/Weapons/SMRL/SMRL_Diffuse.png"
@@ -98,8 +98,8 @@ material texture "Models/Weapons/SMRL/SMRL_Diffuse.png"
 	metallic "Models/Weapons/SMRL/SMRL_Metallic.png"
 	roughness "Models/Weapons/SMRL/SMRL_Roughness.png"
 	ao "Models/Weapons/SMRL/SMRL_AO.png"
-	specularlevel 0.75
-	glossiness 0.45
+//	specularlevel 0.75
+//	glossiness 0.45
 }
 
 
@@ -112,8 +112,8 @@ material texture "Models/Weapons/Energy/E12PR/E12PR_Diffuse.png"
 	metallic "Models/Weapons/Energy/E12PR/E12PR_Metallic.png"
 	roughness "Models/Weapons/Energy/E12PR/E12PR_Roughness.png"
 	ao "Models/Weapons/Energy/E12PR/E12PR_AO.png"
-	specularlevel 0.75
-	glossiness 0.45
+//	specularlevel 0.75
+//	glossiness 0.45
 }
 
 material texture "Models/Weapons/Energy/E20PC/E20PC_Diffuse.png"
@@ -122,8 +122,8 @@ material texture "Models/Weapons/Energy/E20PC/E20PC_Diffuse.png"
 	metallic "Models/Weapons/Energy/E20PC/E20PC_Metallic.png"
 	roughness "Models/Weapons/Energy/E20PC/E20PC_Roughness.png"
 	ao "Models/Weapons/Energy/E20PC/E20PC_AO.png"
-	specularlevel 0.75
-	glossiness 0.45
+//	specularlevel 0.75
+//	glossiness 0.45
 }
 
 
@@ -133,6 +133,6 @@ material texture "Models/Weapons/Energy/FT12/FT12_Diffuse.png"
 	metallic "Models/Weapons/Energy/FT12/FT12_Metallic.png"
 	roughness "Models/Weapons/Energy/FT12/FT12_Roughness.png"
 	ao "Models/Weapons/Energy/FT12/FT12_AO.png"
-	specularlevel 0.75
-	glossiness 0.45
+//	specularlevel 0.75
+//	glossiness 0.45
 }
