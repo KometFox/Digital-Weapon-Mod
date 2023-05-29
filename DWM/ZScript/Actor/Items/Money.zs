@@ -17,12 +17,14 @@ Class MaterialBase : CustomInventory
 	int TTL;
 	bool Temp; //Temporary
 	int MagnetType;
+	Color ItemColor;
 	//0 = Collision
 	//1 = Magnet
 	
 	Property Money:Money;
 	Property MagnetType:MagnetType;
 	Property TimeToLife:TTL;
+	Property ItemColor:ItemColor;
 
 	Default
 	{
@@ -121,16 +123,31 @@ Class MaterialBase : CustomInventory
 	{
 
 		Spawn:
+			IDLE A 0 NoDelay 
+			{
+				Actor Flare;		
+				Flare = Spawn("FX_ItemShineFlare", Pos, ALLOW_REPLACE);
+						
+				If (Flare)
+				{
+					Flare.Target = Self;
+					Flare.Scale = (0.85, 0.85);
+					Flare.SetShade(Invoker.ItemColor);	
+				}
+			
+			}
+			Goto Spawn2;
+
+		Spawn2:
 			IDLE A 0;
 			IDLE A 1
-			{
-				//A_SpawnItemEx("RMD_ItemShineSpawner", 0, 0, 0);
-			
+			{			
 				if (Invoker.Temp == True)
 				{
 					A_JumpIf(waterlevel >= 1, "CondCheck");
-					Angle += 8;
-					Pitch += 8;
+					Angle += 10;
+					Pitch += 10;
+					Angle += 10;
 				}
 			}
 			IDLE A 0 A_CheckFloor("Death");
@@ -139,7 +156,6 @@ Class MaterialBase : CustomInventory
 		Death:
 			"####" "#" 1
 			{
-				//A_SpawnItemEx("RMD_ItemShineSpawner", 0, 0, 0);
 				Pitch = 0;
 				Angle = random(0, 360);
 			}
@@ -160,7 +176,7 @@ Class MaterialBase : CustomInventory
 					A_StartSound(Invoker.PickupSound);
 					
 					return ResolveState("Ded");
-				}
+				}				
 				
 				return ResolveState("Delay");
 			}
@@ -172,8 +188,6 @@ Class MaterialBase : CustomInventory
 			{			
 				//Allow for ingame changes 
 				Invoker.MagnetType = CVar.FindCVar("RMDC_MoneyMagnetType").GetInt();
-			
-				//Angle += 6;		
 			}
 			"####" "#" 1 CheckMagnetType();
 			Loop;
@@ -247,6 +261,7 @@ Class EuroGreen : RMD_EuroBase
 		//Inventory.PickupMessage "Picked up a black hard drive <+10 Data>";
 		Inventory.PickupMessage "";
 		MaterialBase.Money 50;
+		MaterialBase.ItemColor "e6e6e6";
 	}
 }
 
@@ -257,6 +272,7 @@ Class EuroBlue : RMD_EuroBase
 		//Inventory.PickupMessage "Picked up a blue hard drive <+20 Data>";
 		Inventory.PickupMessage "";
 		MaterialBase.Money 100;
+		MaterialBase.ItemColor "e6e6e6";
 	}
 }
 
@@ -267,6 +283,7 @@ Class EuroYellow : RMD_EuroBase
 		//Inventory.PickupMessage "Picked up a yellow hard drive <+50 Data>";
 		Inventory.PickupMessage "";
 		MaterialBase.Money 200;
+		MaterialBase.ItemColor "ef5b0c";
 	}
 }
 
@@ -277,6 +294,7 @@ Class EuroPurple : RMD_EuroBase
 		//Inventory.PickupMessage "Picked up a purple hard drive <+100 Data>";
 		Inventory.PickupMessage "";
 		MaterialBase.Money 400;
+		MaterialBase.ItemColor "14dbff";
 	}
 }
 
@@ -303,7 +321,8 @@ Class CoinGreen : RMD_CoinBase
 	{
 		//Inventory.PickupMessage "Picked up a black floppy <+5 Data>";
 		Inventory.PickupMessage "";
-		MaterialBase.Money 10;
+		MaterialBase.Money 30;
+		MaterialBase.ItemColor "e6e6e6";
 	}
 }
 
@@ -311,7 +330,9 @@ Class CrystalGreen : CoinGreen
 {
 	Default
 	{
+		MaterialBase.Money 10;
 		Inventory.PickupSound "Items/CrystalTake";
+		MaterialBase.ItemColor "21e500";
 	}
 
 }
@@ -322,7 +343,8 @@ Class CoinBlue : RMD_CoinBase
 	{
 		//Inventory.PickupMessage "Picked up a blue floppy <+10 Data>";
 		Inventory.PickupMessage "";
-		MaterialBase.Money 30;
+		MaterialBase.Money 50;
+		MaterialBase.ItemColor "e6e6e6";
 	}
 }
 
@@ -330,7 +352,9 @@ Class CrystalBlue : CoinBlue
 {
 	Default
 	{
+		MaterialBase.Money 30;
 		Inventory.PickupSound "Items/CrystalTake";
+		MaterialBase.ItemColor "0005f6";
 	}
 
 }
@@ -342,7 +366,8 @@ Class CoinYellow : RMD_CoinBase
 	{
 		//Inventory.PickupMessage "Picked up a yellow floppy <+25 Data>";
 		Inventory.PickupMessage "";
-		MaterialBase.Money 50;
+		MaterialBase.Money 100;
+		MaterialBase.ItemColor "ef5b0c";
 	}
 }
 
@@ -350,7 +375,9 @@ Class CrystalYellow : CoinYellow
 {
 	Default
 	{
+		MaterialBase.Money 50;
 		Inventory.PickupSound "Items/CrystalTake";
+		MaterialBase.ItemColor "ffa400";
 	}
 
 }
@@ -362,7 +389,8 @@ Class CoinPurple : RMD_CoinBase
 	{
 		//Inventory.PickupMessage "Picked up a purple floppy <+50 Data>";
 		Inventory.PickupMessage "";
-		MaterialBase.Money 100;
+		MaterialBase.Money 200;
+		MaterialBase.ItemColor "14dbff";
 	}
 }
 
@@ -370,7 +398,9 @@ Class CrystalPurple : CoinPurple
 {
 	Default
 	{
+		MaterialBase.Money 100;
 		Inventory.PickupSound "Items/CrystalTake";
+		MaterialBase.ItemColor "bf00ff";
 	}
 
 }

@@ -40,8 +40,8 @@ Class SFX_Itemshine_Spark : RMD_BaseParticle
 	Default
 	{
 		RenderStyle "AddShaded";
-		+Bright;
-		+NoInteraction;
+		+BRIGHT;
+		+NOINTERACTION;
 		RenderRadius 8;
 		
 	}
@@ -65,8 +65,8 @@ Class SFX_ItemShine_Flare : RMD_BaseParticle
 	Default
 	{
 		RenderStyle "AddShaded";
-		+Bright;
-		+NoInteraction;
+		+BRIGHT;
+		+NOINTERACTION;
 		RenderRadius 3;
 		Alpha 0.8;
 	}
@@ -80,3 +80,40 @@ Class SFX_ItemShine_Flare : RMD_BaseParticle
 	}
 }
 
+Class FX_ItemShineFlare : RMD_BaseParticle
+{
+	Default
+	{
+		RenderStyle "AddShaded";
+		+BRIGHT;
+		+NOINTERACTION;
+		RenderRadius 5;
+		Alpha 0.75;
+	}
+	
+	Override Void Tick()
+	{
+		Super.Tick();
+		
+		//Code taken from Lambda mod, thanks.
+		if (!isFrozen())
+		{				
+			if	(Target || (Target && Target.Health>0))
+			{
+				A_Warp(AAPTR_TARGET, flags:WARPF_INTERPOLATE);
+			}
+			
+			else
+			{
+				Destroy();
+			}
+		}
+	}
+	
+	States
+	{
+		Spawn:
+			LEGX AA 1 NoDelay;
+			Loop;	
+	}
+}
