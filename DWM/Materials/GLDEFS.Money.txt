@@ -1,0 +1,39 @@
+material texture "Models/Money/Ingot/DwarfIngot_Diffuse.png"
+{
+	normal "Models/Money/Ingot/DwarfIngot_NormalGL.png"
+	metallic "Models/Money/Ingot/DwarfIngot_Metallic.png"
+	roughness "Models/Money/Ingot/DwarfIngot_Roughness.png"
+	ao "Models/Money/Ingot/DwarfIngot_AO.png"
+	specularlevel 1.25
+	glossiness 0.65
+}
+
+material texture "Models/Money/Ingot/MoonIngot_Diffuse.png"
+{
+	normal "Models/Money/Ingot/MoonIngot_NormalGL.png"
+	metallic "Models/Money/Ingot/MoonIngot_Metallic.png"
+	roughness "Models/Money/Ingot/MoonIngot_Roughness.png"
+	ao "Models/Money/Ingot/MoonIngot_AO.png"
+	specularlevel 1.25
+	glossiness 0.65
+}
+
+material texture "Models/Money/Ingot/IronIngot_Diffuse.png"
+{
+	normal "Models/Money/Ingot/IronIngot_NormalGL.png"
+	metallic "Models/Money/Ingot/IronIngot_Metallic.png"
+	roughness "Models/Money/Ingot/IronIngot_Roughness.png"
+	ao "Models/Money/Ingot/IronIngot_AO.png"
+	specularlevel 1.25
+	glossiness 0.65
+}
+
+material texture "Models/Money/Ingot/SteelIngot_Diffuse.png"
+{
+	normal "Models/Money/Ingot/SteelIngot_NormalGL.png"
+	metallic "Models/Money/Ingot/SteelIngot_Metallic.png"
+	roughness "Models/Money/Ingot/SteelIngot_Roughness.png"
+	ao "Models/Money/Ingot/SteelIngot_AO.png"
+	specularlevel 1.25
+	glossiness 0.65
+}

@@ -1,66 +1,51 @@
-//------------------------------------------------------------------------------
-//Coin
-//------------------------------------------------------------------------------
 Model CoinGreen
 {
-	Path "Models\Money\DataCube"
-	Model 0 "DataCube.md3"
-	Skin 0 "DataCubeGreen.png"
+	Path "Models\Money\Ingot"
+	Model 0 "Ingot.md3"
+	Skin 0 "IronIngot_Diffuse.png"
 	
-	//ROTATING
 	USEACTORPITCH
 	USEACTORROLL
-	Offset 0 0 15
-	Scale 0.5 0.5 0.5
-	PitchOffset 90
+	Scale 5 5 5
 	
 	FrameIndex IDLE A 0 0
 }
 
 Model CoinBlue
 {
-	Path "Models\Money\DataCube"
-	Model 0 "DataCube.md3"
-	Skin 0 "DataCubeBlue.png"
+	Path "Models\Money\Ingot"
+	Model 0 "Ingot.md3"
+	Skin 0 "SteelIngot_Diffuse.png"
 	
-	//ROTATING
 	USEACTORPITCH
 	USEACTORROLL
-	Offset 0 0 15
-	Scale 0.5 0.5 0.5
-	PitchOffset 90
+	Scale 5 5 5
 	
 	FrameIndex IDLE A 0 0
 }
 
 Model CoinYellow
 {
-	Path "Models\Money\DataCube"
-	Model 0 "DataCube.md3"
-	Skin 0 "DataCubeYellow.png"
+	Path "Models\Money\Ingot"
+	Model 0 "Ingot.md3"
+	Skin 0 "DwarfIngot_Diffuse.png"
 	
-	//ROTATING
 	USEACTORPITCH
 	USEACTORROLL
-	Offset 0 0 15
-	Scale 0.5 0.5 0.5
-	PitchOffset 90
+	Scale 5 5 5
 	
 	FrameIndex IDLE A 0 0
 }
 
 Model CoinPurple
 {
-	Path "Models\Money\DataCube"
-	Model 0 "DataCube.md3"
-	Skin 0 "DataCubePurple.png"
+	Path "Models\Money\Ingot"
+	Model 0 "Ingot.md3"
+	Skin 0 "MoonIngot_Diffuse.png"
 	
-	//ROTATING
 	USEACTORPITCH
 	USEACTORROLL
-	Offset 0 0 15
-	Scale 0.5 0.5 0.5
-	PitchOffset 90
+	Scale 5 5 5
 	
 	FrameIndex IDLE A 0 0
 }
@@ -70,64 +55,52 @@ Model CoinPurple
 //------------------------------------------------------------------------------
 Model EuroGreen
 {
-	Path "Models\Money\Euro"
-	Model 0 "Euro.md3"
-	Skin 0 "EuroGreen.png"
+	Path "Models\Money\Ingot"
+	Model 0 "IngotStack.md3"
+	Skin 0 "IronIngot_Diffuse.png"
 	
-	//ROTATING
 	USEACTORPITCH
 	USEACTORROLL
-	Offset 0 0 7
 	Scale 5 5 5
-	RollOffset 90
 	
 	FrameIndex IDLE A 0 0
 }
 
 Model EuroBlue
 {
-	Path "Models\Money\Euro"
-	Model 0 "Euro.md3"
-	Skin 0 "EuroBlue.png"
+	Path "Models\Money\Ingot"
+	Model 0 "IngotStack.md3"
+	Skin 0 "SteelIngot_Diffuse.png"
 	
-	//ROTATING
 	USEACTORPITCH
 	USEACTORROLL
-	Offset 0 0 7
 	Scale 5 5 5
-	RollOffset 90
 	
 	FrameIndex IDLE A 0 0
 }
 
 Model EuroYellow
 {
-	Path "Models\Money\Euro"
-	Model 0 "Euro.md3"
-	Skin 0 "EuroYellow.png"
+	Path "Models\Money\Ingot"
+	Model 0 "IngotStack.md3"
+	Skin 0 "DwarfIngot_Diffuse.png"
 	
-	//ROTATING
 	USEACTORPITCH
 	USEACTORROLL
-	Offset 0 0 7
 	Scale 5 5 5
-	RollOffset 90
 	
 	FrameIndex IDLE A 0 0
 }
 
 Model EuroPurple
 {
-	Path "Models\Money\Euro"
-	Model 0 "Euro.md3"
-	Skin 0 "EuroPurple.png"
+	Path "Models\Money\Ingot"
+	Model 0 "IngotStack.md3"
+	Skin 0 "MoonIngot_Diffuse.png"
 	
-	//ROTATING
 	USEACTORPITCH
 	USEACTORROLL
-	Offset 0 0 7
 	Scale 5 5 5
-	RollOffset 90
 	
 	FrameIndex IDLE A 0 0
 }

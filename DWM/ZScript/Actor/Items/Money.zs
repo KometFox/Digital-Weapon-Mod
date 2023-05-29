@@ -5,7 +5,7 @@ Class Material : SpecialItem
 {
 	Default
 	{
-		Inventory.pickupmessage "Full of Data!";
+		Inventory.pickupmessage "Money!";
 		Inventory.Amount 1;
 		Inventory.MaxAmount 2000000000; 
 	}
@@ -66,11 +66,11 @@ Class MaterialBase : CustomInventory
 		return ResolveState("Delay");
 	}
 	
-	override void BeginPlay()
+	override void PostBeginPlay()
 	{
-		Super.BeginPlay();
+		Super.PostBeginPlay();
 	
-		//Angle = Random(0, 360);			
+		Angle = Random(0, 360);			
 	}
 	
 	override void Tick()
@@ -129,8 +129,8 @@ Class MaterialBase : CustomInventory
 				if (Invoker.Temp == True)
 				{
 					A_JumpIf(waterlevel >= 1, "CondCheck");
-					Angle += 12;
-					Pitch += 12;
+					Angle += 8;
+					Pitch += 8;
 				}
 			}
 			IDLE A 0 A_CheckFloor("Death");
@@ -173,7 +173,7 @@ Class MaterialBase : CustomInventory
 				//Allow for ingame changes 
 				Invoker.MagnetType = CVar.FindCVar("RMDC_MoneyMagnetType").GetInt();
 			
-				Angle += 6;		
+				//Angle += 6;		
 			}
 			"####" "#" 1 CheckMagnetType();
 			Loop;
@@ -205,70 +205,15 @@ Class MaterialBase : CustomInventory
 }
 
 //------------------------------------------------------------------------------
-//Floppies
+//Ingot Stacks
 //------------------------------------------------------------------------------
-Class Floppy : MaterialBase 
+Class RMD_EuroBase : MaterialBase 
 {
 	Default
 	{
-		//Inventory.PickupMessage "Picked up a unknown floppy";
 		Inventory.PickupMessage "";
-		Inventory.PickupSound "Items/FloppyPick";
-		MaterialBase.Money 0;
-		-COUNTITEM;
-	}
-}
-
-
-Class FloppyBlack : Floppy 
-{
-	Default
-	{
-		//Inventory.PickupMessage "Picked up a black floppy <+5 Data>";
-		Inventory.PickupMessage "";
-		MaterialBase.Money 5;
-	}
-}
-
-Class FloppyBlue : Floppy 
-{
-	Default
-	{
-		//Inventory.PickupMessage "Picked up a blue floppy <+10 Data>";
-		Inventory.PickupMessage "";
-		MaterialBase.Money 10;
-	}
-}
-
-Class FloppyYellow : Floppy 
-{
-	Default
-	{
-		//Inventory.PickupMessage "Picked up a yellow floppy <+25 Data>";
-		Inventory.PickupMessage "";
-		MaterialBase.Money 25;
-	}
-}
-
-Class FloppyPurple : Floppy 
-{
-	Default
-	{
-		//Inventory.PickupMessage "Picked up a purple floppy <+50 Data>";
-		Inventory.PickupMessage "";
-		MaterialBase.Money 50;
-	}
-}
-
-//------------------------------------------------------------------------------
-//Hard Drives
-//------------------------------------------------------------------------------
-Class RMD_Harddrive : MaterialBase 
-{
-	Default
-	{
-		Inventory.PickupMessage "Picked up a unknown hard drive";
-		Inventory.PickupSound "Items/HDDPick";
+		Inventory.PickupSound "Items/IngotTake";
+		Inventory.PickupFlash "";
 		MaterialBase.Money 0;
 		+INVENTORY.ALWAYSPICKUP;
 	}
@@ -282,75 +227,69 @@ Class RMD_Harddrive : MaterialBase
 		//Notes: Using the "LootBox" weighted roll system I have done causes issues.
 		if (bTossed == True || bDropped == True && Temp == True)
 		{
-			//level.total_items--; //decrease the count too
+			//level.total_items--; 
 			bCountItem = False;
 		}
+		/*
 		else 
 		{
-			//level.total_items++;
+			level.total_items++;
 			bCountItem = True;
 		}
+		*/
 	}
-	
 }
 
-Class HardDriveBlack : RMD_Harddrive 
+Class EuroGreen : RMD_EuroBase 
 {
 	Default
 	{
 		//Inventory.PickupMessage "Picked up a black hard drive <+10 Data>";
 		Inventory.PickupMessage "";
-		MaterialBase.Money 10;
+		MaterialBase.Money 50;
 	}
 }
 
-Class HardDriveBlue : RMD_Harddrive 
+Class EuroBlue : RMD_EuroBase 
 {
 	Default
 	{
 		//Inventory.PickupMessage "Picked up a blue hard drive <+20 Data>";
 		Inventory.PickupMessage "";
-		MaterialBase.Money 20;
+		MaterialBase.Money 100;
 	}
 }
 
-Class HardDriveYellow : RMD_Harddrive 
+Class EuroYellow : RMD_EuroBase 
 {
 	Default
 	{
 		//Inventory.PickupMessage "Picked up a yellow hard drive <+50 Data>";
 		Inventory.PickupMessage "";
-		MaterialBase.Money 50;
+		MaterialBase.Money 200;
 	}
 }
 
-Class HardDrivePurple : RMD_Harddrive 
+Class EuroPurple : RMD_EuroBase 
 {
 	Default
 	{
 		//Inventory.PickupMessage "Picked up a purple hard drive <+100 Data>";
 		Inventory.PickupMessage "";
-		MaterialBase.Money 100;
+		MaterialBase.Money 400;
 	}
 }
 
 
-
-
-
-
-
-
-
 //------------------------------------------------------------------------------
-//Coins
+//Ingots
 //------------------------------------------------------------------------------
 Class RMD_CoinBase : MaterialBase 
 {
 	Default
 	{
 		Inventory.PickupMessage "";
-		Inventory.PickupSound "Items/MoneyPick";
+		Inventory.PickupSound "Items/IngotTake2";
 		Inventory.PickupFlash "";
 		MaterialBase.Money 0;
 		-COUNTITEM;
@@ -397,88 +336,5 @@ Class CoinPurple : RMD_CoinBase
 		MaterialBase.Money 200;
 	}
 }
-
-//------------------------------------------------------------------------------
-//Euro
-//------------------------------------------------------------------------------
-Class RMD_EuroBase : RMD_Harddrive 
-{
-	Default
-	{
-		Inventory.PickupMessage "";
-		Inventory.PickupSound "Items/EuroPick";
-		Inventory.PickupFlash "";
-		MaterialBase.Money 0;
-		+INVENTORY.ALWAYSPICKUP;
-	}
-	
-	override void PostBeginPlay()
-	{
-		Super.PostBeginPlay();
-
-		//Don't count towards item tally when dropped. 
-		//Got some help from Jarewill
-		//Notes: Using the "LootBox" weighted roll system I have done causes issues.
-		if (bTossed == True || bDropped == True && Temp == True)
-		{
-			//level.total_items--; //decrease the count too
-			bCountItem = False;
-		}
-		else 
-		{
-			//level.total_items++;
-			bCountItem = True;
-		}
-	}	
-}
-
-
-Class EuroGreen : RMD_EuroBase 
-{
-	Default
-	{
-		//Inventory.PickupMessage "Picked up a black hard drive <+10 Data>";
-		Inventory.PickupMessage "";
-		MaterialBase.Money 50;
-	}
-}
-
-Class EuroBlue : RMD_EuroBase 
-{
-	Default
-	{
-		//Inventory.PickupMessage "Picked up a blue hard drive <+20 Data>";
-		Inventory.PickupMessage "";
-		MaterialBase.Money 100;
-	}
-}
-
-Class EuroYellow : RMD_EuroBase 
-{
-	Default
-	{
-		//Inventory.PickupMessage "Picked up a yellow hard drive <+50 Data>";
-		Inventory.PickupMessage "";
-		MaterialBase.Money 200;
-	}
-}
-
-Class EuroPurple : RMD_EuroBase 
-{
-	Default
-	{
-		//Inventory.PickupMessage "Picked up a purple hard drive <+100 Data>";
-		Inventory.PickupMessage "";
-		MaterialBase.Money 400;
-	}
-}
-
-
-
-
-
-
-
-
 
 
