@@ -397,8 +397,8 @@ Class RMD_MadsenLAR_Bullet : RMD_BaseBullet
 	Default
 	{		
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 12; 
-		RMD_BaseBullet.DamageRand1 4.0;
+		RMD_BaseBullet.ImpactDamage 22; 
+		RMD_BaseBullet.DamageRand1 1.25;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 250;		
 		

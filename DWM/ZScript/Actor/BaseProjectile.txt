@@ -5,7 +5,7 @@ Class RMD_DamageFalloff
 {
 	static float Calc(int SpawnHealth)
 	{	
-		return RMD_Math.Log(40, 10);
+		return RMD_Math.Log(30, 4);
 	}
 }
 
@@ -74,9 +74,11 @@ Class RMD_BaseBullet : FastProjectile
 		if (!Victim.player && Victim.BShootable)
 		{
 			float Logart = 1.0;
-			int NewDamage = 1;
+			int NewDamage = ImpDamage;
 			
-			Logart = RMD_DamageFalloff.Calc(VictimHP);
+			if (VictimHP >= HealthDamage)
+				Logart = RMD_DamageFalloff.Calc(VictimHP);
+			
 			NewDamage = ImpDamage / Logart;
 
 			//Prevent the blood spawning.
