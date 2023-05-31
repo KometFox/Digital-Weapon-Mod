@@ -73,6 +73,12 @@ Class RMD_BaseBullet : FastProjectile
 	
 		if (!Victim.player && Victim.BShootable)
 		{
+			float Logart = 1.0;
+			int NewDamage = 1;
+			
+			Logart = RMD_DamageFalloff.Calc(VictimHP);
+			NewDamage = ImpDamage / Logart;
+
 			//Prevent the blood spawning.
 			if (!Victim.BNoblood && BloodEffect)
 			{
@@ -85,62 +91,33 @@ Class RMD_BaseBullet : FastProjectile
 				Spawn("URPG_BulletArmorImpact", Pos);
 			}
 
-			if (HealthDamage != 0 && VictimHP >= HealthDamage)
+			//Prevent overkill from small arms
+			bool DamageCheck = (Victim.BIsMonster &&
+								NewDamage >= GibHealth &&
+								NewDamage >= VictimHP);
+						
+			if (DamageCheck)
 			{
-				float Logart = 1.0;
-				int NewDamage = 1;
-			
-				Logart = RMD_DamageFalloff.Calc(VictimHP);
-				NewDamage = ImpDamage / Logart;
-				
-				//Prevent overkill from small arms
-				bool DamageCheck = (Victim.BIsMonster &&
-									ImpDamage >= GibHealth &&
-									ImpDamage >= Victim.Health);
-								
-				if (DamageCheck)
-				{
-					victim.DamageMobj(self, target, GibHealth, damagetype, 0);
-				}
-				else
-				{
-					victim.DamageMobj(self, target, NewDamage, damagetype, 0);
-				}
-				
-				return 0;
+				victim.DamageMobj(self, target, -GibHealth, damagetype, 0);
 			}
-
 			else
 			{
-				//Prevent overkill from small arms
-				bool DamageCheck = (Victim.BIsMonster &&
-									ImpDamage >= GibHealth &&
-									ImpDamage >= Victim.Health);		
-		
-				if (DamageCheck)
-				{
-					victim.DamageMobj(self, target, GibHealth, damagetype, 0);
-				}
-				else
-				{
-					victim.DamageMobj(self, target, ImpDamage, damagetype, 0);
-				}
-
-				return 0;			
+				victim.DamageMobj(self, target, NewDamage, damagetype, 0);
 			}
-			
-			return -1;
+				
+				return 0;
 		}
-		
+
 		//Pass through objects that cannot be shooted down.
 		else if (!Victim.Player && !Victim.BShootable)
 		{
 			return 1;
 		}
-		
+
 		//Else return something else.
 		return -1;
 	}
+		
 	
 	
 	States
