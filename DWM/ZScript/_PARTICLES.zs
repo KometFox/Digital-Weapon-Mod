@@ -17,7 +17,6 @@
 #Include "ZScript/Actor/Particles/40mmExplosion.txt"
 #Include "ZScript/Actor/Particles/BarrelExplosion.txt"
 #Include "ZScript/Actor/Particles/LargeExplosion.txt"
-#Include "ZScript/Actor/Particles/M25Rocket.txt"
 #Include "ZScript/Actor/Particles/BulletPlasma.txt"
 #Include "ZScript/Actor/Particles/BigPlasma.txt"
 //Trails
