@@ -5,26 +5,10 @@
 #Include "ZScript/Actor/Items/Items.zs"
 #Include "ZScript/Actor/Items/Ammo.zs"
 //Decorations
-#Include "ZScript/Actor/Decorations/ExplosiveBarrel.zs"
+#Include "ZScript/Actor/Decorations/ExplosiveBarrel.txt"
+#Include "ZScript/Actor/Decorations/ChemicalBarrel.txt"
+#Include "ZScript/Actor/Decorations/HEBarrel.txt"
 //Health
 #Include "ZScript/Actor/Items/Health.zs"
 //Armor
 #Include "ZScript/Actor/Items/Armor.txt"
-
-Class TestModel : Actor
-{
-	Default
-	{
-		Scale 1.0;
-	}
-	
-	States
-	{
-		Spawn:
-			IDLE AA 1;
-			Loop;
-	
-	}
-
-
-}

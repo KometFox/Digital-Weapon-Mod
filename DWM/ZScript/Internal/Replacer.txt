@@ -5,9 +5,10 @@ Class RMD_Replacer : EventHandler
 	//Decorations
 	Enum DECORATIONS
 	{
-		VanillaDoom,
-		VanillaPLUS,
-		MixitUp,
+		REGULAR = 0,
+		MixItUp = 1,
+		Chemical = 2,
+		HE = 3,
 	}
 	
 	override void OnRegister()
@@ -43,33 +44,42 @@ Class RMD_Replacer : EventHandler
 
 		if (e.Replacee == "ExplosiveBarrel")
 		{
-
-			if (BarrelTypes == MIXITUP)
-			{
-				int Dice = Random(0, 1);
-				
-				if (Dice == 0)
-				{
-					e.Replacement = "ExplosiveBarrel";
-				}
-				else if (Dice == 1)
-				{
-					e.Replacement = "RMD_ExplosiveBarrel";
-				}
-			
-			}
-
-			else if (BarrelTypes == VANILLAPLUS)
-			{
-				e.Replacement = "RMD_ExplosiveBarrel";
-			}
-
-			else if (BarrelTypes == VANILLADOOM)
+			if (BarrelTypes == REGULAR)
 			{
 				e.Replacement = "ExplosiveBarrel";
 			}
 			
-
+			else if (BarrelTypes == MIXITUP)
+			{
+				int Dice = Random(0, 1);
+				
+				Switch(Dice)
+				{
+					case 0:
+						e.Replacement = "AcidBarrel";
+						break;
+					
+					case 1:
+						e.Replacement = "HEBarrel";
+						break;
+				}
+			}
+			
+			else if (BarrelTypes == CHEMICAL)
+			{
+				e.Replacement = "AcidBarrel";
+			}
+			
+			else if (BarrelTypes == HE)
+			{
+				e.Replacement = "HEBarrel";
+			}
+		
+			else
+			{
+				e.Replacement = "ExplosiveBarrel";
+			}
+		
 		}
 		
 		return;

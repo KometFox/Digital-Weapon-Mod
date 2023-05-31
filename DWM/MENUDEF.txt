@@ -84,7 +84,8 @@ OptionValue "MagnetType"
 //Decorations
 OptionValue "RMD_BarrelOption"
 {
-    0, "Doom"
-	1, "Vanilla Like"
-	2, "Mix it Up"
+		0, "Regular Barrels"
+		1, "Mix it Up"
+		2, "Chemical Barrels"
+		3, "High Explosive Barrel"
 }
