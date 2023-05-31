@@ -226,7 +226,8 @@ Class BuyMenuScript : EventHandler
 	//Handle the Enter stuff
 	void PressEnter()
 	{
-	
+
+		
 		let Item = Entry(Elements[ElementsSel]);		
 		string CMD = Item.Command;
 
@@ -326,6 +327,8 @@ Class BuyMenuScript : EventHandler
 			}
 		}
 		
+		//Sometimes it fails even here...
+		ElementsFailsafe(ElementsSel);		
 	}
 	
 	void AddItems(BMItems Container)
