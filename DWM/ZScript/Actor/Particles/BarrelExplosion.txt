@@ -13,7 +13,7 @@ Class RMD_BarrelExplosionSpawner : Actor
 				{
 					Vector3 PVel = (FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25)).unit()*FRandom[FX](0.0, 0.0);
 					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
-					let Particle = Spawn("RMD_Boom6", Pos + RPos);
+					let Particle = Spawn("RMD_Boom", Pos + RPos);
 					
 					Particle.Vel = PVel;
 					Particle.Scale = (0.8, 0.8);

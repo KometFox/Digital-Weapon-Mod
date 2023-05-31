@@ -1,26 +1,7 @@
 //------------------------------------------------------------------------------
-//Explosion (Additive)
+//Explosion 
 //------------------------------------------------------------------------------
-Class RMD_Boom5Fast : RMD_BaseParticle
-{
-	Default
-	{
-		RenderStyle "Add";
-		Alpha 1.0;
-		+Bright;
-	}
-
-	States
-	{
-		Spawn:
-			TNT1 A 0;
-			BOM5 ABCDEFGHIJKLMNOPQRSTUVWX 1; 
-			Stop;
-
-	}
-}
-
-Class RMD_Boom6 : RMD_BaseParticle
+Class RMD_Boom : RMD_BaseParticle
 {
 
 	Default

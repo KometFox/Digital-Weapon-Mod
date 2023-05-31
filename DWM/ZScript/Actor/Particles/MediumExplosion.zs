@@ -17,7 +17,7 @@ Class RMD_MediumExplosion : Actor
 				{
 					Vector3 PVel = (FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25)).unit()*FRandom[FX](1.25, 3.0);
 					Vector3 RPos = (frandom(-8, 8), frandom(-8, 8), frandom(-4, 4));
-					let Particle = Spawn("RMD_Boom6", Pos + RPos);
+					let Particle = Spawn("RMD_Boom", Pos + RPos);
 					
 					Particle.Vel = PVel;
 					Particle.Scale = (1.2, 1.2);

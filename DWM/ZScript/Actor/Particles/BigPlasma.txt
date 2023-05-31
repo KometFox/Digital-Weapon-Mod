@@ -13,7 +13,7 @@ Class RMD_BigPlasmaSpawner : Actor
 				{
 					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](1.25, 9.5);
 					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
-					let Particle = Spawn("RMD_Boom6", Pos + RPos);
+					let Particle = Spawn("RMD_Boom", Pos + RPos);
 					
 					Particle.Vel = PVel;
 					Particle.Roll = Random(0, 360);
