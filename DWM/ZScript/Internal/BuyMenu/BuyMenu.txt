@@ -359,7 +359,6 @@ Class BuyMenuScript : EventHandler
 					SelectedItem.Column = 3;				
 				}
 
-
 				Slot += 1;
 
 				//Make it 5 slots per row;
@@ -389,7 +388,6 @@ Class BuyMenuScript : EventHandler
 		int Amount;
 		
 		Amount = 0;
-		Index = Index;
 		
 		if (Index >= Elements.Size())
 			Index = Elements.Size() -1;
@@ -465,10 +463,6 @@ Class BuyMenuScript : EventHandler
 		ElementsFailsafe(ElementsSel);
 	}
 	
-	//0 1 = 2
-	//2 3 4 5 6 = 5
-	//7 8 9 = 3
-
 	void CursorMover(string MoveTo)
 	{
 		if (MoveTo == "RIGHT")
