@@ -12,6 +12,7 @@ Class BuyMenuScript : EventHandler
 	int ElementsLastIndex; 
 	//Other
 	StructKeyArrow KeyArrow; //The Arrow
+	PlayerPawn VPlayer;
 
 	Struct StructKeyArrow
 	{
@@ -22,13 +23,7 @@ Class BuyMenuScript : EventHandler
 	//data of it.
 	void AddElements(UIElement Thing)
 	{
-		//ElementsRow.Grow(10);
-
 		ElementsLastIndex = Thing.Column;
-		//ElementsRow.Insert(ElementsLastIndex, 1);
-		//ElementsRow.Grow(1);
-		//ElementsRow[ElementsLastIndex] += 1;
-		//ElementsRow.Push(1);
 		Elements.Push(Thing);
 	}
 
@@ -36,13 +31,12 @@ Class BuyMenuScript : EventHandler
 	void ClearElements()
 	{
 		Elements.Clear();
-		//ElementsRow.Clear();
-		//ElementsRow.Grow(1);
 	}
 	
 	override void WorldLoaded(WorldEvent e)
 	{
-		//ElementsRow.Grow(10);
+		//Default player
+		VPlayer = Players[0].mo;
 	}
 
 
@@ -59,79 +53,67 @@ Class BuyMenuScript : EventHandler
 
 	
 	//Display stuff
-	override void renderOverlay(RenderEvent e)
+	ui void RenderTextEntry(int Index)
 	{
-
-		if (Enabled == True && Elements.size() > 0)
-		{
-			//Display all the elements
-			for (int i = 0; i < Elements.size(); i++)
-			{
-				
-			
-				//Display Text
-				if (Elements[i] is "TextEntry")
-				{
-					TextEntry Pick = TextEntry(Elements[i]); 
-					
-					if (Pick)
-					{
-						if (i == ElementsSel)
-						{
-							AddText(String.Format("[%s]", Pick.Text), Pick.rect_pos.x, Pick.rect_pos.y);
-						}
-						else
-						{
-							AddText(Pick.Text, Pick.rect_pos.x, Pick.rect_pos.y);
-						}
-					}
-					
-				}
-
-				
-				//Display Graphics
-				if (Elements[i] is "BuyMenuItems")
-				{
-					BuyMenuItems Pick = BuyMenuItems(Elements[i]); 
-					
-					if (Pick)
-					{
-						if (i == ElementsSel)
-						{
-							TextureID GrSelect = TexMan.CheckForTexture("64BLUSEL", TexMan.Type_Any);
-						
-							AddImage(GrSelect, Pick.rect_pos.x, Pick.rect_pos.y);
-							AddImage(Pick.Graphic, Pick.rect_pos.x, Pick.rect_pos.y);
-							
-							DisplayItem();
-						}
-						else
-						{
-							AddImage(Pick.Graphic, Pick.rect_pos.x, Pick.rect_pos.y);
-						}
-					}
-					
-				}
-
-
-			}		
-		}
+		if (!(Elements[Index] is "TextEntry"))
+			return;
+		
+		TextEntry Text = TextEntry(Elements[Index]);
+		String TheText = Text.Text;
+		
+		if (ElementsSel == Index)
+			TheText = "[" .. Text.Text .. "]";
+		
+		AddText(TheText, Text.rect_pos.x, Text.rect_pos.y);		
 	}
+	
+	ui void RenderItemsEntry(int Index)
+	{
+		if (!(Elements[Index] is "GraphicEntry"))
+			return;
+			
+		BuyMenuItems Item = BuyMenuItems(Elements[Index]); 
+		TextureID GrSelect = TexMan.CheckForTexture("64BLUSEL", TexMan.Type_Any);
+
+		AddImage(Item.Graphic, Item.rect_pos.x, Item.rect_pos.y);			
+
+		if (ElementsSel == Index)
+			AddImage(GrSelect, Item.rect_pos.x, Item.rect_pos.y);	
+
+		DisplayItem();
+		
+		return;
+	}	
 	
 	//Display information about the selected Item.
 	ui void DisplayItem()
 	{
-		if (Elements[ElementsSel] is "BuyMenuItems")
+		if (!(Elements[ElementsSel] is "BuyMenuItems"))
+			return;
+			
+		BuyMenuItems Pick = BuyMenuItems(Elements[ElementsSel]); 
+		
+		if (Pick)
 		{
-			BuyMenuItems Pick = BuyMenuItems(Elements[ElementsSel]); 
-			let Player = Players[0].mo; 
-					
-			if (Pick != null && Player != null)
-			{
-					AddText(String.Format("Item: [%s]", Pick.ItemName), 470, 150);
-					AddText(String.Format("Amount: [%d]", Player.CountInv(Pick.ID)), 470, 160);
-					AddText(String.Format("Cost: [%d]", Pick.Cost), 470, 170);
-			}
+			AddText(String.Format("Item: [%s]", Pick.ItemName), 470, 150);
+			AddText(String.Format("Amount: [%d]", VPlayer.CountInv(Pick.ID)), 470, 160);
+			AddText(String.Format("Cost: [%d]", Pick.Cost), 470, 170);
+		}
+	}
+	
+	override void renderOverlay(RenderEvent e)
+	{
+		if (Enabled == True)
+		{
+			//Display all the elements
+			for (int i = 0; i < Elements.size(); i++)
+			{				
+				//Display Text
+				RenderTextEntry(i);
+				
+				//Display Items 
+				RenderItemsEntry(i);
+			}		
 		}
 	}
 	
@@ -139,111 +121,99 @@ Class BuyMenuScript : EventHandler
 	void Purchase(BuyMenuItems Item)
 	{
 		//Failsafe
-		if (Item == null)
-		{
+		if (!Item)
 			return;
-		}
 
-		let Player = Players[0].mo; //The playa
 		int Money = 0; //Good boy points
-		Inventory PItem = Player.FindInventory(Item.ID, false); 
+		Inventory PItem = VPlayer.FindInventory(Item.ID, false); 
 
+		let BMS = RMD_MoneyHandler(StaticEventHandler.Find('RMD_MoneyHandler'));
 
-
-		//Null checking...
-		if (Player != null)
+			
+		//Check for Items
+		if (PItem)
 		{
-			let BMS = RMD_MoneyHandler(StaticEventHandler.Find('RMD_MoneyHandler'));
-
-			
-			//Check for Items
-			if (PItem)
+			if (VPlayer.CountInv(Item.ID) >= PItem.MaxAmount)
 			{
-				if (Player.CountInv(Item.ID) >= PItem.MaxAmount)
-				{
-					return;
-				}
+				return;
 			}
-			
-			//Check for Armor
-			if (Item.Category == "Armor")
-			{
-				Actor ArmorP; //Pointer
-				BasicArmorPickup ArmorItem; //The casting crap
-				Inventory PlayerArmor;
-				BasicArmor PlayerArmorCast;
-				int PlayerArmorPercent; //BasicArmor calculates armor percenatge differntly
-				
-				ArmorP = ArmorP.Spawn(Item.ID);
-				PlayerArmor = Player.FindInventory("BasicArmor");
-				ArmorItem = BasicArmorPickup(ArmorP);
-				PlayerArmorCast = BasicArmor(PlayerArmor);
-				PlayerArmorPercent = PlayerArmorCast.SavePercent * 100;
-								
-				//Console.PrintF("Player Armor P: %d", PlayerArmorPercent);
-				//Console.PrintF("Item Armor P: %d", ArmorItem.SavePercent);
-								
-				if (ArmorItem.SavePercent >= PlayerArmorPercent
-					&& ArmorItem.SaveAmount <= PlayerArmor.Amount)
-				{
-					ArmorP.Die(ArmorP, ArmorP);
-					return;
-				}
-				
-					
-				ArmorP.Die(ArmorP, ArmorP);
-			}
-			
-			//Check for Health
-			if (Item.Category == "Health")
-			{
-				Actor HealthP; //Pointer
-				Inventory HealthItem; //The casting crap
-				
-				HealthP = HealthP.Spawn(Item.ID);
-				HealthItem = Inventory(HealthP);
-				
-				if (Player.Health >= HealthItem.MaxAmount)
-				{
-					HealthP.Die(HealthP, HealthP);
-					return;
-				}
-				
-					
-				HealthP.Die(HealthP, HealthP);
-			}
-			
-			//Check for his geld and if he has enough of it, buy it.
-			if (Player.CountInv("Material") >= Item.Cost)
-			{
-				//Free shit took all my money. 
-				if (Item.Cost > 0)
-				{
-					Player.A_TakeInventory("Material", Item.Cost);
-				}
-			
-				Player.A_GiveInventory(Item.ID, Item.Amount);
-				
-				//Play a sound effect too
-				if (Item.BuySound)
-				{
-					S_StartSound(Item.BuySound, CHAN_VOICE, CHANF_UI|CHANF_NOPAUSE, 1.0);
-				}
-			}
-			//else fail
-			else
-			{
-				//AddText("You have not enough money to buy this.", 250, 250);
-				return; 
-			}
-
-
-			//Save the money after purchase
-			BMS.SaveMoney();
-
 		}
-	
-	
+			
+		//Check for Armor
+		if (Item.Category == "Armor")
+		{
+			Actor ArmorP; //Pointer
+			BasicArmorPickup ArmorItem; //The casting crap
+			Inventory PlayerArmor;
+			BasicArmor PlayerArmorCast;
+			int PlayerArmorPercent; //BasicArmor calculates armor percenatge differntly
+				
+			ArmorP = ArmorP.Spawn(Item.ID);
+			PlayerArmor = VPlayer.FindInventory("BasicArmor");
+			ArmorItem = BasicArmorPickup(ArmorP);
+			PlayerArmorCast = BasicArmor(PlayerArmor);
+			PlayerArmorPercent = PlayerArmorCast.SavePercent * 100;
+								
+			//Console.PrintF("Player Armor P: %d", PlayerArmorPercent);
+			//Console.PrintF("Item Armor P: %d", ArmorItem.SavePercent);
+								
+			if (ArmorItem.SavePercent >= PlayerArmorPercent
+				&& ArmorItem.SaveAmount <= PlayerArmor.Amount)
+			{
+				ArmorP.Die(ArmorP, ArmorP);
+				return;
+			}
+				
+					
+			ArmorP.Die(ArmorP, ArmorP);
+		}
+			
+		//Check for Health
+		if (Item.Category == "Health")
+		{
+			Actor HealthP; //Pointer
+			Inventory HealthItem; //The casting crap
+				
+			HealthP = HealthP.Spawn(Item.ID);
+			HealthItem = Inventory(HealthP);
+				
+			if (VPlayer.Health >= HealthItem.MaxAmount)
+			{
+				HealthP.Die(HealthP, HealthP);
+				return;
+			}
+				
+					
+			HealthP.Die(HealthP, HealthP);
+		}
+			
+		//Check for his geld and if he has enough of it, buy it.
+		if (VPlayer.CountInv("Material") >= Item.Cost)
+		{
+			//Free shit took all my money. 
+			if (Item.Cost > 0)
+			{
+				VPlayer.A_TakeInventory("Material", Item.Cost);
+			}
+			
+			VPlayer.A_GiveInventory(Item.ID, Item.Amount);
+				
+			//Play a sound effect too
+			if (Item.BuySound)
+			{
+				S_StartSound(Item.BuySound, CHAN_VOICE, CHANF_UI|CHANF_NOPAUSE, 1.0);
+			}
+		}
+		//else fail
+		else
+		{
+			//AddText("You have not enough money to buy this.", 250, 250);
+			return; 
+		}
+
+
+		//Save the money after purchase
+		BMS.SaveMoney();
 	}
 	
 	//Lazy alias to reinit the menu stuff
@@ -256,7 +226,6 @@ Class BuyMenuScript : EventHandler
 	//Handle the Enter stuff
 	void PressEnter()
 	{
-		ElementsFailsafe();
 	
 		let Item = Entry(Elements[ElementsSel]);		
 		string CMD = Item.Command;
@@ -400,159 +369,111 @@ Class BuyMenuScript : EventHandler
 				}
 				
 				AddElements(SelectedItem);
-				
 			}
 	}
 	
 	
 	//Element selection fail safe
-	void ElementsFailsafe()
-	{
-		if (ElementsSel >= Elements.Size())
-		{
-			ElementsSel = Elements.Size() -1;
-		}
-		
-		if (ElementsSel < 0)
-		{
-			ElementsSel = 0;
-		}
+	void ElementsFailsafe(int CurIndex)
+	{	
+		if (CurIndex >= Elements.Size())
+			CurIndex = Elements.Size() -1;
+		else if (CurIndex < 0)
+			CurIndex = 0;		
+			
+		ElementsSel = CurIndex;
 	}
 	
+	int GetCurrentRowSize(int Index = 1, int ColumnShift = 0)
+	{
+		int Amount;
+		
+		Amount = 0;
+		Index = Index;
+		
+		if (Index >= Elements.Size())
+			Index = Elements.Size() -1;
+		else if (Index < 0)
+			Index = 0;		
+		
+		for (int i = 0; i < Elements.Size(); i++)
+		{
+			if (Elements[i].Column == Elements[Index].Column + ColumnShift)
+			{
+				Amount += 1;
+			}
+		}
+		
+		return Amount;
+	}
 
 	//Get the next Element
 	void Elements_NextItem()
 	{
-		ElementsFailsafe();
 		ElementsSel += 1;
-		
-		if (ElementsSel >= Elements.Size())
-		{
-			ElementsSel = Elements.Size() -1;
-		}
+		ElementsFailsafe(ElementsSel);
 	}
 	
 	//Get the previous Element
 	void Elements_PreviousItem()
 	{
-		ElementsFailsafe();
 		ElementsSel -= 1;
-		
-		if (ElementsSel < 0)
-		{
-			ElementsSel = 0;
-		}	
+		ElementsFailsafe(ElementsSel);
 	}
-	/*
-	   0 | 1 | 2 = 0
-	   3 | 4 | 5 = 1
-	   6 | 7 | 8 = 2
-	   
-	   Index = 4;
-	   Column = 1;
-	   
-	*/
-	
 	
 	//Get the element below
 	void Elements_DownItem()
 	{
-		ElementsFailsafe();
-
-		int OldIndex; //The old index
-		int TotalRows; //The Total rows below
-		int MCCalc; //Do some calculation
-		
-		OldIndex = ElementsSel;
-		
-		//Figure out Total Rows first from elements below
-		for (int i = 0; i < Elements.Size(); ++i)
+		int GoingTo;
+		int CurrentRowSize;
+				
+		CurrentRowSize = GetCurrentRowSize(ElementsSel, 0);
+		GoingTo = 0;
+	
+		if (CurrentRowSize == 0)
 		{
-			if (Elements[i].Column > Elements[OldIndex].Column)
-			{
-				TotalRows += 1;
-				MCCalc = Elements[i].Column - Elements[OldIndex].Column ;
-
-				if (MCCalc > 1)
-				{
-					Break;
-				}
-			}		
-
-			
+			GoingTo = ElementsSel + 1;
+		}
+		else
+		{
+			GoingTo = CurrentRowSize + ElementsSel;
 		}
 		
-		//A shitty work around because I can't make the loop to stop -before-
-		//2 at MCCalc
-		if (MCCalc <= 1)
-		{
-			ElementsSel = ElementsSel + TotalRows;
-		}
-		else 
-		{
-			ElementsSel = ElementsSel + TotalRows -1;
-		}
-
-		//Console.PrintF("Calc: %d", MCCalc);
-		//Console.PrintF("TR: %d", TotalRows);
-		
-		
+		ElementsSel = GoingTo;
+		ElementsFailsafe(ElementsSel);
 	}
 	
 	//Get the element above
 	void Elements_UpItem()
 	{
-		ElementsFailsafe();
-
-		int OldIndex; //The old index
-		int TotalRows; //The Total rows below
-		int MCCalc; //Do some calculation
+		int GoingTo;
+		int CurrentRowSize;
+	
+		CurrentRowSize = GetCurrentRowSize(ElementsSel, 0);
+		GoingTo = 0;		
 		
-		OldIndex = ElementsSel;
-		
-		//Figure out Total Rows first from elements below
-		for (int i = Elements.Size() -1; i > 0; i--)
+		if (CurrentRowSize == 0)
 		{
-			if (Elements[i].Column < Elements[OldIndex].Column)
-			{
-				TotalRows += 1;
-				MCCalc = Elements[OldIndex].Column - Elements[i].Column;
-
-				if (MCCalc > 1)
-				{
-					Break;
-				}
-			}		
-			
+			GoingTo = ElementsSel - 1;
 		}
-		
-		//A shitty work around because I can't make the loop to stop -before-
-		//2 at MCCalc
-		if (MCCalc <= 1)
+		else
 		{
-			ElementsSel = TotalRows - ElementsSel;
-			//Failsafe
-			if (ElementsSel < 0)
-			{
-				ElementsSel = 0;
-			}
+			GoingTo = ElementsSel - GetCurrentRowSize(ElementsSel, -1);
 		}
-		else 
-		{
-			ElementsSel = ElementsSel - TotalRows +1;
-		}
-		
 
-		//Console.PrintF("Calc: %d", MCCalc);
-		//Console.PrintF("TR: %d", TotalRows);	
+		ElementsSel = GoingTo;
+		ElementsFailsafe(ElementsSel);
 	}
 	
-	
+	//0 1 = 2
+	//2 3 4 5 6 = 5
+	//7 8 9 = 3
+
 	void CursorMover(string MoveTo)
 	{
 		if (MoveTo == "RIGHT")
 		{
-			Elements_NextItem();	
+			Elements_NextItem();
 		}
 		else if (MoveTo == "LEFT")
 		{
@@ -566,8 +487,8 @@ Class BuyMenuScript : EventHandler
 		{
 			Elements_UpItem();
 		}
-	
 	}
+	
 	
 	//Detect player input
 	override bool InputProcess (InputEvent e)
@@ -615,7 +536,11 @@ Class BuyMenuScript : EventHandler
 		{
 			if (Enabled == False)
 			{
-//				Console.PrintF("Opening Menu");
+				VPlayer = Players[e.Player].mo;
+				
+				if (!VPlayer)
+					return;
+				
 				//Initalize the Menu
 				InitMenu();
 
@@ -624,7 +549,6 @@ Class BuyMenuScript : EventHandler
 			}
 			else
 			{
-//				Console.PrintF("Closing Menu");
 				//Clear upon closing
 				ClearElements();
 
@@ -633,17 +557,6 @@ Class BuyMenuScript : EventHandler
 			}
 			
 		}
-		
-		/*
-		if (e.Name = "BM_BuyAmmo1")
-		{
-			BuyAmmo(Ammo1);
-		}
-		else if (e.Name = "BM_BuyAmmo2)
-		{
-			BuyAmmo(Ammo2);
-		}
-		*/
 		
 		//Detect Keys
 		if (Enabled == True)
@@ -671,50 +584,9 @@ Class BuyMenuScript : EventHandler
 			else if (e.Name == "ENTER")
 			{
 				PressEnter();
-			}
-		
-		}
-		
-		
+			}		
+		}		
 	
 	}	
 
 }
-
-//The UI elements...
-Class UIElement
-{
-	Vector2 rect_pos; //the position
-	int Row;  //The row
-	int Column;  //The column
-}
-
-//Interactable Element
-Class Entry : UIElement
-{
-	String Text; //The text to display
-	String Command; //The command to send
-	
-	String GetText()
-	{
-		return Text;
-	}
-	
-	String GetCommand()
-	{
-		return Command;
-	}
-}
-
-//Interactable Text Element
-Class TextEntry : Entry
-{
-
-}
-
-//Interactable Graphic Element
-Class GraphicEntry : Entry
-{
-	TextureID Graphic; //The graphic to display
-}
-
