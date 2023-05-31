@@ -3,12 +3,9 @@
 //------------------------------------------------------------------------------
 Class RMD_DamageFalloff 
 {
-	static float Calc(int SpawnHealth, int HealthDamage, int Damage)
+	static float Calc(int SpawnHealth)
 	{	
-		if (SpawnHealth > HealthDamage)
-			return 1.5;
-		
-		return 1.0;
+		return RMD_Math.Log(40, 10);
 	}
 }
 
@@ -52,23 +49,6 @@ Class RMD_BaseBullet : FastProjectile
 		
 		float CVAR_BulletDamage = CVar.FindCVar("RMDC_BulletDamage").GetFloat();
 		
-		/*
-		if (CVARS)
-		{
-			CVAR_BulletDamage = CVARS;
-			//Console.Printf("BulletDamage: %f", CVAR_BulletDamage);
-			//Console.PrintF("Got CVAR");
-		}
-		else
-		{
-			//Console.Printf("BulletDamage: %f", CVAR_BulletDamage);
-			//Console.PrintF("Got no CVAR");
-		}
-		*/
-	
-		//Console.Printf("BulletDamage: %f", CVAR_BulletDamage);
-	
-		//Normal Damage
 		ImpDamage *= FRandom(1.0, DamageRand1);	
 		ImpDamage *= CVAR_BulletDamage;
 	}
@@ -84,14 +64,10 @@ Class RMD_BaseBullet : FastProjectile
 		Class<Actor> BloodEffect = Victim.GetBloodType(0);
 		Actor Blood;
 		
-		//If its a stupid magic number...
+		//Magic numbers are bad...
 		if (GibHealth == -2147483648)
 		{
 			GibHealth = Victim.SpawnHealth();
-		}
-		else if (GibHealth < 0)
-		{
-			GibHealth = abs(Victim.GibHealth);
 		}
 		
 	
@@ -109,20 +85,18 @@ Class RMD_BaseBullet : FastProjectile
 				Spawn("URPG_BulletArmorImpact", Pos);
 			}
 
-			if (VictimHP > HealthDamage && HealthDamage != 0)
+			if (HealthDamage != 0 && VictimHP >= HealthDamage)
 			{
 				float Logart = 1.0;
 				int NewDamage = 1;
 			
-				Logart = RMD_DamageFalloff.Calc(VictimHP, HealthDamage, ImpDamage);
+				Logart = RMD_DamageFalloff.Calc(VictimHP);
 				NewDamage = ImpDamage / Logart;
 				
 				//Prevent overkill from small arms
-				//Fixing the damn overkill is harder than I thought.
-				//and Magic numbers are bad
 				bool DamageCheck = (Victim.BIsMonster &&
-									NewDamage >= GibHealth &&
-									NewDamage >= Victim.Health);
+									ImpDamage >= GibHealth &&
+									ImpDamage >= Victim.Health);
 								
 				if (DamageCheck)
 				{

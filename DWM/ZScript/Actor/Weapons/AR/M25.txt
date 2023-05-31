@@ -403,7 +403,7 @@ Class RMD_M25_Bullet : RMD_BaseBullet
 	{		
 		//Normal Damage
 		RMD_BaseBullet.ImpactDamage 10; 
-		RMD_BaseBullet.DamageRand1 3.25;
+		RMD_BaseBullet.DamageRand1 3.5;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 200;		
 		
