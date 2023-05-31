@@ -57,6 +57,64 @@ Class RMD_Boom : RMD_BaseParticle
 			Stop;
 	}
 }
+
+
+Class RMD_Fire : RMD_BaseParticle
+{
+
+	Default
+	{
+		RenderStyle "Add";
+		Alpha 1.0;
+		+Bright;
+	}
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		Roll = Random[FX](0, 360);
+		Angle = Random[FX](0, 360);	
+	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+		
+		if (!Level.IsFrozen())
+		{
+			A_SetScale(Scale.X * 1.0175, Scale.Y * 1.0175);	
+		}	
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 
+			{
+				if (random(0, 1) == 1)
+					return ResolveState("Sprite1");
+				else if (random(0, 1) == 1)
+					return ResolveState("Sprite2");
+				else 
+					return ResolveState("Sprite3");			
+			}
+			Goto Sprite1;
+		Sprite1:
+			FIR) A 0; 
+			Goto Loopy;
+		Sprite2:
+			FIR9 A 0; 
+			Goto Loopy;
+		Sprite3:
+			FIR9 A 0; 
+			Goto Loopy;
+		Loopy:
+			"####" ABCDEFGHIJKLMNOP 1;
+			Stop;
+	}
+}
 //------------------------------------------------------------------------------
 //Other
 //------------------------------------------------------------------------------
@@ -148,7 +206,7 @@ Class RMD_DarkSmoke : RMD_Smoke
 	Default
 	{
 		RenderStyle "Translucent";
-		Alpha 1.5;
+		Alpha 1.0;
 	}
 	
 	States
@@ -158,19 +216,19 @@ Class RMD_DarkSmoke : RMD_Smoke
 			TNT1 A 0 A_Jump(256, "Smoke1", "Smoke2", "Smoke3", "Smoke4");
 		Smoke1:
 			SMXA A 18;
-			SMXA AAAAAAAAAA 1 A_FadeOut(0.15);
+			SMXA AAAAAAAAAA 1 A_FadeOut(0.10);
 			Stop;
 		Smoke2:
 			SMXB A 18;
-			SMXB AAAAAAAAAA 1 A_FadeOut(0.15);
+			SMXB AAAAAAAAAA 1 A_FadeOut(0.10);
 			Stop;
 		Smoke3:
 			SMXC A 18;
-			SMXC AAAAAAAAAA 1 A_FadeOut(0.15);
+			SMXC AAAAAAAAAA 1 A_FadeOut(0.10);
 			Stop;
 		Smoke4:
 			SMXD A 18;
-			SMXD AAAAAAAAAA 1 A_FadeOut(0.15);
+			SMXD AAAAAAAAAA 1 A_FadeOut(0.10);
 			Stop;
 	}
 }

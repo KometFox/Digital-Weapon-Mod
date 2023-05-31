@@ -17,7 +17,7 @@ Class RMD_40mmExplosionSpawner : Actor
 					Actor Particle;
 					Bool Spawned;
 					
-					[Spawned, Particle] = A_SpawnItemEx("RMD_Boom6", flags: FXFLAG);
+					[Spawned, Particle] = A_SpawnItemEx("RMD_Boom", flags: FXFLAG);
 					
 					Particle.TeleportMove(Pos + RPos, false);
 					Particle.Vel = PVel;
