@@ -63,9 +63,9 @@ Class ID_ScoreCalculator : EventHandler
 		
 		//Give a big bonus when its a boss, and a lously check to make sure
 		//Arachnotron and Fatso doesn't "count" as boss. 
-		if (Mine.MonsterObj.bBoss && Mine.MonsterObj.GetSpawnHealth() >= 1000)
+		if (Mine.MonsterObj.bBoss && Mine.MonsterObj.GetSpawnHealth() >= 1001)
 		{
-			Score += 100;
+			Score += 500;
 		}
 	
 		//Bonus for aggressive monster
@@ -87,7 +87,6 @@ Class ID_ScoreCalculator : EventHandler
 			MHealth = Mine.MonsterObj.GetSpawnHealth(); 
 			
 			Score += MHealth;
-			//Score += (MHealth * 0.90);
 		}
 		
 		//Check for its size...
@@ -96,7 +95,7 @@ Class ID_ScoreCalculator : EventHandler
 		&& Mine.MonsterObj.bFloat
 		&& Mine.MonsterObj.GetSpawnHealth() <= 100)
 		{
-			Score -= 250;
+			Score -= 500;
 		}
 		
 		//Else half of the score? 
@@ -117,9 +116,7 @@ Class ID_ScoreCalculator : EventHandler
 		if (Mine.MonsterObj.Radius >= 20)
 		{
 			Score = (Score * (Mine.MonsterObj.Radius / 15));
-		
-		}
-		
+		}		
 		
 		return Score;
 	}
@@ -180,16 +177,9 @@ Class ID_ItemDropGenerator : EventHandler
 		Actor Drop;
 		float ChanceB;
 
-		/*
-		ChanceB = Mine.Mon.GetSpawnHealth() / 85;
-		if (ChanceB >= 1.3)
-		{
-			ChanceB = 1.3;
-		}
-		*/
 		ChanceB = 1.0;
 
-		if (Mine.MonScore >= 1500)
+		if (Mine.MonScore >= 1001)
 		{
 			Drop = Mine.Mon.Spawn("ID_BossDrop", Mine.Mon.Pos);
 			let Dropy = ID_DropBase(Drop);
@@ -293,76 +283,14 @@ Class ID_ItemDropGenerator : EventHandler
 			
 		}
 	}
-	
-	//Or to the Player when the cvar for it is set. 
-
 }
 
 //The Functionalities
 class ID_DropBase : Actor
 {
 	Array<LB_ChanceItems> Drops; 
-	//Array<ID_DropContainer> Drops;
 	int MyChance; //Chance to drop the loot "bag". 
 	const MaxChance = 100;
-	
-	/*
-	//Old Weighted Roll based
-	void AddItems(class<actor> VItem, int VAmount, float VRollWeight)
-	{
-		//The Container
-		let Container = new("LB_WeightedItems");
-		Container.Item = VItem;
-		Container.Amount = VAmount;
-		Container.RollWeight = VRollWeight;
-		//The Array
-		Drops.push(Container);
-	}
-	
-	void InitDrops(int VRollWeight)
-	{
-		//0 is needed as a "sentinel" value.
-		//The Container
-		let Container = new("LB_WeightedItems");
-		Container.Item = "ExplosiveBarrel"; //Shouldn't be spawning anything. TODO: Error Actor instead. 
-		Container.Amount = 0;
-		Container.RollWeight = VRollWeight; //0 chance of appearing.
-		//The Array
-		Drops.push(Container);
-	}
-	
-	void DropItems()
-	{		
-		let WeightRoll = new("LB_WeightedRoll");
-		int ArrayAmount = Drops.Size();
-		int ToDrop = 0;
-		
-		WeightRoll.InitProbability(Drops);
-		
-		for (int I = 0; I < ArrayAmount; I++)
-		{
-			ToDrop = WeightRoll.PickSomeObject(Drops);
-
-			//Skip this Item...
-			if (Drops[ToDrop].Amount == 0)
-			{
-				continue;
-			}
-
-			if (Drops[ToDrop].Picked == false && ToDrop < ArrayAmount)
-			{
-				Drops[ToDrop].Picked = true;
-				LootSpawn(ToDrop);
-			}
-			else
-			{
-				continue;
-			}
-		}
-
-	}
-	
-	*/
 
 	void InitDrops(float Chance)
 	{
@@ -529,6 +457,4 @@ Class LootBoxDropped : Actor
 			}
 			Stop;
 	}
-
-
 }
