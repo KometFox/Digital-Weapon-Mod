@@ -111,7 +111,7 @@ Class RMD_BaseBullet : FastProjectile
 		}
 
 		//Pass through objects that cannot be shooted down.
-		else if (!Victim.Player && !Victim.BShootable)
+		else if (!Victim.Player || !Victim.BShootable)
 		{
 			return 1;
 		}
