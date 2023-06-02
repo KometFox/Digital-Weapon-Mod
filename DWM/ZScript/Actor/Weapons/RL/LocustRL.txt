@@ -16,8 +16,8 @@ class RMD_LocustRL : BaseWeapon
 		
 		BaseWeapon.IronSight IRON_INACTIVE;
 		
-		BaseWeapon.MagazineMax 10;
-		BaseWeapon.Magazine 10;
+		BaseWeapon.MagazineMax 6;
+		BaseWeapon.Magazine 6;
 		
 	}
 
@@ -206,7 +206,7 @@ Class RMD_LocustRL_Rocket : HeavyExplosivesFast
 		//Impact 
 		BaseProjectileFast.ImpactDamage 0;
 		//Splash 
-		BaseProjectileFast.SplashDamage 200;
+		BaseProjectileFast.SplashDamage 230;
 		BaseProjectileFast.FullSplashDamage 70;
 		BaseProjectileFast.SplashRadius 130;
 		

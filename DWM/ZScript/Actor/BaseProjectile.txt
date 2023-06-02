@@ -5,7 +5,7 @@ Class RMD_DamageFalloff
 {
 	static float Calc(int SpawnHealth)
 	{	
-		return RMD_Math.Log(30, 4);
+		return RMD_Math.Log(5, 3);
 	}
 }
 
@@ -100,14 +100,14 @@ Class RMD_BaseBullet : FastProjectile
 						
 			if (DamageCheck)
 			{
-				victim.DamageMobj(self, target, -GibHealth, damagetype, 0);
+				victim.DamageMobj(self, target, GibHealth, damagetype, 0);
 			}
 			else
 			{
 				victim.DamageMobj(self, target, NewDamage, damagetype, 0);
 			}
 				
-				return 0;
+			return 0;
 		}
 
 		//Pass through objects that cannot be shooted down.

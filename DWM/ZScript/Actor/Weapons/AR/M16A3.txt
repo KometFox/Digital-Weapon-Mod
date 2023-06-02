@@ -231,8 +231,8 @@ Class RMD_M16A3_Bullet : RMD_BaseBullet
 	Default
 	{		
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 12; 
-		RMD_BaseBullet.DamageRand1 3.75;
+		RMD_BaseBullet.ImpactDamage 8; 
+		RMD_BaseBullet.DamageRand1 2.85;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 240;		
 		
