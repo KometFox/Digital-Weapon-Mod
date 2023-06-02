@@ -112,9 +112,9 @@ class RMD_Milk : Health
 	Default
 	{
 		-COUNTITEM
-		Inventory.Amount 5;
+		Inventory.Amount 10;
 		Inventory.MaxAmount 1000;
-		Inventory.PickupMessage "You drinked a box of milk. <+5 HP>";
+		Inventory.PickupMessage "You drinked a box of milk. <+10 HP>";
 		Inventory.PickupSound "Player/Drink";
 	}
 	
@@ -239,9 +239,9 @@ class RMD_Stimpack : Health
 	Default
 	{
 		-COUNTITEM
-		Inventory.Amount 10;
-		Inventory.MaxAmount 200;
-		Inventory.PickupMessage "You picked up a stimpack. <+10 HP>";
+		Inventory.Amount 15;
+		Inventory.MaxAmount 100;
+		Inventory.PickupMessage "You picked up a stimpack. <+15 HP>";
 		Inventory.PickupSound "Items/UTHealth";
 	}
 
@@ -281,9 +281,9 @@ class RMD_Medikit : Health
 	Default
 	{
 		-COUNTITEM
-		Inventory.Amount 20;
-		Inventory.MaxAmount 200;
-		Inventory.PickupMessage "You picked up a medikit. <+20 HP>";
+		Inventory.Amount 30;
+		Inventory.MaxAmount 100;
+		Inventory.PickupMessage "You picked up a medikit. <+10 HP>";
 		Inventory.PickupSound "Items/UTHealth";
 	}
 	

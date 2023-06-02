@@ -6,8 +6,8 @@ Class RMD_Player : DoomPlayer
 
 	Default
 	{
-		Player.MaxHealth 200;
-		Health 200;
+		Player.MaxHealth 100;
+		Health 100;
 	
 		Player.StartItem "Clip", 999; //WorkAround
 		Player.StartItem "RMD_HealthAmmo", 100;
@@ -16,7 +16,9 @@ Class RMD_Player : DoomPlayer
 		Player.StartItem "RMD_EnergyDrink", 1;
 		-NOSKIN;
 		
-		DamageFactor "PlayerFire", 0;	
+		DamageFactor "PlayerFire", 0;
+		DamageFactor "BarrelChemical", 0.60; //From Chemical Barrels
+		DamageFactor "Explosive", 0.50; //From Explosive Barrels and Player own Explosions
 	}
 
 	/*
@@ -100,7 +102,6 @@ Class RMD_Player : DoomPlayer
 	}
 
 }
-
 
 Class Renamon : RMD_Player
 {

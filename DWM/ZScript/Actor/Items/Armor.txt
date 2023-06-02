@@ -50,9 +50,9 @@ Class ArmorShard: RMD_ArmorBase
 {
 	Default
 	{
-		Inventory.Pickupmessage "Picked up a armor shard. <+5 Armor>";
+		Inventory.Pickupmessage "Picked up a armor shard. <+10 Armor>";
 		Inventory.PickupSound "Items/ArmorShard";
-		Armor.Saveamount 5;
+		Armor.Saveamount 10;
 		Armor.Maxsaveamount 1000;
 	}
 }
