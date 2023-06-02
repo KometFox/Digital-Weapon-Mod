@@ -32,7 +32,15 @@ material texture "Models/Weapons/AR/MadsenLAR/MadsenLAR_Diffuse.png"
 //	glossiness 0.45
 }
 
-
+material texture "Models/Weapons/AR/AR70/AR70_Diffuse.png"
+{
+	normal "Models/Weapons/AR/AR70/AR70_NormalGL.png"
+	metallic "Models/Weapons/AR/AR70/AR70_Metallic.png"
+	roughness "Models/Weapons/AR/AR70/AR70_Roughness.png"
+	ao "Models/Weapons/AR/AR70/AR70_AO.png"
+//	specularlevel 0.75
+//	glossiness 0.45
+}
 
 material texture "Models/Weapons/MG/M249SAW/M249SAW_Diffuse.png"
 {
