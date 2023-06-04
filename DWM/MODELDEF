@@ -22,7 +22,7 @@
 
 //Other
 #Include "Models/MODELDEF.Decorations"
-#Include "Models/MODELDEF.Euro"
+#Include "Models/MODELDEF.Money"
 #Include "Models/MODELDEF.Key"
 #Include "Models/MODELDEF.Particles"
 #Include "Models/MODELDEF.Projectiles"

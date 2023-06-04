@@ -42,6 +42,7 @@ Class MaterialBase : CustomInventory
 		Alpha 1;
 		Mass 500;
 		-NOGRAVITY
+		+BRIGHT
 		+NOTELEPORT
 		+FORCEXYBILLBOARD
 	}
@@ -221,7 +222,7 @@ Class MaterialBase : CustomInventory
 //------------------------------------------------------------------------------
 //Ingot Stacks
 //------------------------------------------------------------------------------
-Class RMD_EuroBase : MaterialBase 
+Class RMD_IngotStackBase : MaterialBase 
 {
 	Default
 	{
@@ -254,7 +255,7 @@ Class RMD_EuroBase : MaterialBase
 	}
 }
 
-Class EuroGreen : RMD_EuroBase 
+Class IngotStackA : RMD_IngotStackBase 
 {
 	Default
 	{
@@ -265,7 +266,7 @@ Class EuroGreen : RMD_EuroBase
 	}
 }
 
-Class EuroBlue : RMD_EuroBase 
+Class IngotStackB : RMD_IngotStackBase 
 {
 	Default
 	{
@@ -276,7 +277,7 @@ Class EuroBlue : RMD_EuroBase
 	}
 }
 
-Class EuroYellow : RMD_EuroBase 
+Class IngotStackC : RMD_IngotStackBase 
 {
 	Default
 	{
@@ -287,7 +288,7 @@ Class EuroYellow : RMD_EuroBase
 	}
 }
 
-Class EuroPurple : RMD_EuroBase 
+Class IngotStackD : RMD_IngotStackBase 
 {
 	Default
 	{
@@ -302,7 +303,7 @@ Class EuroPurple : RMD_EuroBase
 //------------------------------------------------------------------------------
 //Ingots
 //------------------------------------------------------------------------------
-Class RMD_CoinBase : MaterialBase 
+Class RMD_IngotBase : MaterialBase 
 {
 	Default
 	{
@@ -315,7 +316,7 @@ Class RMD_CoinBase : MaterialBase
 }
 
 
-Class CoinGreen : RMD_CoinBase 
+Class IngotA : RMD_IngotBase 
 {
 	Default
 	{
@@ -326,7 +327,7 @@ Class CoinGreen : RMD_CoinBase
 	}
 }
 
-Class CrystalGreen : CoinGreen 
+Class CrystalGreen : RMD_IngotBase 
 {
 	Default
 	{
@@ -337,7 +338,7 @@ Class CrystalGreen : CoinGreen
 
 }
 
-Class CoinBlue : RMD_CoinBase 
+Class IngotB : RMD_IngotBase 
 {
 	Default
 	{
@@ -348,7 +349,7 @@ Class CoinBlue : RMD_CoinBase
 	}
 }
 
-Class CrystalBlue : CoinBlue 
+Class CrystalBlue : RMD_IngotBase 
 {
 	Default
 	{
@@ -360,7 +361,7 @@ Class CrystalBlue : CoinBlue
 }
 
 
-Class CoinYellow : RMD_CoinBase 
+Class IngotC : RMD_IngotBase 
 {
 	Default
 	{
@@ -371,7 +372,7 @@ Class CoinYellow : RMD_CoinBase
 	}
 }
 
-Class CrystalYellow : CoinYellow 
+Class CrystalYellow : RMD_IngotBase 
 {
 	Default
 	{
@@ -383,7 +384,7 @@ Class CrystalYellow : CoinYellow
 }
 
 
-Class CoinPurple : RMD_CoinBase 
+Class IngotD : RMD_IngotBase 
 {
 	Default
 	{
@@ -394,7 +395,7 @@ Class CoinPurple : RMD_CoinBase
 	}
 }
 
-Class CrystalPurple : CoinPurple 
+Class CrystalPurple : RMD_IngotBase 
 {
 	Default
 	{
