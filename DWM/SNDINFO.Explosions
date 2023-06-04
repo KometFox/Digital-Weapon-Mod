@@ -34,3 +34,6 @@ $RollOff PlasmaBoom 1500 2700
 PlasmaBoomA "Sounds/Weapons/Energy/PlasmaBoomA.ogg"
 PlasmaBoomB "Sounds/Weapons/Energy/PlasmaBoomB.ogg"
 PlasmaBoomC "Sounds/Weapons/Energy/PlasmaBoomC.ogg"
+
+E20PC/Explode "Sounds/Weapons/Energy/E20PC/Explode.ogg"
+$RollOff E20PC/Explode 950 2700
