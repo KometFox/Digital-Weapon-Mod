@@ -1,77 +1,76 @@
 //-------------------------------------------------------------------------------
-//Floppies
+//Ingots
 //------------------------------------------------------------------------------
-Class FloppySpawn_Small : RandomSpawner 
+Class Ingots_Small : RandomSpawner 
 {
 	Default
 	{
-		Dropitem "CoinGreen", 256, 10;
-		DropItem "CoinBlue", 256, 5;
+		Dropitem "IngotA", 256, 10;
+		DropItem "IngotB", 256, 5;
 	}
 }
 
-Class FloppySpawn_Medium : RandomSpawner
+Class Ingots_Medium : RandomSpawner
 {
 	Default
 	{
-		DropItem "CoinBlue", 256, 8;
-		DropItem "CoinYellow", 256, 5;
-		DropItem "CoinGreen", 256, 1;
+		DropItem "IngotB", 256, 8;
+		DropItem "IngotC", 256, 5;
 	}
 }
 
-Class FloppySpawn_Large : RandomSpawner
+Class Ingots_Large : RandomSpawner
 {
 	Default
 	{
-		DropItem "CoinYellow", 256, 5;
-		DropItem "CoinPurple", 256, 2;
+		DropItem "IngotC", 256, 5;
+		DropItem "IngotD", 256, 2;
 	}
 }
 
-Class FloppySpawn_VeryLarge : RandomSpawner
+Class Ingots_VeryLarge : RandomSpawner
 {
 	Default
 	{
-		DropItem "CoinPurple", 256, 1;
+		DropItem "IngotD", 256, 1;
 	}
 }
 
 //-------------------------------------------------------------------------------
-//Hard Drive
+//Ingot Stacks
 //------------------------------------------------------------------------------
-Class HardDriveSpawn_VerySmall : RandomSpawner
+Class IngotStacks_VerySmall : RandomSpawner
 {
 	Default
 	{
-		DropItem "EuroGreen", 256, 1;
+		DropItem "IngotStackA", 256, 1;
 	}
 }
 
-Class HardDriveSpawn_Small : RandomSpawner
+Class IngotStacks_Small : RandomSpawner
 {
 	Default
 	{
-		DropItem "EuroGreen", 256, 2;
-		DropItem "EuroBlue", 256, 5;
+		DropItem "IngotStackA", 256, 2;
+		DropItem "IngotStackB", 256, 5;
 	}
 }
 
-Class HardDriveSpawn_Medium : RandomSpawner
+Class IngotStacks_Medium : RandomSpawner
 {
 	Default
 	{
-		DropItem "EuroBlue", 256, 2;
-		DropItem "EuroYellow", 256, 5;
+		DropItem "IngotStackB", 256, 2;
+		DropItem "IngotStackC", 256, 5;
 	
 	}
 }
 
-Class HardDriveSpawn_Large : RandomSpawner
+Class IngotStacks_Large : RandomSpawner
 {
 	Default
 	{
-		DropItem "EuroPurple", 256, 1;
+		DropItem "IngotStackD", 256, 1;
 	}
 }
 
@@ -82,7 +81,7 @@ Class Chainsaw_Replacer: RandomSpawner Replaces Chainsaw
 {
 	Default
 	{
-		DropItem "HardDriveSpawn_Small", 256, 1;
+		DropItem "IngotStacks_Medium", 256, 1;
 	}
 }
 
@@ -90,7 +89,7 @@ Class Pistol_Replacer : RandomSpawner Replaces Pistol
 {
 	Default
 	{
-		DropItem "HardDriveSpawn_VerySmall", 256, 1;
+		DropItem "IngotStacks_VerySmall", 256, 1;
 	}
 }
 
@@ -98,7 +97,7 @@ Class Shotgun_Replacer : RandomSpawner Replaces Shotgun
 {
 	Default
 	{
-		DropItem "HardDriveSpawn_VerySmall", 256, 1;
+		DropItem "IngotStacks_Small", 256, 1;
 	}
 }
 
@@ -106,7 +105,7 @@ Class Chaingun_Replacer : RandomSpawner Replaces Chaingun
 {
 	Default
 	{
-		DropItem "HardDriveSpawn_VerySmall", 256, 1;
+		DropItem "IngotStacks_Small", 256, 1;
 	}
 }
 
@@ -115,7 +114,7 @@ Class SuperShotgun_Replacer : RandomSpawner Replaces SuperShotgun
 {
 	Default
 	{
-		DropItem "HardDriveSpawn_Medium", 256, 1;
+		DropItem "IngotStacks_Medium", 256, 1;
 	}
 }
 
@@ -123,7 +122,7 @@ Class RocketLauncher_Replacer : RandomSpawner Replaces RocketLauncher
 {
 	Default
 	{
-		DropItem "HardDriveSpawn_Medium", 256, 1;
+		DropItem "IngotStacks_Medium", 256, 1;
 	}
 }
 
@@ -131,7 +130,7 @@ Class PlasmaRifle_Replacer : RandomSpawner Replaces PlasmaRifle
 {
 	Default
 	{
-		DropItem "HardDriveSpawn_Medium", 256, 1;
+		DropItem "IngotStacks_Medium", 256, 1;
 	}
 }
 
@@ -139,7 +138,7 @@ Class BFG9000_Replacer : RandomSpawner Replaces BFG9000
 {
 	Default
 	{
-		DropItem "HardDriveSpawn_Large", 256, 1;
+		DropItem "IngotStacks_Large", 256, 1;
 	}
 }
 
@@ -147,19 +146,19 @@ Class BFG9000_Replacer : RandomSpawner Replaces BFG9000
 //------------------------------------------------------------------------------
 //Ammo
 //------------------------------------------------------------------------------
-Class ClipReplacer : FloppySpawn_Small replaces Clip{}
-Class ClipBoxReplacer : FloppySpawn_Medium replaces ClipBox{}
+Class ClipReplacer : Ingots_Small replaces Clip{}
+Class ClipBoxReplacer : IngotStacks_Medium replaces ClipBox{}
 
 
-Class ShellReplacer : FloppySpawn_Small replaces Shell{}
-Class ShellBoxReplacer : FloppySpawn_Medium replaces ShellBox{}
+Class ShellReplacer : Ingots_Small replaces Shell{}
+Class ShellBoxReplacer : IngotStacks_Medium replaces ShellBox{}
 
-Class RocketAmmoReplacer : FloppySpawn_Medium replaces RocketAmmo{}
-Class RocketBoxReplacer : FloppySpawn_Medium replaces RocketBox{}
+Class RocketAmmoReplacer : Ingots_Medium replaces RocketAmmo{}
+Class RocketBoxReplacer : IngotStacks_Medium replaces RocketBox{}
 
 
-Class CellReplacer : FloppySpawn_Large replaces Cell{}
-Class CellPackReplacer : FloppySpawn_VeryLarge replaces CellPack{}
+Class CellReplacer : Ingots_Medium replaces Cell{}
+Class CellPackReplacer : IngotStacks_Large replaces CellPack{}
 
 //------------------------------------------------------------------------------
 //Health
@@ -230,7 +229,7 @@ Class HealthBonus_Replacer : RandomSpawner Replaces HealthBonus
 //------------------------------------------------------------------------------
 //PowerUps
 //------------------------------------------------------------------------------
-Class BackpackReplacer : HardDriveSpawn_Large replaces Backpack {}
+Class BackpackReplacer : IngotStacks_Large replaces Backpack {}
 
 Class RadsuitReplacer : RandomSpawner replaces RadSuit 
 {
@@ -266,7 +265,7 @@ Class InvulnerabilitySphereReplacer : RandomSpawner replaces InvulnerabilitySphe
 	}
 }
 
-Class InfraredReplacer : HardDriveSpawn_Large replaces Infrared {}
+Class InfraredReplacer : IngotStacks_Large replaces Infrared {}
 
 Class BerserkReplacer : RandomSpawner replaces Berserk
 {

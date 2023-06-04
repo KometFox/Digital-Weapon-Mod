@@ -1,0 +1,164 @@
+//------------------------------------------------------------------------------
+//Single Ingot
+//------------------------------------------------------------------------------
+Model IngotA
+{
+	Path "Models\Money\Ingot"
+	Model 0 "Ingot.md3"
+	Skin 0 "IronIngot_Diffuse.png"
+	
+	USEACTORPITCH
+	USEACTORROLL
+	Scale 5 5 5
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model IngotB
+{
+	Path "Models\Money\Ingot"
+	Model 0 "Ingot.md3"
+	Skin 0 "SteelIngot_Diffuse.png"
+	
+	USEACTORPITCH
+	USEACTORROLL
+	Scale 5 5 5
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model IngotC
+{
+	Path "Models\Money\Ingot"
+	Model 0 "Ingot.md3"
+	Skin 0 "DwarfIngot_Diffuse.png"
+	
+	USEACTORPITCH
+	USEACTORROLL
+	Scale 5 5 5
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model IngotD
+{
+	Path "Models\Money\Ingot"
+	Model 0 "Ingot.md3"
+	Skin 0 "MoonIngot_Diffuse.png"
+	
+	USEACTORPITCH
+	USEACTORROLL
+	Scale 5 5 5
+	
+	FrameIndex IDLE A 0 0
+}
+
+//------------------------------------------------------------------------------
+//Crystals
+//------------------------------------------------------------------------------
+Model CrystalGreen
+{
+	Path "Models\Money\Crystal"
+	Model 0 "Crystal.md3"
+	Skin 0 "GreenCrystal_Diffuse.png"
+	
+	USEACTORPITCH
+	USEACTORROLL
+	Scale 2.5 2.5 2.5
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model CrystalBlue
+{
+	Path "Models\Money\Crystal"
+	Model 0 "Crystal.md3"
+	Skin 0 "BlueCrystal_Diffuse.png"
+	
+	USEACTORPITCH
+	USEACTORROLL
+	Scale 2.5 2.5 2.5
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model CrystalYellow
+{
+	Path "Models\Money\Crystal"
+	Model 0 "Crystal.md3"
+	Skin 0 "YellowCrystal_Diffuse.png"
+	
+	USEACTORPITCH
+	USEACTORROLL
+	Scale 2.5 2.5 2.5
+	
+	FrameIndex IDLE A 0 0
+}
+
+
+Model CrystalPurple
+{
+	Path "Models\Money\Crystal"
+	Model 0 "Crystal.md3"
+	Skin 0 "PurpleCrystal_Diffuse.png"
+	
+	USEACTORPITCH
+	USEACTORROLL
+	Scale 2.5 2.5 2.5
+	
+	FrameIndex IDLE A 0 0
+}
+//------------------------------------------------------------------------------
+//Ingot Stacks
+//------------------------------------------------------------------------------
+Model IngotStackA
+{
+	Path "Models\Money\Ingot"
+	Model 0 "IngotStack.md3"
+	Skin 0 "IronIngot_Diffuse.png"
+	
+	USEACTORPITCH
+	USEACTORROLL
+	Scale 5 5 5
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model IngotStackB
+{
+	Path "Models\Money\Ingot"
+	Model 0 "IngotStack.md3"
+	Skin 0 "SteelIngot_Diffuse.png"
+	
+	USEACTORPITCH
+	USEACTORROLL
+	Scale 5 5 5
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model IngotStackC
+{
+	Path "Models\Money\Ingot"
+	Model 0 "IngotStack.md3"
+	Skin 0 "DwarfIngot_Diffuse.png"
+	
+	USEACTORPITCH
+	USEACTORROLL
+	Scale 5 5 5
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model IngotStackD
+{
+	Path "Models\Money\Ingot"
+	Model 0 "IngotStack.md3"
+	Skin 0 "MoonIngot_Diffuse.png"
+	
+	USEACTORPITCH
+	USEACTORROLL
+	Scale 5 5 5
+	
+	FrameIndex IDLE A 0 0
+}
