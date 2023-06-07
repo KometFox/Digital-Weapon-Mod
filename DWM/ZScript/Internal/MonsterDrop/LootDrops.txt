@@ -64,12 +64,14 @@ Class ID_RareDrop : ID_DropBase
 	override void BeginPlay()
 	{
 		InitDrops(20);
-		MyChance = 50;
+		MyChance = 65;
 		AddItems("RMD_MedikitEnergy", 1, 40.0);
-		AddItems("CrystalGreen", 12, 25.0);
-		AddItems("CrystalBlue", 7, 17.5);
-		AddItems("CrystalYellow", 5, 15.0);
+		AddItems("CrystalGreen", 10, 25.0);
+		AddItems("CrystalBlue", 6, 17.5);
+		AddItems("CrystalYellow", 4, 15.0);
+		AddItems("CrystalPurple", 2, 6.5);
 	}
+	
 }
 
 //Boss Drop
@@ -82,8 +84,8 @@ Class ID_BossDrop : ID_DropBase
 		MyChance = 100;
 		AddItems("RMD_MedikitEnergy", 1, 75.0);
 		AddItems("CrystalGreen", 12, 40.0);
-		AddItems("CrystalBlue", 8, 25.5);
-		AddItems("CrystalYellow", 6, 22.25);
-		AddItems("CrystalPurple", 4, 15.0);
+		AddItems("CrystalBlue", 8, 30.5);
+		AddItems("CrystalYellow", 6, 25.75);
+		AddItems("CrystalPurple", 4, 18.45);
 	}
 }
