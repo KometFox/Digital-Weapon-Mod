@@ -65,6 +65,9 @@ Thanks to these people and groups for assets used by this mod.
 
 -Cherno
  -Shader
+ 
+-Dejiko 
+ -Sprites
 
 [Groups]
 -Sven Co-op modders

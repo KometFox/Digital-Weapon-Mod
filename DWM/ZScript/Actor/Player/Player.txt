@@ -109,7 +109,7 @@ Class Renamon : RMD_Player
 	{
 		Player.DisplayName "Renamon";
 		Player.SoundClass "Renamon";
-		Player.Face "SWF";
+		Player.Face "SRM";
 	}
 	
 	States
