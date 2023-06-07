@@ -125,16 +125,18 @@ class RMD_Milk : Health
 		Angle = Random[Angle](0, 360);	
 	}
 	
-	Action void Picked(Actor Toucher)
+	Override Bool TryPickup(in out Actor toucher)
 	{
-		A_SpawnItemEx("EmptyMilk", 0, 0, 20, frandom(-8, 8), frandom(-8, 8), frandom(-2, 4));
-	}
-	
-	override void Touch(Actor toucher)
-	{
-		Picked(Toucher);
-
-		Super.Touch(toucher);
+		bool PickedUp = Super.TryPickup(toucher);
+		
+		if (PickedUp == True)
+		{
+			//Toucher.A_StartSound(Self.PickupSound, CHAN_ITEM, 1.0);
+			A_SpawnItemEx("EmptyMilk", 0, 0, 20, frandom(-8, 8), frandom(-8, 8), frandom(-2, 4));
+			Return True;
+		}
+		
+		Return False; 
 	}
 	
 	States
