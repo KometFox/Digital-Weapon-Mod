@@ -43,7 +43,7 @@ class MP5 : BaseWeapon
 			//A_FireBullets(0.8, 0.8, 1, 7 * Frandom(1.0, 1.8), "URPG_RicochetEffect", BULLETFIRE, 0, null);
 			
 			B_MuzzleFlash("RMD_BulletMuzzleFlash", (13, 2.7, -2.0));	
-			B_SpawnCasing("PistolCase", (12, -8.5, -2.0));
+			B_SpawnCasing("PistolCase", (12, -15.0, 3.0));
 		}
 			
 		else
@@ -52,7 +52,7 @@ class MP5 : BaseWeapon
 			//A_FireBullets(0.6, 0.6, 1, 7 * Frandom(1.0, 1.8), "URPG_RicochetEffect", BULLETFIRE, 0, null);
 
 			B_MuzzleFlash("RMD_BulletMuzzleFlash", (13, 0.0, -1.2));	
-			B_SpawnCasing("PistolCase", (12, -7.0, -2.0));
+			B_SpawnCasing("PistolCase", (12, 0.0, -2.0));
 		}
 
 		Invoker.Magazine -= 1;
@@ -89,8 +89,8 @@ class MP5 : BaseWeapon
 		Loop;
 
 	Deselect:
-		SELC FEDCBA 1 A_Lower;
-		SELC A 1 A_Lower;
+		SEL1 GFEDCBA 1 A_Lower;
+		SEL1 A 1 A_Lower;
 		TNT1 A 0 A_Lower(100);
 		Loop;
 		
@@ -103,24 +103,24 @@ class MP5 : BaseWeapon
 				RMD_BARINFO.SetAmmoIcon("AMMOSMG");
 				RMD_BARINFO.SetAmmo1("RMD_SMGBullets");
 		}
-		SELC ABCDEF 1 A_Raise;
+		SEL1 ABCDEFG 1 A_Raise;
 		IDLE A 1 A_Raise(100);
         Goto ReadyReal;
 			
 	//Ironsight Mode
 	IronReady:
-		IRON D 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB);
+		IRO1 D 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB);
 		Loop;
 		
 	IronSightAnim:
-		IRON A 0 A_SetCrosshair(99);
-		IRON ABCD 2 A_ZoomFactor(1.5);
+		IRO1 A 0 A_SetCrosshair(99);
+		IRO1 ABCD 2 A_ZoomFactor(1.5);
 		Goto IronReady;
 		
 	IronSightDeselect:
 		TNT1 A 0  A_SetCrosshair(0);
-		IRON DCBA 2 A_ZoomFactor(1.0);
-		IRON A 0
+		IRO1 DCBA 2 A_ZoomFactor(1.0);
+		IRO1 A 0
 		{
 			Invoker.IronSight = IRON_INACTIVE;
 			
@@ -184,17 +184,17 @@ class MP5 : BaseWeapon
 		Goto ReadyReal;
 		
 	FireNow:
-		FIRE A 1 FireBullets();
-		FIRE BC 1;
+		FIR1 A 1 FireBullets();
+		FIR1 BCD 1;
 		IDLE A 0 A_ReFire;
-		FIRE DEF 1;
+		FIR1 EFGH 1;
 		Goto ReadyReal;
 		
 	IronFireNow:
-		IFIR A 1 FireBullets();
-		IFIR BC 1;
-		IFIR A 0 A_ReFire;
-		IFIR DEF 1;
+		IFI1 A 1 FireBullets();
+		IFI1 BCD 1;
+		IFI1 A 0 A_ReFire;
+		IFI1 EFGH 1;
 		Goto IronReady;	
 		
 	Reload:
@@ -203,13 +203,14 @@ class MP5 : BaseWeapon
 
 	ReloadNow:
 		TNT1 A 0 A_TakeInventory("GotoReload", 1);
-		REL1 ABCDEFG 2;
+		REL1 ABCDEFGHIJKLMNO 2;
 		TNT1 A 0
 		{
 			A_StartSound("MP5/MagOut", CHAN_WEAPON);
 			A_FireProjectile("SMGMagSpawn",-5,0,8,-4);
 		}
-		REL1 HIJKLM 2;
+		REL1 PQRSTUVWXYZ 2;
+		REL2 AB 2;
 		TNT1 A 0
 		{
 			A_StartSound("MP5/MagIn", CHAN_WEAPON +1);
@@ -219,9 +220,9 @@ class MP5 : BaseWeapon
 	
 			Return A_Jump(0, "ReadyReal");	
 		}
-		REL1 NOPQ 2;		
+		REL2 CDEFGHI 2;		
 		TNT1 A 0 A_StartSound("MP5/Cocking", CHAN_WEAPON);
-		REL1 RSTUVWXY 2;
+		REL2 JKLMNOPQRSTUVWXYZ 2;
 		Goto ReadyReal;
 
 	}
@@ -234,8 +235,8 @@ Class RMD_MP5_Projectile : RMD_BaseBullet
 Default
 	{
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 12; 
-		RMD_BaseBullet.DamageRand1 3.4;
+		RMD_BaseBullet.ImpactDamage 11;
+		RMD_BaseBullet.DamageRand 1.85;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 275;		
 		

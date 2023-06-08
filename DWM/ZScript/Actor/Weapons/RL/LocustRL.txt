@@ -70,8 +70,9 @@ class RMD_LocustRL : BaseWeapon
 		Loop;	
 
 	Deselect:
-		SEL1 HGFEDCBA 1 A_Lower;
+		SEL1 HGFEDCBA 1;
 		SEL1 A 1 A_Lower(int.max);
+		TNT1 A 1 A_Lower(int.max);
 		Wait;
 		
 	Select:
@@ -83,9 +84,10 @@ class RMD_LocustRL : BaseWeapon
 				RMD_BARINFO.SetAmmoIcon("AMMONADE");
 				RMD_BARINFO.SetAmmo1("RMD_Grenades");
 		}
-		SEL1 ABCDEFGH 1 A_Raise();
+		SEL1 ABCDEFGH 1;
 		SEL1 H 1 A_Raise(int.max);
-        Wait;
+		IDLE A 1 A_Raise(int.max);
+        Goto ReadyReal;
 			
 	//Ironsight Mode
 	IronReady:

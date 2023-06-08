@@ -212,7 +212,7 @@ Default
 	{
 		//Normal Damage
 		RMD_BaseBullet.ImpactDamage 28; 
-		RMD_BaseBullet.DamageRand1 4.25;
+		RMD_BaseBullet.DamageRand 4.25;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 500;
 		

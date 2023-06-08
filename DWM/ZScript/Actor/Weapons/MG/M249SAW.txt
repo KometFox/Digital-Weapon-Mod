@@ -89,6 +89,7 @@ class RMD_M249SAW : BaseWeapon
 		TNT1 A 0 A_StopSound(CHAN_WEAPON);
 		SEL1 JIHGFEDCBA 1;
 		SEL1 A 1 A_Lower(int.max);
+		TNT1 A 0 A_Lower(int.max);
 		Wait;
 		
 	Select:
@@ -102,7 +103,8 @@ class RMD_M249SAW : BaseWeapon
 		}
 		SEL1 ABCDEFGHIJ 1;
 		SEL1 J 1 A_Raise(int.max);
-        Wait;
+		IDLE A 1 A_Raise(int.max);
+        Goto ReadyReal;
 			
 	//Ironsight Mode
 	IronReady:
@@ -243,7 +245,7 @@ Default
 	{		
 		//Normal Damage
 		RMD_BaseBullet.ImpactDamage 17; 
-		RMD_BaseBullet.DamageRand1 1.75;
+		RMD_BaseBullet.DamageRand 1.75;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 450;		
 		

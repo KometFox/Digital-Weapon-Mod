@@ -106,7 +106,7 @@ class RMD_MolotVPO208 : BaseWeapon
 		}
 		TNT1 A 0 A_StartSound("Shotgun/Select", CHAN_WEAPON +4);
 		SEL1 ABCDEF 1;
-		SEL1 H 1 A_Raise(int.max);
+		SEL1 F 1 A_Raise(int.max);
 		IDLE A 1 A_Raise(int.max);
         Goto ReadyReal;
 
@@ -225,9 +225,10 @@ Class RMD_MolotVPO208Proj : RMD_BaseBullet
 	{
 		//Normal Damage
 		RMD_BaseBullet.ImpactDamage 10; 
-		RMD_BaseBullet.DamageRand1 3.65;
+		RMD_BaseBullet.DamageRand 3.65;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 1000;
+		RMD_BaseBullet.ExtremeDeath True;
 		
 		Scale 1.0;
 		Decal "RMD_Buckshot_BulletHoles";

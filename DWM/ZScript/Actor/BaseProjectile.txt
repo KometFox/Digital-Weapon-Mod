@@ -14,19 +14,16 @@ Class RMD_DamageFalloff
 //------------------------------------------------------------------------------
 Class RMD_BaseBullet : FastProjectile
 {
-	//Normal Damage
 	int ImpDamage; //Impact Damage
-	
-	//Nerfed Damage
 	int HealthDamage; //At which point the DamageMin overtakes normal damage
-	
-	//Randomizer
-	float DamageRand1; //The randomizer value
-	float DamageRand2; //The randomizer value
+	float DamageRand; //The randomizer value
+	bool ExtremeDeath;
 
+	//Properties
 	property ImpactDamage:ImpDamage;
 	property HealthDamage:HealthDamage;
-	property DamageRand1:DamageRand1;
+	property DamageRand:DamageRand;
+	property ExtremeDeath:ExtremeDeath;
 
 	Default
 	{
@@ -49,7 +46,7 @@ Class RMD_BaseBullet : FastProjectile
 		
 		float CVAR_BulletDamage = CVar.FindCVar("RMDC_BulletDamage").GetFloat();
 		
-		ImpDamage *= FRandom(1.0, DamageRand1);	
+		ImpDamage *= FRandom(1.0, DamageRand);	
 		ImpDamage *= CVAR_BulletDamage;
 	}
 	
@@ -98,7 +95,7 @@ Class RMD_BaseBullet : FastProjectile
 								NewDamage >= GibHealth &&
 								NewDamage >= VictimHP);
 						
-			if (DamageCheck)
+			if (DamageCheck && ExtremeDeath == False)
 			{
 				victim.DamageMobj(self, target, GibHealth, damagetype, 0);
 			}

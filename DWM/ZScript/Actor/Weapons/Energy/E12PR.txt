@@ -99,6 +99,7 @@ class RMD_E12PR : BaseWeapon
 	Deselect:
 		SEL1 EDCBA 1 ;
 		SEL1 A 1 A_Lower(int.max);
+		TNT1 A 0 A_Lower(int.max);
 		Wait;
 		
 	Select:
@@ -112,7 +113,8 @@ class RMD_E12PR : BaseWeapon
 		}
 		SEL1 ABCDE 1;
 		SEL1 A 1 A_Raise(int.max);
-        Wait;
+		IDLE A 1 A_Raise(int.max);
+        Goto ReadyReal;
 			
 	//Ironsight Mode
 	IronSightDeselect:
@@ -232,9 +234,10 @@ Class RMD_E12PR_Plasma : RMD_BaseBullet
 	
 		//Normal Damage
 		RMD_BaseBullet.ImpactDamage 18; 
-		RMD_BaseBullet.DamageRand1 4.0;
+		RMD_BaseBullet.DamageRand 4.0;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 1000;		
+		RMD_BaseBullet.ExtremeDeath True;
 		
 		Scale 0.75;
 		Decal "RMD_AR_BulletHoles";

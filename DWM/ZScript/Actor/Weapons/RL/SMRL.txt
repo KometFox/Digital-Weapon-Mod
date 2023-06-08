@@ -71,9 +71,9 @@ class SMRL : BaseWeapon
 		Loop;
 		
 	Deselect:
-		SELC DCBA 1 A_Lower;
-		SELC A 1 A_Lower;
-		TNT1 A 0 A_Lower(100);
+		SELC DCBA 1;
+		SELC A 1 A_Lower(int.max);
+		TNT1 A 0 A_Lower(int.max);
 		Loop;
 		
 	Select:
@@ -85,8 +85,9 @@ class SMRL : BaseWeapon
 				RMD_BARINFO.SetAmmoIcon("AMMOROCK");
 				RMD_BARINFO.SetAmmo1("RMD_Rockets");				
 		}
-		SELC ABCD 1 A_Raise;
-		IDLE A 1 A_Raise(100);
+		SELC ABCD 1;
+		SELC D 1 A_Raise(int.max);
+		IDLE A 1 A_Raise(int.max);
         Goto ReadyReal;
 	
 	Fire:

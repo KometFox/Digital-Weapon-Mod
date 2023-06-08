@@ -107,6 +107,7 @@ class RMD_AR70 : BaseWeapon
 	Deselect:
 		SELC HGFEDCBA 1;
 		SELC A 1 A_Lower(int.max);
+		TNT1 A 0 A_Lower(int.max);
 		Loop;
 		
 	Select:
@@ -120,6 +121,7 @@ class RMD_AR70 : BaseWeapon
 		}
 		SELC ABCDEFGH 1;
 		SELC H 1 A_Raise(int.max);
+		IDLE A 1 A_Raise(int.max);
         Goto ReadyReal;
 			
 
@@ -225,7 +227,7 @@ Class RMD_AR70_Bullet : RMD_BaseBullet
 	{		
 		//Normal Damage
 		RMD_BaseBullet.ImpactDamage 15; 
-		RMD_BaseBullet.DamageRand1 1.9;
+		RMD_BaseBullet.DamageRand 1.9;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 240;		
 		

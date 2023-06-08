@@ -18,6 +18,14 @@ material texture "Models/Textures/CSArms/CSHand.png"
 //------------------------------------------------------------------------------
 //Submachine Guns
 //------------------------------------------------------------------------------
+material texture "Models/Weapons/SMG/MP5/MP5A4_Diffuse.png"
+{
+	normal "Models/Weapons/SMG/MP5/MP5A4_NormalGL.png"
+	metallic "Models/Weapons/SMG/MP5/MP5A4_Metallic.png"
+	roughness "Models/Weapons/SMG/MP5/MP5A4_Roughness.png"
+	ao "Models/Weapons/SMG/MP5/MP5A4_AO.png"
+}
+
 
 //------------------------------------------------------------------------------
 //Assault Rifle

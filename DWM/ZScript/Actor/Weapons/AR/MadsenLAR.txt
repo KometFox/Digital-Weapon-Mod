@@ -198,6 +198,7 @@ class RMD_MadsenLAR : BaseWeapon
 		TNT1 A 0 A_StopSound(CHAN_WEAPON);
 		SEL1 JIHGFEDCBA 1;
 		SEL1 A 1 A_Lower(int.max);
+		TNT1 A 0 A_Lower(int.max);
 		Wait;
 	
 	Select:
@@ -209,6 +210,7 @@ class RMD_MadsenLAR : BaseWeapon
 		}
 		SEL1 ABCDEFGHIJ 1;
 		SEL1 J 1 A_Raise(int.max);
+		IDLE A 1 A_Raise(int.max);
         Wait;
 			
 	User1: //Select Firemode
@@ -398,7 +400,7 @@ Class RMD_MadsenLAR_Bullet : RMD_BaseBullet
 	{		
 		//Normal Damage
 		RMD_BaseBullet.ImpactDamage 16; 
-		RMD_BaseBullet.DamageRand1 1.5;
+		RMD_BaseBullet.DamageRand 1.5;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 250;		
 		

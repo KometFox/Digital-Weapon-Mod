@@ -24,11 +24,11 @@ Grenade/Throw "Sounds/Weapons/Grenade/Throw.ogg"
 //MP5
 $Random MP5/Fire {MP5Fire1}
 //Fire
-MP5Fire1 "Sounds/Weapons/SMG/MP5/Fire.wav"
+MP5Fire1 "Sounds/Weapons/SMG/MP5/Fire1.ogg"
 $Volume MP5/Fire 1.0
 
 //Mag
-MP5/Cocking "Sounds/Weapons/SMG/MP5/Cocking.ogg"
+MP5/Cocking "Sounds/Weapons/SMG/MP5/Cocking.wav"
 MP5/MagIn "Sounds/Weapons/SMG/MP5/MagIn.wav"
 MP5/MagOut "Sounds/Weapons/SMG/MP5/MagOut.wav"
 
@@ -55,7 +55,12 @@ AoMShotgun/Cocking "Sounds/Weapons/SG/AoMShotgun/CockA.ogg"
 AoMShotgun/Insert "Sounds/Weapons/SG/AoMShotgun/LoadShell.ogg"
 
 
-MolotVPO208/Fire "Sounds/Weapons/SG/MolotVPO208/Fire.wav"
+$Random MolotVPO208/Fire {MolotVPO208/Fire1 MolotVPO208/Fire2 MolotVPO208/Fire3}
+
+MolotVPO208/Fire1 "Sounds/Weapons/SG/MolotVPO208/Fire1.ogg"
+MolotVPO208/Fire2 "Sounds/Weapons/SG/MolotVPO208/Fire2.ogg"
+MolotVPO208/Fire3 "Sounds/Weapons/SG/MolotVPO208/Fire3.ogg"
+
 MolotVPO208/ClipInsert "Sounds/Weapons/SG/MolotVPO208/ClipInsert.ogg"
 MolotVPO208/HandlePull "Sounds/Weapons/SG/MolotVPO208/HandlePull.ogg"
 MolotVPO208/HandlePush "Sounds/Weapons/SG/MolotVPO208/HandlePush.ogg"
@@ -106,7 +111,6 @@ $Volume LocustRL/Fire 0.65
 //E20 Plasma Cannon
 E20PC/Charge "Sounds/Weapons/Energy/E20PC/Charge.ogg"
 E20PC/Fire "Sounds/Weapons/Energy/E20PC/Fire.ogg"
-E20PC/Explode "Sounds/Weapons/Energy/E20PC/Explode.ogg"
 E20PC/CellOut "Sounds/Weapons/Energy/E20PC/CellOut.ogg"
 E20PC/CellIn "Sounds/Weapons/Energy/E20PC/CellIn.ogg"
 
