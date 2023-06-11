@@ -1,5 +1,3 @@
-//Other
-#Include "ZScript/Actor/Items/Aux.zs"
 //Items
 #Include "ZScript/Actor/Items/Money.zs"
 #Include "ZScript/Actor/Items/Items.zs"
