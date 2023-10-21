@@ -1,15 +1,3 @@
-Model TestModel
-{
-	Path "Models\Weapons\AR\M25"
-	Model 0 "M25AR.md3"
-	SurfaceSkin 0 1 "M25AR.png"
-	Scale 2.5 2.5 2.5
-	Offset 0 0 25
-	
-	//IDLE
-	FrameIndex IDLE A 0 1
-}
-
 //------------------------------------------------------------------------------
 //Health Items
 //------------------------------------------------------------------------------

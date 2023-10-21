@@ -25,11 +25,11 @@ Model EmptyMilk
 
 Model EmptyEnergyCan1
 {
-	Path "Models\Items\HealthBonus"
-	Model 0 "EnergyCan.md3"
+	Path "Models\Items\Litter"
+	Model 0 "EnergyCanLitter.md3"
 	Path "Models\Weapons\Other"
 	SurfaceSkin 0 0 "Energy.png"
-	Scale 4 4 4 
+	Scale 1.0 1.0 1.0
 	
 	USEACTORPITCH
 	USEACTORROLL
