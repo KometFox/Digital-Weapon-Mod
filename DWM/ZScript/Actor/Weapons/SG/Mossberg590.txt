@@ -13,8 +13,8 @@ class RMD_Mossberg590 : BaseWeapon
 		Inventory.AltHudIcon "PISHOT1";
 		BaseWeapon.IronSight IRON_INACTIVE;
 
-		BaseWeapon.MagazineMax 18;
-		BaseWeapon.Magazine 18;
+		BaseWeapon.MagazineMax 8;
+		BaseWeapon.Magazine 8;
 		
 	}
 	
@@ -230,8 +230,8 @@ Class RMD_Mossberg590Proj : RMD_BaseBullet
 	Default
 	{
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 10; 
-		RMD_BaseBullet.DamageRand 3.25;
+		RMD_BaseBullet.ImpactDamage 18; 
+		RMD_BaseBullet.DamageRand 2.25;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 1000;
 		RMD_BaseBullet.ExtremeDeath True;

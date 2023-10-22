@@ -229,7 +229,7 @@ Class E20PC_PlasmaBall : HeavyExplosivesFast
 		
 		BaseProjectileFast.SplashDamage 800;
 		BaseProjectileFast.FullSplashDamage 100;
-		BaseProjectileFast.SplashRadius 200;
+		BaseProjectileFast.SplashRadius 250;
 		//Randomizer
 		BaseProjectileFast.NerfDamageRandom 1.0;
 		BaseProjectileFast.NormalDamageRandom 1.0;

@@ -214,7 +214,7 @@ Default
 	{
 	
 		A_SetScale(Scale.X * 1.5, Scale.Y * 1.5);
-		A_Explode(14, 64, XF_NOSPLASH);
+		A_Explode(14 * FRandom(0, 1.25), 64, XF_NOSPLASH);
 		Roll += 1;
 	}
 	

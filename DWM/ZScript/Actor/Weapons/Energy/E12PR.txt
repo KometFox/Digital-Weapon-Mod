@@ -233,8 +233,8 @@ Class RMD_E12PR_Plasma : RMD_BaseBullet
 		Speed 200;
 	
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 18; 
-		RMD_BaseBullet.DamageRand 4.0;
+		RMD_BaseBullet.ImpactDamage 28; 
+		RMD_BaseBullet.DamageRand 1.8;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 1000;		
 		RMD_BaseBullet.ExtremeDeath True;
