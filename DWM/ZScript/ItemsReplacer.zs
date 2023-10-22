@@ -267,6 +267,7 @@ Class InvulnerabilitySphereReplacer : RandomSpawner replaces InvulnerabilitySphe
 
 Class InfraredReplacer : IngotStacks_Large replaces Infrared {}
 
+/*
 Class BerserkReplacer : RandomSpawner replaces Berserk
 {
 	Default
@@ -274,3 +275,4 @@ Class BerserkReplacer : RandomSpawner replaces Berserk
 		DropItem "RMD_AtomHealth", 256, 1;
 	}
 } 
+*/
