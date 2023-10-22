@@ -86,7 +86,7 @@ Class RMD_BigPlasmaSpawner : Actor
 				//Trail
 				for (int i = 0; i < 7; ++i)
 				{
-					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](18.0, 40.0);
+					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](22.0, 44.0);
 					let Particle = Spawn("RMD_BigPlasmaTrail", Pos);
 					
 					Particle.Vel = PVel;
@@ -159,7 +159,7 @@ Class RMD_BigPlasmaTrail : RMD_ModelSparks
 	{
 		BounceFactor 0.85;
 		WallBounceFactor 0.85;
-		Gravity 0.75;
+		Gravity 0;
 	}
 
 	override void Tick()
@@ -209,7 +209,7 @@ Class RMD_BigPlasmaTraily_Fire : RMD_BaseParticle
 	Default
 	{
 		RenderStyle "AddShaded";
-		Gravity -0.5;
+		Gravity 0;
 		+Bright;
 		-NOGRAVITY
 	}
@@ -242,7 +242,7 @@ Class RMD_BigPlasmaTraily_Smoke : RMD_BaseParticle
 	Default
 	{
 		RenderStyle "Normal";
-		Gravity -0.7;
+		Gravity 0;
 		+Bright;
 		-NOGRAVITY
 	}

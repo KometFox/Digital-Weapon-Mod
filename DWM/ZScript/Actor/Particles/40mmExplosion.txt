@@ -139,7 +139,7 @@ Class RMD_40mmExplosionTrail : RMD_ModelSparks
 	{
 		BounceFactor 0.85;
 		WallBounceFactor 0.85;
-		Gravity 0.75;
+		Gravity 0;
 	}
 	
 	override void Tick()
@@ -197,7 +197,7 @@ Class RMD_40mmExplosionTrail_Fire : RMD_ModelSparks
 	{
 		+Bright;
 		-NoGravity;
-		Gravity -0.5;
+		Gravity 0;
 	}
 	
 	Override void BeginPlay()
@@ -230,7 +230,7 @@ Class RMD_40mmExplosionTrail_Smoke : RMD_ModelSparks
 		RenderStyle "Translucent";
 		Alpha 0.8;
 		-NoGravity;
-		Gravity -0.7;
+		Gravity 0;
 	}
 	
 	Override void BeginPlay()
