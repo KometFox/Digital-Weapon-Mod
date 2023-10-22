@@ -143,11 +143,11 @@ override void Init()
 			
 			//Health
 			//AddText(String.Format("<1000>"), -20, 157, 0.6, 0.6);
-			AddText(String.Format("%d", Playa.Health), Font.CR_Green, -20, 160, 0.6, 0.6);
+			AddText(String.Format("%d", Playa.Health), Font.CR_CYAN, -20, 160, 0.6, 0.6);
 			
 			//Armor
 			//AddText(String.Format("<2000>"), -20, 180, 0.6, 0.6);
-			AddText(String.Format("%d", ArmorV), Font.CR_Green, -20, 170, 0.6, 0.6);
+			AddText(String.Format("%d", ArmorV), Font.CR_CYAN, -20, 170, 0.6, 0.6);
 			
 			//Credits
 			AddText(String.Format("<Credit> %d", Geld), Font.CR_CYAN, 128, 195, 0.35, 0.35);
@@ -156,12 +156,12 @@ override void Init()
 			AddImage(AmmoIcon, 615, 1095, 80, 80);
 
 			//Ammo
-			AddText(String.Format("%d", Mag1), Font.CR_Green, 282, 160, 0.6, 0.6);
+			AddText(String.Format("%d", Mag1), Font.CR_CYAN, 282, 160, 0.6, 0.6);
 			
 			//Ammo in Stash
 			if (VAmmo != "None")
 			{
-				AddText(String.Format("%d", Playa.CountInv(VAmmo)), Font.CR_Green, 282, 170, 0.6, 0.6);
+				AddText(String.Format("%d", Playa.CountInv(VAmmo)), Font.CR_CYAN, 282, 170, 0.6, 0.6);
 			}
 			
 			//DoomFace 
