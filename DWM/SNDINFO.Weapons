@@ -128,12 +128,11 @@ E12PR/FireC "Sounds/Weapons/Energy/E12PR/FireC.ogg"
 //------------------------------------------------------------------------------
 
 //M25
-$Random M25/Fire {M25/Fire1 M25/Fire2 M25/Fire3 M25/Fire4}
+$Random M25/Fire {M25/Fire1 M25/Fire2 M25/Fire3}
 //Fire
 M25/Fire1 "Sounds/Weapons/AR/M25/Fire1.ogg"
 M25/Fire2 "Sounds/Weapons/AR/M25/Fire2.ogg"
 M25/Fire3 "Sounds/Weapons/AR/M25/Fire3.ogg"
-M25/Fire4 "Sounds/Weapons/AR/M25/Fire4.ogg"
 
 $Volume M25/Fire 0.75
 
@@ -168,11 +167,12 @@ MadsenLar/GrenClose "Sounds/Weapons/AR/Madsen/GrenClose.wav"
 MadsenLar/GrenLoad "Sounds/Weapons/AR/Madsen/GrenLoad.wav"
 
 //M16A3
-$Random M16A3/Fire {M16A3/Fire1 M16A3/Fire2 M16A3/Fire3}
+$Random M16A3/Fire {M16A3/Fire1 M16A3/Fire2 M16A3/Fire3 M16A3/Fire4}
 
 M16A3/Fire1 "Sounds/Weapons/AR/M16A3/Fire1.ogg"
 M16A3/Fire2 "Sounds/Weapons/AR/M16A3/Fire2.ogg"
 M16A3/Fire3 "Sounds/Weapons/AR/M16A3/Fire3.ogg"
+M16A3/Fire4 "Sounds/Weapons/AR/M16A3/Fire4.ogg"
 
 M16A3/Cocking "Sounds/Weapons/AR/M16A3/Cocking.ogg"
 M16A3/MagOut "Sounds/Weapons/AR/M16A3/MagOut.wav"
