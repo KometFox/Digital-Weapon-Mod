@@ -1,5 +1,5 @@
 //Internal Usage
-user int RMDC_Money = 1000; //Player Geld
+user int RMDC_Money = 5000; //Player Geld
 
 //------------------------------------------------------------------------------
 //Game configuration
