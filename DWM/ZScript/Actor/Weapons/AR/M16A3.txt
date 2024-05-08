@@ -8,7 +8,7 @@ class RMD_M16A3 : BaseWeapon
 		Weapon.SelectionOrder 1;
 		Weapon.AmmoUse 0;
 		Weapon.AmmoGive 0;
-		Weapon.AmmoType1 "RMD_ARBullets";
+		Weapon.AmmoType1 "RMD_MediumBullets";
 		Weapon.AmmoType2 "RMD_Grenades";
 		Inventory.PickupMessage "$GOTCHAINGUN";
 		Inventory.AltHudIcon "PIM16A3";
@@ -91,7 +91,7 @@ class RMD_M16A3 : BaseWeapon
 				TakeCounterItem();
 				RMD_BARINFO.Set_Mag(invoker.Magazine);
 				RMD_BARINFO.SetAmmoIcon("AMMOAR");
-				RMD_BARINFO.SetAmmo1("RMD_ARBullets");
+				RMD_BARINFO.SetAmmo1("RMD_MediumBullets");
 				A_ZoomFactor(invoker.ScopeZoom = 1.0, ZOOM_INSTANT);
 		}
 		Goto ReadyReal;
@@ -118,7 +118,7 @@ class RMD_M16A3 : BaseWeapon
 				A_TakeInventory("Reloading", 99);
 				RMD_BARINFO.Set_Mag(invoker.Magazine);
 				RMD_BARINFO.SetAmmoIcon("AMMOAR");
-				RMD_BARINFO.SetAmmo1("RMD_ARBullets");
+				RMD_BARINFO.SetAmmo1("RMD_MediumBullets");
 		}
 		SELC ABCD 1 A_Raise;
 		IDLE A 1 A_Raise(100);
@@ -208,7 +208,7 @@ class RMD_M16A3 : BaseWeapon
 		{
 			A_StartSound("M16A3/MagIn", CHAN_WEAPON +2);
 			
-			ReloadMagazine(PRIMARY, Invoker.MagazineMax, Invoker.MagazineMax);				
+			ReloadGun(Invoker.AmmoType1, 0, 1, 1);
 			RMD_BARINFO.Set_Mag(invoker.Magazine);
 	
 			Return A_Jump(0, "ReadyReal");	

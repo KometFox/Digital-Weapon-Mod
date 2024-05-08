@@ -9,8 +9,10 @@ Class URPG_RicochetEffect : RMD_ParticleSpawner
 		+NOGRAVITY
 		+ALLOWPARTICLES
 		+ZDOOMTRANS
+		+NoExtremeDeath
 		-NOINTERACTION
 		-BLOODLESSIMPACT 
+		
 	}
 	
 	States

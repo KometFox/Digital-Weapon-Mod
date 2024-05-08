@@ -8,7 +8,7 @@ Class ID_VeryCommonDrop : ID_DropBase
 	{
 		InitDrops(20);
 		MyChance = 85;		
-		AddItems("RMD_StimEnergy", 1, 15.0);
+		AddItems("RMD_StimEnergy", 1, 40.0);
 		AddItems("CrystalGreen", 5, 15.0);
 	}
 }
@@ -19,7 +19,7 @@ Class ID_CommonDrop : ID_DropBase
 	{
 		InitDrops(20);
 		MyChance = 70;	
-		AddItems("RMD_StimEnergy", 1, 20.0);
+		AddItems("RMD_StimEnergy", 1, 42.0);
 		AddItems("CrystalGreen", 7, 20.0);
 		AddItems("CrystalBlue", 2, 8.0);
 	}
@@ -33,7 +33,7 @@ Class ID_UncommonDrop : ID_DropBase
 	{
 		InitDrops(20);
 		MyChance = 60;
-		AddItems("RMD_StimEnergy", 1, 35.0);
+		AddItems("RMD_StimEnergy", 2, 32.0);
 		AddItems("CrystalGreen", 9, 25.0);
 		AddItems("CrystalBlue", 4, 15.0);
 		AddItems("CrystalYellow", 2, 10.0);
@@ -49,7 +49,7 @@ Class ID_AverageDrop : ID_DropBase
 	{
 		InitDrops(20);
 		MyChance = 50;
-		AddItems("RMD_MedikitEnergy", 1, 25.0);
+		AddItems("RMD_StimEnergy", 3, 35.0);
 		AddItems("CrystalGreen", 12, 25.0);
 		AddItems("CrystalBlue", 5, 17.5);
 		AddItems("CrystalYellow", 3, 12.5);
@@ -65,7 +65,7 @@ Class ID_RareDrop : ID_DropBase
 	{
 		InitDrops(20);
 		MyChance = 65;
-		AddItems("RMD_MedikitEnergy", 1, 40.0);
+		AddItems("RMD_StimEnergy", 3, 40.0);
 		AddItems("CrystalGreen", 10, 25.0);
 		AddItems("CrystalBlue", 6, 17.5);
 		AddItems("CrystalYellow", 4, 15.0);
@@ -82,10 +82,10 @@ Class ID_BossDrop : ID_DropBase
 	{
 		InitDrops(20);
 		MyChance = 100;
-		AddItems("RMD_MedikitEnergy", 1, 75.0);
-		AddItems("CrystalGreen", 12, 40.0);
-		AddItems("CrystalBlue", 8, 30.5);
-		AddItems("CrystalYellow", 6, 25.75);
-		AddItems("CrystalPurple", 4, 18.45);
+		AddItems("RMD_MedikitEnergy", 3, 100.0);
+		AddItems("CrystalGreen", 15, 40.0);
+		AddItems("CrystalBlue", 10, 30.5);
+		AddItems("CrystalYellow", 8, 25.75);
+		AddItems("CrystalPurple", 6, 18.45);
 	}
 }

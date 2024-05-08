@@ -13,7 +13,7 @@ gameinfo
 	AddEventHandlers = "RMD_Replacer"
 	AddEventHandlers = "WelcomeScreen"
 	//Armor
-	//AddEventHandlers = "RegenativeArmor"
+	AddEventHandlers = "RegenativeArmor"
 	//Ammo
 	AddEventHandlers = "ManaRegen"
 	//Buy menu

@@ -122,7 +122,7 @@ Class AcidBarrel_AcidSpew : Actor
 {
 	Const DAMAGERADIUS = 45;
 	Const FULLDAMAGERADIUS = 25;
-	Const SPLASHDAMAGE = 6;
+	Const SPLASHDAMAGE = 10;
 	int TTL;
 	
 	Property TimeToLife:TTL;
@@ -138,7 +138,7 @@ Class AcidBarrel_AcidSpew : Actor
 		Obituary "%o got melted down by industrial waste.";
 		DamageType "BarrelChemical";
 		DeathType "Acid";
-		AcidBarrel_AcidSpew.TimeToLife 280;
+		AcidBarrel_AcidSpew.TimeToLife 175;
 		+NODAMAGETHRUST;
 		-NOGRAVITY;
 	}
@@ -178,7 +178,7 @@ Class AcidBarrel_AcidSpew : Actor
 				A_Explode(SPLASHDAMAGE, DAMAGERADIUS, 0, 0, FULLDAMAGERADIUS);
 			
 				//Smoke
-				for (int i = 0; i < 7; ++i)
+				for (int i = 0; i < 2; ++i)
 				{
 					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](3.5, 15.0)).unit()*FRandom[FX](0.8, 3.5);
 					Vector3 RPos = (frandom(-15, 15), frandom(-15, 15), frandom(0, 10));
@@ -190,7 +190,7 @@ Class AcidBarrel_AcidSpew : Actor
 				}
 
 				//Acid
-				for (int i = 0; i < 4; ++i)
+				for (int i = 0; i < 3; ++i)
 				{
 					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-0.5, 3.0)).unit()*FRandom[FX](0.6, 2.0);
 					Vector3 RPos = (frandom(-25, 25), frandom(-25, 25), frandom(0, 5));

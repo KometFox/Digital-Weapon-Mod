@@ -60,9 +60,17 @@ Extend Class BuyMenuScript
 	//The Weapon SubMenu
 	void OpenWeaponsMenu()
 	{
-	
+
 		let Elementy = new("TextEntry");
 		Elementy.Column = 1;
+		Elementy.rect_pos.x = 150;
+		Elementy.rect_pos.y = 130 + (Elementy.Column * 9);
+		Elementy.Text = "Melee";
+		Elementy.Command = "Melee";
+		AddElements(Elementy);	
+	
+		Elementy = new("TextEntry");
+		Elementy.Column = 2;
 		Elementy.rect_pos.x = 150;
 		Elementy.rect_pos.y = 130 + (Elementy.Column * 9);
 		Elementy.Text = "Pistols";
@@ -70,7 +78,7 @@ Extend Class BuyMenuScript
 		AddElements(Elementy);	
 	
 		Elementy = new("TextEntry");
-		Elementy.Column = 2;
+		Elementy.Column = 3;
 		Elementy.rect_pos.x = 150;
 		Elementy.rect_pos.y = 130 + (Elementy.Column * 9);
 		Elementy.Text = "Submachine Guns";
@@ -78,7 +86,7 @@ Extend Class BuyMenuScript
 		AddElements(Elementy);	
 
 		Elementy = new("TextEntry");
-		Elementy.Column = 3;
+		Elementy.Column = 4;
 		Elementy.rect_pos.x = 150;
 		Elementy.rect_pos.y = 130 + (Elementy.Column * 9);
 		Elementy.Text = "Assault Rifle";
@@ -86,7 +94,7 @@ Extend Class BuyMenuScript
 		AddElements(Elementy);	
 
 		Elementy = new("TextEntry");
-		Elementy.Column = 4;
+		Elementy.Column = 5;
 		Elementy.rect_pos.x = 150;
 		Elementy.rect_pos.y = 130 + (Elementy.Column * 9);
 		Elementy.Text = "Shotgun";
@@ -94,7 +102,7 @@ Extend Class BuyMenuScript
 		AddElements(Elementy);	
 
 		Elementy = new("TextEntry");
-		Elementy.Column = 5;
+		Elementy.Column = 6;
 		Elementy.rect_pos.x = 150;
 		Elementy.rect_pos.y = 130 + (Elementy.Column * 9);
 		Elementy.Text = "Launcher";

@@ -1,9 +1,9 @@
 AddOptionMenu "OptionsMenu"
 {
-	SubMenu "Renamon Doom Options", "Renamon Doom Settings"
+	SubMenu "DMW Doom Options", "Renamon Doom Settings"
 }
 
-OptionMenu "Renamon Doom Settings" 
+OptionMenu "DMW Doom Settings" 
 {
 	Title "Doom Settings"
 

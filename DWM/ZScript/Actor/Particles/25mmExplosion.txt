@@ -1,6 +1,7 @@
 Class RMD_25mmExplosionSpawner : Actor
 {
-
+	Mixin Mix_ParticleSpawner;
+	
 	States
 	{
 		Spawn:
@@ -8,18 +9,20 @@ Class RMD_25mmExplosionSpawner : Actor
 			TNT1 A 0 
 			{
 
-				//Explosion
-				for (int i = 0; i < 9; ++i)
+				//Explosion				
+				for (int i = 0; i < 8; ++i)
 				{
-					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](0.75, 4.5);
+					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](1.0, 2.0);
 					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
-					let Particle = Spawn("RMD_Boom", Pos + RPos);
+					Actor Particle;
+					Bool Spawned;
 					
+					[Spawned, Particle] = A_SpawnItemEx("RMD_ExplosionA", flags: FXFLAG);
+					
+					Particle.TeleportMove(Pos + RPos, false);
 					Particle.Vel = PVel;
 					Particle.Roll = Random(0, 360);
-					Particle.Scale = (0.3, 0.3);
-					Particle.A_SetRenderStyle(0.995, STYLE_Add);
-					Particle.A_SetTranslation("ExplosionOrange");
+					Particle.Scale = (0.65, 0.65);
 				}
 				
 				
@@ -61,9 +64,6 @@ Class RMD_25mmExplosionSpawner : Actor
 					let Particle = Spawn("RMD_25mm_Ember", Pos + RPos);
 					
 					Particle.Vel = PVel;
-					Particle.Scale = (0.4, 0.4);
-					Particle.A_SetRenderStyle(0.995, STYLE_Add);
-					Particle.A_SetTranslation("ExplosionOrange");
 				}
 				
 				//Flare
@@ -274,20 +274,20 @@ Class RMD_25mmExplosionTrail_Smoke : RMD_ModelSparks
 			TNT1 A 0;
 			TNT1 A 0 A_Jump(256, "Smoke1", "Smoke2", "Smoke3", "Smoke4");
 		Smoke1:
-			SMXA A 7;
-			SMXA AAAAAAAAAA 1 A_FadeOut(0.075);
+			SMOA A 7;
+			SMOA AAAAAAAAAA 1 A_FadeOut(0.075);
 			Stop;
 		Smoke2:
-			SMXB A 7;
-			SMXB AAAAAAAAAA 1 A_FadeOut(0.075);
+			SMOB A 7;
+			SMOB AAAAAAAAAA 1 A_FadeOut(0.075);
 			Stop;
 		Smoke3:
-			SMXC A 7;
-			SMXC AAAAAAAAAA 1 A_FadeOut(0.075);
+			SMOC A 7;
+			SMOC AAAAAAAAAA 1 A_FadeOut(0.075);
 			Stop;
 		Smoke4:
-			SMXD A 7;
-			SMXD AAAAAAAAAA 1 A_FadeOut(0.075);
+			SMOD A 7;
+			SMOD AAAAAAAAAA 1 A_FadeOut(0.075);
 			Stop;
 	}
 }

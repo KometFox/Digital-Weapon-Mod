@@ -112,9 +112,9 @@ class RMD_Milk : Health
 	Default
 	{
 		-COUNTITEM
-		Inventory.Amount 10;
+		Inventory.Amount 2;
 		Inventory.MaxAmount 1000;
-		Inventory.PickupMessage "You drinked a box of milk. <+10 HP>";
+		Inventory.PickupMessage "You drinked a box of milk. <+2 HP>";
 		Inventory.PickupSound "Player/Drink";
 	}
 	
@@ -153,8 +153,8 @@ class RMD_StimEnergy : RMD_HealthBase
 	Default
 	{
 		-COUNTITEM
-		Inventory.Amount 25;
-		Inventory.PickupMessage "You picked up a can of energy drinks. <+25>";
+		Inventory.Amount 2;
+		Inventory.PickupMessage "You picked up a can of energy drinks. <+2>";
 		Inventory.PickupSound "Items/EnergyDrinkPick";
 	}
 }
@@ -165,8 +165,8 @@ class RMD_MedikitEnergy : RMD_HealthBase
 	Default
 	{
 		-COUNTITEM
-		Inventory.Amount 75;
-		Inventory.PickupMessage "You picked up a pack of energy drinks. <+75>";
+		Inventory.Amount 6;
+		Inventory.PickupMessage "You picked up a pack of energy drinks. <+6>";
 		Inventory.PickupSound "Items/EnergyDrinkPick";
 	}
 }
@@ -178,8 +178,8 @@ Class RMD_HealthKegBase : Health
 	{
 		-COUNTITEM
 		+INVENTORY.ALWAYSPICKUP;
-		Inventory.Amount 200;
-		Inventory.MaxAmount 300;		
+		Inventory.Amount 100;
+		Inventory.MaxAmount 200;		
   	}
 	
 	States
@@ -196,7 +196,7 @@ Class RMD_Healthkeg : CustomInventory
 	{
 		-COUNTITEM
 		Scale 1;
-		Inventory.PickupMessage "You drink a large keg full of healthy liquid <+200 HP>!";
+		Inventory.PickupMessage "You drink a large keg full of healthy liquid <+100 HP>!";
 		Inventory.PickupSound "Items/UTSuperHealth";
 	}
 	

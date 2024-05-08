@@ -9,15 +9,15 @@ Class RMD_BigPlasmaSpawner : Actor
 			{
 
 				//Explosion
-				for (int i = 0; i < 22; ++i)
+				for (int i = 0; i < 15; ++i)
 				{
-					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](1.25, 9.5);
+					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](1.0, 7.0);
 					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
-					let Particle = Spawn("RMD_Boom", Pos + RPos);
+					let Particle = Spawn("RMD_ExplosionA", Pos + RPos);
 					
 					Particle.Vel = PVel;
 					Particle.Roll = Random(0, 360);
-					Particle.Scale = (1.25, 1.25);
+					Particle.Scale = (1.6, 1.6);
 					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
 					Particle.SetShade("30C7FF");
 				}

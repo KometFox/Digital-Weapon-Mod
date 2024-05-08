@@ -80,8 +80,7 @@ Class BuyMenuScript : EventHandler
 		if (ElementsSel == Index)
 			AddImage(GrSelect, Item.rect_pos.x, Item.rect_pos.y);	
 
-		DisplayItem();
-		
+		DisplayItem();		
 		return;
 	}	
 	
@@ -113,6 +112,10 @@ Class BuyMenuScript : EventHandler
 				
 				//Display Items 
 				RenderItemsEntry(i);
+				
+				//Helpful guide...
+				AddText("Use Arrow keys for navigation\nEnter to confirm/Buy\nPress buy menu key again to exit.", 70, 250);
+		
 			}		
 		}
 	}
@@ -227,6 +230,10 @@ Class BuyMenuScript : EventHandler
 	void PressEnter()
 	{
 
+		if (ElementsSel > Elements.Size())
+		{
+			return;
+		}
 		
 		let Item = Entry(Elements[ElementsSel]);		
 		string CMD = Item.Command;
@@ -265,6 +272,16 @@ Class BuyMenuScript : EventHandler
 		}
 		
 		//Weapons
+		else if (CMD == "Melee")
+		{
+			ReinitMenu();
+			
+			let Obj = new("BM_Melee");
+			
+			AddItems(Obj);
+			
+		}
+
 		else if (CMD == "Pistols")
 		{
 			ReinitMenu();

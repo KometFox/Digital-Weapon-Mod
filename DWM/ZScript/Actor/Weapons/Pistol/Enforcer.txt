@@ -7,7 +7,7 @@ class RMD_Enforcer : BaseWeapon
 		Weapon.SelectionOrder 1;
 		Weapon.AmmoUse 0;
 		Weapon.AmmoGive 0;
-		Weapon.AmmoType "Clip";
+		Weapon.AmmoType "RMD_PistolBullets";
 		Inventory.PickupMessage "$GOTCHAINGUN";
 		Inventory.AltHudIcon "PIENF";
 		Obituary "$OB_MPCHAINGUN";
@@ -15,8 +15,9 @@ class RMD_Enforcer : BaseWeapon
 		
 		BaseWeapon.IronSight IRON_INACTIVE;
 		
-		BaseWeapon.MagazineMax 14;
-		BaseWeapon.Magazine 14;	
+		BaseWeapon.MagazineMax 10;
+		BaseWeapon.Magazine 10;	
+		+NoExtremeDeath;
 	}
 	
 	action state ReloadCheck()
@@ -28,8 +29,8 @@ class RMD_Enforcer : BaseWeapon
 								"ReloadNow", 
 								Invoker.AmmoType1,
 								Invoker.Magazine,
-								Invoker.MagazineMax, 
-								0);
+								Invoker.MagazineMax,
+								1);
 	}
 	
 
@@ -52,8 +53,8 @@ class RMD_Enforcer : BaseWeapon
 		
 		if (Invoker.IronSight == IRON_INACTIVE)
 		{
-			//A_FireProjectile("RMD_EnforcerBullet",frandom(-0.5, 0.5), 1, 0, 4, CMF_AIMDIRECTION,frandom(-0.4, 0.4
-			A_FireBullets(0.5, 0.5, 1, 19, "URPG_RicochetEffect", BULLETFIRE, 0, null);
+			A_FireProjectile("RMD_EnforcerBullet",frandom(-0.5, 0.5), 1, 0, 4, CMF_AIMDIRECTION,frandom(-0.4, 0.4));
+			//A_FireBullets(0.5, 0.5, 1, 50, "URPG_RicochetEffect", BULLETFIRE, 0, null);
 			
 			//Effect
 			B_MuzzleFlash("RMD_BulletMuzzleFlash", (12, 1.5, -0.5));	
@@ -62,8 +63,8 @@ class RMD_Enforcer : BaseWeapon
 
 		else
 		{
-			//A_FireProjectile("RMD_EnforcerBullet",frandom(-0.2, 0.2), 1, 0, 4, CMF_AIMDIRECTION,frandom(-0.14, 0.14));
-			A_FireBullets(0.2, 0.2, 1, 19, "URPG_RicochetEffect", BULLETFIRE, 0, null);
+			A_FireProjectile("RMD_EnforcerBullet",frandom(-0.2, 0.2), 1, 0, 4, CMF_AIMDIRECTION,frandom(-0.14, 0.14));
+			//A_FireBullets(0.2, 0.2, 1, 50, "URPG_RicochetEffect", BULLETFIRE, 0, null);
 			
 			B_MuzzleFlash("RMD_BulletMuzzleFlash", (12, 0, -1.0));	
 			B_SpawnCasing("PistolCase", (7, 0, -2.0));
@@ -100,7 +101,7 @@ class RMD_Enforcer : BaseWeapon
 				TakeCounterItem();
 				RMD_BARINFO.Set_Mag(invoker.Magazine);
 				RMD_BARINFO.SetAmmoIcon("AMMOSMG");
-				RMD_BARINFO.SetAmmo1("None");
+				RMD_BARINFO.SetAmmo1("RMD_PistolBullets");
 		}
 		Goto ReadyReal;
 		
@@ -121,7 +122,7 @@ class RMD_Enforcer : BaseWeapon
 				A_TakeInventory("Reloading", 99);
 				RMD_BARINFO.Set_Mag(invoker.Magazine);
 				RMD_BARINFO.SetAmmoIcon("AMMOSMG");
-				RMD_BARINFO.SetAmmo1("None");
+				RMD_BARINFO.SetAmmo1("RMD_PistolBullets");
 		}
 		SELC ABCDEF 1;
 		SELC F 1 A_Raise(100);
@@ -129,17 +130,17 @@ class RMD_Enforcer : BaseWeapon
 			
 	//Ironsight Mode
 	IronReady:
-		IRON D 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB);
+		IRO1 D 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB);
 		Loop;
 		
 	IronSightAnim:
 		TNT1 A 0 A_SetCrosshair(99);
-		IRON ABCD 2 A_ZoomFactor(2.15);
+		IRO1 ABCD 2 A_ZoomFactor(2.15);
 		Goto IronReady;
 		
 	IronSightDeselect:
 		TNT1 A 0  A_SetCrosshair(0);
-		IRON DCBA 2 A_ZoomFactor(1.0);
+		IRO1 DCBA 2 A_ZoomFactor(1.0);
 		TNT1 A 0
 		{
 			Invoker.IronSight = IRON_INACTIVE;
@@ -162,17 +163,17 @@ class RMD_Enforcer : BaseWeapon
 		Goto ReadyReal;
 		
 	FireNow:
-		FIRE A 1 FireBullets();
-		FIRE BC 1;
-		FIRE DEF 3;
-		FIRE A 0 A_ReFire;
+		FIR1 A 3 FireBullets();
+		FIR1 BCD 2;
+		FIR1 EF 2;
+		FIR1 F 0 A_ReFire();
 		Goto ReadyReal;
 		
 	IronFireNow:
-		IFIR A 1 FireBullets();
-		IFIR BC 1;
-		IFIR DEF 3;
-		IFIR A 0 A_ReFire;
+		IFI1 A 3 FireBullets();
+		IFI1 BCD 2;
+		IFI1 EF 2;
+		IFI1 F 0 A_ReFire;
 		Goto IronReady;	
 	
 	Reload:
@@ -181,24 +182,24 @@ class RMD_Enforcer : BaseWeapon
 
 	ReloadNow:
 		TNT1 A 0 A_TakeInventory("GotoReload", 1);
-		REL1 ABCDEF 3;
+		REL1 AB 2;
 		TNT1 A 0
 		{
 			A_StartSound("Enforcer/MagOut", CHAN_WEAPON);
 			A_FireProjectile("PistolMagSpawn",-5,0,8,-4);
 		}
-		REL1 GHIJK 3;
+		REL1 CDEFG 2;
 		TNT1 A 0
 		{
 			A_StartSound("Enforcer/MagIn", CHAN_WEAPON +1);
 			
-			//ReloadMagazine(PRIMARY, Invoker.MagazineMax, 0);
+			ReloadGun(Invoker.AmmoType1, 0, 1, 1);
 			Invoker.Magazine = Invoker.MagazineMax;
 			RMD_BARINFO.Set_Mag(invoker.Magazine);
 	
 			Return A_Jump(0, "ReadyReal");	
 		}
-		REL1 MNO 3;		
+		REL1 HIJK 2;		
 		Goto ReadyReal;
 		
 	}
@@ -211,8 +212,8 @@ Class RMD_EnforcerBullet : RMD_BaseBullet
 Default
 	{
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 28; 
-		RMD_BaseBullet.DamageRand 4.25;
+		RMD_BaseBullet.ImpactDamage 30; 
+		RMD_BaseBullet.DamageRand 1.6;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 500;
 		

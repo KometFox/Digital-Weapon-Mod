@@ -28,7 +28,7 @@ Class MaterialBase : CustomInventory
 
 	Default
 	{
-		Inventory.PickupMessage "You obtained no data.";
+		Inventory.PickupMessage "";
 		MaterialBase.Money 0;
 		MaterialBase.TimeToLife 3000; //3k Tics
 		MaterialBase.MagnetType 0;
@@ -126,15 +126,16 @@ Class MaterialBase : CustomInventory
 		Spawn:
 			IDLE A 0 NoDelay 
 			{
-				Actor Flare;		
-				Flare = Spawn("FX_ItemShineFlare", Pos, ALLOW_REPLACE);
+				
+				//Actor Flare;		
+				//Flare = Spawn("FX_ItemShineFlare", Pos, ALLOW_REPLACE);
 						
-				If (Flare)
-				{
-					Flare.Target = Self;
-					Flare.Scale = (0.85, 0.85);
-					Flare.SetShade(Invoker.ItemColor);	
-				}
+				//If (Flare)
+				//{
+				//	Flare.Target = Self;
+				//	Flare.Scale = (0.85, 0.85);
+				//	Flare.SetShade(Invoker.ItemColor);	
+				//}
 			
 			}
 			Goto Spawn2;
@@ -191,6 +192,7 @@ Class MaterialBase : CustomInventory
 				Invoker.MagnetType = CVar.FindCVar("RMDC_MoneyMagnetType").GetInt();
 			}
 			"####" "#" 1 CheckMagnetType();
+			//"####" "#" 1;
 			Loop;
 			
 		Delay:
@@ -218,6 +220,45 @@ Class MaterialBase : CustomInventory
 			Stop;
 	}
 }
+
+
+Class FloppyDisc : MaterialBase 
+{
+	Default
+	{
+		MaterialBase.Money 50;
+		MaterialBase.ItemColor "e6e6e6";
+	}
+}
+
+Class HardDrive : MaterialBase 
+{
+	Default
+	{
+		MaterialBase.Money 500;
+		MaterialBase.ItemColor "e6e6e6";
+	}
+}
+
+Class TapeDrive : MaterialBase 
+{
+	Default
+	{
+		MaterialBase.Money 10;
+		MaterialBase.ItemColor "e6e6e6";
+	}
+}
+
+Class CDRom : MaterialBase 
+{
+	Default
+	{
+		MaterialBase.Money 100;
+		MaterialBase.ItemColor "e6e6e6";
+	}
+}
+
+
 
 //------------------------------------------------------------------------------
 //Ingot Stacks
@@ -405,4 +446,7 @@ Class CrystalPurple : RMD_IngotBase
 	}
 
 }
+
+
+
 

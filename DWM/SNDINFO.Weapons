@@ -1,15 +1,35 @@
 //------------------------------------------------------------------------------
+//Sword
+//------------------------------------------------------------------------------
+Sword/Swing1 "Sounds/Weapons/Sword/Swing1.wav"
+Sword/Swing2 "Sounds/Weapons/Sword/Swing2.wav"
+Sword/Swing3 "Sounds/Weapons/Sword/Swing3.wav"
+$Random Sword/Swing {Sword/Swing1 Sword/Swing2 Sword/Swing3}
+
+Sword/MetalHit1 "Sounds/Weapons/Sword/HitMetal1.ogg"
+Sword/MetalHit2 "Sounds/Weapons/Sword/HitMetal2.ogg"
+Sword/MetalHit3 "Sounds/Weapons/Sword/HitMetal3.ogg"
+$Random Sword/MetalHit {Sword/MetalHit1 Sword/MetalHit2 Sword/MetalHit3}
+
+//------------------------------------------------------------------------------
 //Pistols
 //------------------------------------------------------------------------------
 Enforcer/MagIn "Sounds/Weapons/Pistols/Enforcer/MagIn.ogg"
 Enforcer/MagOut "Sounds/Weapons/Pistols/Enforcer/MagOut.ogg"
 
-$Random Enforcer/Fire {EnforcerFire1 EnforcerFire2 EnforcerFire3}
+$Random Enforcer/Fire {EnforcerFire1 EnforcerFire2}
 EnforcerFire1 "Sounds/Weapons/Pistols/Enforcer/Fire1.ogg"
 EnforcerFire2 "Sounds/Weapons/Pistols/Enforcer/Fire2.ogg"
-EnforcerFire3 "Sounds/Weapons/Pistols/Enforcer/Fire3.ogg"
 
 $Volume Enforcer/Fire 0.85
+
+SWModel19/Open "Sounds/Weapons/Pistols/SWModel19/Open.ogg"
+SWModel19/Close "Sounds/Weapons/Pistols/SWModel19/Close.ogg"
+SWModel19/Fire1 "Sounds/Weapons/Pistols/SWModel19/Fire1.ogg"
+SWModel19/Fire2 "Sounds/Weapons/Pistols/SWModel19/Fire2.ogg"
+SWModel19/Fire3 "Sounds/Weapons/Pistols/SWModel19/Fire3.ogg"
+$Random SWModel19/Fire {SWModel19/Fire1 SWModel19/Fire2 SWModel19/Fire3}
+
 
 //------------------------------------------------------------------------------
 //Grenades
@@ -42,17 +62,26 @@ $Volume CBM2/Fire 1.0
 
 //Mossberg 590
 //Fire
-$Random AoMShotgun/Fire {Mossberg/Fire1 Mossberg/Fire2 Mossberg/Fire3}
-$Volume AoMShotgun/Fire 0.77
+$Random AoMShotgun/Fire {Mossberg/Fire1}
+$Volume AoMShotgun/Fire 0.8
 Mossberg/Fire1 "Sounds/Weapons/SG/AoMShotgun/Fire1.ogg"
-Mossberg/Fire2 "Sounds/Weapons/SG/AoMShotgun/Fire2.ogg"
-Mossberg/Fire3 "Sounds/Weapons/SG/AoMShotgun/Fire3.ogg"
 
 //Shell
 AoMShotgun/CockStart "Sounds/Weapons/SG/AoMShotgun/CockStart.ogg"
 AoMShotgun/CockEnd "Sounds/Weapons/SG/AoMShotgun/CockEnd.ogg"
 AoMShotgun/Cocking "Sounds/Weapons/SG/AoMShotgun/CockA.ogg"
 AoMShotgun/Insert "Sounds/Weapons/SG/AoMShotgun/LoadShell.ogg"
+
+//Bekas 12m
+//Fire
+$Random Bekas12m/Fire {Bekas12m/Fire1}
+$Volume Bekas12m/Fire 0.9
+Bekas12m/Fire1 "Sounds/Weapons/SG/Bekas12m/Fire1.ogg"
+
+//Shell
+Bekas12m/CockStart "Sounds/Weapons/SG/Bekas12m/CockStart.ogg"
+Bekas12m/CockEnd "Sounds/Weapons/SG/Bekas12m/CockEnd.ogg"
+Bekas12m/Insert "Sounds/Weapons/SG/Bekas12m/LoadShell.ogg"
 
 
 $Random MolotVPO208/Fire {MolotVPO208/Fire1 MolotVPO208/Fire2 MolotVPO208/Fire3}
@@ -64,6 +93,12 @@ MolotVPO208/Fire3 "Sounds/Weapons/SG/MolotVPO208/Fire3.ogg"
 MolotVPO208/ClipInsert "Sounds/Weapons/SG/MolotVPO208/ClipInsert.ogg"
 MolotVPO208/HandlePull "Sounds/Weapons/SG/MolotVPO208/HandlePull.ogg"
 MolotVPO208/HandlePush "Sounds/Weapons/SG/MolotVPO208/HandlePush.ogg"
+
+//Carcano M91
+CarcanoM91/Fire "Sounds/Weapons/SG/CarcanoM91/Fire.ogg"
+CarcanoM91/Open "Sounds/Weapons/SG/CarcanoM91/Open.ogg"
+CarcanoM91/Close "Sounds/Weapons/SG/CarcanoM91/Close.ogg"
+
 
 
 //------------------------------------------------------------------------------
@@ -128,13 +163,11 @@ E12PR/FireC "Sounds/Weapons/Energy/E12PR/FireC.ogg"
 //------------------------------------------------------------------------------
 
 //M25
-$Random M25/Fire {M25/Fire1 M25/Fire2 M25/Fire3}
+$Random M25/Fire {M25/Fire1}
 //Fire
 M25/Fire1 "Sounds/Weapons/AR/M25/Fire1.ogg"
-M25/Fire2 "Sounds/Weapons/AR/M25/Fire2.ogg"
-M25/Fire3 "Sounds/Weapons/AR/M25/Fire3.ogg"
 
-$Volume M25/Fire 0.75
+$Volume M25/Fire 0.4
 
 $Random M25/GrenadeFire {M25GFire1}
 M25GFire1 "Sounds/Weapons/AR/M25/GrenadeFire.ogg"
@@ -148,12 +181,11 @@ M25/GrenMagOut "Sounds/Weapons/AR/M25/GrenOpen.ogg"
 M25/GrenMagIn "Sounds/Weapons/AR/M25/GrenClose.ogg"
 
 //Madsen LAR
-$Random MadsenLAR/Fire {MadsenLAR/Fire1 MadsenLAR/Fire2 MadsenLAR/Fire3}
-$Volume MadsenLAR/Fire 0.75
+$Random MadsenLAR/Fire {MadsenLAR/Fire1 MadsenLAR/Fire2}
+$Volume MadsenLAR/Fire 0.9
 
 MadsenLAR/Fire1 "Sounds/Weapons/AR/Madsen/Fire1.ogg"
 MadsenLAR/Fire2 "Sounds/Weapons/AR/Madsen/Fire2.ogg"
-MadsenLAR/Fire3 "Sounds/Weapons/AR/Madsen/Fire3.ogg"
 
 MadsenLAR/GrenadeFire "Sounds/Weapons/AR/Madsen/GrenadeFire.ogg"
 
@@ -167,12 +199,9 @@ MadsenLar/GrenClose "Sounds/Weapons/AR/Madsen/GrenClose.wav"
 MadsenLar/GrenLoad "Sounds/Weapons/AR/Madsen/GrenLoad.wav"
 
 //M16A3
-$Random M16A3/Fire {M16A3/Fire1 M16A3/Fire2 M16A3/Fire3 M16A3/Fire4}
+$Random M16A3/Fire {M16A3/Fire1}
 
 M16A3/Fire1 "Sounds/Weapons/AR/M16A3/Fire1.ogg"
-M16A3/Fire2 "Sounds/Weapons/AR/M16A3/Fire2.ogg"
-M16A3/Fire3 "Sounds/Weapons/AR/M16A3/Fire3.ogg"
-M16A3/Fire4 "Sounds/Weapons/AR/M16A3/Fire4.ogg"
 
 M16A3/Cocking "Sounds/Weapons/AR/M16A3/Cocking.ogg"
 M16A3/MagOut "Sounds/Weapons/AR/M16A3/MagOut.wav"
@@ -180,18 +209,16 @@ M16A3/MagIn "Sounds/Weapons/AR/M16A3/MagIn.wav"
 
 $Volume M16A3/MagOut 0.75
 $Volume M16A3/MagIn 0.75
+$Volume M16A3/Fire 1.0
 
 //------------------------------------------------------------------------------
 //Machine Guns
 //------------------------------------------------------------------------------
-$Random M249SAW/Fire {M249SAW/Fire1 M249SAW/Fire2 M249SAW/Fire3}
+$Random M249SAW/Fire {M249SAW/Fire1}
 
 $Volume M249SAW/Fire 0.9
 						
 M249SAW/Fire1 "Sounds/Weapons/MG/M249SAW/Fire1.ogg"
-M249SAW/Fire2 "Sounds/Weapons/MG/M249SAW/Fire2.ogg"
-M249SAW/Fire3 "Sounds/Weapons/MG/M249SAW/Fire3.ogg"
-
 						
 M249SAW/Bolt "Sounds/Weapons/MG/M249SAW/Bolt.ogg"
 M249SAW/Belt "Sounds/Weapons/MG/M249SAW/Belt.ogg"

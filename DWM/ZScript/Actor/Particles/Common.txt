@@ -58,6 +58,107 @@ Class RMD_Boom : RMD_BaseParticle
 	}
 }
 
+Class RMD_ExplosionA : RMD_BaseParticle
+{
+
+	Default
+	{
+		RenderStyle "Add";
+		Alpha 1.0;
+		+Bright;
+	}
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		Roll = Random[FX](0, 360);
+		Angle = Random[FX](0, 360);	
+		//SetShade("ff8522");
+	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+		
+		if (!Level.IsFrozen())
+		{
+			A_SetScale(Scale.X * 1.028, Scale.Y * 1.028);	
+		}	
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 
+			{
+				int Dice = random(0, 1);
+				
+				if (Dice == 0) 
+				{
+					return ResolveState("Sprite1");
+				}
+				else if (Dice == 1)
+				{
+					return ResolveState("Sprite2");
+				}
+
+				return ResolveState("Spawn");
+			}
+			Goto Sprite1;
+			
+		Sprite1:
+			XBM2 ABCDEFGHIJKLMNOPQRSTUWXYZ 1;
+			Stop;
+		Sprite2:
+			XBM4 ABCDEFGHIJKLMNOPQRSTUWXY 1;
+			Stop;			
+	}
+}
+
+
+
+Class RMD_SpriteBoom : RMD_BaseParticle
+{
+
+	Default
+	{
+		RenderStyle "Add";
+		Alpha 1.0;
+		Scale 0.2;
+		+Bright;
+	}
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		Roll = Random[FX](0, 360);
+		Angle = Random[FX](0, 360);	
+	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+		
+		if (!Level.IsFrozen())
+		{
+			A_SetScale(Scale.X * 1.02, Scale.Y * 1.02);	
+			A_FadeOut(0.0625);
+		}	
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			YOM1 A 16; 
+			Goto Loopy;
+	}
+}
+
+
 
 Class RMD_Fire : RMD_BaseParticle
 {

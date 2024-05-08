@@ -1,8 +1,8 @@
 class RMD_MolotVPO208 : BaseWeapon
 {
 	//Firing Accuracy
-	Const FireAngle = 0.45;
-	Const IronFireAngle = 0.25;
+	Const FireAngle = 0.08;
+	Const IronFireAngle = 0.04;
 
 	Default
 	{
@@ -17,8 +17,8 @@ class RMD_MolotVPO208 : BaseWeapon
 		Inventory.AltHudIcon "PIMOL208";
 		BaseWeapon.IronSight IRON_INACTIVE;
 
-		BaseWeapon.MagazineMax 15;
-		BaseWeapon.Magazine 15;
+		BaseWeapon.MagazineMax 10;
+		BaseWeapon.Magazine 10;
 		
 	}
 	
@@ -38,11 +38,8 @@ class RMD_MolotVPO208 : BaseWeapon
 			
 		if (Invoker.IronSight == IRON_INACTIVE)
 		{
-			for (int i = 0; i < 5; i++)
-			{
-				A_FireProjectile("RMD_MolotVPO208Proj",frandom(-FireAngle, FireAngle), 1, 6, 4, CMF_AIMDIRECTION, frandom(-FireAngle, FireAngle));
-			}
-			
+
+			A_FireProjectile("RMD_MolotVPO208Proj",frandom(-FireAngle, FireAngle), 1, 6, 4, CMF_AIMDIRECTION, frandom(-FireAngle, FireAngle));
 			B_MuzzleFlash("RMD_BuckshotMuzzleFlash", (9, 1.8, -1.0));
 			Actor Case_ = Casings(B_SpawnCasing("RifleCase", (7, -6.5, -3.0)));
 			
@@ -50,18 +47,12 @@ class RMD_MolotVPO208 : BaseWeapon
 			{
 				Case_.A_SetRenderStyle(1.0, STYLE_Shaded);
 				Case_.SetShade("b2b2b2");			
-			}
-			
-			
+			}			
 			
 		}
 		else
 		{
-			for (int i = 0; i < 5; i++)
-			{
-				A_FireProjectile("RMD_MolotVPO208Proj",frandom(-IronFireAngle, IronFireAngle), 1, 0, 4, CMF_AIMDIRECTION, frandom(-IronFireAngle, IronFireAngle));
-			}
-			
+			A_FireProjectile("RMD_MolotVPO208Proj",frandom(-IronFireAngle, IronFireAngle), 1, 0, 4, CMF_AIMDIRECTION, frandom(-IronFireAngle, IronFireAngle));
 			B_MuzzleFlash("RMD_BuckshotMuzzleFlash", (7, 0, -0.5));
 			Actor Case_ = Casings(B_SpawnCasing("RifleCase", (2, 0, -1.15)));
 			
@@ -170,17 +161,17 @@ class RMD_MolotVPO208 : BaseWeapon
 		Goto Ready;
 	
 	FireNow:
-		FIR1 A 1 FireBullets();
-		FIR1 BCDEFGH 1;
-		FIR1 H 10;
+		FIR1 A 2 FireBullets();
+		FIR1 BCDEFGH 2;
+		FIR1 H 5;
 		FIR1 H 0 A_ReFire("FireNow");
 		Goto Ready;
 		
 	//Ironsight Fire
 	IronFireNow:
-		IFI1 A 1 FireBullets();
-		IFI1 BCDEFGH 1;
-		IFI1 H 8;
+		IFI1 A 2 FireBullets();
+		IFI1 BCDEFGH 2;
+		IFI1 H 5;
 		IFI1 H 0 A_ReFire("IronFireNow");
 		Goto IronReady;
 		
@@ -201,7 +192,7 @@ class RMD_MolotVPO208 : BaseWeapon
 		TNT1 A 0
 		{
 			A_StartSound("MolotVPO208/ClipInsert");
-			ReloadMagazine(PRIMARY, Invoker.MagazineMax, Invoker.MagazineMax);	
+			ReloadGun(Invoker.AmmoType1, 0, 1, 1);
 			RMD_BARINFO.Set_Mag(invoker.Magazine);
 		}
 		//Handle Push
@@ -224,14 +215,13 @@ Class RMD_MolotVPO208Proj : RMD_BaseBullet
 	Default
 	{
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 20; 
-		RMD_BaseBullet.DamageRand 2.5;
+		RMD_BaseBullet.ImpactDamage 270; 
+		RMD_BaseBullet.DamageRand 1.4;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 1000;
-		RMD_BaseBullet.ExtremeDeath True;
+		RMD_BaseBullet.ExtremeDeath False;
 		
 		Scale 1.0;
 		Decal "RMD_Buckshot_BulletHoles";
-		-NOEXTREMEDEATH;
 	}
 }

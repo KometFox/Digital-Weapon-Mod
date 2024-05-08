@@ -154,9 +154,9 @@ Class RMD_PirateBomb_Bomb : LightExplosives
 		//Impact 
 		BaseProjectile.ImpactDamage 0;
 		//Splash 
-		BaseProjectile.SplashDamage 250;
-		BaseProjectile.FullSplashDamage 70;
-		BaseProjectile.SplashRadius 100;
+		BaseProjectile.SplashDamage 200;
+		BaseProjectile.FullSplashDamage 60;
+		BaseProjectile.SplashRadius 180;
 		//Randomizer
 		BaseProjectile.NormalDamageRandom 1.0;
 		BaseProjectile.NerfDamageRandom 1.0;

@@ -1,0 +1,25 @@
+====Changelog====
+
+
+================================================================================
+***Version 1.1***
+================================================================================
+-Changed Carcano M91 sound (From Arachnocide mod) 
+-Changed AR-70 sound
+-Buffed Carcano M91 damage to 160
+-Buffed Molot VPO 208 damage to 150 (total)
+-Greatly reduced the chance of a monster getting gibbed from bullet weapons (tested on gore mods)
+-Replaced Ingots with Storage Mediums 
+-Replaced ammo drops now with multiple money items  
+-Player doesn't spawn with any weapon now
+-Added Master Sword
+-Added CDS-4 Spear 
+-Reanimated Enforcer, Mossberg 590, M25 Assault Rifle 
+-Replaced armor with money 
+-Replaced armor bonus with health bonus
+-Purple super keg gives only 300 HP now 
+-Blue super keg gives only 100 HP now
+-Player armor is now regenative, (100% protection, max 100) 
+-Health Bonus items now only gives 2HP 
+-Energy cans from monster drops gives only 2-6 Ammo
+-Enforcer uses pistol bullet ammo 

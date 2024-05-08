@@ -38,10 +38,10 @@ Default
 	Weapon.AmmoType2 "Clip";
 	+Weapon.NoAlert;
 	
-	Weapon.BobRangeX 0.5;
-	Weapon.BobRangeY 0.75;
-	Weapon.BobSpeed 1.66;
-	Weapon.BobStyle "InverseSmooth";
+	Weapon.BobRangeX 0.35;
+	Weapon.BobRangeY 0.8;
+	Weapon.BobSpeed 1.5;
+	Weapon.BobStyle "Alpha";
 }
 
 Enum E_Ammo
@@ -129,7 +129,7 @@ static int Get_Magazine()
 		return False;
 	}
 	
-	Action state ReloadCheck()
+	Action state ReloadCheck(int AmmoUse = 1)
 	{
 		return B_ReloadGoTo(
 							"ReadyReal", 
@@ -139,20 +139,9 @@ static int Get_Magazine()
 							Invoker.AmmoType1,
 							Invoker.Magazine,
 							Invoker.MagazineMax,
-							1);
+							AmmoUse);
 	}
 	
-
-	//Check if there is enough ammo left to consume
-	bool AmmoCheck(Class<Ammo> VAmmo = "Clip", int AmmoUse = 0)
-	{
-		if (Owner.CountInv(VAmmo) >= AmmoUse)
-		{
-			return true;
-		}
-		
-		return false;
-	}
 
 	//Check which state to jump into if ironsight is on or not
 	action state ReloadIronCheck(statelabel IronDeselect, statelabel ReloadState)
@@ -183,7 +172,9 @@ static int Get_Magazine()
 							int AmmoUse = 1)
 	{
 		
-		if ((LoadedAmmo < AmmoMax) && invoker.AmmoCheck(AmmoClass, AmmoUse)) 
+		//console.printf("%d | %d", Player.mo.CountInv(AmmoClass), AmmoUse);
+		
+		if ((LoadedAmmo < AmmoMax) && Player.mo.CountInv(AmmoClass) >= AmmoUse) 
 			return invoker.ReloadIronCheck(IronDeselectState, ReloadState);		
 		
 		return ResolveState("ReadyReal");
@@ -208,104 +199,43 @@ static int Get_Magazine()
 		Return ResolveState("ReadyReal");
 	}
 	
-	//Function for reloading magazine based weapons
-	Action void ReloadMagazine(int AmmoType = PRIMARY, int AmmoToAdd = 1, int AmmoUse = 1)
-	{
-
-		//Primary Ammo
-		if (AmmoType == PRIMARY)
-		{
-			if (CountInv(Invoker.AmmoType1) > 0)
-			{
-				int AmmoUsed = Invoker.MagazineMax - Invoker.Magazine;
-			
-				Invoker.Magazine += AmmoToAdd;
-				TakeInventory(invoker.AmmoType1, AmmoUsed);
-			}
-			
-		}
-
-		//Secondary Ammo
-		else if (AmmoType == SECONDARY)
-		{
-			if (CountInv(Invoker.AmmoType2) > 0)
-			{
-				int AmmoUsed = Invoker.MagazineMax2 - Invoker.Magazine2;
-			
-				Invoker.Magazine2 += AmmoToAdd;
-				TakeInventory(invoker.AmmoType2, AmmoUsed);
-			}			
-		}
-		
-
-		//Failsafe to make the Magazine not become larger than its maximum.
-		if (Invoker.Magazine > Invoker.MagazineMax)
-		{
-			Invoker.Magazine = Invoker.MagazineMax;
-		}			
-
-		if (Invoker.Magazine2 > Invoker.MagazineMax2)
-		{
-			Invoker.Magazine2 = Invoker.MagazineMax2;
-		}
-	}
-	
 	//For weapons like shotguns or rifles
 	//Shotgun like weapons need a different logic so that it properly uses up
 	//the ammunition. 
-	Action void ReloadSingle(int AmmoType = Primary, int AmmoToAdd = 1, int AmmoUse = 1)
+	static int AmmoCount(PlayerPawn Player, Class<Inventory> AmmoItem, int AmmoAdd, int AmmoU, bool Single, int AmmoMag, int AmmoMax)
 	{
-	
-		//Primary Ammo
-		if (AmmoType == PRIMARY)
-		{		
-			if (CountInv(Invoker.AmmoType1) >= AmmoUse)
-			{
-				int AmmoConsumed = Invoker.MagazineMax - Invoker.Magazine;
-				
-				if (AmmoConsumed > AmmoUse)
-					AmmoConsumed = AmmoUse;
+		
+		while (AmmoMag < AmmoMax && Player.CountInv(AmmoItem) >= AmmoU)
+		{
+			AmmoMag += AmmoAdd;			
+			Player.TakeInventory(AmmoItem, AmmoU);
 			
-				Invoker.Magazine += AmmoToAdd;
-				TakeInventory(invoker.AmmoType1, AmmoConsumed);
+			if (Single == True)
+			{
+				break;
 			}
-			
-			else if (CountInv(Invoker.AmmoType1) < AmmoUse)
-			{
-				Invoker.Magazine += CountInv(Invoker.AmmoType1);
-				TakeInventory(invoker.AmmoType1, CountInv(Invoker.AmmoType1));
-			}		
 		}
 	
-		else if (AmmoType == SECONDARY)
-		{		
-			if (CountInv(Invoker.AmmoType2) >= AmmoUse)
-			{
-				int AmmoConsumed = Invoker.MagazineMax2 - Invoker.Magazine2;
-				
-				if (AmmoConsumed > AmmoUse)
-					AmmoConsumed = AmmoUse;
-					
-				Invoker.Magazine2 += AmmoToAdd;
-				TakeInventory(invoker.AmmoType2, AmmoConsumed);
-			}
-			
-			else if (CountInv(Invoker.AmmoType2) < AmmoUse)
-			{
-				Invoker.Magazine2 += CountInv(Invoker.AmmoType2);
-				TakeInventory(invoker.AmmoType1, CountInv(Invoker.AmmoType2));
-			}		
-		}	
-	
-		//Failsafe to make the Magazine not become larger than its maximum.
-		if (Invoker.Magazine > Invoker.MagazineMax)
-		{
-			Invoker.Magazine = Invoker.MagazineMax;
-		}			
+		return AmmoMag = clamp(AmmoMag, 0, AmmoMax);
+	}	
 
-		if (Invoker.Magazine2 > Invoker.MagazineMax2)
+	Action void ReloadGun(Class<Inventory> AmmoItem, 
+						int MagClass = 0,
+						int AmmoToAdd = 1, 
+						int AmmoUse = 1,
+						bool Single = False)
+	{
+		switch(MagClass)
 		{
-			Invoker.Magazine2 = Invoker.MagazineMax2;
+			case 0: 
+				Invoker.Magazine = BaseWeapon.AmmoCount(Player.mo, AmmoItem, AmmoToAdd, AmmoUse, Single, Invoker.Magazine, Invoker.MagazineMax);
+				break;
+			case 1: 
+				Invoker.Magazine2 = BaseWeapon.AmmoCount(Player.mo, AmmoItem, AmmoToAdd, AmmoUse, Single, Invoker.Magazine2, Invoker.MagazineMax2);
+				break;
+			default:
+				Invoker.Magazine = BaseWeapon.AmmoCount(Player.mo, AmmoItem, AmmoToAdd, AmmoUse, Single, Invoker.Magazine, Invoker.MagazineMax);
+				break;
 		}	
 	}
 		

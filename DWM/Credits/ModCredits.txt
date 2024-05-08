@@ -86,6 +86,9 @@ Thanks to these people and groups for assets used by this mod.
 -moddb.com
 
 [Games and mods]
+-Faspons Development
+ -Sounds
+
 -Brutal Doom (GZDoom/Zandronum)
  -Sounds
 

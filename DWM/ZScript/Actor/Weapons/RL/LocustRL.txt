@@ -187,7 +187,7 @@ class RMD_LocustRL : BaseWeapon
 		{
 			A_StartSound("LocustRL/MagIn", CHAN_WEAPON +1);
 			
-			ReloadMagazine(PRIMARY, Invoker.MagazineMax, Invoker.MagazineMax);			
+			ReloadGun(Invoker.AmmoType1, 0, 1, 1);
 			Invoker.Magazine = Invoker.MagazineMax;
 			RMD_BARINFO.Set_Mag(invoker.Magazine);
 		}
@@ -197,23 +197,22 @@ class RMD_LocustRL : BaseWeapon
 	}
 }
 
-Class RMD_LocustRL_Rocket : HeavyExplosivesFast
+Class RMD_LocustRL_Rocket : HeavyExplosives
 {
 	Default
 	{
-		Speed 120;
+		Speed 50;
 		Decal "RMD_SmallExplosion";
-		MissileType "RMD_LocustRocketTrail"; 
-		
+
 		//Impact 
-		BaseProjectileFast.ImpactDamage 0;
+		BaseProjectile.ImpactDamage 0;
 		//Splash 
-		BaseProjectileFast.SplashDamage 230;
-		BaseProjectileFast.FullSplashDamage 70;
-		BaseProjectileFast.SplashRadius 130;
+		BaseProjectile.SplashDamage 280;
+		BaseProjectile.FullSplashDamage 60;
+		BaseProjectile.SplashRadius 120;
 		
-		BaseProjectileFast.NormalDamageRandom 1.0;
-		BaseProjectileFast.NerfDamageRandom 1.0;
+		BaseProjectile.NormalDamageRandom 1.0;
+		BaseProjectile.NerfDamageRandom 1.0;
 		
 	}
 	
@@ -235,7 +234,7 @@ Class RMD_LocustRL_Rocket : HeavyExplosivesFast
 			}
 			Goto SpawnLoop;
 		SpawnLoop:	
-			IDLE A 1;
+			IDLE A 1 A_SpawnItemEx("RMD_LocustRocketTrail", 0, 0, 0);
 			Loop;
 		Explode:
 			TNT1 A 0 

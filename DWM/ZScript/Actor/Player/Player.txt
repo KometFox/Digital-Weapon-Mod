@@ -9,10 +9,7 @@ Class RMD_Player : DoomPlayer
 		Player.MaxHealth 100;
 		Health 100;
 	
-		Player.StartItem "Clip", 999; //WorkAround
-		Player.StartItem "RMD_HealthAmmo", 100;
-		Player.StartItem "RMD_MediumArmor", 1; //Armor
-		Player.StartItem "RMD_Enforcer", 1; //Basic Weapon
+		Player.StartItem "RMD_CellArmor", 1;
 		Player.StartItem "RMD_EnergyDrink", 1;
 		-NOSKIN;
 		
@@ -21,7 +18,6 @@ Class RMD_Player : DoomPlayer
 		DamageFactor "Explosive", 0.50; //From Explosive Barrels and Player own Explosions
 	}
 
-	/*
 	override int DamageMobj (Actor inflictor, Actor source, int damage, Name mod, int flags, double angle) 
 	{
 		//Make sure the damage is above zero.
@@ -40,7 +36,6 @@ Class RMD_Player : DoomPlayer
 		Super.DamageMobj(Inflictor, Source, Damage, Mod, flags, angle);
 		return Damage;
 	}
-	*/
 
 	States
 	{

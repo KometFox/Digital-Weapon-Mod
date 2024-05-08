@@ -13,8 +13,8 @@ class RMD_Mossberg590 : BaseWeapon
 		Inventory.AltHudIcon "PISHOT1";
 		BaseWeapon.IronSight IRON_INACTIVE;
 
-		BaseWeapon.MagazineMax 8;
-		BaseWeapon.Magazine 8;
+		BaseWeapon.MagazineMax 12;
+		BaseWeapon.Magazine 12;
 		
 	}
 	
@@ -34,7 +34,7 @@ class RMD_Mossberg590 : BaseWeapon
 			
 		if (Invoker.IronSight == IRON_INACTIVE)
 		{
-			for (int i = 0; i < 8; i++)
+			for (int i = 0; i < 5; i++)
 			{
 				A_FireProjectile("RMD_Mossberg590Proj",frandom(-2.5, 2.5), 1, 6, 4, CMF_AIMDIRECTION, frandom(-2.5, 2.5));
 			}
@@ -43,7 +43,7 @@ class RMD_Mossberg590 : BaseWeapon
 		}
 		else
 		{
-			for (int i = 0; i < 8; i++)
+			for (int i = 0; i < 5; i++)
 			{
 				A_FireProjectile("RMD_Mossberg590Proj",frandom(-0.8, 0.8), 1, 0, 4, CMF_AIMDIRECTION, frandom(-0.8, 0.8));
 			}
@@ -148,27 +148,25 @@ class RMD_Mossberg590 : BaseWeapon
 		Goto Ready;
 	
 	FireNow:
-		FIR1 A 1 FireBullets();
-		FIR1 BCDEFG 1;
-		FIR1 HIJK 1;
-		FIR1 L 2 A_StartSound("AoMShotgun/CockStart", CHAN_WEAPON +1);
-		FIR1 L 0 B_SpawnCasing("ShellCase", (4, -6.5, -3.0));
-		FIR1 MNOPQ 2;
-		FIR1 R 2 A_StartSound("AoMShotgun/CockEnd", CHAN_WEAPON +2);
-		FIR1 STUV 2;
-		IDLE A 0 A_ReFire("FireNow");
+		FIR1 A 2 FireBullets();
+		FIR1 BCDEFGHIJ 2;
+		FIR1 J 0 A_StartSound("AoMShotgun/CockStart", CHAN_WEAPON +1);
+		FIR1 J 0 B_SpawnCasing("ShellCase", (4, -6.5, -3.0));		
+		FIR1 KL 2;
+		FIR1 L 0 A_StartSound("AoMShotgun/CockEnd", CHAN_WEAPON +2);
+		FIR1 MNO 2;
+		IDLE A 0 A_Refire("FireNow");
 		Goto Ready;
 		
 	//Ironsight Fire
 	IronFireNow:
 		IFI1 A 1 FireBullets();
-		IFI1 BCDEFG 1;
-		IFI1 HIJKLMN 1;
-		IFI1 O 2 A_StartSound("AoMShotgun/CockStart", CHAN_WEAPON +1); 
-		IFI1 O 0 B_SpawnCasing("ShellCase", (4, -0.5, 2.7));
-		IFI1 PQRS 2;
-		IRO1 D 0 A_StartSound("AoMShotgun/CockEnd", CHAN_WEAPON +2); 
-		IRO1 D 0 A_ReFire("IronFireNow");
+		IFI1 BCDEFGHIJKL 2;
+		IFI1 L 0 A_StartSound("AoMShotgun/CockStart", CHAN_WEAPON +1); 
+		IFI1 L 0 B_SpawnCasing("ShellCase", (4, -0.5, 2.7));
+		IFI1 MNO 2;
+		IRO1 O 0 A_StartSound("AoMShotgun/CockEnd", CHAN_WEAPON +2); 
+		IRO1 O 0 A_ReFire("IronFireNow");
 		Goto IronReady;
 		
 	Reload:
@@ -176,19 +174,14 @@ class RMD_Mossberg590 : BaseWeapon
 		Goto Ready;
 
 	ReloadNow:
-		REL1 ABCDEFGHI 2 A_WeaponReady();
-		REL1 J 2
-		{
-			A_WeaponReady();
-			A_StartSound("AoMShotgun/CockStart", CHAN_WEAPON +1);
-		}
-		REL1 KLMNOP 2 A_WeaponReady();
-		Goto ReloadLoop;
-		
+		REL1 ABCDEF 2;
+		REL1 F 0 A_StartSound("AoMShotgun/CockStart", CHAN_WEAPON +1);
+		Goto ReloadLoop; 
+	
 	ReloadLoop: 
 		TNT1 A 0 
 		{
-			if (invoker.AmmoCheck(Invoker.AmmoType1, 1))
+			if (Player.mo.CountInv(Invoker.AmmoType1) > 0)
 			{
 				Return A_Jump(256, 1);
 			}
@@ -197,12 +190,13 @@ class RMD_Mossberg590 : BaseWeapon
 		}
 
 		//Start Loop
-		REL1 QRST 3 A_WeaponReady();
+		REL1 GHI 3 A_WeaponReady();
 		TNT1 A 0
 		{
 			A_StartSound("AoMShotgun/Insert", CHAN_WEAPON);
 			
-			ReloadSingle(PRIMARY, 3, 3);				
+			ReloadGun(Invoker.AmmoType1, 0, 1, 1, True);
+			ReloadGun(Invoker.AmmoType1, 0, 1, 1, True);
 			RMD_BARINFO.Set_Mag(invoker.Magazine);
 			
 			if (invoker.Magazine == invoker.MagazineMax)
@@ -213,14 +207,13 @@ class RMD_Mossberg590 : BaseWeapon
 			Return A_Jump(256, "ReloadLoop");
 		}
 		REL1 TSRQ 3 A_WeaponReady();
-		Goto ReloadEnd;
+		Goto ReloadEnd;	
 	
+
 	ReloadEnd:
-		REL1 UVWXYZ 2;
-		REL2 A 2 A_StartSound("AoMShotgun/CockEnd", CHAN_WEAPON +1);
-		REL2 BCD 2;
-		Goto Ready;
-		
+		REL1 JKLMNO 2;
+		REL1 O 0 A_StartSound("AoMShotgun/CockEnd", CHAN_WEAPON +1);
+		Goto Ready; 	
 	}
 }
 
@@ -230,14 +223,13 @@ Class RMD_Mossberg590Proj : RMD_BaseBullet
 	Default
 	{
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 18; 
-		RMD_BaseBullet.DamageRand 2.25;
+		RMD_BaseBullet.ImpactDamage 32; 
+		RMD_BaseBullet.DamageRand 1.8;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 1000;
 		RMD_BaseBullet.ExtremeDeath True;
 		
 		Scale 1.0;
 		Decal "RMD_Buckshot_BulletHoles";
-		-NOEXTREMEDEATH;
 	}
 }

@@ -36,6 +36,17 @@ Class ArmorHitDelay : SpecialItem
 	}
 }
 
+//The item tracker for armor regeneration
+Class MagnetFakeItem : CustomSpecialItem 
+{
+	Default
+	{
+		Inventory.Amount 1;
+		Inventory.MaxAmount 0;
+		-INVENTORY.KEEPDEPLETED;		
+	}
+}
+
 //The item tracker for grenade throwing
 Class GrenadeThrowPower : SpecialItem 
 {

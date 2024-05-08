@@ -13,5 +13,5 @@ PlasmaBlue = "0:255=#[0, 17, 99]"
 //Explosions
 ExplosionYellow ="0:255=#[99, 55, 0]"
 
-ExplosionOrange = "0:255=#[255, 54, 40]"
+ExplosionOrange = "0:255=#[255, 111, 40]"
 ExplosionCyan = "0:255=#[0, 116, 248]"

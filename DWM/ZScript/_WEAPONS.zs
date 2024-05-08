@@ -5,8 +5,12 @@
 #Include "ZScript/Actor/Weapons/Other/BeerDrink.txt"
 #Include "ZScript/Actor/Weapons/Other/EnergyDrink.txt"
 
+//Melee 
+#Include "ZScript/Actor/Weapons/Melee/SpearCDS4.txt"
+#Include "ZScript/Actor/Weapons/Melee/MasterSword.txt"
 //Pistol
 #Include "ZScript/Actor/Weapons/Pistol/Enforcer.txt"
+#Include "ZScript/Actor/Weapons/Pistol/SWModel19.txt"
 //Grenades
 #Include "ZScript/Actor/Weapons/Grenade/PirateBomb.txt"
 //Submachine Gun
@@ -21,9 +25,12 @@
 #Include "ZScript/Actor/Weapons/MG/M249SAW.txt"
 //Shotgun
 #Include "ZScript/Actor/Weapons/SG/Mossberg590.txt"
+#Include "ZScript/Actor/Weapons/SG/Bekas12m.txt"
 #Include "ZScript/Actor/Weapons/SG/MolotVPO208.txt"
+#Include "ZScript/Actor/Weapons/SG/CarcanoM91.txt"
 //Explosive Weapons
 #Include "ZScript/Actor/Weapons/RL/SMRL.txt"
+#Include "ZScript/Actor/Weapons/RL/SMAW.txt"
 #Include "ZScript/Actor/Weapons/RL/LocustRL.txt"
 #Include "ZScript/Actor/Weapons/Grenade/G20GL.txt"
 //Special Weapons

@@ -6,7 +6,7 @@ class CBM3 : BaseWeapon
 		Weapon.SlotNumber 3;
 		Weapon.AmmoUse 0;
 		Weapon.AmmoGive 0;
-		Weapon.AmmoType "RMD_SMGBullets";
+		Weapon.AmmoType "RMD_PistolBullets";
 		Inventory.PickupMessage "$GOTCHAINGUN";
 		Inventory.AltHudIcon "PICBM3";
 		Obituary "$OB_MPCHAINGUN";
@@ -80,7 +80,7 @@ class CBM3 : BaseWeapon
 				TakeCounterItem();
 				RMD_BARINFO.Set_Mag(invoker.Magazine);
 				RMD_BARINFO.SetAmmoIcon("AMMOSMG");
-				RMD_BARINFO.SetAmmo1("RMD_SMGBullets");
+				RMD_BARINFO.SetAmmo1("RMD_PistolBullets");
 		}
 		SELC ABCDEF 1 A_Raise;
 		IDLE A 1 A_Raise(100);
@@ -199,7 +199,7 @@ class CBM3 : BaseWeapon
 		{
 			A_StartSound("MP5/MagIn", CHAN_WEAPON +1);
 			
-			ReloadMagazine(PRIMARY, Invoker.MagazineMax, Invoker.MagazineMax);				
+			ReloadGun(Invoker.AmmoType1, 0, 1, 1);
 			RMD_BARINFO.Set_Mag(invoker.Magazine);
 	
 			Return A_Jump(0, "Ready");	

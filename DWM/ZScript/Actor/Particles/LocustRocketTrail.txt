@@ -28,7 +28,7 @@ Class RMD_LocustRocketTrail : RMD_BaseParticle
 					Particle.Vel = PVel;
 					Particle.Scale = (0.095, 0.095);
 					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-					Particle.SetShade("fd3118");
+					Particle.SetShade("ffe00c");
 				}				
 				
 				if (true)
@@ -168,12 +168,12 @@ Class RMD_LocustRL_Flare : RMD_BaseParticle
 
 Class RMD_LocustRL_Smoke : RMD_BaseParticle
 {
-	const CFADEOUT = 0.007;
+	const CFADEOUT = 0.07;
 
 	Default
 	{
 		RenderStyle "Translucent";
-		Alpha 0.07;
+		Alpha 0.7;
 	}
 	
 	Override void BeginPlay()

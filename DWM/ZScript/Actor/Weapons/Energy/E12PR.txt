@@ -208,7 +208,7 @@ class RMD_E12PR : BaseWeapon
 			A_StartSound("M16A3/MagIn", CHAN_WEAPON +4);
 			A_StartSound("E12PR/CellIn", CHAN_WEAPON +2);
 			
-			ReloadMagazine(PRIMARY, Invoker.MagazineMax, Invoker.MagazineMax);				
+			ReloadGun(Invoker.AmmoType1, 0, 1, 1);
 			RMD_BARINFO.Set_Mag(invoker.Magazine);
 	
 			Return A_Jump(0, "ReadyReal");	

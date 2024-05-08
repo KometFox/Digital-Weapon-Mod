@@ -27,9 +27,9 @@ Class RMD_BaseBullet : FastProjectile
 
 	Default
 	{
-		Height 6;
+		Height 3;
 		Radius 3;
-		Speed 150;
+		Speed 350;
 		MissileHeight 8;
 		//MissileType "RMD_BulletSmoke";
 		ProjectileKickBack 22;
@@ -48,6 +48,11 @@ Class RMD_BaseBullet : FastProjectile
 		
 		ImpDamage *= FRandom(1.0, DamageRand);	
 		ImpDamage *= CVAR_BulletDamage;
+		
+		if (ExtremeDeath == false)
+		{
+			bExtremeDeath = false;
+		}
 	}
 	
 	
@@ -56,18 +61,11 @@ Class RMD_BaseBullet : FastProjectile
 	Override int SpecialMissileHit (Actor Victim)
 	{
 		int VictimHP = Victim.SpawnHealth();
-		int GibHealth = Victim.GibHealth;
+		int GibHealth = Victim.GetGibHealth();
 		
 		Class<Actor> BloodEffect = Victim.GetBloodType(0);
 		Actor Blood;
 		
-		//Magic numbers are bad...
-		if (GibHealth == -2147483648)
-		{
-			GibHealth = Victim.SpawnHealth();
-		}
-		
-	
 		if (!Victim.player && Victim.BShootable)
 		{
 			float Logart = 1.0;
@@ -91,18 +89,10 @@ Class RMD_BaseBullet : FastProjectile
 			}
 
 			//Prevent overkill from small arms
-			bool DamageCheck = (Victim.BIsMonster &&
-								NewDamage >= GibHealth &&
-								NewDamage >= VictimHP);
+			if (bExtremeDeath == false && NewDamage > VictimHP)
+				NewDamage = VictimHP;
 						
-			if (DamageCheck && ExtremeDeath == False)
-			{
-				victim.DamageMobj(self, target, GibHealth, damagetype, 0);
-			}
-			else
-			{
-				victim.DamageMobj(self, target, NewDamage, damagetype, 0);
-			}
+			victim.DamageMobj(self, target, NewDamage, damagetype, 0);
 				
 			return 0;
 		}

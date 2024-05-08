@@ -33,7 +33,7 @@ override void Init()
 	Super.Init();
 
 	//Init some values
-	SetSize(0,320,200);
+	SetSize(0, 320, 200);
 	BlueMana = TexMan.CheckForTexture("BMANA0", TexMan.Type_Any);
 	HUDOverlay = TexMan.CheckForTexture("TDHUD", TexMan.Type_Any);
 
@@ -71,10 +71,20 @@ override void Init()
 		int Width, Height;
 		[Width, Height] = GetResolution();
 		
-	
-		HUDFont BIGNUM = HUDFont.Create("RMDFONT_BIGNUM");
+		double sx = 1.0;
+		double HScale = Width / 1280;
+		double ss = (HScale * sx);
+		double dw = (Width/ss), dh = (Height/ss);
+		double dx = CurX/ss + PosY, dy = CurY/ss + PosX;
+		
+		Font BIGNUM = Font.GetFont("RMDFONT_BIGNUM");
 
-		DrawString(BIGNUM, Text, (PosX, PosY), 0, ColorID, 1.0, -1, 4, (ScaleX, ScaleY));
+		Screen.DrawText(BIGNUM, ColorID, PosX, PosY, Text,
+		DTA_KeepRatio, true,
+		DTA_VirtualWidthF, dw, 
+		DTA_VirtualHeightF, dh,
+		DTA_ScaleX, ScaleX,
+		DTA_ScaleY, ScaleY);
 	}
 	
 	ui void AddImage(TextureID Tex, int PosX, int PosY, double ScaleX, double ScaleY)
@@ -83,10 +93,10 @@ override void Init()
 		//To retain image position and scale on resolution changes, jesus christ. 
 		int Width, Height;
 		[Width, Height] = GetResolution();
-	
+		
 		double sx = 1.0;
-		double HScale = Width/1280.;
-		double ss = (HScale*sx);
+		double HScale = Width / 1280;
+		double ss = (HScale * sx);
 		double dw = (Width/ss), dh = (Height/ss);
 		double dx = CurX/ss + PosY, dy = CurY/ss + PosX;
 	
@@ -95,7 +105,8 @@ override void Init()
 		DTA_VirtualWidthF, dw, 
 		DTA_VirtualHeightF, dh, 
 		DTA_DestWidthF, ScaleX, 
-		DTA_DestHeightF, ScaleY);
+		DTA_DestHeightF, ScaleY,
+		DTA_CenterOffset, true);
 	}
 	
 	ui void AddHUDOverlay(TextureID Tex, int PosX, int PosY, double ScaleX, double ScaleY)
@@ -139,33 +150,35 @@ override void Init()
 			AddHUDOverlay(HUDOverlay, 0, 0, 1, 1);
 			
 			//Crosshair
-			AddImage(VCrosshair, Screen.GetWidth() / 2, Screen.GetHeight() / 2, VCrosshairSize, VCrosshairSize);
+			AddImage(VCrosshair, Screen.GetWidth() / 2, Screen.GetHeight() / 2, VCrosshairSize / 10, VCrosshairSize / 10);
 			
 			//Health
-			//AddText(String.Format("<1000>"), -20, 157, 0.6, 0.6);
-			AddText(String.Format("%d", Playa.Health), Font.CR_CYAN, -20, 160, 0.6, 0.6);
+			AddText(String.Format("%d", Playa.Health), Font.CR_CYAN, 200, 900, 3.5, 3.5);
 			
 			//Armor
-			//AddText(String.Format("<2000>"), -20, 180, 0.6, 0.6);
-			AddText(String.Format("%d", ArmorV), Font.CR_CYAN, -20, 170, 0.6, 0.6);
+			AddText(String.Format("%d", ArmorV), Font.CR_CYAN, 200, 1000, 3.5, 3.5);
 			
 			//Credits
-			AddText(String.Format("<Credit> %d", Geld), Font.CR_CYAN, 128, 195, 0.35, 0.35);
+			AddText(String.Format("<Credit> %d", Geld), Font.CR_CYAN, 780, 1050, 2.0, 2.0);
 	
 			//Ammo Icon
-			AddImage(AmmoIcon, 615, 1095, 80, 80);
+			AddImage(AmmoIcon, 950, 1730, 100, 100);
 
 			//Ammo
-			AddText(String.Format("%d", Mag1), Font.CR_CYAN, 282, 160, 0.6, 0.6);
+			AddText(String.Format("%d", Mag1), Font.CR_CYAN, 1530, 900, 3.0, 3.0);
 			
 			//Ammo in Stash
 			if (VAmmo != "None")
 			{
-				AddText(String.Format("%d", Playa.CountInv(VAmmo)), Font.CR_CYAN, 282, 170, 0.6, 0.6);
+				AddText(String.Format("%d", Playa.CountInv(VAmmo)), Font.CR_CYAN, 1530, 970, 3.0, 3.0);
 			}
 			
 			//DoomFace 
-			AddImage(MuggyShot, 620, 600, 64, 64);
+			AddImage(MuggyShot, 980, 950, 128, 128);
+			
+			//Selected Inventory
+			AddImage(Playa.InvSel.Icon, 1000, 850, 64, 64);
+			
 			
 			//Keys
 			TextureID BlueKey = TexMan.CheckForTexture("STKEYS0", TexMan.Type_Any);

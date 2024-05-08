@@ -80,7 +80,7 @@ Class RMD_SuperKeg : CustomInventory
 	{
 		-COUNTITEM
 		Scale 1;
-		Inventory.PickupMessage "You energized yourself with a super keg! <+300 HP> + <+500 Armor>";
+		Inventory.PickupMessage "You energized yourself with a super keg! <+300 HP>";
 		Inventory.PickupSound "Items/UTSuperHealth";
 	}
 	
@@ -97,10 +97,10 @@ Class RMD_SuperKeg : CustomInventory
 		Inventory PArmor = Toucher.FindInventory('BasicArmor', false);
 		
 		//Don't pickup the item when the player is at maxium health and armor
-		if (PickedUp || Toucher.Health < 300 || PArmor.Amount < 500)
+		if (PickedUp || Toucher.Health < 300)
 		{
 			A_SpawnItemEx("RMD_HealthKegLitter");
-			Toucher.A_GiveInventory("RMD_SuperKegArmor", 1);
+			//Toucher.A_GiveInventory("RMD_SuperKegArmor", 1);
 			Toucher.A_GiveInventory("RMD_SuperKegHealth", 1);
 			
 			Destroy();
@@ -177,7 +177,8 @@ Class RMD_AtomHealth : CustomInventory
 	States
 	{
 		Pickup:
-			TNT1 A 0 A_GiveInventory("RMD_BlankItem", 1);
+			//TNT1 A 0 A_GiveInventory("RMD_BlankItem", 1);
+			TNT1 A 0;
 			Stop;
 		Spawn:
 			IDLE A 1;

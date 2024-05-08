@@ -1,10 +1,15 @@
 //Weapons
+#Include "Models/Weapons/DEFS/SpearCDS4.txt"
+#Include "Models/Weapons/DEFS/MasterSword.txt"
 #Include "Models/Weapons/DEFS/Enforcer.txt"
+#Include "Models/Weapons/DEFS/SWModel19.txt"
 #Include "Models/Weapons/DEFS/PirateBomb.txt"
 #Include "Models/Weapons/DEFS/MP5.txt"
 #Include "Models/Weapons/DEFS/CBM2.txt"
 #Include "Models/Weapons/DEFS/Mossberg590.txt"
+#Include "Models/Weapons/DEFS/Bekas12m.txt"
 #Include "Models/Weapons/DEFS/MolotVPO208.txt"
+#Include "Models/Weapons/DEFS/CarcanoM91.txt"
 #Include "Models/Weapons/DEFS/AR70.txt"
 #Include "Models/Weapons/DEFS/M16A3.txt"
 #Include "Models/Weapons/DEFS/M25.txt"
@@ -14,6 +19,7 @@
 #Include "Models/Weapons/DEFS/KestrelGL.txt"
 #Include "Models/Weapons/DEFS/LocustRL.txt"
 #Include "Models/Weapons/DEFS/SMRL.txt"
+#Include "Models/Weapons/DEFS/SMAW.txt"
 #Include "Models/Weapons/DEFS/E12PR.txt"
 #Include "Models/Weapons/DEFS/E20PC.txt"
 //Other Weapons

@@ -182,7 +182,7 @@ class RMD_KestrelGL : BaseWeapon
 		{
 			A_StartSound("Kestrel/MagIn", CHAN_WEAPON +1);
 			
-			ReloadMagazine(PRIMARY, Invoker.MagazineMax, Invoker.MagazineMax);			
+			ReloadGun(Invoker.AmmoType1, 0, 1, 1);
 			Invoker.Magazine = Invoker.MagazineMax;
 			RMD_BARINFO.Set_Mag(invoker.Magazine);
 	
@@ -206,9 +206,9 @@ Class RMD_G20GL_Grenade : LightExplosives
 		//Impact 
 		BaseProjectile.ImpactDamage 0;
 		//Splash 
-		BaseProjectile.SplashDamage 160;
-		BaseProjectile.FullSplashDamage 50;
-		BaseProjectile.SplashRadius 90;
+		BaseProjectile.SplashDamage 250;
+		BaseProjectile.FullSplashDamage 95;
+		BaseProjectile.SplashRadius 160;
 		
 		BaseProjectile.NormalDamageRandom 1.0;
 		BaseProjectile.NerfDamageRandom 1.0;

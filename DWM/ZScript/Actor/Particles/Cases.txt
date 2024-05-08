@@ -89,6 +89,7 @@ Class Casings : Actor
 			{
 				Pitch = 90;
 				Roll = random(0, 360);
+				A_ChangeFlag("NoInteraction", false);
 			}
 			Goto Death2;
 			

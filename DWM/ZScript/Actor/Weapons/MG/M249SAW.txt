@@ -8,7 +8,7 @@ class RMD_M249SAW : BaseWeapon
 		Weapon.SlotNumber 5;
 		Weapon.AmmoUse 0;
 		Weapon.AmmoGive 0;
-		Weapon.AmmoType "RMD_MGBullets";
+		Weapon.AmmoType "RMD_MediumBullets";
 		Inventory.PickupMessage "$GOTCHAINGUN";
 		Inventory.AltHudIcon "PIM249SW";
 		Obituary "$OB_MPCHAINGUN";
@@ -16,8 +16,8 @@ class RMD_M249SAW : BaseWeapon
 		
 		BaseWeapon.IronSight IRON_INACTIVE;
 		
-		BaseWeapon.MagazineMax 200;
-		BaseWeapon.Magazine 200; 
+		BaseWeapon.MagazineMax 100;
+		BaseWeapon.Magazine 100; 
 	}
 	
 	action void C_SpawnCasing(Class<Actor> Obj = "PistolCase", Vector3 COffset = (0, 0, 0), int PAngle = 0)
@@ -74,8 +74,8 @@ class RMD_M249SAW : BaseWeapon
 		{
 				TakeCounterItem();
 				RMD_BARINFO.Set_Mag(invoker.Magazine);
-				RMD_BARINFO.SetAmmoIcon("AMMOMG");
-				RMD_BARINFO.SetAmmo1("RMD_MGBullets");
+				RMD_BARINFO.SetAmmoIcon("AMMOAR");
+				RMD_BARINFO.SetAmmo1("RMD_MediumBullets");
 				A_ZoomFactor(invoker.ScopeZoom = 1.0, ZOOM_INSTANT);
 		}
 		Goto ReadyReal;
@@ -98,8 +98,8 @@ class RMD_M249SAW : BaseWeapon
 				A_StartSound("MachineGun/Select", CHAN_WEAPON +5);
 				A_TakeInventory("Reloading", 99);
 				RMD_BARINFO.Set_Mag(invoker.Magazine);
-				RMD_BARINFO.SetAmmoIcon("AMMOMG");
-				RMD_BARINFO.SetAmmo1("RMD_MGBullets");
+				RMD_BARINFO.SetAmmoIcon("AMMOAR");
+				RMD_BARINFO.SetAmmo1("RMD_MediumBullets");
 		}
 		SEL1 ABCDEFGHIJ 1;
 		SEL1 J 1 A_Raise(int.max);
@@ -184,20 +184,20 @@ class RMD_M249SAW : BaseWeapon
 		
 	FireNow:
 		FIR1 A 1 FireBullets();
-		FIR1 BCD 1;
+		FIR1 BC 1;
 		IDLE A 0 A_ReFire;
 		FIR1 EFGH 1;
 		Goto ReadyReal;
 		
 	IronFireNow:
 		SCOA B 1 FireBullets();
-		SCOA BBB 1;
+		SCOA BB 1;
 		SCOA B 0 A_ReFire;
 		SCOA BBBB 1;
 		Goto IronReady;	
 		
 	Reload:
-		TNT1 A 0 ReloadCheck();
+		TNT1 A 0 ReloadCheck(2);
 		Goto ReadyReal;
 
 	ReloadNow:
@@ -226,7 +226,7 @@ class RMD_M249SAW : BaseWeapon
 		{
 			A_StartSound("M249SAW/MagIn", CHAN_WEAPON +2);
 			
-			ReloadMagazine(PRIMARY, Invoker.MagazineMax, Invoker.MagazineMax);				
+			ReloadGun(Invoker.AmmoType1, 0, 1, 2);
 			RMD_BARINFO.Set_Mag(invoker.Magazine);
 		}
 		//Hatch Close
@@ -244,8 +244,8 @@ Class RMD_M249SAW_Bullet : RMD_BaseBullet
 Default
 	{		
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 15; 
-		RMD_BaseBullet.DamageRand 3.5;
+		RMD_BaseBullet.ImpactDamage 18; 
+		RMD_BaseBullet.DamageRand 1.8;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 450;		
 		

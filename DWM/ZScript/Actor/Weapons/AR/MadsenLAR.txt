@@ -12,7 +12,7 @@ class RMD_MadsenLAR : BaseWeapon
 		Weapon.SelectionOrder 1;
 		Weapon.AmmoUse 0;
 		Weapon.AmmoGive 0;
-		Weapon.AmmoType1 "RMD_ARBullets";
+		Weapon.AmmoType1 "RMD_MediumBullets";
 		Weapon.AmmoType2 "RMD_Grenades";
 		Inventory.PickupMessage "$GOTCHAINGUN";
 		Inventory.AltHudIcon "PIMADLAR";
@@ -22,14 +22,14 @@ class RMD_MadsenLAR : BaseWeapon
 		BaseWeapon.IronSight IRON_INACTIVE;
 		BaseWeapon.FireMode BULLET;
 		
-		BaseWeapon.MagazineMax 60;
-		BaseWeapon.Magazine 60;	
+		BaseWeapon.MagazineMax 50;
+		BaseWeapon.Magazine 50;	
 		
 		BaseWeapon.MagazineMax2 1;
 		BaseWeapon.Magazine2 1;
 	}
 	
-	action state ReloadCheck()
+	action state ReloadCheck(int AmmoUse)
 	{
 		if (Invoker.FireMode == GRENADE)
 			return B_ReloadGoTo(
@@ -40,7 +40,7 @@ class RMD_MadsenLAR : BaseWeapon
 								Invoker.AmmoType2, 
 								Invoker.Magazine2,
 								Invoker.MagazineMax2, 
-								1);
+								AmmoUse);
 		else 
 			return B_ReloadGoTo(
 								"ReadyReal", 
@@ -50,7 +50,7 @@ class RMD_MadsenLAR : BaseWeapon
 								Invoker.AmmoType1, 
 								Invoker.Magazine,
 								Invoker.MagazineMax, 
-								1);
+								AmmoUse);
 	}	
 	
 	//Blam blam
@@ -136,7 +136,7 @@ class RMD_MadsenLAR : BaseWeapon
 			case BULLET:
 				RMD_BARINFO.Set_Mag(invoker.Magazine);
 				RMD_BARINFO.SetAmmoIcon("AMMOAR");
-				RMD_BARINFO.SetAmmo1("RMD_ARBullets");
+				RMD_BARINFO.SetAmmo1("RMD_MediumBullets");
 				Break;
 				
 			case GRENADE:
@@ -330,7 +330,7 @@ class RMD_MadsenLAR : BaseWeapon
 		Goto IronReady;		
 		
 	Reload:
-		TNT1 A 0 ReloadCheck();			
+		TNT1 A 0 ReloadCheck(2);			
 		Goto ReadyReal;
 		
 	//The Magazine
@@ -349,7 +349,7 @@ class RMD_MadsenLAR : BaseWeapon
 		{
 			A_StartSound("MadsenLAR/MagIn", CHAN_WEAPON +2);
 			
-			ReloadMagazine(PRIMARY, Invoker.MagazineMax, Invoker.MagazineMax);				
+			ReloadGun(Invoker.AmmoType1, 0, 1, 2);
 			RMD_BARINFO.Set_Mag(invoker.Magazine);
 	
 			Return A_Jump(0, "ReadyReal");	
@@ -377,7 +377,7 @@ class RMD_MadsenLAR : BaseWeapon
 		RLG1 M 7
 		{
 			A_StartSound("MadsenLar/GrenLoad", CHAN_WEAPON +1);
-			ReloadMagazine(SECONDARY, Invoker.MagazineMax2, Invoker.MagazineMax2);				
+			ReloadGun(Invoker.AmmoType2, 1, 1, 1);
 			RMD_BARINFO.Set_Mag(invoker.Magazine2);
 		}
 		RLG1 NO 2;
@@ -399,8 +399,8 @@ Class RMD_MadsenLAR_Bullet : RMD_BaseBullet
 	Default
 	{		
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 18; 
-		RMD_BaseBullet.DamageRand 1.65;
+		RMD_BaseBullet.ImpactDamage 28; 
+		RMD_BaseBullet.DamageRand 1.4;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 250;		
 		
@@ -419,7 +419,7 @@ Class RMD_Madsen_Grenade : LightExplosives
 		//Impact 
 		BaseProjectile.ImpactDamage 0;
 		//Splash 
-		BaseProjectile.SplashDamage 350;
+		BaseProjectile.SplashDamage 400;
 		BaseProjectile.FullSplashDamage 80;
 		BaseProjectile.SplashRadius 140;
 		//Randomizer
