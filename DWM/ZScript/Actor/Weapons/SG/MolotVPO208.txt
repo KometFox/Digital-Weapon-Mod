@@ -181,14 +181,14 @@ class RMD_MolotVPO208 : BaseWeapon
 
 	ReloadNow:
 		//Handle Pull
-		REL1 ABCDEFGHIJKLMNO 2;
+		REL1 ABCDEFGHIJKLMNO 1;
 		TNT1 A 0 
 		{
 			A_StartSound("MolotVPO208/HandlePull");
 		}
 		//Clip Insert
-		REL1 PQRSTUVWXYZ 2;
-		REL2 ABCDEFGHIJKL 2;
+		REL1 PQRSTUVWXYZ 1;
+		REL2 ABCDEFGHIJKL 1;
 		TNT1 A 0
 		{
 			A_StartSound("MolotVPO208/ClipInsert");
@@ -196,13 +196,13 @@ class RMD_MolotVPO208 : BaseWeapon
 			RMD_BARINFO.Set_Mag(invoker.Magazine);
 		}
 		//Handle Push
-		REL2 MNOPQRST 2;
+		REL2 MNOPQRST 1;
 		TNT1 A 0 
 		{
 			A_StartSound("MolotVPO208/HandlePush")	;	
 		}
-		REL2 UVWXYZ 2;
-		REL3 ABCDEF 2;
+		REL2 UVWXYZ 1;
+		REL3 ABCDEF 1;
 	Goto ReadyReal;
 
 		
@@ -215,7 +215,7 @@ Class RMD_MolotVPO208Proj : RMD_BaseBullet
 	Default
 	{
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 270; 
+		RMD_BaseBullet.ImpactDamage 150; 
 		RMD_BaseBullet.DamageRand 1.4;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 1000;

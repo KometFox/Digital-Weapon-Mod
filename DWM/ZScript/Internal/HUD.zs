@@ -12,6 +12,8 @@ Class RMD_BARHUD : BaseStatusBar
 	//Resolution Shit
 	double CurX;
 	double CurY;
+	double HScale;
+	double HudSize;
 	
 	//Player
 	//PlayerPawn 
@@ -68,65 +70,26 @@ override void Init()
 	//Function for simplified Text display
 	ui void AddText(String Text, Int ColorID, int PosX, int PosY, double ScaleX, double ScaleY)
 	{
-		int Width, Height;
-		[Width, Height] = GetResolution();
-		
-		double sx = 1.0;
-		double HScale = Width / 1280;
-		double ss = (HScale * sx);
-		double dw = (Width/ss), dh = (Height/ss);
-		double dx = CurX/ss + PosY, dy = CurY/ss + PosX;
-		
-		Font BIGNUM = Font.GetFont("RMDFONT_BIGNUM");
+		HUDFont BIGNUM = HUDFont.Create("RMDFONT_BIGNUM");
 
-		Screen.DrawText(BIGNUM, ColorID, PosX, PosY, Text,
-		DTA_KeepRatio, true,
-		DTA_VirtualWidthF, dw, 
-		DTA_VirtualHeightF, dh,
-		DTA_ScaleX, ScaleX,
-		DTA_ScaleY, ScaleY);
+		DrawString(BIGNUM, Text, (PosX, PosY), DI_Text_Align_Right|DI_NoShadow, Font.CR_CYAN, 1, -1, 4, (ScaleX, ScaleY));
 	}
 	
-	ui void AddImage(TextureID Tex, int PosX, int PosY, double ScaleX, double ScaleY)
+	ui void AddImage(String Tex, int PosX, int PosY, double ScaleX, double ScaleY)
 	{
-		//Had to borrow from Marisa because I have no hecking clue how the hell I am supposed
-		//To retain image position and scale on resolution changes, jesus christ. 
-		int Width, Height;
-		[Width, Height] = GetResolution();
-		
-		double sx = 1.0;
-		double HScale = Width / 1280;
-		double ss = (HScale * sx);
-		double dw = (Width/ss), dh = (Height/ss);
-		double dx = CurX/ss + PosY, dy = CurY/ss + PosX;
+		ScaleX = ScaleX / 2;
+		ScaleY = ScaleY / 2;
 	
-		Screen.DrawTexture(Tex, false, dx,  dy, 
-		DTA_KeepRatio, true,
-		DTA_VirtualWidthF, dw, 
-		DTA_VirtualHeightF, dh, 
-		DTA_DestWidthF, ScaleX, 
-		DTA_DestHeightF, ScaleY,
-		DTA_CenterOffset, true);
+		DrawImage(Tex, (PosX, PosY), DI_SCREEN_CENTER, 1, (-1, -1), (ScaleX, ScaleY));
 	}
-	
-	ui void AddHUDOverlay(TextureID Tex, int PosX, int PosY, double ScaleX, double ScaleY)
-	{
-		int Width, Height;
-		[Width, Height] = GetResolution();
-	
-		Screen.DrawTexture(Tex, false, PosX,  PosY, 
-		DTA_KeepRatio, true, 
-		DTA_VirtualWidth, Width, 
-		DTA_VirtualHeight, Height, 
-		DTA_DestWidthF, Width * ScaleX, 
-		DTA_DestHeightF, Height * ScaleY);
-	}	
-	
 	
 //UI Scope: you cannot alter data here
-	override void Draw(int State, double TicFrac)	// UI scope
+	override void Draw(int State, double TicFrac)	// UI scopeTextureID 
 	{			
 		Super.Draw(State, TicFrac);
+	
+		HScale = Screen.GetWidth()/1280.;
+		hudsize = 1.0;
 	
 		PlayerPawn Playa = CPlayer.mo;
 		RMD_BARINFO BarInfo = RMD_BARINFO(EventHandler.Find("RMD_BARINFO"));		
@@ -140,75 +103,90 @@ override void Init()
 			int Mag1 = BarInfo.GetMagSize();
 			String VAmmo = BarInfo.GetAmmo1();
 			int AmmoStash = Playa.CountInv(VAmmo);
-			TextureID AmmoIcon = BarInfo.GetAmmoIcon();
-			TextureID MuggyShot = GetMugshot(3);
-			TextureID VCrosshair = TexMan.CheckForTexture("XHAIRB1", TexMan.Type_Any);
+			String AmmoIcon = TexMan.GetName(BarInfo.GetAmmoIcon());
+			String MuggyShot = TexMan.GetName(GetMugshot(3));
+			String VCrosshair = "XHAIRB1";
+			String HUDe1 = "BOX1";
+			String HUDe2 = "BOX2";
+			String MiniBox = "MiniBox";
 			CVar CCrosshairSize = CVar.FindCVar("CrosshairScale");
 			double VCrosshairSize = CCrosshairSize.GetFloat(); 
+
 		
 			//The HUD
-			AddHUDOverlay(HUDOverlay, 0, 0, 1, 1);
+			AddImage(HUDe1, -10, 200, 1.0, 1.0);
+			AddImage(HUDe2, 69, 200, 1.0, 1.0);
+			
+			//HUD Face
+			AddImage(MiniBox, 150, 200, 1.0, 1.0);
+			
+			//Item Box
+			AddImage(MiniBox, 65, 150, 1.0, 1.0); 
+			
+			//Ammo Box
+			AddImage(MiniBox, 90, 150, 1.0, 1.0); 
 			
 			//Crosshair
 			AddImage(VCrosshair, Screen.GetWidth() / 2, Screen.GetHeight() / 2, VCrosshairSize / 10, VCrosshairSize / 10);
 			
 			//Health
-			AddText(String.Format("%d", Playa.Health), Font.CR_CYAN, 200, 900, 3.5, 3.5);
+			AddText(String.Format("%d", Playa.Health), Font.CR_CYAN, 20, 157, 1.0, 1.0);
 			
 			//Armor
-			AddText(String.Format("%d", ArmorV), Font.CR_CYAN, 200, 1000, 3.5, 3.5);
+			AddText(String.Format("%d", ArmorV), Font.CR_CYAN, 20, 175, 1.0, 1.0);
 			
 			//Credits
-			AddText(String.Format("<Credit> %d", Geld), Font.CR_CYAN, 780, 1050, 2.0, 2.0);
+			AddText(String.Format("<Credit> %d", Geld), Font.CR_CYAN, 40, 193, 0.5, 0.5);
 	
 			//Ammo Icon
-			AddImage(AmmoIcon, 950, 1730, 100, 100);
+			AddImage(AmmoIcon, 90, 150, 0.6, 0.6);
 
 			//Ammo
-			AddText(String.Format("%d", Mag1), Font.CR_CYAN, 1530, 900, 3.0, 3.0);
+			AddText(String.Format("%d", Mag1), Font.CR_CYAN, 80, 163, 0.75, 0.75);
 			
 			//Ammo in Stash
 			if (VAmmo != "None")
 			{
-				AddText(String.Format("%d", Playa.CountInv(VAmmo)), Font.CR_CYAN, 1530, 970, 3.0, 3.0);
+				AddText(String.Format("%d", Playa.CountInv(VAmmo)), Font.CR_CYAN, 80, 180, 0.75, 0.75);
 			}
 			
 			//DoomFace 
-			AddImage(MuggyShot, 980, 950, 128, 128);
+			AddImage(MuggyShot, 150, 200, 0.8, 0.8);
 			
 			//Selected Inventory
 			if (Playa.InvSel)
-				AddImage(Playa.InvSel.Icon, 1000, 850, 64, 64);
+				AddImage(TexMan.GetName(Playa.InvSel.Icon), 65, 145, 1.0, 1.0);
 			
 			
 			//Keys
-			TextureID BlueKey = TexMan.CheckForTexture("STKEYS0", TexMan.Type_Any);
-			TextureID YellowKey = TexMan.CheckForTexture("STKEYS1", TexMan.Type_Any);
-			TextureID RedKey = TexMan.CheckForTexture("STKEYS2", TexMan.Type_Any);
+			String BlueKey = "STKEYS0";
+			String YellowKey = "STKEYS1";
+			String RedKey = "STKEYS2";
 			//Skulls
-			TextureID BlueSkullKey = TexMan.CheckForTexture("STKEYS3", TexMan.Type_Any);
-			TextureID YellowSkullKey = TexMan.CheckForTexture("STKEYS4", TexMan.Type_Any);
-			TextureID RedSkullkey = TexMan.CheckForTexture("STKEYS5", TexMan.Type_Any);
+			String BlueSkullKey = "STKEYS3";
+			String YellowSkullKey = "STKEYS4";
+			String RedSkullkey = "STKEYS5";
 			
-			int KeyPosX = 40;
-			int KeyPosY = 800;
-			int SkullKeyPosX = 95;
-			int SkullKeyPosY = 800;
+			int KeyPosX = -40;
+			int KeyPosY = 150;
+			int SkullKeyPosX = 10;
+			int SkullKeyPosY = 150;
 			
 						
 			if (Playa.CountInv("BlueCard"))
-				AddImage(BlueKey, KeyPosX, KeyPosY + (30), 32, 32);
+				AddImage(BlueKey, KeyPosX + (18), KeyPosY, 1, 1);
 			if (Playa.CountInv("YellowCard"))
-				AddImage(YellowKey, KeyPosX, KeyPosY + (30 * 2), 32, 32);
+				AddImage(YellowKey, KeyPosX + (18 * 1.5), KeyPosY, 1, 1);
 			if (Playa.CountInv("RedCard"))
-				AddImage(RedKey, KeyPosX, KeyPosY + (30 * 3), 32, 32);
-			
+				AddImage(RedKey, KeyPosX + (18 * 2.0), KeyPosY, 1, 1);
+				
 			if (Playa.CountInv("BlueSkull"))
-				AddImage(BlueSkullKey, SkullKeyPosX, SkullKeyPosY + (30), 32, 32);
+				AddImage(BlueSkullKey, SkullKeyPosX + (18), SkullKeyPosY, 1, 1);
 			if (Playa.CountInv("YellowSkull"))
-				AddImage(YellowSkullKey, SkullKeyPosX, SkullKeyPosY + (30 * 2), 32, 32);
+				AddImage(YellowSkullKey, SkullKeyPosX + (18 * 1.5), SkullKeyPosY, 1, 1);
 			if (Playa.CountInv("RedSkull"))
-				AddImage(RedSkullkey, SkullKeyPosX, SkullKeyPosY + (30 * 3), 32, 32);		
+				AddImage(RedSkullKey, SkullKeyPosX + (18 * 2.0), SkullKeyPosY, 1, 1);				
+				
 		}
 
 	}
