@@ -1,11 +1,11 @@
 AddOptionMenu "OptionsMenu"
 {
-	SubMenu "DMW Doom Options", "Renamon Doom Settings"
+	SubMenu "DWM Doom Options", "DWM Doom Settings"
 }
 
-OptionMenu "DMW Doom Settings" 
+OptionMenu "DWM Doom Settings" 
 {
-	Title "Doom Settings"
+	Title "DWM Settings"
 
 	StaticText "Note: In order to reload the CVAR values while ingame you should be using."
 	StaticText "'netevent reloadcvar' without the ' part in the console."
