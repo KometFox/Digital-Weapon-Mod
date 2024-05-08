@@ -177,7 +177,8 @@ override void Init()
 			AddImage(MuggyShot, 980, 950, 128, 128);
 			
 			//Selected Inventory
-			AddImage(Playa.InvSel.Icon, 1000, 850, 64, 64);
+			if (Playa.InvSel)
+				AddImage(Playa.InvSel.Icon, 1000, 850, 64, 64);
 			
 			
 			//Keys
