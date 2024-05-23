@@ -79,18 +79,6 @@ Class RMD_LargeExplosionSpawner : Actor
 					Particle.Vel = PVel;
 				}
 
-				//Flare
-				for (int i = 0; i < 1; ++i)
-				{
-					Vector3 PVel = (FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25)).unit()*FRandom[FX](0.01, 0.01);
-					Vector3 RPos = (frandom(-8, 8), frandom(-8, 8), frandom(-4, 4));
-					let Particle = Spawn("RMD_LargeBoom_Flare", Pos + RPos);
-					
-					Particle.Vel = PVel;
-					Particle.Scale = (1.35, 1.35);
-					Particle.SetShade("c8e2ff");
-				}
-
 
 			}
 			Stop;
@@ -189,6 +177,7 @@ Class RMD_LargeBoom_Trail : RMD_ModelSparks
 		BounceFactor 0.85;
 		WallBounceFactor 0.85;
 		Gravity 0;
+		+NoClip;
 	}
 	
 	override void Tick()
@@ -241,6 +230,7 @@ Class RMD_LargeBoom_Fire : RMD_ModelSparks
 		+Bright;
 		-NoGravity
 		Gravity 0;
+		+NoClip;
 	}
 	
 	Override void BeginPlay()
@@ -274,6 +264,7 @@ Class RMD_LargeBoom_Smoke : RMD_ModelSparks
 		Alpha 0.8;
 		Gravity 0;
 		-NoGravity
+		+NoClip;
 	}
 	
 	Override void BeginPlay()

@@ -81,7 +81,7 @@ Class BM_PistolWeapons : BMItems
 			Item.Graphic = TexMan.CheckForTexture("PISWM19", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Pistol/Select";
-			Item.Cost = 450;
+			Item.Cost = 2200;
 			Item.Amount = 1;
 			ArItems.Push(Item);
 		}
@@ -136,6 +136,16 @@ Class BM_ARWeapons : BMItems
 			Item.Cost = 400; 
 			Item.Amount = 1;
 			ArItems.Push(Item);
+
+			Item = new("BuyMenuItems");
+			Item.ID = "RMD_SA85m";
+			Item.ItemName = "SA 85-M";
+			Item.Graphic = TexMan.CheckForTexture("PISA85m", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Assault/Select";
+			Item.Cost = 600; 
+			Item.Amount = 1;
+			ArItems.Push(Item);
 			
 			Item = new("BuyMenuItems");
 			Item.ID = "RMD_MadsenLAR";
@@ -156,6 +166,16 @@ Class BM_ARWeapons : BMItems
 			Item.Cost = 8500; 
 			Item.Amount = 1;
 			ArItems.Push(Item);
+
+			Item = new("BuyMenuItems");
+			Item.ID = "RMD_M249SAW";
+			Item.ItemName = "M249 SAW";
+			Item.Graphic = TexMan.CheckForTexture("PIM249SW", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Assault/Select";
+			Item.Cost = 2000; 
+			Item.Amount = 1;
+			ArItems.Push(Item);
 			
 			Item = new("BuyMenuItems");
 			Item.ID = "RMD_E12PR";
@@ -166,16 +186,16 @@ Class BM_ARWeapons : BMItems
 			Item.Cost = 7500; 
 			Item.Amount = 1;
 			ArItems.Push(Item);
-	
+			
 			Item = new("BuyMenuItems");
-			Item.ID = "RMD_M249SAW";
-			Item.ItemName = "M249 SAW";
-			Item.Graphic = TexMan.CheckForTexture("PIM249SW", TexMan.Type_Any);
+			Item.ID = "RMD_Chaingun";
+			Item.ItemName = "Chaingun";
+			Item.Graphic = TexMan.CheckForTexture("PICHAIN", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Assault/Select";
-			Item.Cost = 10000; 
+			Item.Cost = 30000; 
 			Item.Amount = 1;
-			ArItems.Push(Item);		
+			ArItems.Push(Item);	
 		}		
 
 }
@@ -208,7 +228,18 @@ Class BM_ShotgunWeapons : BMItems
 			Item.Cost = 750;
 			Item.Amount = 1;
 			ArItems.Push(Item);
-			
+	
+			//TOZ-34
+			Item = new("BuyMenuItems");
+			Item.ID = "RMD_TOZ34";
+			Item.ItemName = "TOZ-34";
+			Item.Graphic = TexMan.CheckForTexture("PITOZ34", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Shotgun/Select";
+			Item.Cost = 600;
+			Item.Amount = 1;
+			ArItems.Push(Item);	
+	
 			//Molot VPO-208
 			Item = new("BuyMenuItems");
 			Item.ID = "RMD_MolotVPO208";
@@ -290,7 +321,7 @@ Class BM_LauncherWeapons : BMItems
 			Item.Graphic = TexMan.CheckForTexture("PIDF12", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "RocketLauncher/Select";
-			Item.Cost = 20000;
+			Item.Cost = 7000;
 			Item.Amount = 1;
 			ArItems.Push(Item);	
 	
@@ -327,11 +358,11 @@ Class BM_AmmoItems : BMItems
 			
 			Item = new("BuyMenuItems");
 			Item.ID = "RMD_MediumBullets";
-			Item.ItemName = "Medium Bullets";
+			Item.ItemName = "Rifle Bullets";
 			Item.Graphic = TexMan.CheckForTexture("AMMOAR", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Items/ARBullet";
-			Item.Cost = 100;
+			Item.Cost = 120;
 			Item.Amount = 50;
 			ArItems.Push(Item);
 
@@ -341,7 +372,7 @@ Class BM_AmmoItems : BMItems
 			Item.Graphic = TexMan.CheckForTexture("AMMOSHEL", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Items/Shells";
-			Item.Cost = 50;
+			Item.Cost = 75;
 			Item.Amount = 20;
 			ArItems.Push(Item);			
 
@@ -361,7 +392,7 @@ Class BM_AmmoItems : BMItems
 			Item.Graphic = TexMan.CheckForTexture("AMMOFUEL", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Items/Fuel";
-			Item.Cost = 800;
+			Item.Cost = 350;
 			Item.Amount = 50;
 			ArItems.Push(Item);			
 		
@@ -371,7 +402,7 @@ Class BM_AmmoItems : BMItems
 			Item.Graphic = TexMan.CheckForTexture("AMMOCELL", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Items/Cells";
-			Item.Cost = 600;
+			Item.Cost = 500;
 			Item.Amount = 50;
 			ArItems.Push(Item);	
 
@@ -427,16 +458,27 @@ Class BM_Supplies : BMItems
 			Item.Amount = 1;
 			ArItems.Push(Item);
 			
-
+			Item = new("BuyMenuItems");
+			Item.ID = "RMD_HealthAmmo";
+			Item.ItemName = "Health Ammo";
+			Item.Graphic = TexMan.CheckForTexture("PIENGCAN", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Items/CanRoll";
+			Item.Cost = 5000;
+			Item.Amount = 1;
+			ArItems.Push(Item);
+			
 			Item = new("BuyMenuItems");
 			Item.ID = "RMD_NBCSuit";
 			Item.ItemName = "NBC Suit";
 			Item.Graphic = TexMan.CheckForTexture("SUITA0", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "pickup/Suit";
-			Item.Cost = 300;
+			Item.Cost = 200;
 			Item.Amount = 1;
 			ArItems.Push(Item);
+
+
 		}
 
 }

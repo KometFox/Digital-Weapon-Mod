@@ -160,6 +160,7 @@ Class RMD_BigPlasmaTrail : RMD_ModelSparks
 		BounceFactor 0.85;
 		WallBounceFactor 0.85;
 		Gravity 0;
+		+NoClip;
 	}
 
 	override void Tick()
@@ -212,6 +213,7 @@ Class RMD_BigPlasmaTraily_Fire : RMD_BaseParticle
 		Gravity 0;
 		+Bright;
 		-NOGRAVITY
+		+NoClip;
 	}
 	
 	Override void BeginPlay()
@@ -245,6 +247,7 @@ Class RMD_BigPlasmaTraily_Smoke : RMD_BaseParticle
 		Gravity 0;
 		+Bright;
 		-NOGRAVITY
+		+NoClip;
 	}
 	
 	Override void BeginPlay()

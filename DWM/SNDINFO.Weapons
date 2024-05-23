@@ -72,6 +72,14 @@ AoMShotgun/CockEnd "Sounds/Weapons/SG/AoMShotgun/CockEnd.ogg"
 AoMShotgun/Cocking "Sounds/Weapons/SG/AoMShotgun/CockA.ogg"
 AoMShotgun/Insert "Sounds/Weapons/SG/AoMShotgun/LoadShell.ogg"
 
+//TOZ-34
+TOZ34/Fire1 "Sounds/Weapons/SG/TOZ-34/Fire1.ogg"
+TOZ34/Fire2 "Sounds/Weapons/SG/TOZ-34/Fire2.ogg"
+
+TOZ34/Open "Sounds/Weapons/SG/TOZ-34/Open.ogg"
+TOZ34/Insert "Sounds/Weapons/SG/TOZ-34/Insert.ogg"
+TOZ34/Close "Sounds/Weapons/SG/TOZ-34/Close.ogg"
+
 //Bekas 12m
 //Fire
 $Random Bekas12m/Fire {Bekas12m/Fire1}
@@ -83,12 +91,7 @@ Bekas12m/CockStart "Sounds/Weapons/SG/Bekas12m/CockStart.ogg"
 Bekas12m/CockEnd "Sounds/Weapons/SG/Bekas12m/CockEnd.ogg"
 Bekas12m/Insert "Sounds/Weapons/SG/Bekas12m/LoadShell.ogg"
 
-
-$Random MolotVPO208/Fire {MolotVPO208/Fire1 MolotVPO208/Fire2 MolotVPO208/Fire3}
-
-MolotVPO208/Fire1 "Sounds/Weapons/SG/MolotVPO208/Fire1.ogg"
-MolotVPO208/Fire2 "Sounds/Weapons/SG/MolotVPO208/Fire2.ogg"
-MolotVPO208/Fire3 "Sounds/Weapons/SG/MolotVPO208/Fire3.ogg"
+MolotVPO208/Fire "Sounds/Weapons/SG/MolotVPO208/Fire.ogg"
 
 MolotVPO208/ClipInsert "Sounds/Weapons/SG/MolotVPO208/ClipInsert.ogg"
 MolotVPO208/HandlePull "Sounds/Weapons/SG/MolotVPO208/HandlePull.ogg"
@@ -203,13 +206,20 @@ $Random M16A3/Fire {M16A3/Fire1}
 
 M16A3/Fire1 "Sounds/Weapons/AR/M16A3/Fire1.ogg"
 
-M16A3/Cocking "Sounds/Weapons/AR/M16A3/Cocking.ogg"
+M16A3/Cocking "Sounds/Weapons/AR/M16A3/Cock.ogg"
 M16A3/MagOut "Sounds/Weapons/AR/M16A3/MagOut.wav"
 M16A3/MagIn "Sounds/Weapons/AR/M16A3/MagIn.wav"
 
 $Volume M16A3/MagOut 0.75
 $Volume M16A3/MagIn 0.75
 $Volume M16A3/Fire 1.0
+
+//SA 85-m
+SA85m/Fire "Sounds/Weapons/AR/SA85m/Fire.ogg"
+
+SA85m/Cocking "Sounds/Weapons/AR/SA85m/Cocking.wav"
+SA85m/MagOut "Sounds/Weapons/AR/SA85m/MagOut.wav"
+SA85m/MagIn "Sounds/Weapons/AR/SA85m/MagIn.wav"
 
 //------------------------------------------------------------------------------
 //Machine Guns
@@ -228,4 +238,6 @@ M249SAW/MagIn "Sounds/Weapons/AR/Madsen/MagIn.ogg"
 M249SAW/MagOut "Sounds/Weapons/AR/Madsen/MagOut.ogg"
 
 
+//Chaingun
+Chaingun/Fire "Sounds/Weapons/MG/Chaingun/Fire.ogg"
 

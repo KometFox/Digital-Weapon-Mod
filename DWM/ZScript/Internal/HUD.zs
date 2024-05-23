@@ -25,6 +25,7 @@ Class RMD_BARHUD : BaseStatusBar
 	int CurrentMag;
 	TextureID AmmoIcon; 
 	String Ammo1;
+	String FireMode; 
 	
 	//Grenades
 	int ThrowPower;
@@ -70,7 +71,8 @@ override void Init()
 	//Function for simplified Text display
 	ui void AddText(String Text, Int ColorID, int PosX, int PosY, double ScaleX, double ScaleY)
 	{
-		HUDFont BIGNUM = HUDFont.Create("RMDFONT_BIGNUM");
+		//HUDFont BIGNUM = HUDFont.Create("RMDFONT_BIGNUM");
+		HUDFont BIGNUM = HUDFont.Create("BIGUPPER");
 
 		DrawString(BIGNUM, Text, (PosX, PosY), DI_Text_Align_Right|DI_NoShadow, Font.CR_CYAN, 1, -1, 4, (ScaleX, ScaleY));
 	}
@@ -102,6 +104,7 @@ override void Init()
 			int Geld = Playa.CountInv("Material");
 			int Mag1 = BarInfo.GetMagSize();
 			String VAmmo = BarInfo.GetAmmo1();
+			String VFireMode = BarInfo.GetFireMode();
 			int AmmoStash = Playa.CountInv(VAmmo);
 			String AmmoIcon = TexMan.GetName(BarInfo.GetAmmoIcon());
 			String MuggyShot = TexMan.GetName(GetMugshot(3));
@@ -136,8 +139,11 @@ override void Init()
 			AddText(String.Format("%d", ArmorV), Font.CR_CYAN, 20, 175, 1.0, 1.0);
 			
 			//Credits
-			AddText(String.Format("<Credit> %d", Geld), Font.CR_CYAN, 40, 193, 0.5, 0.5);
-	
+			AddText(String.Format("%d", Geld), Font.CR_CYAN, 40, 193, 0.5, 0.5);
+
+			//Firemode
+			AddText(String.Format("<FM> %s", VFireMode), Font.CR_CYAN, 85, 152, 0.25, 0.25);
+
 			//Ammo Icon
 			AddImage(AmmoIcon, 90, 150, 0.6, 0.6);
 
@@ -209,6 +215,7 @@ Class RMD_BARINFO : EventHandler
 	int CurrentMag;
 	TextureID AmmoIcon; 
 	String Ammo1;
+	String FireMode;
 	
 	//Grenades
 	int ThrowPower;
@@ -256,7 +263,18 @@ Class RMD_BARINFO : EventHandler
 		{
 			RMD_BARINFO.ThrowPower = Amount;
 		}
-	}	
+	}
+	
+	static void SetFireMode(string Mode)
+	{
+		RMD_BARINFO RMD_BARINFO;
+		RMD_BARINFO = RMD_BARINFO(EventHandler.Find("RMD_BARINFO"));
+	
+		if (RMD_BARINFO)
+		{
+			RMD_BARINFO.FireMode = Mode;
+		}	
+	}
 	
 	
 	ui string GetAmmo1()
@@ -272,6 +290,11 @@ Class RMD_BARINFO : EventHandler
 	ui TextureID GetAmmoIcon()
 	{
 		return AmmoIcon;
+	}
+	
+	ui string GetFireMode()
+	{
+		return FireMode; 
 	}
 
 }

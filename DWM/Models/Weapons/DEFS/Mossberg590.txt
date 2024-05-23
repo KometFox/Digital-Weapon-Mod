@@ -5,7 +5,7 @@ Model RMD_Mossberg590
 	SurfaceSkin 0 0 "CSHand.png"
 	Path "Models\Weapons\Shotgun\Mossberg590"
 	Model 0 "Mossberg590.md3"
-	SurfaceSkin 0 1 "Mossberg590_Diffuse.png"
+	SurfaceSkin 0 1 "Mossberg590.png"
 	SurfaceSkin 0 2 "12Gauge.png"
 	AngleOffset 90
 	

@@ -31,10 +31,10 @@ Class RMD_HealthAmmo : Ammo
 	Default
 	{
 	Inventory.PickupMessage "You picked up some Health (Ammo).";
-	Inventory.Amount 10;
-	Inventory.MaxAmount 200;
+	Inventory.Amount 1;
+	Inventory.MaxAmount 3;
 	Ammo.BackpackAmount 0;
-	Ammo.BackpackMaxAmount 200;
+	Ammo.BackpackMaxAmount 3;
 	Inventory.Icon "BMANA0";
 	+INVENTORY.UNDROPPABLE;
 	+INVENTORY.UNCLEARABLE;
@@ -57,9 +57,9 @@ Class RMD_PistolBullets : Ammo
 	{
 	Inventory.PickupMessage "You picked up some pistol bullets.";
 	Inventory.Amount 20;
-	Inventory.MaxAmount 1000;
+	Inventory.MaxAmount 2000;
 	Ammo.BackpackAmount 0;
-	Ammo.BackpackMaxAmount 1000;
+	Ammo.BackpackMaxAmount 2000;
 	Inventory.Icon "BMANA0";
 	+INVENTORY.UNDROPPABLE;
 	+INVENTORY.UNCLEARABLE;
@@ -79,9 +79,9 @@ Class RMD_MediumBullets : Ammo
 	{
 	Inventory.PickupMessage "You picked up some medium bullets.";
 	Inventory.Amount 20;
-	Inventory.MaxAmount 1000;
+	Inventory.MaxAmount 2000;
 	Ammo.BackpackAmount 0;
-	Ammo.BackpackMaxAmount 1000;
+	Ammo.BackpackMaxAmount 2000;
 	Inventory.Icon "BMANA0";
 	+INVENTORY.UNDROPPABLE;
 	+INVENTORY.UNCLEARABLE;
@@ -104,9 +104,9 @@ Class RMD_Shells : Ammo
 	{
 	Inventory.PickupMessage "You picked up some Shells.";
 	Inventory.Amount 10;
-	Inventory.MaxAmount 200;
+	Inventory.MaxAmount 400;
 	Ammo.BackpackAmount 0;
-	Ammo.BackpackMaxAmount 200;
+	Ammo.BackpackMaxAmount 400;
 	Inventory.Icon "BMANA0";
 	+INVENTORY.UNDROPPABLE;
 	+INVENTORY.UNCLEARABLE;
@@ -129,31 +129,9 @@ Class RMD_Grenades : Ammo
 	{
 	Inventory.PickupMessage "You picked up a Grenade.";
 	Inventory.Amount 1;
-	Inventory.MaxAmount 100;
+	Inventory.MaxAmount 200;
 	Ammo.BackpackAmount 0;
-	Ammo.BackpackMaxAmount 100;
-	Inventory.Icon "BMANA0";
-	+INVENTORY.UNDROPPABLE;
-	+INVENTORY.UNCLEARABLE;
-	}
-	
-	States
-	{
-	Spawn:
-		APAM A -1;
-		Stop;
-	}
-}
-
-Class RMD_Rockets : Ammo 
-{
-	Default
-	{
-	Inventory.PickupMessage "You picked up a Rocket.";
-	Inventory.Amount 1;
-	Inventory.MaxAmount 30;
-	Ammo.BackpackAmount 0;
-	Ammo.BackpackMaxAmount 30;
+	Ammo.BackpackMaxAmount 200;
 	Inventory.Icon "BMANA0";
 	+INVENTORY.UNDROPPABLE;
 	+INVENTORY.UNCLEARABLE;
@@ -173,9 +151,9 @@ Class RMD_Cells : Ammo
 	{
 	Inventory.PickupMessage "You picked up some Cells.";
 	Inventory.Amount 1;
-	Inventory.MaxAmount 1000;
+	Inventory.MaxAmount 2000;
 	Ammo.BackpackAmount 0;
-	Ammo.BackpackMaxAmount 1000;
+	Ammo.BackpackMaxAmount 2000;
 	Inventory.Icon "AMMOCELL";
 	+INVENTORY.UNDROPPABLE;
 	+INVENTORY.UNCLEARABLE;
@@ -195,9 +173,9 @@ Class RMD_Fuel : Ammo
 	{
 	Inventory.PickupMessage "You picked up some Fuel.";
 	Inventory.Amount 1;
-	Inventory.MaxAmount 1000;
+	Inventory.MaxAmount 2000;
 	Ammo.BackpackAmount 0;
-	Ammo.BackpackMaxAmount 1000;
+	Ammo.BackpackMaxAmount 2000;
 	Inventory.Icon "AMMOCELL";
 	+INVENTORY.UNDROPPABLE;
 	+INVENTORY.UNCLEARABLE;

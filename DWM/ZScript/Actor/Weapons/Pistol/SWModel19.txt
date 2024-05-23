@@ -165,7 +165,7 @@ class RMD_SWModel19 : BaseWeapon
 		Goto IronReady;	
 		
 	Reload:
-		TNT1 A 0 ReloadCheck(2);
+		TNT1 A 0 ReloadCheck(3);
 		Goto ReadyReal;
 
 	ReloadNow:
@@ -185,7 +185,7 @@ class RMD_SWModel19 : BaseWeapon
 		{			
 			A_StartSound("SWModel19/Close", CHAN_WEAPON);
 		
-			ReloadGun(Invoker.AmmoType1, 0, 1, 2);
+			ReloadGun(Invoker.AmmoType1, 0, 1, 3);
 			//Invoker.Magazine = Invoker.MagazineMax;
 			RMD_BARINFO.Set_Mag(invoker.Magazine);
 	
@@ -204,7 +204,7 @@ Class RMD_Model19Bullet : RMD_BaseBullet
 Default
 	{
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 25; 
+		RMD_BaseBullet.ImpactDamage 75; 
 		RMD_BaseBullet.DamageRand 1.8;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 500;

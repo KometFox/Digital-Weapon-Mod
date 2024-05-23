@@ -66,19 +66,6 @@ Class RMD_40mmExplosionSpawner : Actor
 					Particle.Scale = (0.4, 0.4);
 				}
 				
-				//Flare
-				for (int i = 0; i < 2; ++i)
-				{
-					Vector3 PVel = (FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25)).unit()*FRandom[FX](0.01, 0.01);
-					Vector3 RPos = (frandom(-8, 8), frandom(-8, 8), frandom(-4, 4));
-					let Particle = Spawn("RMD_Flare", Pos + RPos);
-					
-					Particle.Vel = PVel;
-					Particle.Scale = (1.45, 1.45);
-					Particle.SetShade("c8e2ff");
-				}
-				
-
 				//Trail
 				for (int i = 0; i < 5; ++i)
 				{
@@ -136,6 +123,7 @@ Class RMD_40mmExplosionTrail : RMD_ModelSparks
 		BounceFactor 0.85;
 		WallBounceFactor 0.85;
 		Gravity 0;
+		+NoClip;
 	}
 	
 	override void Tick()
@@ -192,6 +180,7 @@ Class RMD_40mmExplosionTrail_Fire : RMD_ModelSparks
 	Default
 	{
 		+Bright;
+		+NoClip;
 		-NoGravity;
 		Gravity 0;
 	}
@@ -226,6 +215,7 @@ Class RMD_40mmExplosionTrail_Smoke : RMD_ModelSparks
 		RenderStyle "Translucent";
 		Alpha 0.8;
 		-NoGravity;
+		+NoClip;
 		Gravity 0;
 	}
 	

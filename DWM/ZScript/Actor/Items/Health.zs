@@ -113,7 +113,7 @@ class RMD_Milk : Health
 	{
 		-COUNTITEM
 		Inventory.Amount 2;
-		Inventory.MaxAmount 1000;
+		Inventory.MaxAmount 300;
 		Inventory.PickupMessage "You drinked a box of milk. <+2 HP>";
 		Inventory.PickupSound "Player/Drink";
 	}
@@ -211,7 +211,7 @@ Class RMD_Healthkeg : CustomInventory
 	{
 		bool PickedUp = Super.TryPickup(toucher);
 	
-		If (PickedUp || toucher.health < 300)
+		If (PickedUp || toucher.health < 200)
 		{
 			Toucher.A_GiveInventory("RMD_HealthKegBase",1);
 			A_SpawnItemEx("RMD_HealthKegLitter");

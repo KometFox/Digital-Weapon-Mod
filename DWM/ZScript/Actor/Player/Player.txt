@@ -11,6 +11,7 @@ Class RMD_Player : DoomPlayer
 	
 		Player.StartItem "RMD_CellArmor", 1;
 		Player.StartItem "RMD_EnergyDrink", 1;
+		Player.StartItem "RMD_HealthAmmo", 1;
 		-NOSKIN;
 		
 		DamageFactor "PlayerFire", 0;

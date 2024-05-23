@@ -21,11 +21,14 @@
 #Include "ZScript/Actor/Weapons/AR/M25.txt"
 #Include "ZScript/Actor/Weapons/AR/M16A3.txt"
 #Include "ZScript/Actor/Weapons/AR/MadsenLAR.txt"
+#Include "ZScript/Actor/Weapons/AR/SA85m.txt"
 //Machine Guns
 #Include "ZScript/Actor/Weapons/MG/M249SAW.txt"
+#Include "ZScript/Actor/Weapons/MG/CHaingun.txt"
 //Shotgun
 #Include "ZScript/Actor/Weapons/SG/Mossberg590.txt"
 #Include "ZScript/Actor/Weapons/SG/Bekas12m.txt"
+#Include "ZScript/Actor/Weapons/SG/TOZ34.txt"
 #Include "ZScript/Actor/Weapons/SG/MolotVPO208.txt"
 #Include "ZScript/Actor/Weapons/SG/CarcanoM91.txt"
 //Explosive Weapons

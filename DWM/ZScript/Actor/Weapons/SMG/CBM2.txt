@@ -218,8 +218,8 @@ Class RMD_CBM3_Projectile : RMD_BaseBullet
 	Default
 	{
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 9; 
-		RMD_BaseBullet.DamageRand 1.9;
+		RMD_BaseBullet.ImpactDamage 8; 
+		RMD_BaseBullet.DamageRand 1.6;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 220;				
 		

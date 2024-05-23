@@ -207,9 +207,9 @@ Class RMD_LocustRL_Rocket : HeavyExplosives
 		//Impact 
 		BaseProjectile.ImpactDamage 0;
 		//Splash 
-		BaseProjectile.SplashDamage 280;
+		BaseProjectile.SplashDamage 250;
 		BaseProjectile.FullSplashDamage 60;
-		BaseProjectile.SplashRadius 120;
+		BaseProjectile.SplashRadius 180;
 		
 		BaseProjectile.NormalDamageRandom 1.0;
 		BaseProjectile.NerfDamageRandom 1.0;

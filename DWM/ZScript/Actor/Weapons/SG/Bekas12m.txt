@@ -224,11 +224,10 @@ Class RMD_Bekas12mProj : RMD_BaseBullet
 	Default
 	{
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 35; 
+		RMD_BaseBullet.ImpactDamage 22; 
 		RMD_BaseBullet.DamageRand 1.8;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 1000;
-		RMD_BaseBullet.ExtremeDeath True;
 		
 		Scale 1.0;
 		Decal "RMD_Buckshot_BulletHoles";

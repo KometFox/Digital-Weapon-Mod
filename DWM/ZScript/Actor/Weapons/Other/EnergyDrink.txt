@@ -7,7 +7,8 @@ class RMD_EnergyDrink : BaseWeapon
 	}
 	
 	int OpenedUp;
-	
+	int Drinked; 
+	int DrinkMax;
 
 	Default
 	{
@@ -23,18 +24,30 @@ class RMD_EnergyDrink : BaseWeapon
 		
 		BaseWeapon.IronSight IRON_INACTIVE;
 		
-		BaseWeapon.MagazineMax 100;
+		BaseWeapon.MagazineMax 0;
 		BaseWeapon.Magazine 0;
 		
+	}
+
+	action bool CheckPAmmo()
+	{
+		if (Player.mo.CountInv(Invoker.AmmoType1) > 0)
+			return true;
+		
+		return false;
 	}
 	
 	Action state CondCheck1(statelabel JumpTo1, statelabel JumpTo2)
 	{
-		if (Invoker.Magazine > 0 && Invoker.OpenedUp == OPEN && CheckPlayerHealth())
+		if (CheckPAmmo() && 
+			Invoker.Drinked < Invoker.DrinkMax && 
+			Invoker.OpenedUp == OPEN && 
+			CheckPlayerHealth())
 		{	
 			Return ResolveState(JumpTo1);				
 		}
-		else if (Invoker.Magazine > 0 && Invoker.OpenedUp == CLOSED) 
+		else if (CheckPAmmo() && 
+				Invoker.OpenedUp == CLOSED) 
 		{
 			Return ResolveState(JumpTo2);
 		}		
@@ -42,12 +55,12 @@ class RMD_EnergyDrink : BaseWeapon
 		Return ResolveState("ReadyReal");	
 	}
 	
-	Action state CondCheck2(statelabel JumpTo1)
+	Action state DrinkLoopCheck()
 	{
-		if (Invoker.Magazine > 0 && CheckPlayerHealth())
-			Return ResolveState(JumpTo1);				
+		if (Invoker.Drinked >= Invoker.DrinkMax)
+			Return ResolveState("HoldStop");					
 	
-		Return ResolveState("HoldStop");	
+		Return ResolveState("DrinkLoop");	
 	}
 
 	Action bool CheckPlayerHealth()
@@ -63,16 +76,10 @@ class RMD_EnergyDrink : BaseWeapon
 		return false;
 	}
 
-	Action void DrinkUp()
-	{		
-		if (Invoker.Magazine > 0)
-		{
-			A_GiveInventory("RMD_EnergyDrink_DrinkUp", 1);
-			Invoker.Magazine -= 3;
-			Invoker.Magazine = Clamp(Invoker.Magazine, 0, 100);
-			RMD_BARINFO.Set_Mag(invoker.Magazine);
-		}
-		
+	action void DrinkUp()
+	{			
+		A_GiveInventory("RMD_EnergyDrink_DrinkUp", 1);
+		Invoker.Drinked += 1; 
 	}
 	
 	Action void SoundEffect()
@@ -80,16 +87,22 @@ class RMD_EnergyDrink : BaseWeapon
 		A_StartSound("Items/Drink", CHAN_WEAPON);
 	}
 	
+	Action State CheckOpenFire()
+	{
+		if (Invoker.OpenedUp == OPEN)
+		{
+			return ResolveState("DrinkUp");
+		}	
+		
+		return ResolveState("ReadyReal");
+	}	
+	
 	Action State CheckOpen()
 	{
 		if (Invoker.OpenedUp == OPEN)
 		{
 			return ResolveState("ReadyOpen");
 		}
-		else
-		{
-			return ResolveState("ReadyReal");
-		}	
 		
 		return ResolveState("ReadyReal");
 	}
@@ -110,15 +123,21 @@ class RMD_EnergyDrink : BaseWeapon
 		{
 				TakeCounterItem();
 				RMD_BARINFO.Set_Mag(invoker.Magazine);
+				Invoker.DrinkMax = 25; 
 				Invoker.OpenedUp = CLOSED;
 				RMD_BARINFO.SetAmmoIcon("AMMOHP");
 				RMD_BARINFO.SetAmmo1("RMD_HealthAmmo");
+				
 		}
 		Goto ReadyReal;
 		
 	ReadyReal:
 		CHGG A 0;
-		TNT1 A 0 A_StopSound(CHAN_WEAPON);
+		TNT1 A 0 
+				{
+					A_StopSound(CHAN_WEAPON);
+					Invoker.Drinked = 0;
+				}
 		IDLE A 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB);
 		Loop;
 	
@@ -164,26 +183,21 @@ class RMD_EnergyDrink : BaseWeapon
 	DrinkUp:
 		TNT1 A 0 
 		{		
-			if (Invoker.Magazine <= 0 || CheckInventory("NOAMMO", 1) == 1)
-			{
-				A_GiveInventory("NOAMMO", 1);
-				return CheckOpen();
-			}
-			
-			return ResolveState("DrinkUp") +1;
+			return CheckOpenFire() +1;
 		}	
 		DRNK ABCDEFG 2;
 		TNT1 A 0 A_StartSound("Beer/Drink", CHAN_WEAPON, CHANF_LOOP);
+		TNT1 A 0 A_TakeInventory(Invoker.AmmoType1, 1);
 		Goto DrinkLoop;
 	
 	DrinkLoopCheck:
-		TNT1 A 0 CondCheck2("DrinkLoop");
+		TNT1 A 0 DrinkLoopCheck();
 		Goto HoldStop;
 	
 	DrinkLoop:
 		DRNK G 1 DrinkUp();
 		TNT1 A 0 A_ReFire("DrinkLoopCheck");
-		Goto HoldStop;
+		Goto DrinkLoopCheck;
 	HoldStop:
 		DRNK GFEDCBA 2;
 		TNT1 A 0 A_StopSound(CHAN_WEAPON);
@@ -233,7 +247,7 @@ class RMD_EnergyDrink_DrinkUp : Health
 	Default
 	{
 		-COUNTITEM
-		Inventory.Amount 3;
+		Inventory.Amount 100;
 		Inventory.MaxAmount 100;
 		Inventory.PickupMessage "";
 		Inventory.PickupSound "";

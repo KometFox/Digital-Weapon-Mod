@@ -293,6 +293,10 @@ States
 		Loop;
 	Deselect:
 		"####" A 1 A_Lower;
+		"####" A 0 
+		{
+			RMD_BARINFO.SetFireMode("");
+		}
 		Loop;
 	Select:
 		"####" A 1 A_Raise;

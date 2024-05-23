@@ -171,13 +171,16 @@ class RMD_FT12FlameThrower : BaseWeapon
 Class RMD_FT12_Flame : Actor
 {
 
+		double Timer;
+		double FireScale;
+
 Default
 	{
 		Height 6;
 		Radius 3;
-		Scale 0.125;
+		Scale 0.15;
 		Speed 37;
-		Alpha 1.0;
+		Alpha 0.35;
 		PROJECTILE;
 		+BOUNCEONACTORS;
 		+ROLLSPRITE;
@@ -186,9 +189,10 @@ Default
 		+NOBLOODDECALS;
 		+BLOODLESSIMPACT;
 		+DONTSPLASH;
-		+THRUACTORS;
+		+NOEXTREMEDEATH;
 		-BLOODSPLATTER;
 		-RIPPER;
+		+THRUACTORS;
 		Damage 0;
 		DamageType "Fire";
 		DeathType "Fire";
@@ -208,18 +212,27 @@ Default
 		
 		Roll = Random(0, 360);
 		SetShade("ffa119");
+		Timer = 0;
+		FireScale = 0.25;
 	}
-	
-	Action void FireAttack()
+
+	void FireAttack()
 	{
-	
-		A_SetScale(Scale.X * 1.5, Scale.Y * 1.5);
-		A_Explode(18 * FRandom(0, 1.25), 64, XF_NOSPLASH);
+		A_SetScale(Scale.X * 1.08, Scale.Y * 1.08);
+		A_Explode(7 * FRandom(0, 1.6), 85, XF_NOSPLASH);
 		Roll += 1;
 	}
 	
-	Action void SFX() 
+	override void Tick()
 	{
+		super.Tick();
+
+		FireScale = FireScale * 1.08;
+	}
+	
+	void SFX() 
+	{
+
 		let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
 		int CVAR_LowQuality = CVARS.RMDV_ParticleLowQuality;;
 		
@@ -228,26 +241,27 @@ Default
 			Return;
 		}
 				
-	
 		for (int i = 0; i < 1; ++i)
 		{
 			Vector3 PVel = (FRandom[FX](-2, 2), FRandom[FX](-2, 2), FRandom[FX](-1, 14)).unit()*FRandom[FX](2.0, 8.0);
 			Vector3 RPos = (frandom(0.1, 0.1), frandom(0.1, 0.1), frandom(0.1, 0.1));
 			let Particle = Spawn("SFX_FT12_Smoke", Pos + RPos);
-					
+				
 			Particle.Vel = PVel;
-			Particle.Scale = (0.12, 0.12);
+			Particle.Scale = (0.14, 0.14);
 		}
 		
 		for (int i = 0; i < 3; ++i)
 		{
-			Vector3 PVel = (FRandom[FX](-1.5, 1.5), FRandom[FX](-1.5, 1.5), FRandom[FX](-0.5, 2.5)).unit()*FRandom[FX](1.25, 5.0);
+			Vector3 PVel = (FRandom[FX](-1.5, 1.5), FRandom[FX](-1.5, 1.5), FRandom[FX](-0.5, 2.5)).unit()*FRandom[FX](0.5, 1.5);
 			Vector3 RPos = (frandom(0.1, 0.1), frandom(0.1, 0.1), frandom(0.1, 0.1));
 			let Particle = Spawn("SFX_FT12_Fire", Pos + RPos);
 					
 			Particle.Vel = PVel;
-			Particle.Scale = (Scale.X, Scale.Y);
+			Particle.Scale = (FireScale, FireScale);
 		}
+			
+		
 	
 	}
 	
@@ -263,17 +277,15 @@ Default
 		
 		Goto Loopy;
 		Loopy:
-			TNT1 A 0 FireAttack();
-			FIR9 ABCD 1 SFX(); 
-			TNT1 A 0 FireAttack();
-			FIR9 EFGH 1 SFX();
-			TNT1 A 0 FireAttack();
-			FIR9 IJKL 1 SFX();
-			TNT1 A 0 FireAttack();
-			FIR9 MNOP 1 
+			LENS CCCCCCCCCC 2
 			{
 				SFX();
-				A_FadeOut(0.25);
+				FireAttack();			
+			}
+			LENS CCC 1
+			{
+				SFX();
+				A_FadeOut(0.1166);
 			}
 			TNT1 A 0 FireAttack();
 			Stop;

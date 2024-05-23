@@ -225,8 +225,8 @@ Class RMD_AR70_Bullet : RMD_BaseBullet
 	Default
 	{		
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 15; 
-		RMD_BaseBullet.DamageRand 1.6;
+		RMD_BaseBullet.ImpactDamage 17; 
+		RMD_BaseBullet.DamageRand 1.8;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 240;		
 		

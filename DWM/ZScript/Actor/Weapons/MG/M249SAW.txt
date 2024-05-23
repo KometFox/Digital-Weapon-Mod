@@ -16,8 +16,8 @@ class RMD_M249SAW : BaseWeapon
 		
 		BaseWeapon.IronSight IRON_INACTIVE;
 		
-		BaseWeapon.MagazineMax 100;
-		BaseWeapon.Magazine 100; 
+		BaseWeapon.MagazineMax 200;
+		BaseWeapon.Magazine 200; 
 	}
 	
 	action void C_SpawnCasing(Class<Actor> Obj = "PistolCase", Vector3 COffset = (0, 0, 0), int PAngle = 0)
@@ -35,6 +35,9 @@ class RMD_M249SAW : BaseWeapon
 	
 	Action void FireBullets()
 	{
+		if (Invoker.Magazine <= 0)
+			return;
+	
 		if (Invoker.IronSight == IRON_INACTIVE)
 		{
 			A_FireProjectile("RMD_M249SAW_Bullet",frandom(-0.7, 0.7), 1, 6, 4, CMF_AIMDIRECTION,frandom(-0.7, 0.7));
@@ -183,21 +186,21 @@ class RMD_M249SAW : BaseWeapon
 		Goto ReadyReal;
 		
 	FireNow:
-		FIR1 A 1 FireBullets();
-		FIR1 BC 1;
-		IDLE A 0 A_ReFire;
-		FIR1 EFGH 1;
+		FIR1 A 2 FireBullets();
+		FIR1 B 2;
+		IDLE A 0 A_ReFire("FireNow");
+		FIR1 CEFGH 1;
 		Goto ReadyReal;
 		
 	IronFireNow:
-		SCOA B 1 FireBullets();
-		SCOA BB 1;
-		SCOA B 0 A_ReFire;
-		SCOA BBBB 1;
+		SCOA B 2 FireBullets();
+		SCOA B 2;
+		SCOA B 0 A_ReFire("IronFireNow");
+		SCOA BBBBB 1;
 		Goto IronReady;	
 		
 	Reload:
-		TNT1 A 0 ReloadCheck(2);
+		TNT1 A 0 ReloadCheck(1);
 		Goto ReadyReal;
 
 	ReloadNow:
@@ -226,7 +229,7 @@ class RMD_M249SAW : BaseWeapon
 		{
 			A_StartSound("M249SAW/MagIn", CHAN_WEAPON +2);
 			
-			ReloadGun(Invoker.AmmoType1, 0, 1, 2);
+			ReloadGun(Invoker.AmmoType1, 0, 1, 1);
 			RMD_BARINFO.Set_Mag(invoker.Magazine);
 		}
 		//Hatch Close
@@ -244,8 +247,8 @@ Class RMD_M249SAW_Bullet : RMD_BaseBullet
 Default
 	{		
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 18; 
-		RMD_BaseBullet.DamageRand 1.8;
+		RMD_BaseBullet.ImpactDamage 25; 
+		RMD_BaseBullet.DamageRand 2.0;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 450;		
 		

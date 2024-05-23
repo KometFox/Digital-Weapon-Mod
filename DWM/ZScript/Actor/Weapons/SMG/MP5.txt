@@ -235,8 +235,8 @@ Class RMD_MP5_Projectile : RMD_BaseBullet
 Default
 	{
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 11;
-		RMD_BaseBullet.DamageRand 1.85;
+		RMD_BaseBullet.ImpactDamage 12;
+		RMD_BaseBullet.DamageRand 1.8;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 275;		
 		

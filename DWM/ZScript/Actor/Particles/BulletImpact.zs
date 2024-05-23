@@ -36,7 +36,8 @@ Class URPG_RicochetEffect : RMD_ParticleSpawner
 			if (Bool_BulletFlare)
 			{
 				BulletFlare.SetShade("khaki");
-				BulletFlare.Scale = (0.17, 0.17);
+				BulletFlare.Scale = (0.21, 0.217);
+				BulletFlare.Alpha = 0.7;
 			}	
 			
 			Sparky.SetShade("ffcc7d");

@@ -203,7 +203,6 @@ Class RMD_CarcanoM91Proj : RMD_BaseBullet
 		RMD_BaseBullet.DamageRand 1.6;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 1000;
-		RMD_BaseBullet.ExtremeDeath False;
 		
 		Scale 1.0;
 		Decal "RMD_Buckshot_BulletHoles";

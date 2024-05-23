@@ -1,9 +1,9 @@
 //HE Barrel
 Class HEBarrel : ExplosiveBarrel 
 {
-	Const DAMAGERADIUS = 250;
-	Const FULLDAMAGERADIUS = 150;
-	Const SPLASHDAMAGE = 450;
+	Const DAMAGERADIUS = 140;
+	Const FULLDAMAGERADIUS = 80;
+	Const SPLASHDAMAGE = 200;
 
 	Default
 	{
