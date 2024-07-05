@@ -52,7 +52,7 @@ Class AcidBarrel : ExplosiveBarrel
 				{
 					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](1.25, 6.25);
 					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
-					let Particle = Spawn("RMD_Boom", Pos + RPos);
+					let Particle = Spawn("RMD_ExplosionSprite", Pos + RPos);
 					
 					Particle.Vel = PVel;
 					Particle.Roll = Random(0, 360);

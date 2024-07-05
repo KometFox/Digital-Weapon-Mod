@@ -1,59 +1,4 @@
 //------------------------------------------------------------------------------
-//Single Ingot
-//------------------------------------------------------------------------------
-Model IngotA
-{
-	Path "Models\Money\Ingot"
-	Model 0 "Ingot.md3"
-	Skin 0 "IronIngot_Diffuse.png"
-	
-	USEACTORPITCH
-	USEACTORROLL
-	Scale 5 5 5
-	
-	FrameIndex IDLE A 0 0
-}
-
-Model IngotB
-{
-	Path "Models\Money\Ingot"
-	Model 0 "Ingot.md3"
-	Skin 0 "SteelIngot_Diffuse.png"
-	
-	USEACTORPITCH
-	USEACTORROLL
-	Scale 5 5 5
-	
-	FrameIndex IDLE A 0 0
-}
-
-Model IngotC
-{
-	Path "Models\Money\Ingot"
-	Model 0 "Ingot.md3"
-	Skin 0 "DwarfIngot_Diffuse.png"
-	
-	USEACTORPITCH
-	USEACTORROLL
-	Scale 5 5 5
-	
-	FrameIndex IDLE A 0 0
-}
-
-Model IngotD
-{
-	Path "Models\Money\Ingot"
-	Model 0 "Ingot.md3"
-	Skin 0 "MoonIngot_Diffuse.png"
-	
-	USEACTORPITCH
-	USEACTORROLL
-	Scale 5 5 5
-	
-	FrameIndex IDLE A 0 0
-}
-
-//------------------------------------------------------------------------------
 //Crystals
 //------------------------------------------------------------------------------
 Model CrystalGreen
@@ -108,71 +53,16 @@ Model CrystalPurple
 	
 	FrameIndex IDLE A 0 0
 }
-//------------------------------------------------------------------------------
-//Ingot Stacks
-//------------------------------------------------------------------------------
-Model IngotStackA
-{
-	Path "Models\Money\Ingot"
-	Model 0 "IngotStack.md3"
-	Skin 0 "IronIngot_Diffuse.png"
-	
-	USEACTORPITCH
-	USEACTORROLL
-	Scale 5 5 5
-	
-	FrameIndex IDLE A 0 0
-}
-
-Model IngotStackB
-{
-	Path "Models\Money\Ingot"
-	Model 0 "IngotStack.md3"
-	Skin 0 "SteelIngot_Diffuse.png"
-	
-	USEACTORPITCH
-	USEACTORROLL
-	Scale 5 5 5
-	
-	FrameIndex IDLE A 0 0
-}
-
-Model IngotStackC
-{
-	Path "Models\Money\Ingot"
-	Model 0 "IngotStack.md3"
-	Skin 0 "DwarfIngot_Diffuse.png"
-	
-	USEACTORPITCH
-	USEACTORROLL
-	Scale 5 5 5
-	
-	FrameIndex IDLE A 0 0
-}
-
-Model IngotStackD
-{
-	Path "Models\Money\Ingot"
-	Model 0 "IngotStack.md3"
-	Skin 0 "MoonIngot_Diffuse.png"
-	
-	USEACTORPITCH
-	USEACTORROLL
-	Scale 5 5 5
-	
-	FrameIndex IDLE A 0 0
-}
-
 
 Model FloppyDisc
 {
 	Path "Models\Money\FloppyDisc"
-	Model 0 "Floppy.md3"
+	Model 0 "Floppy.obj"
 	Skin 0 "FloppyBlack.png"
 	
 	USEACTORPITCH
 	USEACTORROLL
-	Scale 5 5 5
+	Scale 7 7 7
 	
 	FrameIndex IDLE A 0 0
 }
@@ -186,11 +76,62 @@ Model HardDrive
 	
 	USEACTORPITCH
 	USEACTORROLL
-	Scale 10 10 10
+	Scale 7 7 7
 	
 	FrameIndex IDLE A 0 0
 }
 
+Model PowerSupply
+{
+	Path "Models\Money\PowerSupply"
+	Model 0 "PowerSupply.obj"
+	Skin 0 "PowerSupply.png"
+	
+	USEACTORPITCH
+	USEACTORROLL
+	Scale 15 15 15
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model Motherboard
+{
+	Path "Models\Money\Motherboard"
+	Model 0 "Motherboard.obj"
+	Skin 0 "Motherboard.png"
+	
+	USEACTORPITCH
+	USEACTORROLL
+	Scale 15 15 15
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model GraphicCardT5
+{
+	Path "Models\Money\GraphicCardT5"
+	Model 0 "GraphicCardT5.obj"
+	Skin 0 "GraphicCardT5.png"
+	
+	USEACTORPITCH
+	USEACTORROLL
+	Scale 20 20 20
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model GraphicCardT2
+{
+	Path "Models\Money\GraphicCardT2"
+	Model 0 "GraphicCardT2.obj"
+	Skin 0 "GraphicCardT2.png"
+	
+	USEACTORPITCH
+	USEACTORROLL
+	Scale 20 20 20
+	
+	FrameIndex IDLE A 0 0
+}
 
 Model TapeDrive
 {
@@ -200,7 +141,7 @@ Model TapeDrive
 	
 	USEACTORPITCH
 	USEACTORROLL
-	Scale 10 10 10
+	Scale 12 12 12
 	
 	FrameIndex IDLE A 0 0
 }
@@ -208,12 +149,12 @@ Model TapeDrive
 Model CDRom
 {
 	Path "Models\Money\CDRom"
-	Model 0 "CDRom.md3"
+	Model 0 "CDRom.obj"
 	Skin 0 "CDRom.png"
 	
 	USEACTORPITCH
 	USEACTORROLL
-	Scale 10 10 10
+	Scale 11 11 11
 	
 	FrameIndex IDLE A 0 0
 }

@@ -8,7 +8,7 @@ class SMRL : BaseWeapon
 		Weapon.SelectionOrder 100;
 		Weapon.AmmoUse 0;
 		Weapon.AmmoGive 0;
-		Weapon.AmmoType "RMD_Grenades";
+		Weapon.AmmoType "RMD_Explosives";
 		Inventory.PickupMessage "$GOTCHAINGUN";
 		Inventory.AltHudIcon "PIBRL1";
 		Obituary "$OB_MPCHAINGUN";
@@ -60,7 +60,7 @@ class SMRL : BaseWeapon
 				TakeCounterItem();
 				RMD_BARINFO.Set_Mag(invoker.Magazine);
 				RMD_BARINFO.SetAmmoIcon("AMMONADE");
-				RMD_BARINFO.SetAmmo1("RMD_Grenades");
+				RMD_BARINFO.SetAmmo1("RMD_Explosives");
 				A_ZoomFactor(invoker.ScopeZoom = 1.0, ZOOM_INSTANT);
 		}
 		Goto ReadyReal;
@@ -83,7 +83,7 @@ class SMRL : BaseWeapon
 				A_StartSound("RocketLauncher/Select", CHAN_WEAPON +5);
 				RMD_BARINFO.Set_Mag(invoker.Magazine);
 				RMD_BARINFO.SetAmmoIcon("AMMONADE");
-				RMD_BARINFO.SetAmmo1("RMD_Grenades");				
+				RMD_BARINFO.SetAmmo1("RMD_Explosives");				
 		}
 		SELC ABCD 1;
 		SELC D 1 A_Raise(int.max);

@@ -1,0 +1,306 @@
+class RMD_MolotovCocktail : BaseWeapon
+{
+	Const AmmoUse = 3;
+
+	Default
+	{
+		Weapon.SlotNumber 6;
+		Weapon.SelectionOrder 0;
+		Weapon.AmmoUse 0;
+		Weapon.AmmoGive 0;
+		Weapon.AmmoType "RMD_Explosives";
+		Inventory.PickupMessage "$GOTCHAINGUN";
+		Inventory.AltHudIcon "PIMOLOC";
+		Obituary "$OB_MPCHAINGUN";
+		Tag "Molotov Cocktail";
+		
+		BaseWeapon.MagazineMax 1;
+		BaseWeapon.Magazine 1;	
+	}
+	
+	Action Void A_InitGun()
+	{
+		TakeCounterItem();
+		RMD_BARINFO.Set_Mag(invoker.Magazine);
+		RMD_BARINFO.SetAmmoIcon("AMMONADE");
+		RMD_BARINFO.SetAmmo1("RMD_Explosives");
+	}
+	
+	Action Void A_ThrowBomb()
+	{
+			Actor Proj;
+			int ThrowPower = CountInv("GrenadeThrowPower");
+		
+
+			A_TakeInventory(Invoker.AmmoType1, AmmoUse);
+			Proj = A_FireProjectile("RMD_MolotovGrenade", frandom(0, 0), 1, 0, 4, CMF_AIMDIRECTION,frandom(0, 0));	
+			A_StartSound("Grenade/Throw", CHAN_WEAPON +2, 0, 0.8);
+			ThrowPower = clamp(ThrowPower, 15, 45);
+			
+			if (Proj)
+			{
+				Proj.Vel *= ThrowPower;
+				//Proj.Gravity = Proj.Gravity / (ThrowPower / 10);
+			}
+			
+			A_TakeInventory("GrenadeThrowPower", 1000);
+			RMD_BARINFO.SetThrowPower(CountInv("GrenadeThrowPower"));
+	}
+	
+	
+	States
+	{
+	
+	Ready:
+		CHGG A 0;
+		TNT1 A 0 
+		{
+			A_Jump(256, "Init");
+		
+		}
+	
+	Init:
+		TNT1 A 0 A_InitGun();
+		Goto ReadyReal;
+		
+	ReadyReal:
+		CHGG A 0;
+		IDLE A 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB);
+		Loop;	
+
+	Deselect:
+		SELC FEDCBA 1 A_Lower;
+		SELC A 1 A_Lower;
+		TNT1 A 0 A_Lower(100);
+		Loop;
+		
+	Select:
+		TNT1 A 0 A_StartSound("HandGrenade/Select", CHAN_WEAPON +5);
+		TNT1 A 0 A_InitGun();
+		SELC ABCDEF 1 A_Raise;
+		IDLE A 1 A_Raise(100);
+        Goto ReadyReal;
+	
+	
+	Fire:
+		SELC F 1 
+		{
+			if (CountInv(Invoker.AmmoType1) >= AmmoUse)
+			{
+				return ResolveState("FireNow");
+			}			
+			
+			return ResolveState("ReadyReal");
+		}
+		Goto ReadyReal;
+	
+	FireNow:
+		PUL1 ABCD 3;
+		TNT1 A 0 A_StartSound("Grenade/PullPin", CHAN_WEAPON, 0, 0.75); 
+		PUL1 EFG 3;
+		THW1 ABC 3 
+		{
+			A_ChargeThrow();
+		}
+		Goto FireLoop;
+		
+	FireLoop:
+		THW1 C 1;
+		THW1 C 1 
+		{
+			A_ReFire("FireLoop");
+			A_WeaponReady(WRF_NOFIRE | WRF_NOBOB);
+			A_ChargeThrow();
+		}
+		Goto ThrowBomb;
+	
+	ThrowBomb:
+		THW1 DE 3;
+		TNT1 A 0 A_ThrowBomb();
+		SELC A 2;
+		SELC B 2; //Add Delay
+		SELC CDEF 2;
+		Goto ReadyReal;	
+	}
+	
+	
+	
+}
+
+
+Class RMD_MolotovGrenade : LightExplosives
+{
+	int MaxLoop, Loop; 
+	
+	Property MaxLoop:MaxLoop;
+
+	Default
+	{
+		RMD_MolotovGrenade.MaxLoop 16;
+		Speed 1;
+		Decal "RMD_SmallExplosion";
+		Gravity 1.0;
+		DeathType "Fire";
+		DamageType "Fire";
+		//Impact 
+		BaseProjectile.ImpactDamage 0;
+		//Splash 
+		BaseProjectile.SplashDamage 45;
+		BaseProjectile.FullSplashDamage 80;
+		BaseProjectile.SplashRadius 200;
+		//Randomizer
+		BaseProjectile.NormalDamageRandom 1.0;
+		BaseProjectile.NerfDamageRandom 1.0;
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay
+			{
+				Actor Flare;
+						
+				Flare = Spawn("RMD_SMRL_Flare", Pos, ALLOW_REPLACE);
+						
+				If (Flare)
+				{
+					Flare.Target = Self;
+					Flare.Scale = (0.23, 0.23);
+					Flare.SetShade("Lavender");	
+				}			
+			}
+			Goto SpawnLoop;
+		SpawnLoop:	
+			IDLE A 1 A_SpawnItemEx("RMD_GrenadeTrail", 0, 0, 0);
+			Loop;
+			
+		Explode:
+			TNT1 A 0 
+			{
+				A_StartSound("Molotov/Explosion");
+				A_SpawnItemEx("RMD_MolotovExplosion", 0, 0, 0);
+				A_AlertMonsters(800);
+			}
+			TNT1 A 10;
+			Goto ExplodeLoop;		
+		ExplodeLoop:
+			TNT1 A 0
+			{
+				
+				for (int I = 0; I < 16; I++)
+				{
+					int R;
+					R = 110;
+				
+					A_SpawnItemEx("RMD_MolotovFire", +FRandom(-R, R), +Frandom(-R, R));			
+				}
+				
+			}
+			Goto DieOut;	
+		DieOut:
+			TNT1 A 0;
+			Stop;
+	}
+}
+
+
+
+
+Class RMD_MolotovFire : Actor
+{
+	int TTL;
+	
+	Property TimeToLife:TTL;
+
+	Default
+	{
+		Speed 0;
+		Gravity 1.0;
+		Scale 0.2;
+		RMD_MolotovFire.TimeToLife TICRATE * 5;
+		RenderStyle "Add";
+		DamageType "Fire";
+		DeathType "Fire";
+		+NOBLOOD;
+		+NOBLOODDECALS;
+		+BLOODLESSIMPACT;
+		+DONTSPLASH;
+		-BLOODSPLATTER;
+	}
+	
+	override void BeginPlay()
+	{
+		Super.BeginPlay();
+		
+		if (Random(0, 1) == 1)
+			bXFlip = True;
+	
+	}
+	
+	state A_Do()
+	{
+		TTL = TTL - 1;
+		
+		if (TTL <= 0)
+		{
+			return ResolveState("FireDeath");
+		}
+		
+		if (GetAge() % 12 == 0)
+		{
+			A_Explode(14 * FRandom(0, 1.4), 75, XF_HURTSOURCE, 0, 50);	
+		}
+		
+		if (GetAge() % TICRATE * 2 == 0)
+		{
+			A_StartSound("Fire/Loop", 10, CHANF_LOOP, 0.7);
+		}
+		
+		A_SpawnItemEx("RMD_FireDeath", 0, 0, 0);
+		
+		int GiveRadius = 75;
+
+		BlockThingsIterator it = BlockThingsIterator.Create(self, GiveRadius);
+		while (it.Next())
+		{
+			let obj = it.thing;
+				
+			if ((obj.bISMONSTER) && (!target || obj != target) && obj.health > 0 && Distance3D(obj) <= GiveRadius)
+			{
+				RMD_FireInv.AttachFire(Obj, Self, "RMD_FireDeath", "Burning");
+			}
+		}
+		
+		
+		return ResolveState(Null);
+	}
+	
+	void A_Start()
+	{
+		A_SetScale(Scale.X * 1.12, Scale.Y * 1.12);
+	}
+	
+	void A_DieOut()
+	{
+		A_SetScale(Scale.X * 0.75, Scale.Y * 0.75);
+		A_FadeOut(0.25);	
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 1 NoDelay;
+			//FIRY ABCDEFGHIJKLMN 1 A_Start(); 
+			Goto FireLoop;
+		FireLoop:
+			FIRY ABCDEFGHIJKLMN 2 A_Do();
+			Loop;
+		FireDeath:
+			TNT1 A 0;
+			//FIRY KLMN 2 A_DieOut();
+			Stop;
+			
+	}	
+
+}
+

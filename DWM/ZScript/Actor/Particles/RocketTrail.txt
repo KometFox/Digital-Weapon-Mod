@@ -99,7 +99,7 @@ Class RMD_SMRL_Fire : RMD_BaseParticle
 	{
 		Spawn:
 			TNT1 A 0;
-			BOM1 ACEGIKMO 1
+			XBM9 ACEGIKMO 1
 			{
 				A_SetScale(Scale.X * 0.96, Scale.Y * 0.96);
 				A_FadeOut(0.65 / 8);

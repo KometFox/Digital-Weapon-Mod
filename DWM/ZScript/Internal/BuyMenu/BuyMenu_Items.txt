@@ -264,9 +264,8 @@ Class BM_ShotgunWeapons : BMItems
 		}
 
 }
-
-//A Class that adds Launcher Weapons
-Class BM_LauncherWeapons : BMItems 
+//A Class that adds Grenade Weapons
+Class BM_GrenadeWeapons: BMItems 
 {
 
 		override void AddItems()
@@ -281,9 +280,30 @@ Class BM_LauncherWeapons : BMItems
 			Item.Cost = 300;
 			Item.Amount = 1;
 			ArItems.Push(Item);
-			
-			//G20GL
+
+			//Molotov Cocktail
 			Item = new("BuyMenuItems");
+			Item.ID = "RMD_MolotovCocktail";
+			Item.ItemName = "Molotov Cocktail";
+			Item.Graphic = TexMan.CheckForTexture("PIMOLOC", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "RocketLauncher/Select";
+			Item.Cost = 450;
+			Item.Amount = 1;
+			ArItems.Push(Item);
+		}
+
+}
+
+
+//A Class that adds Launcher Weapons
+Class BM_LauncherWeapons : BMItems 
+{
+
+		override void AddItems()
+		{
+			//G20GL
+			let Item = new("BuyMenuItems");
 			Item.ID = "RMD_KestrelGL";
 			Item.ItemName = "G20 Grenade Launcher";
 			Item.Graphic = TexMan.CheckForTexture("PIG20", TexMan.Type_Any);
@@ -352,8 +372,8 @@ Class BM_AmmoItems : BMItems
 			Item.Graphic = TexMan.CheckForTexture("AMMOSMG", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Items/SMGBullet";
-			Item.Cost = 20;
-			Item.Amount = 50;
+			Item.Cost = 200;
+			Item.Amount = 100;
 			ArItems.Push(Item);
 			
 			Item = new("BuyMenuItems");
@@ -362,8 +382,8 @@ Class BM_AmmoItems : BMItems
 			Item.Graphic = TexMan.CheckForTexture("AMMOAR", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Items/ARBullet";
-			Item.Cost = 120;
-			Item.Amount = 50;
+			Item.Cost = 500;
+			Item.Amount = 100;
 			ArItems.Push(Item);
 
 			Item = new("BuyMenuItems");
@@ -372,17 +392,17 @@ Class BM_AmmoItems : BMItems
 			Item.Graphic = TexMan.CheckForTexture("AMMOSHEL", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Items/Shells";
-			Item.Cost = 75;
-			Item.Amount = 20;
+			Item.Cost = 650;
+			Item.Amount = 30;
 			ArItems.Push(Item);			
 
 			Item = new("BuyMenuItems");
-			Item.ID = "RMD_Grenades";
-			Item.ItemName = "Light Explosives";
+			Item.ID = "RMD_Explosives";
+			Item.ItemName = "Explosives";
 			Item.Graphic = TexMan.CheckForTexture("AMMONADE", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Items/SmallRocket";
-			Item.Cost = 300;
+			Item.Cost = 800;
 			Item.Amount = 10;
 			ArItems.Push(Item);	
 		
@@ -392,8 +412,8 @@ Class BM_AmmoItems : BMItems
 			Item.Graphic = TexMan.CheckForTexture("AMMOFUEL", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Items/Fuel";
-			Item.Cost = 350;
-			Item.Amount = 50;
+			Item.Cost = 600;
+			Item.Amount = 100;
 			ArItems.Push(Item);			
 		
 			Item = new("BuyMenuItems");
@@ -402,8 +422,8 @@ Class BM_AmmoItems : BMItems
 			Item.Graphic = TexMan.CheckForTexture("AMMOCELL", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Items/Cells";
-			Item.Cost = 500;
-			Item.Amount = 50;
+			Item.Cost = 600;
+			Item.Amount = 100;
 			ArItems.Push(Item);	
 
 		}
@@ -464,7 +484,7 @@ Class BM_Supplies : BMItems
 			Item.Graphic = TexMan.CheckForTexture("PIENGCAN", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Items/CanRoll";
-			Item.Cost = 5000;
+			Item.Cost = 500;
 			Item.Amount = 1;
 			ArItems.Push(Item);
 			
@@ -474,7 +494,7 @@ Class BM_Supplies : BMItems
 			Item.Graphic = TexMan.CheckForTexture("SUITA0", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "pickup/Suit";
-			Item.Cost = 200;
+			Item.Cost = 350;
 			Item.Amount = 1;
 			ArItems.Push(Item);
 

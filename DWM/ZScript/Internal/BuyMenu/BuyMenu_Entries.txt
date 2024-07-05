@@ -105,6 +105,14 @@ Extend Class BuyMenuScript
 		Elementy.Column = 6;
 		Elementy.rect_pos.x = 150;
 		Elementy.rect_pos.y = 130 + (Elementy.Column * 9);
+		Elementy.Text = "Grenade";
+		Elementy.Command = "Grenade";
+		AddElements(Elementy);	
+
+		Elementy = new("TextEntry");
+		Elementy.Column = 7;
+		Elementy.rect_pos.x = 150;
+		Elementy.rect_pos.y = 130 + (Elementy.Column * 9);
 		Elementy.Text = "Launcher";
 		Elementy.Command = "Launcher";
 		AddElements(Elementy);	

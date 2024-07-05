@@ -7,7 +7,7 @@ Class HEBarrel : ExplosiveBarrel
 
 	Default
 	{
-		DeathSound "Explosion/Barrel";
+		DeathSound "Explosion/Small";
 		DamageType "Explosive";
 		DeathType "Explosive";
 		+NOBLOOD

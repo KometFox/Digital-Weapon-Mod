@@ -1,33 +1,23 @@
-$Random Explosion/HandGrenade {Boom/HandGrenade1 Boom/HandGrenade2 Boom/HandGrenade3}
-$RollOff Explosion/HandGrenade 1200 2500
-Boom/HandGrenade1 "Sounds/Weapons/Explosion/Grenade/Detonate1.wav"
-Boom/HandGrenade2 "Sounds/Weapons/Explosion/Grenade/Detonate2.wav"
-Boom/HandGrenade3 "Sounds/Weapons/Explosion/Grenade/Detonate3.wav"
+$Random Explosion/Large {Explosion/Large1 Explosion/Large2 Explosion/Large3}
 
-$Random Explosion/Grenade {Boom/Grenade1 Boom/Grenade2 Boom/Grenade3}
-$RollOff Explosion/Grenade 1200 2500
-Boom/Grenade1 "Sounds/Weapons/Explosion/Grenade/Detonate1.wav"
-Boom/Grenade2 "Sounds/Weapons/Explosion/Grenade/Detonate2.wav"
-Boom/Grenade3 "Sounds/Weapons/Explosion/Grenade/Detonate3.wav"
+Explosion/Large1 "Sounds/Weapons/Explosion/Large/Detonate1.ogg"
+Explosion/Large2 "Sounds/Weapons/Explosion/Large/Detonate2.ogg"
+Explosion/Large3 "Sounds/Weapons/Explosion/Large/Detonate3.ogg"
 
-$Random Explosion/BigRocket {Boom/BigRocket1 Boom/BigRocket2 Boom/BigRocket3}
-$RollOff Explosion/BigRocket 1500 2700
-Boom/BigRocket1 "Sounds/Weapons/Explosion/BigRocket/Detonate1.ogg"
-Boom/BigRocket2 "Sounds/Weapons/Explosion/BigRocket/Detonate2.ogg"
-Boom/BigRocket3 "Sounds/Weapons/Explosion/BigRocket/Detonate3.ogg"
+$Attenuation Explosion/Large1 0.5
+$Attenuation Explosion/Large2 0.5
+$Attenuation Explosion/Large3 0.5
 
-$Random Explosion/Rocket {Boom/Rocket1 Boom/Rocket2 Boom/Rocket3}
-$RollOff Explosion/Rocket 1200 2500
-Boom/Rocket1 "Sounds/Weapons/Explosion/Rocket/Detonate1.ogg"
-Boom/Rocket2 "Sounds/Weapons/Explosion/Rocket/Detonate2.ogg"
-Boom/Rocket3 "Sounds/Weapons/Explosion/Rocket/Detonate3.ogg"
 
-$Random Explosion/Barrel {Boom/Barrel1 Boom/Barrel2 Boom/Barrel3}
-$RollOff Explosion/Barrel 1200 2500
-Boom/Barrel1 "Sounds/Weapons/Explosion/Grenade/Detonate1.wav"
-Boom/Barrel2 "Sounds/Weapons/Explosion/Grenade/Detonate2.wav"
-Boom/Barrel3 "Sounds/Weapons/Explosion/Grenade/Detonate3.wav"
+$Random Explosion/Small {Explosion/Small1 Explosion/Small2 Explosion/Small3}
 
+Explosion/Small1 "Sounds/Weapons/Explosion/Small/Detonate1.wav"
+Explosion/Small2 "Sounds/Weapons/Explosion/Small/Detonate2.wav"
+Explosion/Small3 "Sounds/Weapons/Explosion/Small/Detonate3.wav"
+
+$Attenuation Explosion/Small1 0.7
+$Attenuation Explosion/Small2 0.7
+$Attenuation Explosion/Small3 0.7
 
 $Random PlasmaBoom {PlasmaBoomA PlasmaBoomC PlasmaBoomB}
 $RollOff PlasmaBoom 1500 2700

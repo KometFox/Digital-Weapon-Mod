@@ -31,7 +31,7 @@ Class ArmorHitDelay : SpecialItem
 	Default
 	{
 		Inventory.Amount 1;
-		Inventory.MaxAmount 210;
+		Inventory.MaxAmount 140;
 		+INVENTORY.KEEPDEPLETED //Needed so that the whole system works.		
 	}
 }

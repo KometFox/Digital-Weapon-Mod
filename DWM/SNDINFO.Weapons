@@ -37,6 +37,8 @@ $Random SWModel19/Fire {SWModel19/Fire1 SWModel19/Fire2 SWModel19/Fire3}
 Grenade/PullPin "Sounds/Weapons/Grenade/PullPin.ogg"
 Grenade/Throw "Sounds/Weapons/Grenade/Throw.ogg"
 
+Molotov/Explosion "Sounds/Weapons/Grenade/MolotovExplosion.ogg"
+
 //------------------------------------------------------------------------------
 //Submachineguns
 //------------------------------------------------------------------------------
@@ -64,7 +66,7 @@ $Volume CBM2/Fire 1.0
 //Fire
 $Random AoMShotgun/Fire {Mossberg/Fire1}
 $Volume AoMShotgun/Fire 0.8
-Mossberg/Fire1 "Sounds/Weapons/SG/AoMShotgun/Fire1.ogg"
+Mossberg/Fire1 "Sounds/Weapons/SG/AoMShotgun/Fire.ogg"
 
 //Shell
 AoMShotgun/CockStart "Sounds/Weapons/SG/AoMShotgun/CockStart.ogg"
@@ -180,8 +182,8 @@ M25/Cocking "Sounds/Weapons/AR/M25/Cock.ogg"
 M25/MagIn "Sounds/Weapons/AR/M25/MagIn.wav"
 M25/MagOut "Sounds/Weapons/AR/M25/MagOut.wav"
 
-M25/GrenMagOut "Sounds/Weapons/AR/M25/GrenOpen.ogg"
-M25/GrenMagIn "Sounds/Weapons/AR/M25/GrenClose.ogg"
+M25/GrenMagOut "Sounds/Weapons/AR/M25/GrenOpen.wav"
+M25/GrenMagIn "Sounds/Weapons/AR/M25/GrenClose.wav"
 
 //Madsen LAR
 $Random MadsenLAR/Fire {MadsenLAR/Fire1 MadsenLAR/Fire2}
@@ -220,6 +222,10 @@ SA85m/Fire "Sounds/Weapons/AR/SA85m/Fire.ogg"
 SA85m/Cocking "Sounds/Weapons/AR/SA85m/Cocking.wav"
 SA85m/MagOut "Sounds/Weapons/AR/SA85m/MagOut.wav"
 SA85m/MagIn "Sounds/Weapons/AR/SA85m/MagIn.wav"
+
+//AR-70
+AR70/Fire "Sounds/Weapons/AR/AR70/Fire.ogg"
+$Volume AR70/Fire 0.5
 
 //------------------------------------------------------------------------------
 //Machine Guns

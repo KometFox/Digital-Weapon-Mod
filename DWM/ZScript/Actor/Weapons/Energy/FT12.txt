@@ -185,11 +185,11 @@ Default
 		+BOUNCEONACTORS;
 		+ROLLSPRITE;
 		+FORCEXYBILLBOARD;
+		+NOEXTREMEDEATH;
 		+NOBLOOD;
 		+NOBLOODDECALS;
 		+BLOODLESSIMPACT;
 		+DONTSPLASH;
-		+NOEXTREMEDEATH;
 		-BLOODSPLATTER;
 		-RIPPER;
 		+THRUACTORS;
@@ -218,8 +218,22 @@ Default
 
 	void FireAttack()
 	{
+		int GiveRadius = 85;	
+		
 		A_SetScale(Scale.X * 1.08, Scale.Y * 1.08);
-		A_Explode(7 * FRandom(0, 1.6), 85, XF_NOSPLASH);
+		A_Explode(5 * FRandom(0, 1.8), 85, XF_NOSPLASH);
+		
+		BlockThingsIterator it = BlockThingsIterator.Create(self, GiveRadius);
+		while (it.Next())
+		{
+			let obj = it.thing;
+				
+			if ((obj.bISMONSTER) && (!target || obj != target) && obj.health > 0 && Distance3D(obj) <= GiveRadius)
+			{
+				RMD_FireInv.AttachFire(Obj, Self, "RMD_FireDeath", "Burning");
+			}
+		}
+
 		Roll += 1;
 	}
 	
@@ -311,7 +325,7 @@ Class SFX_FT12_Fire : RMD_BaseParticle
 		Super.BeginPlay();
 		
 		Roll = Random(0, 360);
-		SetShade("ff463c");
+		SetShade("ff5000");
 	}	
 	
 	States

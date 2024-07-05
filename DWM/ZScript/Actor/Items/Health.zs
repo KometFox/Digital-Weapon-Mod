@@ -3,149 +3,134 @@ class RMD_HealthBase : CustomInventory
 	Default
 	{
 		-COUNTITEM
-		+INVENTORY.ISHEALTH
-		Inventory.PickupMessage "Got some health items.";
-		Inventory.PickupSound "Items/Water";
+		Inventory.Amount 3;
+		Inventory.MaxAmount 0x7D2B7500;
+		Inventory.PickupMessage "You drink a box of milk. <+3 HP>";
+		Inventory.PickupSound "Items/Drink";
 	}
 	
-	
-	States
+	override void PostBeginPlay()
 	{
-		Spawn:
-			TNT1 A 0;
-		Spawn1:
-			IDLE A 1;
-			Loop;
+		Super.PostBeginPlay();
+		
+		Angle = Random[Angle](0, 360);	
+	}
+	
+	override void Touch(Actor Toucher)
+	{
+		RMD_Player Player = RMD_Player(Toucher);
+		
+		if (Player)
+		{
+			//Print out the pickup message
+			PrintPickupMessage(toucher.CheckLocalView(), PickupMessage());
+
+			//temporary
+			Toucher.A_GiveInventory("RMD_HealthTakeDelay", 1);
 			
-		Pickup:
-			TNT1 A 0 A_GiveInventory("RMD_HealthAmmo", Invoker.Amount);
+			//Do the effects now
+			Player.HRegenAmount += Amount;
+			Player.A_StartSound(PickupSound, CHAN_ITEM, CHANF_UI);
+			Player.A_TakeInventory(Self.GetClassName(), 0xFFFFFF);			
+		}
+		
+		Super.Touch(Toucher);
+		Destroy();
+	}
+	
+	States
+	{
+
+		Spawn:
+			IDLE A -1;
 			Stop;
-	}
-}
-
-
-//------------------------------------------------------------------------------
-//Items
-//------------------------------------------------------------------------------
-class RMD_EnergyCanBonus1 : Health
-{
-	Default
-	{
-		-COUNTITEM
-		Inventory.Amount 5;
-		Inventory.MaxAmount 1000;
-		Inventory.PickupMessage "You drink a can of Energy. <+5 HP>";
-		Inventory.PickupSound "Items/Water";
-	}
-	
-	override void PostBeginPlay()
-	{
-		Super.PostBeginPlay();
-		
-		Angle = Random[Angle](0, 360);	
-	}
-	
-	Override Bool TryPickup(in out Actor toucher)
-	{
-		bool PickedUp = Super.TryPickup(toucher);
-		
-		if (PickedUp == True)
-		{
-			Toucher.A_StartSound(Self.PickupSound, CHAN_ITEM, 1.0);
-			A_SpawnItemEx("EmptyEnergyCan1", 0, 0, 20, frandom(-8, 8), frandom(-8, 8), frandom(-2, 4));
-		}
-		Return False; 
-	}
-	
-	States
-	{
-
-		Spawn:
-			IDLE AA 1;
-			Loop;
-	}	
-	
-}
-
-class RMD_BeerBonus1 : Health
-{
-	Default
-	{
-		-COUNTITEM
-		Inventory.Amount 5;
-		Inventory.MaxAmount 1000;
-		Inventory.PickupMessage "You drink a bottle of beer. <+5 HP>";
-		Inventory.PickupSound "Player/Drink";
-	}
-	
-	override void PostBeginPlay()
-	{
-		Super.PostBeginPlay();
-		
-		Angle = Random[Angle](0, 360);	
-	}
-	
-	Action void Picked(Actor Toucher)
-	{
-		A_SpawnItemEx("EmptyBeer1", 0, 0, 20, frandom(-8, 8), frandom(-8, 8), frandom(-2, 4));
-	}
-	
-	override void Touch(Actor toucher)
-	{
-		Picked(Toucher);
-
-		Super.Touch(toucher);
-	}
-	
-	States
-	{
-
-		Spawn:
-			IDLE AA 1;
-			Loop;
 	}	
 }
 
-
-class RMD_Milk : Health
+Class RMD_Milk : RMD_HealthBase
 {
 	Default
 	{
-		-COUNTITEM
+		Inventory.Amount 4;
+		Inventory.PickupMessage "You drink a box of milk.";
+		Inventory.PickupSound "Items/Drink";	
+	}
+}
+
+
+Class RMD_Beef : RMD_HealthBase
+{
+	Default
+	{
 		Inventory.Amount 2;
-		Inventory.MaxAmount 300;
-		Inventory.PickupMessage "You drinked a box of milk. <+2 HP>";
-		Inventory.PickupSound "Player/Drink";
+		Inventory.PickupMessage "You ate a beef.";
+		Inventory.PickupSound "Items/Eat";	
 	}
-	
-	override void PostBeginPlay()
-	{
-		Super.PostBeginPlay();
-		
-		Angle = Random[Angle](0, 360);	
-	}
-	
-	Override Bool TryPickup(in out Actor toucher)
-	{
-		bool PickedUp = Super.TryPickup(toucher);
-		
-		if (PickedUp == True)
-		{
-			//Toucher.A_StartSound(Self.PickupSound, CHAN_ITEM, 1.0);
-			A_SpawnItemEx("EmptyMilk", 0, 0, 20, frandom(-8, 8), frandom(-8, 8), frandom(-2, 4));
-			Return True;
-		}
-		
-		Return False; 
-	}
-	
-	States
-	{
+}
 
-		Spawn:
-			IDLE AA 1;
-			Loop;
-	}	
+Class RMD_Fishmeat : RMD_HealthBase
+{
+	Default
+	{
+		Inventory.Amount 3;
+		Inventory.PickupMessage "You ate a Fish.";
+		Inventory.PickupSound "Items/Eat";	
+	}
+}
+
+
+Class RMD_Baltika3 : RMD_HealthBase
+{
+	Default
+	{
+		Inventory.Amount 3;
+		Inventory.PickupMessage "You drink a Beer.";
+		Inventory.PickupSound "Items/Drink";	
+	}
+}
+
+Class RMD_MiniHealthVial : RMD_HealthBase
+{
+	Default
+	{
+		Inventory.Amount 2;
+		Inventory.PickupMessage "You drink a mini potion.";
+		Inventory.PickupSound "Items/Potion";
+	}
+}
+
+class RMD_Stimpack : RMD_HealthBase
+{
+	Default
+	{
+		-COUNTITEM
+		Inventory.Amount 8;
+		Inventory.PickupMessage "You drink a small potion.";
+		Inventory.PickupSound "Items/Potion";
+	}
+}
+
+class RMD_Medikit : RMD_HealthBase
+{
+	Default
+	{
+		-COUNTITEM
+		Inventory.Amount 20;
+		Inventory.PickupMessage "You injected yourself with medicine.";
+		Inventory.PickupSound "Items/UTHealth";
+	}
+}
+
+class RMD_Healthkeg : RMD_HealthBase 
+{
+	Default
+	{
+		-COUNTITEM
+		Scale 1;
+		Inventory.Amount 100;
+		Inventory.PickupMessage "You drink a large keg full of healthy liquid!";
+		Inventory.PickupSound "Items/UTSuperHealth";
+	}
 }
 
 class RMD_StimEnergy : RMD_HealthBase
@@ -171,155 +156,6 @@ class RMD_MedikitEnergy : RMD_HealthBase
 	}
 }
 
-//Soulsphere
-Class RMD_HealthKegBase : Health
-{
-	Default
-	{
-		-COUNTITEM
-		+INVENTORY.ALWAYSPICKUP;
-		Inventory.Amount 100;
-		Inventory.MaxAmount 200;		
-  	}
-	
-	States
-	{
-		Spawn:
-			BON1 A 1;
-			Loop;
-	}
-}
-
-Class RMD_Healthkeg : CustomInventory 
-{
-	Default
-	{
-		-COUNTITEM
-		Scale 1;
-		Inventory.PickupMessage "You drink a large keg full of healthy liquid <+100 HP>!";
-		Inventory.PickupSound "Items/UTSuperHealth";
-	}
-	
-	override void PostBeginPlay()
-	{
-		Super.PostBeginPlay();
-		
-		Angle = Random[Angle](0, 360);	
-	}
-	
-	Override Bool TryPickup(in out Actor toucher)
-	{
-		bool PickedUp = Super.TryPickup(toucher);
-	
-		If (PickedUp || toucher.health < 200)
-		{
-			Toucher.A_GiveInventory("RMD_HealthKegBase",1);
-			A_SpawnItemEx("RMD_HealthKegLitter");
-		
-			Destroy();
-			Return True;
-		}
-		
-				
-		Return False;
-	}
-  
-	States
-	{
-		Pickup:
-			TNT1 A 0; 
-			Stop;	
-		Spawn:
-			IDLE A 1;
-			Loop;
-	}
-}
-
-
-class RMD_Stimpack : Health
-{
-	Default
-	{
-		-COUNTITEM
-		Inventory.Amount 15;
-		Inventory.MaxAmount 100;
-		Inventory.PickupMessage "You picked up a stimpack. <+15 HP>";
-		Inventory.PickupSound "Items/UTHealth";
-	}
-
-	override void PostBeginPlay()
-	{
-		Super.PostBeginPlay();
-		
-		Angle = Random[Angle](0, 360);	
-	}
-
-
-	Override Bool TryPickup(in out Actor toucher)
-	{
-		bool PickedUp = Super.TryPickup(toucher);
-	
-		if (PickedUp)
-		{
-			A_SpawnItemEx("StimpackLitter");
-			Return True;
-		}
-	
-		Return False; 
-	}
-	
-	States
-	{
-
-		Spawn:
-			IDLE A -1;
-			Stop;
-	}	
-	
-}
-
-class RMD_Medikit : Health
-{
-	Default
-	{
-		-COUNTITEM
-		Inventory.Amount 30;
-		Inventory.MaxAmount 100;
-		Inventory.PickupMessage "You picked up a medikit. <+10 HP>";
-		Inventory.PickupSound "Items/UTHealth";
-	}
-	
-	override void PostBeginPlay()
-	{
-		Super.PostBeginPlay();
-		
-		Angle = Random[Angle](0, 360);	
-	}	
-	
-	Override Bool TryPickup(in out Actor toucher)
-	{
-		bool PickedUp = Super.TryPickup(toucher);
-	
-		if (PickedUp)
-		{
-			A_SpawnItemEx("MediKitLitter");
-			
-			Return True;
-		}
-	
-		Return False; 
-	}
-	
-	States
-	{
-
-		Spawn:
-			IDLE A -1;
-			Stop;	
-	}	
-	
-}
-
 //------------------------------------------------------------------------------
 //Shop Items
 //------------------------------------------------------------------------------
@@ -340,3 +176,28 @@ class RMD_Shop_Medkit2 : RMD_HealthBase
 		Inventory.MaxAmount 1000;		
 	}
 }
+
+Class RMD_Health_Small : RandomSpawner
+{
+	Default
+	{
+
+		Dropitem "RMD_MiniHealthVial", 256, 10;
+		DropItem "RMD_Stimpack", 256, 6;
+		DropItem "RMD_Milk", 256, 1;
+		DropItem "RMD_Baltika3", 256, 1;
+	}
+}
+
+Class RMD_Health_Medium : RandomSpawner
+{
+	Default
+	{
+		DropItem "RMD_Stimpack", 256, 10;
+		DropItem "RMD_Medikit", 256, 3;
+		DropItem "RMD_Fishmeat", 256, 5;
+		DropItem "RMD_Beef", 256, 5;
+	}
+}
+
+

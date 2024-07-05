@@ -11,10 +11,13 @@
 #Include "ZScript/Actor/Particles/BulletImpact.zs"
 #Include "Zscript/Actor/Particles/Cases.txt"
 //Explosions
+#Include "ZScript/Actor/Particles/FireDeath.txt"
 #Include "ZScript/Actor/Particles/MediumExplosion.zs"
 #Include "ZScript/Actor/Particles/25mmGyro.txt"
 #Include "ZScript/Actor/Particles/25mmExplosion.txt"
 #Include "ZScript/Actor/Particles/40mmExplosion.txt"
+#Include "ZScript/Actor/Particles/40mmExplosionNew.txt"
+#Include "ZScript/Actor/Particles/MolotovExplosion.txt"
 #Include "ZScript/Actor/Particles/BarrelExplosion.txt"
 #Include "ZScript/Actor/Particles/LargeExplosion.txt"
 #Include "ZScript/Actor/Particles/BulletPlasma.txt"

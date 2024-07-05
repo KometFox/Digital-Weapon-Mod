@@ -2,7 +2,7 @@ class RMD_ExplosiveBarrel : ExplosiveBarrel
 {
 	Default
 	{
-		DeathSound "Explosion/Barrel";
+		DeathSound "Explosion/Small";
 		Obituary "$OB_BARREL";
 	}
 	States

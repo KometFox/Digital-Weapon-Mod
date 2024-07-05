@@ -28,17 +28,20 @@ Class RMD_LocustRocketTrail : RMD_BaseParticle
 					Particle.Vel = PVel;
 					Particle.Scale = (0.095, 0.095);
 					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-					Particle.SetShade("ffe00c");
+					Particle.SetShade("ff5000");
 				}				
 				
 				if (true)
 				{
 					Vector3 PVel = (FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1)).unit()*FRandom[FX](0.05, 0.05);
 					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
-					let Particle = Spawn("RMD_LocustRL_Smoke", Pos + RPos);
+					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_LocustRL_Smoke", Pos + RPos));
 					
 					Particle.Vel = PVel;
-					Particle.Scale = (0.22, 0.22);			
+					Particle.Scale = (0.15, 0.15);	
+					Particle.ScaleGrowth = 1.08;
+					Particle.TTL = 14;
+					Particle.Alpha = 0.7;
 				}				
 				
 			}
@@ -113,7 +116,7 @@ Class RMD_LocustRL_Fire : RMD_BaseParticle
 	{
 		Spawn:
 			TNT1 A 0;
-			BOM1 ACEGIKMO 1
+			XBM9 ACEGIKMO 1
 			{
 				A_SetScale(Scale.X * 0.96, Scale.Y * 0.96);
 				A_FadeOut(0.5 / 8);

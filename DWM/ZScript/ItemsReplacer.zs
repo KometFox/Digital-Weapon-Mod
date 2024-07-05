@@ -45,6 +45,17 @@ Class MultiItemSpawner : Actor
 		}
 	}
 	
+	void PassMapStuff(Actor Obj)
+	{
+		Obj.Args[0] = Args[0];
+		Obj.Args[1] = Args[1];
+		Obj.Args[2] = Args[2];
+		Obj.Args[3] = Args[3];
+		Obj.Args[4] = Args[4];
+		Obj.BArgsDefined = BArgsDefined;
+	}
+	
+	
 	void SpawnItem()
 	{
 		for (int i = 0; i < Container.size(); i++)
@@ -53,7 +64,16 @@ Class MultiItemSpawner : Actor
 			{
 				if (ProbabilityFloat(Container[i].Chance) == true)
 				{
-					A_SpawnItemEx(Container[i].Item, 0, 0, 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1));
+					Actor Item;
+					Bool Spawned;
+					
+					[Spawned, Item] = A_SpawnItemEx(Container[i].Item, 0, 0, 0, frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(1.0, 4.0));
+					
+					if (Spawned && Item)
+					{
+						PassMapStuff(Item);
+					}
+					
 				}
 			}
 		}
@@ -78,7 +98,12 @@ Class MoneyDrop_Small : MultiItemSpawner
 {
 	override void PostBeginPlay()
 	{
-		AddItem("TapeDrive", 0.75, 3);		
+		AddItem("TapeDrive", 0.33, 2);	
+		AddItem("CDRom", 0.5, 1);
+		AddItem("FloppyDisc", 0.75, 2);
+		AddItem("GraphicCardT2", 0.33, 1);
+		AddItem("Motherboard", 0.15, 1);
+		AddItem("Harddrive", 0.17, 1);
 		
 		Super.PostBeginPlay();
 	}
@@ -89,8 +114,25 @@ Class MoneyDrop_Medium : MultiItemSpawner
 {
 	override void PostBeginPlay()
 	{
-		AddItem("TapeDrive", 0.35, 3);
-		AddItem("CDRom", 0.85, 1);
+		AddItem("CDRom", 0.75, 1);
+		AddItem("GraphicCardT2", 0.5, 1);
+		AddItem("PowerSupply", 0.2, 1);
+		AddItem("GraphicCardT5", 0.05, 1);
+		AddItem("Motherboard", 0.33, 1);
+		
+		Super.PostBeginPlay();
+	}
+}
+
+Class MoneyDrop_Large : MultiItemSpawner
+{
+	override void PostBeginPlay()
+	{
+		AddItem("CDRom", 0.25, 3);
+		AddItem("GraphicCardT2", 0.35, 2);
+		AddItem("PowerSupply", 0.4, 1);
+		AddItem("GraphicCardT5", 0.25, 1);
+		AddItem("Motherboard", 0.45, 1);
 		
 		Super.PostBeginPlay();
 	}
@@ -99,70 +141,21 @@ Class MoneyDrop_Medium : MultiItemSpawner
 //------------------------------------------------------------------------------
 //Weapons
 //------------------------------------------------------------------------------
-Class Chainsaw_Replacer: RandomSpawner Replaces Chainsaw
-{
-	Default
-	{
-		DropItem "HardDrive", 256, 1;
-	}
-}
+Class Chainsaw_Replacer: MoneyDrop_Large Replaces Chainsaw {}
 
-Class Pistol_Replacer : RandomSpawner Replaces Pistol
-{
-	Default
-	{
-		DropItem "HardDrive", 256, 1;
-	}
-}
+Class Pistol_Replacer : MoneyDrop_Large Replaces Pistol {}
 
-Class Shotgun_Replacer : RandomSpawner Replaces Shotgun
-{
-	Default
-	{
-		DropItem "HardDrive", 256, 1;
-	}
-}
+Class Shotgun_Replacer : MoneyDrop_Large Replaces Shotgun {}
 
-Class Chaingun_Replacer : RandomSpawner Replaces Chaingun
-{
-	Default
-	{
-		DropItem "HardDrive", 256, 1;
-	}
-}
+Class Chaingun_Replacer : MoneyDrop_Large Replaces Chaingun {}
 
+Class SuperShotgun_Replacer : RandomSpawner Replaces SuperShotgun {}
 
-Class SuperShotgun_Replacer : RandomSpawner Replaces SuperShotgun
-{
-	Default
-	{
-		DropItem "HardDrive", 256, 1;
-	}
-}
+Class RocketLauncher_Replacer : MoneyDrop_Large Replaces RocketLauncher {}
 
-Class RocketLauncher_Replacer : RandomSpawner Replaces RocketLauncher
-{
-	Default
-	{
-		DropItem "HardDrive", 256, 1;
-	}
-}
+Class PlasmaRifle_Replacer : MoneyDrop_Large Replaces PlasmaRifle {}
 
-Class PlasmaRifle_Replacer : RandomSpawner Replaces PlasmaRifle
-{
-	Default
-	{
-		DropItem "HardDrive", 256, 1;
-	}
-}
-
-Class BFG9000_Replacer : RandomSpawner Replaces BFG9000
-{
-	Default
-	{
-		DropItem "HardDrive", 256, 1;
-	}
-}
+Class BFG9000_Replacer : MoneyDrop_Large Replaces BFG9000 {}
 
 
 //------------------------------------------------------------------------------
@@ -189,15 +182,19 @@ Class Medikit_Replacer : RandomSpawner Replaces Medikit
 {
 	Default
 	{
-		DropItem "RMD_Medikit", 256, 1;
+		DropItem "RMD_Beef", 256, 6;
+		DropItem "RMD_Fishmeat", 256, 6;
+		DropItem "RMD_Medikit", 256, 4;
 	}
 }
 
 Class Stimpack_Replacer : RandomSpawner Replaces Stimpack 
 {
-	Default
+    Default
 	{
-		DropItem "RMD_Stimpack", 256, 1;
+		DropItem "RMD_Beef", 256, 6;
+		DropItem "RMD_Fishmeat", 256, 6;
+		DropItem "RMD_Stimpack", 256, 4;
 	}
 }
 
@@ -212,29 +209,9 @@ Class SoulSphere_Replacer : RandomSpawner Replaces SoulSphere
 //------------------------------------------------------------------------------
 //Armor
 //------------------------------------------------------------------------------
-Class ArmorBonus_Replacer : RandomSpawner Replaces ArmorBonus
-{
-    Default
-	{
-		DropItem "RMD_Milk", 256, 1;
-	}
-}
+Class GreenArmor_Replacer : MoneyDrop_Medium Replaces GreenArmor {}
 
-Class GreenArmor_Replacer : RandomSpawner Replaces GreenArmor 
-{
-    Default
-	{
-		DropItem "HardDrive", 256, 1;
-	}
-}
-
-Class BlueArmor_Replacer : RandomSpawner Replaces BlueArmor
-{
-    Default
-	{
-		DropItem "HardDrive", 256, 1;
-	}
-}
+Class BlueArmor_Replacer : MoneyDrop_large Replaces BlueArmor {}
 
 //------------------------------------------------------------------------------
 //Bonus
@@ -243,15 +220,32 @@ Class HealthBonus_Replacer : RandomSpawner Replaces HealthBonus
 {
     Default
 	{
-		DropItem "RMD_Milk", 256, 1;
+		DropItem "RMD_Milk", 256, 10;
+		DropItem "RMD_Baltika3", 256, 4;
+		DropItem "RMD_Stimpack", 256, 4;
+		DropItem "RMD_Beef", 256, 3;
+		DropItem "RMD_Fishmeat", 256, 3;
 	}
 }
+
+Class ArmorBonus_Replacer : RandomSpawner Replaces ArmorBonus
+{
+    Default
+	{
+		DropItem "RMD_Milk", 256, 10;
+		DropItem "RMD_Baltika3", 256, 3;
+		DropItem "RMD_Stimpack", 256, 4;
+		DropItem "RMD_Beef", 256, 5;
+		DropItem "RMD_Fishmeat", 256, 3; 
+	}
+}
+
 
 
 //------------------------------------------------------------------------------
 //PowerUps
 //------------------------------------------------------------------------------
-Class BackpackReplacer : Chaingun_Replacer replaces Backpack {}
+Class BackpackReplacer : MoneyDrop_Large replaces Backpack {}
 
 Class RadsuitReplacer : RandomSpawner replaces RadSuit 
 {
@@ -271,7 +265,7 @@ Class MegasphereReplacer : RandomSpawner replaces Megasphere
 }
 
 //TODO different items for those 
-Class BlurSphereReplacer : Chaingun_Replacer replaces BlurSphere {}	
+Class BlurSphereReplacer : MoneyDrop_Large replaces BlurSphere {}	
 
 Class InvulnerabilitySphereReplacer : RandomSpawner replaces InvulnerabilitySphere
 {
@@ -281,6 +275,6 @@ Class InvulnerabilitySphereReplacer : RandomSpawner replaces InvulnerabilitySphe
 	}
 }
 
-Class InfraredReplacer : Chaingun_Replacer replaces Infrared {}
+Class InfraredReplacer : MoneyDrop_Large replaces Infrared {}
 
-Class BerserkReplacer : Chaingun_Replacer replaces Berserk {} 
+Class BerserkReplacer : MoneyDrop_Large replaces Berserk {} 

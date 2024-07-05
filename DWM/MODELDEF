@@ -4,6 +4,7 @@
 #Include "Models/Weapons/DEFS/Enforcer.txt"
 #Include "Models/Weapons/DEFS/SWModel19.txt"
 #Include "Models/Weapons/DEFS/PirateBomb.txt"
+#Include "Models/Weapons/DEFS/MolotovCocktail.txt"
 #Include "Models/Weapons/DEFS/MP5.txt"
 #Include "Models/Weapons/DEFS/CBM2.txt"
 #Include "Models/Weapons/DEFS/Mossberg590.txt"

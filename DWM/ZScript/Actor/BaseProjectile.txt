@@ -29,7 +29,7 @@ Class RMD_BaseBullet : FastProjectile
 	{
 		Height 3;
 		Radius 3;
-		Speed 350;
+		Speed 150;
 		MissileHeight 8;
 		//MissileType "RMD_BulletSmoke";
 		ProjectileKickBack 22;
@@ -72,7 +72,7 @@ Class RMD_BaseBullet : FastProjectile
 			//TODO: Add support for "non bleeding" blood actors
 			else if (!BloodEffect || Victim.BNoblood)
 			{
-				Spawn("URPG_BulletArmorImpact", Pos);
+				Spawn("RMD_BulletImpact", Pos);
 			}
 
 			//Prevent overkill from small arms
@@ -117,15 +117,15 @@ Class RMD_BaseBullet : FastProjectile
 		PUFF A 1;
 		Loop;
 	Death: //Wall
-		TNT1 A 0 A_SpawnItemEx("URPG_RicochetEffect", 0, 0, 1);
+		TNT1 A 0 A_SpawnItemEx("RMD_BulletImpact", 0, 0, 1);
 		TNT1 A 0 A_StartSound("Bullet/Impact");
 		Stop;
 	Crash: //Non Bleeding
-		TNT1 A 0 A_SpawnItemEx("URPG_BulletArmorImpact", 0, 0, 1);
+		TNT1 A 0 A_SpawnItemEx("RMD_BulletImpact", 0, 0, 1);
 		TNT1 A 0 A_StartSound("Bullet/Armor");
 		Stop;
 	XDeath: //Bleeding
-		TNT1 A 0 A_SpawnItemEx("URPG_FleshImpact", 0, 0, 1);
+		//TNT1 A 0 A_SpawnItemEx("RMD_BulletImpact", 0, 0, 1);
 		TNT1 A 0 A_StartSound("Bullet/Flesh");
 		Stop;
 	}

@@ -1,15 +1,67 @@
 Class RMD_BaseParticle : Actor
 {
+	float TTL;
+	float TTLInit;
+	float ScaleGrowth; 
+
+	Property TimeToLife:TTL;
+	Property ScaleGrowth:ScaleGrowth; 
+
 	Default
 	{
 		+NOINTERACTION
 		+FORCEXYBILLBOARD
 		+ROLLSPRITE
-		+ROLLCENTER
 		+CLIENTSIDEONLY
 		+DONTSPLASH
+		-ROLLCENTER;
 		Gravity 0;
+		
+		RMD_BaseParticle.TimeToLife 50;
+		RMD_BaseParticle.ScaleGrowth 1.05;
 	}
+	
+	override void Tick()
+	{
+		super.Tick();
+		
+		if (Level.IsFrozen())
+			return;
+		
+		Fade();
+		ReduceTTL();
+		
+		Scale.X = Scale.X * ScaleGrowth;
+		Scale.Y = Scale.Y * ScaleGrowth;
+		
+	}
+	
+	override void BeginPlay()
+	{
+		Super.BeginPlay();
+	
+		TTLInit = TTL;
+	}
+	
+	void ReduceTTL()
+	{
+		TTL = TTL - 1;
+		
+		if (TTL <= 0)
+		{
+			TTL = 0;
+			Destroy();
+		}
+	}
+	
+	void Fade()
+	{
+		float TTLDiv = TTLInit / 2;
+	
+		if (TTL <= TTLDiv)
+			A_FadeOut(Alpha - (TTL / 14));	
+	}
+	
 }
 
 
@@ -62,7 +114,6 @@ Class RMD_ParticleSpawner : Actor
 		+NOCLIP
 		+NOGRAVITY
 		+ROLLSPRITE
-		+ROLLCENTER
 		Speed 0;
 		Radius 1;
 		Height 1;
@@ -98,5 +149,21 @@ Class RMD_ModelSparks : RMD_BaseParticle
 		WallBounceFactor 1.25;
 		
 	}
+}
+
+Class RMD_TrailBase : RMD_ModelSparks 
+{
+	Default
+	{
+	
+		+NOCLIP
+		-SOLID
+		Gravity 0;
+		BounceType "None";
+		BounceFactor 0;
+		WallBounceFactor 0;
+	
+	}
+
 }
 

@@ -15,10 +15,11 @@ Class RMD_BigPlasma_Trail : RMD_BaseParticle
 				{
 					Vector3 PVel = (FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1)).unit()*FRandom[FX](0.05, 0.05);
 					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
-					let Particle = Spawn("RMD_BigPlasmaTrail_Fire", Pos + RPos);
+					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_BigPlasmaTrail_Fire", Pos + RPos));
 					
 					Particle.Vel = PVel;
 					Particle.Scale = (0.25, 0.25);
+					Particle.ScaleGrowth = 1.01;
 					Particle.SetShade("00b9fd");
 				}
 				
@@ -26,10 +27,11 @@ Class RMD_BigPlasma_Trail : RMD_BaseParticle
 				{
 					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](1.0, 2.5);
 					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
-					let Particle = Spawn("RMD_BigPlasmaSpark", Pos + RPos);
+					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_BigPlasmaSpark", Pos + RPos));
 					
 					Particle.Vel = PVel;
 					Particle.Scale = (0.25, 0.25);
+					Particle.ScaleGrowth = 1.01;
 					Particle.SetShade("1d20ff");
 				}					
 				
@@ -71,7 +73,7 @@ Class RMD_BigPlasmaTrail_Fire : RMD_ModelSparks
 	{
 		Spawn:
 			TNT1 A 0;
-			BOM1 RSTUV 1
+			XBM9 RSTUV 1
 			{
 				A_SetScale(Scale.X * 0.92, Scale.Y * 0.92);
 				A_FadeOut(0.45 / 5);
@@ -103,8 +105,8 @@ Class RMD_BigPlasmaSpark : RMD_ModelSparks
     States
     {
     Spawn:
-	   SPRK A 3 BRIGHT;
-       SPRK AAAAA 1 Bright A_FadeOut(0.2);
+	   LEGY A 2 BRIGHT;
+       LEGY AAAAA 1 Bright A_FadeOut(0.2);
        stop;
     Death:
        TNT1 A 0;

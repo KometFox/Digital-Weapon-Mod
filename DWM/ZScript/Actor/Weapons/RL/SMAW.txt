@@ -8,7 +8,7 @@ class RMD_SMAW : BaseWeapon
 		Weapon.SelectionOrder 100;
 		Weapon.AmmoUse 0;
 		Weapon.AmmoGive 0;
-		Weapon.AmmoType "RMD_Grenades";
+		Weapon.AmmoType "RMD_Explosives";
 		Inventory.PickupMessage "$GOTCHAINGUN";
 		Inventory.AltHudIcon "PISMAW";
 		Obituary "$OB_MPCHAINGUN";
@@ -60,7 +60,7 @@ class RMD_SMAW : BaseWeapon
 				TakeCounterItem();
 				RMD_BARINFO.Set_Mag(invoker.Magazine);
 				RMD_BARINFO.SetAmmoIcon("AMMONADE");
-				RMD_BARINFO.SetAmmo1("RMD_Grenades");
+				RMD_BARINFO.SetAmmo1("RMD_Explosives");
 				A_ZoomFactor(invoker.ScopeZoom = 1.0, ZOOM_INSTANT);
 		}
 		Goto ReadyReal;
@@ -83,7 +83,7 @@ class RMD_SMAW : BaseWeapon
 				A_StartSound("RocketLauncher/Select", CHAN_WEAPON +5);
 				RMD_BARINFO.Set_Mag(invoker.Magazine);
 				RMD_BARINFO.SetAmmoIcon("AMMONADE");
-				RMD_BARINFO.SetAmmo1("RMD_Grenades");				
+				RMD_BARINFO.SetAmmo1("RMD_Explosives");				
 		}
 		SELC ABCD 1;
 		SELC D 1 A_Raise(int.max);
@@ -179,22 +179,22 @@ class RMD_SMAW : BaseWeapon
 	ReloadNow:
 		TNT1 A 0 A_TakeInventory("GotoReload");
 		TNT1 A 0 A_StartSound("SMRL/PullOut", CHAN_WEAPON +1);
-		REL1 ABCDEF 3;
+		REL1 ABCD 9;
 		TNT1 A 0;
 		TNT1 A 0
 		{
 			A_StartSound("SMRL/PullIn", CHAN_WEAPON +2);
 			//A_FireProjectile("RocketCaseSpawn", 180); 
 		}
-		REL1 G 3; //Rocket Insert
-		TNT1 A 0
+		REL1 E 3; //Rocket Insert
+		REL1 E 0
 		{
 			A_StartSound("SMRL/Reload", CHAN_WEAPON);
 				
 			ReloadGun(Invoker.AmmoType1, 0, 1, 2);
 			RMD_BARINFO.Set_Mag(invoker.Magazine);
 		}
-		REL1 HIJKLMNOPQRST 3;
+		REL1 FGHIJKLMNOPQRST 3;
 		Goto Ready;
 	}
 }
@@ -205,16 +205,16 @@ Class SMAW_Rocket : HeavyExplosivesFast
 
 	Default
 	{
-		Speed 90;
+		Speed 75;
 		Decal "RMD_LargeExplosion";
 		MissileType "RMD_SMRL_RocketTrail";
 		
 		//Impact 
 		BaseProjectileFast.ImpactDamage 0;
 		//Splash 
-		BaseProjectileFast.SplashDamage 600;
+		BaseProjectileFast.SplashDamage 1200;
 		BaseProjectileFast.FullSplashDamage 75;
-		BaseProjectileFast.SplashRadius 230;
+		BaseProjectileFast.SplashRadius 250;
 		//Randomizer
 		BaseProjectileFast.NerfDamageRandom 1.0;
 		BaseProjectileFast.NormalDamageRandom 1.0;
@@ -244,7 +244,7 @@ Class SMAW_Rocket : HeavyExplosivesFast
 		Explode:
 			TNT1 A 0 
 			{
-				A_StartSound("Explosion/BigRocket", 90, 0, 1.75);
+				A_StartSound("Explosion/Large");
 				A_SpawnItemEx("RMD_LargeExplosionSpawner", 0, 0, 0);
 			}
 

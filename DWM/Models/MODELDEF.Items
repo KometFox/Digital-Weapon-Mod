@@ -1,12 +1,12 @@
 //------------------------------------------------------------------------------
 //Health Items
 //------------------------------------------------------------------------------
-Model RMD_BeerBonus1
+Model RMD_Baltika3
 {
 	Path "Models\Items\HealthBonus"
 	Model 0 "Baltika3.md3"
 	SurfaceSkin 0 0 "Baltika3.png"
-	Scale 4 4 4
+	Scale 5 5 5
 	
 	FrameIndex IDLE A 0 0
 }
@@ -20,6 +20,39 @@ Model RMD_Milk
 	
 	FrameIndex IDLE A 0 0
 }
+
+Model RMD_Beef
+{
+	Path "Models\Items\HealthBonus"
+	Model 0 "Beef.obj"
+	SurfaceSkin 0 0 "Beef.png"
+	Scale 15 15 15
+	
+	FrameIndex IDLE A 0 0
+}
+
+
+Model RMD_Fishmeat
+{
+	Path "Models\Items\HealthBonus"
+	Model 0 "Fishmeat.obj"
+	SurfaceSkin 0 0 "Fishmeat.png"
+	Scale 15 15 15
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model RMD_MiniHealthVial
+{
+	Path "Models\Items\MiniHealthVial"
+	Model 0 "MiniHealthVial.obj"
+	SurfaceSkin 0 0 "MiniHealthVial.png"
+	Scale 25 25 25
+	
+	FrameIndex IDLE A 0 0
+}
+
+
 
 Model RMD_Healthkeg
 {
@@ -55,10 +88,10 @@ Model RMD_MediKitEnergy
 
 Model RMD_Stimpack
 {
-	Path "Models\Items\Stimpack"
-	Model 0 "Stimpack.md3"
-	SurfaceSkin 0 0 "Stimpack.png"
-	Scale 1 1 1
+	Path "Models\Items\HealthVial"
+	Model 0 "HealthVial.obj"
+	SurfaceSkin 0 0 "HealthVial.png"
+	Scale 10 10 10
 	
 	FrameIndex IDLE A 0 0
 	FrameIndex IDLE B 0 1
@@ -133,16 +166,6 @@ Model RMD_SuperKeg
 	Model 0 "HealthKeg.md3"
 	SurfaceSkin 0 0 "SuperKeg.png"
 	Scale 1 1 1
-	
-	FrameIndex IDLE A 0 0
-}
-
-Model RMD_AtomHealth
-{
-	Path "Models\Items\AtomHealth"
-	Model 0 "AtomHealth.md3"
-	SurfaceSkin 0 0 "AtomHealth.png"
-	Scale 8 8 8
 	
 	FrameIndex IDLE A 0 0
 }

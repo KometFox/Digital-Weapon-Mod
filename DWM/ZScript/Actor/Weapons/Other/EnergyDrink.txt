@@ -242,17 +242,34 @@ class RMD_EnergyDrink : BaseWeapon
 	}
 }
 
-class RMD_EnergyDrink_DrinkUp : Health
+class RMD_EnergyDrink_DrinkUp : PowerUp
 {
 	Default
 	{
 		-COUNTITEM
-		Inventory.Amount 100;
+		Inventory.Amount 0;
 		Inventory.MaxAmount 100;
 		Inventory.PickupMessage "";
 		Inventory.PickupSound "";
+		PowerUp.Duration 105;
 	}
 	
+	override void DoEffect()
+	{
+		if (!Owner)
+			return;
+	
+		if (Owner.Health <= 100)
+		{
+			int PrevHealth = Owner.Health;
+			
+			Owner.A_SetHealth(PrevHealth + 2);
+			Owner.Health = clamp(Owner.Health, 1, 100);
+		}
+		
+	}
+	
+		
 	States
 	{
 

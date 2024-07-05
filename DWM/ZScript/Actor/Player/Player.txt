@@ -3,15 +3,21 @@ Class RMD_Player : DoomPlayer
 {
 	Inventory PArmor;
 	Bool Initalized;
+	int HealthTake; 
+	int HRegenAmount; //Health Regen Amount 
+	
+	property HealthTake:HealthTake;
 
 	Default
 	{
-		Player.MaxHealth 100;
+		Player.MaxHealth 400;
 		Health 100;
+		RMD_Player.HealthTake 3;
 	
 		Player.StartItem "RMD_CellArmor", 1;
 		Player.StartItem "RMD_EnergyDrink", 1;
 		Player.StartItem "RMD_HealthAmmo", 1;
+		Player.StartItem "ArmorHitDelay", 1;
 		-NOSKIN;
 		
 		DamageFactor "PlayerFire", 0;
@@ -19,23 +25,56 @@ Class RMD_Player : DoomPlayer
 		DamageFactor "Explosive", 0.50; //From Explosive Barrels and Player own Explosions
 	}
 
-	override int DamageMobj (Actor inflictor, Actor source, int damage, Name mod, int flags, double angle) 
+	//Temporary old code
+	void OldTick()
 	{
-		//Make sure the damage is above zero.
-		if (Damage > 0 && Self && Health > 0)
-		{
-			Inventory MyArmor = FindInventory("BasicArmor", 0);
-
-			//Do some logartihimic scaling. Clamping is not needed because
-			//The delayor is a item.
-			int Log = RMD_Math.Log(Damage, 1.17);
-			int NewDamage = Damage * Log;
 			
-			GiveInventory("ArmorHitDelay", NewDamage);	
-		}	
+		//Health Take
+		//int ScaledHTake, FinalHTake;
+		
+		//Delay before taking health
+		//Inventory TakeDelay = FindInventory("RMD_HealthTakeDelay", 0);
+		
+		//if (TakeDelay)
+		//	return;
+
+		//ScaledHTake = 500 + 100 * log10(Health / 500);
+		//FinalHTake = ScaledHTake * min(Health / 500, 0.25); 			
+			
+		//if (Health > 500 && GetAge() % 15 == 0)
+		//{
+		//	Health -= FinalHTake;	
+		//	Health = clamp(Health, 500, 500);
+		//}	
+	}
+
+	override int TakeSpecialDamage (Actor inflictor, Actor source, int damage, Name damagetype)
+	{
 	
-		Super.DamageMobj(Inflictor, Source, Damage, Mod, flags, angle);
-		return Damage;
+		A_GiveInventory("RMD_HealthRegenDelay", 1);
+			
+		return Super.TakeSpecialDamage(Inflictor, Source, Damage, DamageType);
+	}
+
+	override void Tick()
+	{
+		super.Tick();
+	
+		if (Level.IsFrozen() ||
+			!Self) 
+			return;
+			
+		if (Health < MaxHealth && HRegenAmount > 0 && GetAge() % 2 == 0)
+		{
+			if (CheckInventory("RMD_HealthRegenDelay", 1))
+				return;
+		
+			int RegenAmount = 2 + FRandom(0, 3);
+
+			GiveBody(RegenAmount, MaxHealth);
+			HRegenAmount -= 1;
+		}
+
 	}
 
 	States
@@ -175,5 +214,23 @@ Class D3Marine : RMD_Player
 		Player.DisplayName "UAC Marine";
 		Player.SoundClass "D3Marine";
 		Player.Face "STF";
+	}
+}
+
+Class RMD_HealthTakeDelay : PowerUp
+{
+	Default
+	{
+		PowerUp.Duration TICRATE * 480;	
+		Inventory.MaxAmount 1;
+	}
+}
+
+Class RMD_HealthRegenDelay : PowerUp
+{
+	Default
+	{
+		PowerUp.Duration TICRATE * 2;	
+		Inventory.MaxAmount 1;
 	}
 }

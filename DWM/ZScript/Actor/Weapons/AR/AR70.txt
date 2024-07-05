@@ -69,7 +69,7 @@ class RMD_AR70 : BaseWeapon
 		}
 
 		A_AlertMonsters();
-		A_StartSound("M16A3/Fire", CHAN_WEAPON);
+		A_StartSound("AR70/Fire", CHAN_WEAPON);
 	}
 
 

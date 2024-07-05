@@ -7,8 +7,9 @@ Class ID_VeryCommonDrop : ID_DropBase
 	override void BeginPlay()
 	{
 		InitDrops(20);
-		MyChance = 85;		
-		AddItems("CrystalGreen", 5, 15.0);
+		MyChance = 100;		
+		AddItems("CrystalGreen", 2, 20.0);
+		AddItems("RMD_Health_Small", 2, 10.0);
 	}
 }
 
@@ -17,9 +18,10 @@ Class ID_CommonDrop : ID_DropBase
 	override void BeginPlay()
 	{
 		InitDrops(20);
-		MyChance = 70;	
-		AddItems("CrystalGreen", 7, 20.0);
-		AddItems("CrystalBlue", 2, 8.0);
+		MyChance = 100;	
+		AddItems("CrystalGreen", 5, 40.0);
+		AddItems("CrystalBlue", 3, 20.0);
+		AddItems("RMD_Health_Small", 3, 15.00);
 	}
 }
 
@@ -30,10 +32,11 @@ Class ID_UncommonDrop : ID_DropBase
 	override void BeginPlay()
 	{
 		InitDrops(20);
-		MyChance = 60;
-		AddItems("CrystalGreen", 9, 25.0);
-		AddItems("CrystalBlue", 4, 15.0);
-		AddItems("CrystalYellow", 2, 10.0);
+		MyChance = 100;
+		AddItems("CrystalGreen", 10, 50.0);
+		AddItems("CrystalBlue", 3, 25.0);
+		AddItems("CrystalYellow", 2, 15.0);
+		AddItems("RMD_Health_Small", 4, 15.0);
 	}
 }
 
@@ -45,10 +48,12 @@ Class ID_AverageDrop : ID_DropBase
 	override void BeginPlay()
 	{
 		InitDrops(20);
-		MyChance = 50;
-		AddItems("CrystalGreen", 12, 25.0);
-		AddItems("CrystalBlue", 5, 17.5);
-		AddItems("CrystalYellow", 3, 12.5);
+		MyChance = 100;
+		AddItems("CrystalGreen", 15, 75.0);
+		AddItems("CrystalBlue", 5, 30.0);
+		AddItems("CrystalYellow", 3, 20.0);
+		AddItems("RMD_Health_Medium", 1, 5.0);
+		AddItems("RMD_Health_Small", 6, 20.0);
 	}
 }
 
@@ -60,11 +65,13 @@ Class ID_RareDrop : ID_DropBase
 	override void BeginPlay()
 	{
 		InitDrops(20);
-		MyChance = 65;
-		AddItems("CrystalGreen", 15, 25.0);
-		AddItems("CrystalBlue", 8, 17.5);
-		AddItems("CrystalYellow", 6, 15.0);
-		AddItems("CrystalPurple", 3, 6.5);
+		MyChance = 100;
+		AddItems("CrystalGreen", 16, 75.0);
+		AddItems("CrystalBlue", 8, 45.5);
+		AddItems("CrystalYellow", 6, 30.0);
+		AddItems("CrystalPurple", 3, 10.5);
+		AddItems("RMD_Health_Medium", 2, 6.0);
+		AddItems("RMD_Health_Small", 8, 20.0);
 	}
 	
 }
@@ -77,9 +84,11 @@ Class ID_BossDrop : ID_DropBase
 	{
 		InitDrops(20);
 		MyChance = 100;
-		AddItems("CrystalGreen", 20, 40.0);
+		AddItems("CrystalGreen", 25, 80.0);
 		AddItems("CrystalBlue", 12, 30.5);
-		AddItems("CrystalYellow", 12, 25.75);
+		AddItems("CrystalYellow", 10, 25.75);
 		AddItems("CrystalPurple", 8, 18.45);
+		AddItems("RMD_Health_Medium", 3, 15.0);
+		AddItems("RMD_Health_Small", 10, 40.0);
 	}
 }

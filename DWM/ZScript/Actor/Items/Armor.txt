@@ -37,7 +37,7 @@ Class RegenArmorCell : RMD_ArmorBase
 	{
 		Inventory.Pickupmessage "Charged up your armor a little. <+2 Armor>";
 		Inventory.PickupSound "Items/SmallArmorCell";
-		Armor.Savepercent 100;
+		Armor.Savepercent 75;
 		Armor.Saveamount 2;
 		Armor.Maxsaveamount 100;
 	}
@@ -122,7 +122,7 @@ Class RMD_CellArmor : BasicArmorPickup
 	{
 		Inventory.Pickupmessage "Picked up a cell armor. <+100 Armor>";
 		Inventory.PickupSound "Items/MediumArmorCell";
-		Armor.Savepercent 100;
+		Armor.Savepercent 75;
 		Armor.Saveamount 100;
 	}
 }

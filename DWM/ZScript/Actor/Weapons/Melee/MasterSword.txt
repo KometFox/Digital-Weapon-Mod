@@ -42,7 +42,7 @@ class RMD_MasterSword : BaseWeapon
 	
 	action void MeleeAttack()
 	{
-		A_CustomPunch(150 * frandom(1.0, 1.4), true, CPF_NOTURN, "URPG_RicochetEffect", 95, 0, 0, "", "Sword/MetalHit", "Sword/Swing");	
+		A_CustomPunch(150 * frandom(1.0, 1.4), true, CPF_NOTURN, "RMD_BulletImpact", 95, 0, 0, "", "Sword/MetalHit", "Sword/Swing");	
 	}
 	
 

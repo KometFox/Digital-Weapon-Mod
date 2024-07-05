@@ -9,7 +9,7 @@ class RMD_M16A3 : BaseWeapon
 		Weapon.AmmoUse 0;
 		Weapon.AmmoGive 0;
 		Weapon.AmmoType1 "RMD_MediumBullets";
-		Weapon.AmmoType2 "RMD_Grenades";
+		Weapon.AmmoType2 "RMD_Explosives";
 		Inventory.PickupMessage "$GOTCHAINGUN";
 		Inventory.AltHudIcon "PIM16A3";
 		Obituary "$OB_MPCHAINGUN";

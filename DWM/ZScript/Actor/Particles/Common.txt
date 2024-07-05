@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 //Explosion 
 //------------------------------------------------------------------------------
-Class RMD_Boom : RMD_BaseParticle
+Class RMD_ExplosionSprite : RMD_BaseParticle
 {
 
 	Default
@@ -19,74 +19,6 @@ Class RMD_Boom : RMD_BaseParticle
 		Angle = Random[FX](0, 360);	
 	}
 	
-	override void Tick()
-	{
-		Super.Tick();
-		
-		if (!Level.IsFrozen())
-		{
-			A_SetScale(Scale.X * 1.0175, Scale.Y * 1.0175);	
-		}	
-	}
-
-	States
-	{
-		Spawn:
-			TNT1 A 0;
-			TNT1 A 0 
-			{
-				if (random(0, 1) == 1)
-					return ResolveState("Sprite1");
-				else if (random(0, 1) == 1)
-					return ResolveState("Sprite2");
-				else 
-					return ResolveState("Sprite3");			
-			}
-			Goto Sprite1;
-		Sprite1:
-			BOM1 A 0; 
-			Goto Loopy;
-		Sprite2:
-			BOM1 A 0; 
-			Goto Loopy;
-		Sprite3:
-			BOM1 A 0; 
-			Goto Loopy;
-		Loopy:
-			"####" ABCDEFGHIJKLMNOPQRSTUV 1;
-			Stop;
-	}
-}
-
-Class RMD_ExplosionA : RMD_BaseParticle
-{
-
-	Default
-	{
-		RenderStyle "Add";
-		Alpha 1.0;
-		+Bright;
-	}
-	
-	override void PostBeginPlay()
-	{
-		Super.PostBeginPlay();
-		
-		Roll = Random[FX](0, 360);
-		Angle = Random[FX](0, 360);	
-		//SetShade("ff8522");
-	}
-	
-	override void Tick()
-	{
-		Super.Tick();
-		
-		if (!Level.IsFrozen())
-		{
-			A_SetScale(Scale.X * 1.028, Scale.Y * 1.028);	
-		}	
-	}
-
 	States
 	{
 		Spawn:
@@ -112,21 +44,19 @@ Class RMD_ExplosionA : RMD_BaseParticle
 			XBM2 ABCDEFGHIJKLMNOPQRSTUWXYZ 1;
 			Stop;
 		Sprite2:
-			XBM4 ABCDEFGHIJKLMNOPQRSTUWXY 1;
+			XBM4 ABCDEFGHIJKLMNOPQRST 1;
+			XBM4 UVWXYZ 1 A_FadeOut(0.1668);
 			Stop;			
 	}
 }
 
-
-
-Class RMD_SpriteBoom : RMD_BaseParticle
+Class RMD_ExplosionSprite2 : RMD_BaseParticle
 {
 
 	Default
 	{
 		RenderStyle "Add";
 		Alpha 1.0;
-		Scale 0.2;
 		+Bright;
 	}
 	
@@ -138,23 +68,13 @@ Class RMD_SpriteBoom : RMD_BaseParticle
 		Angle = Random[FX](0, 360);	
 	}
 	
-	override void Tick()
-	{
-		Super.Tick();
-		
-		if (!Level.IsFrozen())
-		{
-			A_SetScale(Scale.X * 1.02, Scale.Y * 1.02);	
-			A_FadeOut(0.0625);
-		}	
-	}
-
 	States
 	{
 		Spawn:
 			TNT1 A 0;
-			YOM1 A 16; 
-			Goto Loopy;
+			XBM9 ABCDEFGHIJKLMNOPQ 1;
+			XBM9 RSTUV 1 A_FadeOut(0.1668);
+			Stop;			
 	}
 }
 
@@ -184,7 +104,7 @@ Class RMD_Fire : RMD_BaseParticle
 		
 		if (!Level.IsFrozen())
 		{
-			A_SetScale(Scale.X * 1.0175, Scale.Y * 1.0175);	
+			A_SetScale(Scale.X * ScaleGrowth, Scale.Y * ScaleGrowth);	
 		}	
 	}
 
@@ -192,27 +112,7 @@ Class RMD_Fire : RMD_BaseParticle
 	{
 		Spawn:
 			TNT1 A 0;
-			TNT1 A 0 
-			{
-				if (random(0, 1) == 1)
-					return ResolveState("Sprite1");
-				else if (random(0, 1) == 1)
-					return ResolveState("Sprite2");
-				else 
-					return ResolveState("Sprite3");			
-			}
-			Goto Sprite1;
-		Sprite1:
-			FIR) A 0; 
-			Goto Loopy;
-		Sprite2:
-			FIR9 A 0; 
-			Goto Loopy;
-		Sprite3:
-			FIR9 A 0; 
-			Goto Loopy;
-		Loopy:
-			"####" ABCDEFGHIJKLMNOP 1;
+			FIR9 ABCDEFGHIJKLMNOP 1;
 			Stop;
 	}
 }
@@ -254,10 +154,11 @@ Class RMD_Smoke : RMD_BaseParticle
 	Default
 	{
 		RenderStyle "Translucent";
-		Alpha 0.4;
+		Alpha 1.0;
+		RMD_BaseParticle.TimeToLife 10;
 	}
 	
-	Override void PostBeginPlay()
+	override void PostBeginPlay()
 	{
 		Super.PostBeginPlay();
 		
@@ -265,37 +166,29 @@ Class RMD_Smoke : RMD_BaseParticle
 		Angle = Random[FX](0, 360);	
 	}
 	
-	Override void Tick()
-	{
-		Super.Tick();
-		
-		if (!isFrozen())
-		{
-			A_SetScale(Scale.X * 1.065, Scale.Y * 1.065);	
-		}
-	}
-	
+
 	States
 	{
 		Spawn:
 			TNT1 A 0;
 			TNT1 A 0 A_Jump(256, "Smoke1", "Smoke2", "Smoke3", "Smoke4");
 		Smoke1:
-			SMOA A 18;
-			SMOA AAAAAAAAAA 1 A_FadeOut(0.04);
-			Stop;
+			SMOA A 1;
+			Goto Smoky;
 		Smoke2:
-			SMOB A 18;
-			SMOB AAAAAAAAAA 1 A_FadeOut(0.04);
-			Stop;
+			SMOB A 1;
+			Goto Smoky;
 		Smoke3:
-			SMOC A 18;
-			SMOC AAAAAAAAAA 1 A_FadeOut(0.04);
-			Stop;
+			SMOC A 1;
+			Goto Smoky;
 		Smoke4:
-			SMOD A 18;
-			SMOD AAAAAAAAAA 1 A_FadeOut(0.04);
-			Stop;
+			SMOD A 1;
+			Goto Smoky;
+		
+		Smoky:
+			"####" A 1;
+			Loop;
+			
 	}
 }
 
@@ -379,7 +272,7 @@ Class RMD_Flare : RMD_BaseParticle
 	{
 		Spawn:
 			TNT1 A 0;
-			LENS C 6;
+			LENS C 7;
 			LENS CCCCC 1 A_FadeOut(0.12);
 			Stop;	
 	}
@@ -444,6 +337,39 @@ Class RMD_Ember : RMD_ModelSparks
 	}
 }
 
+Class RMD_Sparks : RMD_ModelSparks
+{
+	Default
+	{
+		+BRIGHT;
+		RenderStyle "AddShaded";
+		Alpha 1.0;
+	}
+
+	override void BeginPlay()
+	{
+		float ScaleD = Frandom(0.1, 0.25);
+	
+		Scale.X = ScaleD;
+		Scale.Y = ScaleD;
+		Speed = random(5, 10);
+		Gravity = frandom(0.75, 1.25);
+		SetShade("ff6618");
+	}
+
+    States
+    {
+    Spawn:
+	   LEGY A 15 BRIGHT;
+       LEGY AAAAA 1 Bright A_FadeOut(0.21);
+       stop;
+    Death:
+       TNT1 A 0;
+       Stop;
+    }
+}
+
+
 Class RMD_EmberShaded : RMD_ModelSparks
 {
 	Default
@@ -470,4 +396,147 @@ Class RMD_EmberShaded : RMD_ModelSparks
 }
 
 
+
+
+Class RMD_ExplosonTrailSpawner : RMD_TrailBase
+{
+	Mixin Mix_ParticleSpawner;
+	
+	override void Tick()
+	{
+		Super.Tick();
+	
+		if (!isFrozen())
+		{
+			if (true)
+			{
+				Vector3 PVel = (FRandom[FX](-0.15, 0.15), FRandom[FX](-0.15, 0.15), FRandom[FX](-0.15, 1.25)).unit()*FRandom[FX](0.2, 0.4);
+				Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
+				Actor Particle;
+				Bool Spawned;
+					
+				[Spawned, Particle] = A_SpawnItemEx("RMD_FireTrail", flags: FXFLAG);					
+				
+				if (Particle)
+				{				
+					RMD_BaseParticle Party = RMD_BaseParticle(Particle);
+					
+					Party.TeleportMove(Pos + RPos, false);
+					Party.Vel = PVel;
+					Party.Scale = (0.5, 0.5);
+					Party.ScaleGrowth = 1.005;
+					Party.A_SetRenderStyle(1.0, STYLE_AddShaded);
+					Party.SetShade("ff6700");
+				}
+			}
+		
+			if (true)
+			{
+				Vector3 PVel = (FRandom[FX](-0.15, 0.15), FRandom[FX](-0.15, 0.15), FRandom[FX](-0.15, 1.25)).unit()*FRandom[FX](0.2, 0.4);
+				Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
+				Actor Particle;
+				Bool Spawned;
+					
+				[Spawned, Particle] = A_SpawnItemEx("RMD_SmokeTrail", flags: FXFLAG);					
+				
+				if (Particle)
+				{				
+					RMD_BaseParticle Party = RMD_BaseParticle(Particle);
+					
+					Party.TeleportMove(Pos + RPos, false);
+					Party.Vel = PVel;
+					Party.Scale = (0.1, 0.1);
+					Party.ScaleGrowth = 1.008;
+					Party.A_SetRenderStyle(1.0, Style_Shaded);
+					Party.SetShade("121212");
+				}
+			}
+		}
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 16;
+			Stop;
+	}
+
+}
+
+
+Class RMD_FireTrail : RMD_TrailBase
+{
+
+	Override void BeginPlay()
+	{
+		Super.BeginPlay();
+		
+		Roll = Random[FX](0, 360);	
+		Angle = Random[FX](0, 360);
+	}
+	
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			LEGY AAAAAA 1
+			{
+				A_SetScale(Scale.X * 1.07, Scale.Y * 1.07);
+			}
+			Stop;	
+	}
+}
+
+
+
+Class RMD_SmokeTrail : RMD_TrailBase
+{
+	Default
+	{
+		RenderStyle "Translucent";
+		Alpha 0.8;
+	}
+	
+	Override void BeginPlay()
+	{
+		Super.BeginPlay();
+		
+		Roll = frandom(0, 360);
+	}
+	
+	Override void Tick()
+	{
+		Super.Tick();
+		
+		if (!isFrozen())
+		{
+			A_SetScale(Scale.X * 1.12, Scale.Y * 1.12);	
+		}
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(256, "Smoke1", "Smoke2", "Smoke3", "Smoke4");
+		Smoke1:
+			SMOA A 5;
+			SMOA AAAAAAAAA 1 A_FadeOut(0.1);
+			Stop;
+		Smoke2:
+			SMOB A 5;
+			SMOB AAAAAAAAA 1 A_FadeOut(0.1);
+			Stop;
+		Smoke3:
+			SMOC A 5;
+			SMOC AAAAAAAAA 1 A_FadeOut(0.1);
+			Stop;
+		Smoke4:
+			SMOD A 5;
+			SMOD AAAAAAAAAA 1 A_FadeOut(0.1);
+			Stop;
+	}
+}
 

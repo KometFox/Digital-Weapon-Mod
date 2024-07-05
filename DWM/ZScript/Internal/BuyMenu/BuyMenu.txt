@@ -319,6 +319,15 @@ Class BuyMenuScript : EventHandler
 			
 			AddItems(Obj);			
 		}
+
+		else if (CMD == "Grenade")
+		{
+			ReinitMenu();
+			
+			let Obj = new("BM_GrenadeWeapons");
+			
+			AddItems(Obj);			
+		}
 		
 		else if (CMD == "Launcher")
 		{

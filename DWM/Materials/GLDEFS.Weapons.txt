@@ -72,14 +72,6 @@ material texture "Models/Weapons/Shotgun/MolotVPO208/MolotBullet_Diffuse.png"
 	ao "Models/Weapons/Shotgun/MolotVPO208/MolotBullet_AO.png"
 }
 
-material texture "Models/Weapons/Shotgun/Mossberg590/Mossberg590_Diffuse.png"
-{
-	normal "Models/Weapons/Shotgun/Mossberg590/Mossberg590_NormalGL.png"
-	metallic "Models/Weapons/Shotgun/Mossberg590/Mossberg590_Metallic.png"
-	roughness "Models/Weapons/Shotgun/Mossberg590/Mossberg590_Roughness.png"
-	ao "Models/Weapons/Shotgun/Mossberg590/Mossberg590_AO.png"
-}
-
 
 //------------------------------------------------------------------------------
 //Launchers
@@ -92,26 +84,9 @@ material texture "Models/Weapons/SMRL/LocustRL_Diffuse.png"
 	ao "Models/Weapons/SMRL/LocustRL_AO.png"
 }
 
-material texture "Models/Weapons/SMRL/SMRL_Diffuse.png"
-{
-	normal "Models/Weapons/SMRL/SMRL_NormalGL.png"
-	metallic "Models/Weapons/SMRL/SMRL_Metallic.png"
-	roughness "Models/Weapons/SMRL/SMRL_Roughness.png"
-	ao "Models/Weapons/SMRL/SMRL_AO.png"
-}
-
-
 //------------------------------------------------------------------------------
 //Energy Weapons
 //------------------------------------------------------------------------------
-material texture "Models/Weapons/Energy/E12PR/E12PR_Diffuse.png"
-{
-	normal "Models/Weapons/Energy/E12PR/E12PR_NormalGL.png"
-	metallic "Models/Weapons/Energy/E12PR/E12PR_Metallic.png"
-	roughness "Models/Weapons/Energy/E12PR/E12PR_Roughness.png"
-	ao "Models/Weapons/Energy/E12PR/E12PR_AO.png"
-}
-
 material texture "Models/Weapons/Energy/E20PC/E20PC_Diffuse.png"
 {
 	normal "Models/Weapons/Energy/E20PC/E20PC_NormalGL.png"

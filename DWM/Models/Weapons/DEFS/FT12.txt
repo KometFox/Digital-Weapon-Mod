@@ -5,6 +5,7 @@ Model RMD_FT12FlameThrower
 	Path "Models\Weapons\Energy\FT12"
 	Model 0 "FT12FlameThrower.md3"
 	SurfaceSkin 0 1 "FT12_Diffuse.png"
+	AngleOffset 90
 	
 	//IDLE
 	FrameIndex IDLE A 0 1

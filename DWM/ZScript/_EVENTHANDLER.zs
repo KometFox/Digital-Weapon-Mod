@@ -1,6 +1,9 @@
 //CVAR settings
 #Include "ZScript/Internal/CVAR/CVARHandler.txt"
 
+//Kills Stuff
+#Include "ZScript/Internal/Kills.txt"
+
 //Data money
 #Include "ZScript/Internal/Money/Money.txt"
 

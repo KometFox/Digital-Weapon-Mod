@@ -3,10 +3,12 @@ gameinfo
 	//Main HUD
 	StatusBarClass = "RMD_BARHUD"
 
-	//HUD info
-	AddEventHandlers = "RMD_BARINFO"
 	//CVAR 
 	AddEventHandlers = "RMD_CVARHandler"
+	//HUD info
+	AddEventHandlers = "RMD_BARINFO"
+	//Kills
+	AddEventHandlers = "RMD_Kills"
 	//Data money
 	AddEventHandlers = "RMD_MoneyHandler"
 	//Replacer

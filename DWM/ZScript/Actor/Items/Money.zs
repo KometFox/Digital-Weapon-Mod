@@ -29,6 +29,7 @@ Class MaterialBase : CustomInventory
 	Default
 	{
 		Inventory.PickupMessage "";
+		Inventory.PickupSound "Items/DataTake";
 		MaterialBase.Money 0;
 		MaterialBase.TimeToLife 3000; //3k Tics
 		MaterialBase.MagnetType 0;
@@ -178,8 +179,8 @@ Class MaterialBase : CustomInventory
 					A_StartSound(Invoker.PickupSound);
 					
 					return ResolveState("Ded");
-				}				
-				
+				}
+			
 				return ResolveState("Delay");
 			}
 			Goto CondCheck;
@@ -226,7 +227,7 @@ Class FloppyDisc : MaterialBase
 {
 	Default
 	{
-		MaterialBase.Money 50;
+		MaterialBase.Money 75;
 		MaterialBase.ItemColor "e6e6e6";
 	}
 }
@@ -240,11 +241,50 @@ Class HardDrive : MaterialBase
 	}
 }
 
+Class Motherboard : MaterialBase 
+{
+	Default
+	{
+		MaterialBase.Money 800;
+		MaterialBase.ItemColor "e6e6e6";
+	}
+}
+
+
+Class PowerSupply : MaterialBase 
+{
+	Default
+	{
+		MaterialBase.Money 400;
+		MaterialBase.ItemColor "e6e6e6";
+	}
+}
+
+Class GraphicCardT5 : MaterialBase 
+{
+	Default
+	{
+		MaterialBase.Money 1000;
+		MaterialBase.ItemColor "e6e6e6";
+	}
+}
+
+Class GraphicCardT2 : MaterialBase 
+{
+	Default
+	{
+		MaterialBase.Money 200;
+		MaterialBase.ItemColor "e6e6e6";
+	}
+}
+
+
+
 Class TapeDrive : MaterialBase 
 {
 	Default
 	{
-		MaterialBase.Money 10;
+		MaterialBase.Money 40;
 		MaterialBase.ItemColor "e6e6e6";
 	}
 }
@@ -253,90 +293,8 @@ Class CDRom : MaterialBase
 {
 	Default
 	{
-		MaterialBase.Money 100;
+		MaterialBase.Money 150;
 		MaterialBase.ItemColor "e6e6e6";
-	}
-}
-
-
-
-//------------------------------------------------------------------------------
-//Ingot Stacks
-//------------------------------------------------------------------------------
-Class RMD_IngotStackBase : MaterialBase 
-{
-	Default
-	{
-		Inventory.PickupMessage "";
-		Inventory.PickupSound "Items/IngotTake";
-		Inventory.PickupFlash "";
-		MaterialBase.Money 0;
-		+INVENTORY.ALWAYSPICKUP;
-	}
-	
-	override void PostBeginPlay()
-	{
-		Super.PostBeginPlay();
-
-		//Don't count towards item tally when dropped. 
-		//Got some help from Jarewill
-		//Notes: Using the "LootBox" weighted roll system I have done causes issues.
-		if (bTossed == True || bDropped == True && Temp == True)
-		{
-			//level.total_items--; 
-			bCountItem = False;
-		}
-		/*
-		else 
-		{
-			level.total_items++;
-			bCountItem = True;
-		}
-		*/
-	}
-}
-
-Class IngotStackA : RMD_IngotStackBase 
-{
-	Default
-	{
-		//Inventory.PickupMessage "Picked up a black hard drive <+10 Data>";
-		Inventory.PickupMessage "";
-		MaterialBase.Money 50;
-		MaterialBase.ItemColor "e6e6e6";
-	}
-}
-
-Class IngotStackB : RMD_IngotStackBase 
-{
-	Default
-	{
-		//Inventory.PickupMessage "Picked up a blue hard drive <+20 Data>";
-		Inventory.PickupMessage "";
-		MaterialBase.Money 100;
-		MaterialBase.ItemColor "e6e6e6";
-	}
-}
-
-Class IngotStackC : RMD_IngotStackBase 
-{
-	Default
-	{
-		//Inventory.PickupMessage "Picked up a yellow hard drive <+50 Data>";
-		Inventory.PickupMessage "";
-		MaterialBase.Money 200;
-		MaterialBase.ItemColor "ef5b0c";
-	}
-}
-
-Class IngotStackD : RMD_IngotStackBase 
-{
-	Default
-	{
-		//Inventory.PickupMessage "Picked up a purple hard drive <+100 Data>";
-		Inventory.PickupMessage "";
-		MaterialBase.Money 400;
-		MaterialBase.ItemColor "14dbff";
 	}
 }
 
@@ -357,90 +315,44 @@ Class RMD_IngotBase : MaterialBase
 }
 
 
-Class IngotA : RMD_IngotBase 
-{
-	Default
-	{
-		//Inventory.PickupMessage "Picked up a black floppy <+5 Data>";
-		Inventory.PickupMessage "";
-		MaterialBase.Money 30;
-		MaterialBase.ItemColor "e6e6e6";
-	}
-}
-
 Class CrystalGreen : RMD_IngotBase 
 {
 	Default
 	{
-		MaterialBase.Money 10;
+		MaterialBase.Money 5;
 		Inventory.PickupSound "Items/CrystalTake";
 		MaterialBase.ItemColor "21e500";
 	}
 
 }
 
-Class IngotB : RMD_IngotBase 
-{
-	Default
-	{
-		//Inventory.PickupMessage "Picked up a blue floppy <+10 Data>";
-		Inventory.PickupMessage "";
-		MaterialBase.Money 50;
-		MaterialBase.ItemColor "e6e6e6";
-	}
-}
-
 Class CrystalBlue : RMD_IngotBase 
 {
 	Default
 	{
-		MaterialBase.Money 30;
+		MaterialBase.Money 10;
 		Inventory.PickupSound "Items/CrystalTake";
 		MaterialBase.ItemColor "0005f6";
 	}
 
 }
 
-
-Class IngotC : RMD_IngotBase 
-{
-	Default
-	{
-		//Inventory.PickupMessage "Picked up a yellow floppy <+25 Data>";
-		Inventory.PickupMessage "";
-		MaterialBase.Money 100;
-		MaterialBase.ItemColor "ef5b0c";
-	}
-}
-
 Class CrystalYellow : RMD_IngotBase 
 {
 	Default
 	{
-		MaterialBase.Money 50;
+		MaterialBase.Money 25;
 		Inventory.PickupSound "Items/CrystalTake";
 		MaterialBase.ItemColor "ffa400";
 	}
 
 }
 
-
-Class IngotD : RMD_IngotBase 
-{
-	Default
-	{
-		//Inventory.PickupMessage "Picked up a purple floppy <+50 Data>";
-		Inventory.PickupMessage "";
-		MaterialBase.Money 200;
-		MaterialBase.ItemColor "14dbff";
-	}
-}
-
 Class CrystalPurple : RMD_IngotBase 
 {
 	Default
 	{
-		MaterialBase.Money 100;
+		MaterialBase.Money 50;
 		Inventory.PickupSound "Items/CrystalTake";
 		MaterialBase.ItemColor "bf00ff";
 	}

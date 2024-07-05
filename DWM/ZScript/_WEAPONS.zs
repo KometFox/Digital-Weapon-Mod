@@ -13,6 +13,7 @@
 #Include "ZScript/Actor/Weapons/Pistol/SWModel19.txt"
 //Grenades
 #Include "ZScript/Actor/Weapons/Grenade/PirateBomb.txt"
+#Include "ZScript/Actor/Weapons/Grenade/MolotovCocktail.txt"
 //Submachine Gun
 #Include "ZScript/Actor/Weapons/SMG/MP5.txt"
 #Include "ZScript/Actor/Weapons/SMG/CBM2.txt"

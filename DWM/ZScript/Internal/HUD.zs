@@ -58,13 +58,12 @@ override void Init()
 		int Screenheight = Screen.GetHeight();
 		
 		
-		int X0 = 800;
-		int Y0 = 1032;
-		int X1 = X0 + (Length * 4);
-		int Y1 = 1032;
+		int X0 = 735;
+		int Y0 = 475;
+		int X1 = 735;
+		int Y1 = 480 + (Length * 4);
 		
-		
-		Screen.DrawThickLine(X0, Y0, X1, Y1, 15, Color(0, 230, 230));	
+		Screen.DrawThickLine(Y0, X0, Y1, X1, 15, Color(0, 230, 230));	
 	}
 
 
@@ -103,6 +102,7 @@ override void Init()
 			int ArmorV = GetArmorAmount(); 
 			int Geld = Playa.CountInv("Material");
 			int Mag1 = BarInfo.GetMagSize();
+			int VThrowPower = BarInfo.GetThrowPower();
 			String VAmmo = BarInfo.GetAmmo1();
 			String VFireMode = BarInfo.GetFireMode();
 			int AmmoStash = Playa.CountInv(VAmmo);
@@ -133,7 +133,14 @@ override void Init()
 			AddImage(VCrosshair, Screen.GetWidth() / 2, Screen.GetHeight() / 2, VCrosshairSize / 10, VCrosshairSize / 10);
 			
 			//Health
-			AddText(String.Format("%d", Playa.Health), Font.CR_CYAN, 20, 157, 1.0, 1.0);
+			int FormHealth;
+			
+			if (FormHealth > 10000)
+				FormHealth = 9999;
+			else
+				FormHealth = Playa.HealtH;
+			
+			AddText(String.Format("%d", FormHealth), Font.CR_CYAN, 20, 157, 1.0, 1.0);
 			
 			//Armor
 			AddText(String.Format("%d", ArmorV), Font.CR_CYAN, 20, 175, 1.0, 1.0);
@@ -143,6 +150,9 @@ override void Init()
 
 			//Firemode
 			AddText(String.Format("<FM> %s", VFireMode), Font.CR_CYAN, 85, 152, 0.25, 0.25);
+
+			//Grenade Bar
+			AddBar(VThrowPower); 
 
 			//Ammo Icon
 			AddImage(AmmoIcon, 90, 150, 0.6, 0.6);
@@ -295,6 +305,11 @@ Class RMD_BARINFO : EventHandler
 	ui string GetFireMode()
 	{
 		return FireMode; 
+	}
+	
+	ui int GetThrowPower()
+	{
+		return ThrowPower; 
 	}
 
 }

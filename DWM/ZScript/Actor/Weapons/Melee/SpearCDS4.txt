@@ -38,7 +38,7 @@ class RMD_SpearCDS4 : BaseWeapon
 	
 	action void MeleeAttack()
 	{
-		A_CustomPunch(75 * frandom(1.0, 1.4), true, CPF_NOTURN, "URPG_RicochetEffect", 180);	
+		A_CustomPunch(75 * frandom(1.0, 1.4), true, CPF_NOTURN, "RMD_BulletImpact", 180);	
 	}
 	
 

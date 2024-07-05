@@ -55,14 +55,13 @@ Class RMD_SuperKegArmor : RMD_ArmorBase
 }
 
 
-Class RMD_SuperKegHealth : Health
+Class RMD_SuperKegHealth : RMD_Milk
 {
 	Default
 	{
 		-COUNTITEM
 		+INVENTORY.ALWAYSPICKUP;
-		Inventory.Amount 300;
-		Inventory.MaxAmount 300;		
+		Inventory.Amount 500;	
   	}
 	
 	States
@@ -74,118 +73,17 @@ Class RMD_SuperKegHealth : Health
 }
 
 
-Class RMD_SuperKeg : CustomInventory 
+Class RMD_SuperKeg : RMD_HealthBase 
 {
 	Default
 	{
 		-COUNTITEM
 		Scale 1;
-		Inventory.PickupMessage "You energized yourself with a super keg! <+300 HP>";
+		Inventory.Amount 200;
+		Inventory.PickupMessage "You energized yourself with a super keg!";
 		Inventory.PickupSound "Items/UTSuperHealth";
 	}
-	
-	override void PostBeginPlay()
-	{
-		Super.PostBeginPlay();
-		
-		Angle = Random[Angle](0, 360);	
-	}	
-	
-	Override Bool TryPickup(in out Actor toucher)
-	{
-		Bool PickedUp = Super.TryPickUp(Toucher);
-		Inventory PArmor = Toucher.FindInventory('BasicArmor', false);
-		
-		//Don't pickup the item when the player is at maxium health and armor
-		if (PickedUp || Toucher.Health < 300)
-		{
-			A_SpawnItemEx("RMD_HealthKegLitter");
-			//Toucher.A_GiveInventory("RMD_SuperKegArmor", 1);
-			Toucher.A_GiveInventory("RMD_SuperKegHealth", 1);
-			
-			Destroy();
-			Return True;
-		}	
-	
-		Return False;
-	}
-  
-	States
-	{
-		PickUp:
-			TNT1 A 0;
-			Stop;
-		Spawn:
-			IDLE A 1;
-			Loop;
-	}
 }
-
-
-//------------------------------------------------------------------------------
-//AtomHealth 
-//------------------------------------------------------------------------------
-Class RMD_AtomHealth : CustomInventory 
-{
-	Default
-	{
-		Scale 1;
-		Inventory.PickupMessage "You energized yourself with atoms! <+100 HP>";
-		Inventory.PickupSound "Items/UTHealth";
-	}
-	
-	override void PostBeginPlay()
-	{
-		Super.PostBeginPlay();
-		
-		Angle = Random[Angle](0, 360);	
-	}
-	
-	Override Bool TryPickup(in out Actor toucher)
-	{
-		//Don't pick it up if Health is over that.
-		If (toucher.health >= 200)
-		{
-			Return False;
-		}
-		
-		Bool bHP; //Boolean check
-		Actor HP; //The Actor
-		
-		//Health
-		[bHP, HP] = A_SpawnItemEx("RMD_BeerBonus1", 64, 0, 32);
-		let HPS = Health(HP);
-		let Playa = PlayerPawn(Toucher);
-		
-		
-		if (HPS && Playa)
-		{
-			HPS.bAlwaysPickup = True;
-			HPS.bQuiet = True;
-			HPS.Amount = 100;
-			HPS.MaxAmount = Playa.MaxHealth;
-			HPS.Touch(toucher);
-		}
-		
-		else if (HP)
-			HP.Destroy();
-			
-		Return Super.TryPickup(Toucher);
-	}
-	
-  
-	States
-	{
-		Pickup:
-			//TNT1 A 0 A_GiveInventory("RMD_BlankItem", 1);
-			TNT1 A 0;
-			Stop;
-		Spawn:
-			IDLE A 1;
-			Loop;
-	}
-}
-
 
 Class RMD_Invisibility : CustomInventory 
 {

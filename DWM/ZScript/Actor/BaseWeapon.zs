@@ -238,6 +238,18 @@ static int Get_Magazine()
 				break;
 		}	
 	}
+	
+	Action Void A_ChargeThrow()
+	{
+		A_GiveInventory("GrenadeThrowPower", 2);
+		
+		if (CountInv("GrenadeThrowPower") >= 45)
+		{
+			A_SetInventory("GrenadeThrowPower", 45);
+		}
+		
+		RMD_BARINFO.SetThrowPower(CountInv("GrenadeThrowPower"));
+	}
 		
 	//Marisa Kirisame Flak_M.pk3 code. 
 	action Actor B_SpawnCasing(Class<Actor> Obj = "PistolCase", Vector3 COffset = (0, 0, 0), int PAngle = 0)
@@ -253,6 +265,20 @@ static int Get_Magazine()
 		C.vel = x*FRandom[Junk](-0.5, 0.5) + y * ydir * FRandom[Junk](1.5,3) + z * FRandom[Junk](1.5,2);
 		
 		return C;
+	}		
+	
+	
+	action void C_SpawnCasing(Class<Actor> Obj = "PistolCase", Vector3 COffset = (0, 0, 0), int PAngle = 0)
+	{
+		Vector3 x, y, z;
+		int Ydir = 1;
+		[x, y, z] = dt_Matrix4.GetAxes(pitch, angle, roll);
+		Vector3 origin = Vec2OffsetZ(0,0,player.viewz) + 10.0 * x + 3.0 * y - 1.8  * z;
+
+	
+		origin += x * (1.0 + COffset.x) + ydir * y * (6.0 + COffset.y) -z * (2.0 + COffset.z);		
+		let C = Spawn(Obj, origin);
+		C.vel = x*FRandom[Junk](-0.5, 0.5) + y * ydir * FRandom[Junk](1.5,3) + z * FRandom[Junk](1.5,2);	
 	}		
 		
 	action void B_MuzzleFlash(Class<RMD_WeaponMuzzleFlash> Particle = "RMD_BulletMuzzleFLash", Vector3 POffset = (0, 0, 0))
@@ -341,3 +367,131 @@ States
 
 }
 }
+
+class RMD_FireInv : Powerup
+{
+	uint OldTrans;
+	String FireParticle; 
+	Name SetTrans;
+	int OldSpeed; 
+	const DMGMFlag = DMG_THRUSTLESS | DMG_NO_PAIN; 
+
+    Default
+    {
+        +INVENTORY.AUTOACTIVATE
+        +INVENTORY.ALWAYSPICKUP
+        Inventory.MaxAmount 1;
+        Powerup.Duration TICRATE * 8;
+    }
+	
+	static void AttachFire(Actor Victim, Actor DamageSource, String ParticleEffect, Name Trans)
+	{
+		RMD_FireInv Myself = RMD_FireInv(Victim.GiveInventoryType("RMD_FireInv"));
+		
+		Myself.Target = DamageSource;
+		Myself.FireParticle = ParticleEffect;
+		Myself.SetTrans = Trans; 
+	}
+	
+	override bool TryPickup(in out Actor Toucher)
+	{
+		bool Touched = Super.TryPickup(Toucher);
+
+		if (!Toucher || !Owner)
+			return False;
+
+		OldTrans = Owner.Translation;
+		OldSpeed = Owner.Speed; 
+		//Owner.Speed = 24;
+		//Owner.bFRIGHTENED = true;
+		//Owner.bFRIGHTENING = true;
+		
+		Return True; 
+	}	
+	
+
+	override void Tick()
+	{
+		Super.Tick();
+		
+		if (Level.isFrozen() || !Owner) 
+			return;
+	}
+
+
+    override void DoEffect()
+    {
+        Super.DoEffect();
+		
+        if (!Owner)
+			return;
+	
+		Owner.A_SetTranslation(SetTrans);
+			
+		if (GetAge() % 3 == 0)
+			Spawn(FireParticle, Owner.Pos);
+			
+		if (GetAge() % 5 == 0)
+		{
+			if (!Owner)
+				return;
+		
+			Owner.ResolveState("Pain");	
+			Owner.DamageMobj(Self, Target ? Target : Owner, 15 * FRandom(0, 1.8), 'Fire', DMGMFlag);
+        }		
+
+    }
+	
+	override void EndEffect()
+	{
+		if (!Owner)
+			return;
+
+		Owner.Translation = OldTrans;
+		Owner.BBuddha = false; 
+		Owner.Speed = OldSpeed; 
+		Owner.bFRIGHTENED = false;
+		Owner.bFRIGHTENING = false;
+	
+		Super.EndEffect();	
+	}
+	
+}
+
+Class RMD_CorpseEffect : Actor
+{
+	String ParticleEffect;
+	int Timer;
+
+	Property Timer:Timer;
+	
+	Default
+	{
+		RMD_CorpseEffect.Timer TICRATE * 5;	
+	}
+	
+	void DoTime()
+	{
+		Timer -= 1;
+		
+		if (Timer <= 0)
+			Destroy();	
+	}
+
+	override void Tick()
+	{
+		Super.Tick();
+		
+		if (Level.IsFrozen())
+			return;
+		
+		if (GetAge() % 8 == 0)
+			A_SpawnItemEx(ParticleEffect, 0, 0, 0);	
+			
+		DoTime();
+	}
+
+}
+
+
+

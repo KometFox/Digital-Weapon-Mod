@@ -21,6 +21,9 @@ generic/heartbeat HeartB
 generic/Psy_Blackout PsyBlack
 generic/Tinnitus Tinnit
 
+Fire/Loop "Sounds/Weapons/Fire/FireLoop.ogg"
+$Limit Fire/Loop 3
+
 //------------------------------------------------------------------------------
 //Items
 //------------------------------------------------------------------------------
@@ -42,8 +45,10 @@ Items/Invulnerability "Sounds/Items/PowerUps/Invulnerability.ogg"
 misc/k_pkup "Sounds/Items/Key/KeyCard.ogg"
 
 //Food and Drinks
-Items/Drink "Sounds/Items/Drink.ogg"
-items/Eat "Sounds/Items/Eating.ogg"
+$Random Items/Drink {Items/Drink1 Items/Drink2}
+Items/Drink1 "Sounds/Items/Health/Drink1.ogg"
+Items/Drink2 "Sounds/Items/Health/Drink2.ogg"
+items/Eat "Sounds/Items/Health/Eat.ogg"
 
 Beer/Open "Sounds/Weapons/Other/Beer/Open.ogg"
 Beer/Drink "Sounds/Weapons/Other/Beer/Drink.ogg"
@@ -57,6 +62,8 @@ Items/EnergyDrinkPick "Sounds/Items/Health/EnergyDrinkPick.ogg"
 Items/SuperHealth "Sounds/Items/Health/SuperHealth.ogg"
 Items/UTHealth "Sounds/Items/Health/UTHealth.ogg"
 Items/UTSuperHealth "Sounds/Items/Health/UTSuperHealth.ogg"
+Items/MiniPotion "Sounds/Items/Health/MiniPotion.ogg"
+Items/Potion "Sounds/Items/Health/PotionDrink.ogg"
 
 //Armor
 Items/ArmorShard "Sounds/Items/Armor/ArmorShard.ogg"
@@ -70,6 +77,7 @@ pickup/Suit SuitPick
 Items/IngotTake "Sounds/Items/Data/IngotTake.ogg"
 Items/IngotTake2 "Sounds/Items/Data/IngotTake2.ogg"
 Items/CrystalTake "Sounds/Items/Data/CrystalTake.ogg"
+Items/DataTake "Sounds/Items/Data/DataTake.ogg"
 
 Item/Bandage BANDA
 

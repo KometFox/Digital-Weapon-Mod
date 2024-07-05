@@ -20,19 +20,6 @@ class RMD_M249SAW : BaseWeapon
 		BaseWeapon.Magazine 200; 
 	}
 	
-	action void C_SpawnCasing(Class<Actor> Obj = "PistolCase", Vector3 COffset = (0, 0, 0), int PAngle = 0)
-	{
-		Vector3 x, y, z;
-		int Ydir = 1;
-		[x, y, z] = dt_Matrix4.GetAxes(pitch, angle, roll);
-		Vector3 origin = Vec2OffsetZ(0,0,player.viewz) + 10.0 * x + 3.0 * y - 1.8  * z;
-
-	
-		origin += x * (1.0 + COffset.x) + ydir * y * (6.0 + COffset.y) -z * (2.0 + COffset.z);		
-		let C = Spawn(Obj, origin);
-		C.vel = x*FRandom[Junk](-0.5, 0.5) + y * ydir * FRandom[Junk](1.5,3) + z * FRandom[Junk](1.5,2);	
-	}	
-	
 	Action void FireBullets()
 	{
 		if (Invoker.Magazine <= 0)
@@ -247,8 +234,8 @@ Class RMD_M249SAW_Bullet : RMD_BaseBullet
 Default
 	{		
 		//Normal Damage
-		RMD_BaseBullet.ImpactDamage 25; 
-		RMD_BaseBullet.DamageRand 2.0;
+		RMD_BaseBullet.ImpactDamage 18; 
+		RMD_BaseBullet.DamageRand 1.8;
 		//Nerfed Damage
 		RMD_BaseBullet.HealthDamage 450;		
 		
