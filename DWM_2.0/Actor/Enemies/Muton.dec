@@ -1,0 +1,145 @@
+ACTOR ArmoredMuton : BaronOfHell
+{
+  Health 250
+  Radius 24
+  Height 64
+  Mass 1000
+  Speed 12
+  PainChance 120
+  Monster
+  +FLOORCLIP
+  +BOSSDEATH
+  SeeSound "Mutants/Growl"
+  AttackSound "Mutants/Attack"
+  PainSound "Mutants/Pain"
+  DeathSound "Mutants/Die"
+  ActiveSound "Mutants/Growl"
+  Obituary "%o got ruptured by a Muton."
+  HitObituary "%o got turned into a smoking ash pile by a Muton."
+  Tag "Armored Muton"
+  DamageFactor M_Aura, 0
+  States
+  {
+  Spawn:
+    BOSS AB 10 A_Look
+    Loop
+  See:
+    BOSS AABBCCDD 3 A_Chase
+    Loop
+  Melee:
+    BOSS EF 8 A_FaceTarget
+    BOSS G 8 A_BruisAttack
+    Goto See
+  Missile:
+    BOSS EF 8 A_FaceTarget
+    BOSS G 4 A_CustomMissile("MutonPlasma", 40,0,+frandom(-1.2,1.2),CMF_OFFSETPITCH,+frandom(-1.2,1.2))
+    BOSS EF 1 A_FaceTarget
+    BOSS G 4 A_CustomMissile("MutonPlasma", 40,0,+frandom(-1.2,1.2),CMF_OFFSETPITCH,+frandom(-1.2,1.2))
+	BOSS EF 1 A_FaceTarget
+    BOSS G 4 A_CustomMissile("MutonPlasma", 40,0,+frandom(-1.2,1.2),CMF_OFFSETPITCH,+frandom(-1.2,1.2))
+	BOSS EF 1 A_FaceTarget
+    BOSS G 4 A_CustomMissile("MutonPlasma", 40,0,+frandom(-1.2,1.2),CMF_OFFSETPITCH,+frandom(-1.2,1.2))
+    Goto See
+  }
+}
+
+ACTOR MutonPlasma : DoomImpBall
+{
+  Radius 5
+  Height 6
+  Speed 45
+  Damage (50)
+  Scale 0.9
+  SeeSound "Mutants/PlasmaAttack"
+  ActiveSound "Mutants/PlasmaAttack"
+  DeathSound "Mutants/PlasmaHit"
+  States
+  {
+  Spawn:
+	TNT1 A 0 A_SpawnItemEx("ImpPlasma_Tracer",0,0,0)
+    DAL3 AB 2 Bright A_SpawnItemEx("ImpPlasma_Tracer",0,0,0)
+	TNT1 A 0 A_SpawnItemEx("ImpPlasma_Tracer",0,0,0)
+    Loop
+  Death:
+    DAL3 CDE 6 Bright
+    Stop
+  }  
+}
+
+ACTOR MutonPlasma2 : DoomImpBall
+{
+  Radius 5
+  Height 6
+  Speed 30
+  Damage (80)
+  Scale 0.5
+  SeeSound "MediumCannon/Firing"
+  ActiveSound "MediumCannon/Firing"
+  DeathSound "Mutants/PlasmaHit"
+  States
+  {
+  Spawn:
+	TNT1 A 0 A_SpawnItemEx("ImpPlasma_Tracer",0,0,0)
+    T3FB ABC 2 Bright A_SpawnItemEx("ImpPlasma_Tracer",0,0,0)
+	TNT1 A 0 A_SpawnItemEx("ImpPlasma_Tracer",0,0,0)
+    Loop
+  Death:
+    DAL3 CDE 6 Bright
+    Stop
+  }  
+}
+
+ACTOR MutonTypeA : BaronOfHell
+{
+  Health 230
+  Radius 24
+  Height 64
+  Mass 800
+  Speed 10
+  PainChance 90
+  Monster
+  +MISSILEMORE
+  +MISSILEEVENMORE
+  +FLOORCLIP
+  +BOSSDEATH
+  SeeSound "Mutants/Growl"
+  AttackSound "Mutants/Attack"
+  PainSound "Mutants/Pain"
+  DeathSound "Mutants/Die"
+  ActiveSound "Mutants/Growl"
+  Obituary "%o got ruptured by a Muton."
+  HitObituary "%o got turned into a smoking ash pile by a Muton."
+  Tag "Armored Muton"
+  DamageFactor M_Aura, 0
+  States
+  {
+  Spawn:
+    LIZA AB 10 A_Look
+    Loop
+  See:
+    LIZA AABBCCDD 3 A_Chase
+    Loop
+  Pain:
+	LIZA ABAB 1 A_Scream
+	Goto See
+  Melee:
+    LIZA EE 8 A_FaceTarget
+    LIZA E 8 A_BruisAttack
+    Goto See
+  Missile:
+    LIZA EF 8 A_FaceTarget
+    LIZA F 4 A_CustomMissile("MutonPlasma2", 40,0,+frandom(-1.2,1.2),CMF_OFFSETPITCH,+frandom(-1.2,1.2))
+    LIZA EF 1 A_FaceTarget
+    LIZA F 4 A_CustomMissile("MutonPlasma2", 40,0,+frandom(-1.2,1.2),CMF_OFFSETPITCH,+frandom(-1.2,1.2))
+	LIZA EF 1 A_FaceTarget
+    LIZA F 4 A_CustomMissile("MutonPlasma2", 40,0,+frandom(-1.2,1.2),CMF_OFFSETPITCH,+frandom(-1.2,1.2))
+	LIZA EF 1 A_FaceTarget
+    LIZA F 4 A_CustomMissile("MutonPlasma2", 40,0,+frandom(-1.2,1.2),CMF_OFFSETPITCH,+frandom(-1.2,1.2))
+    Goto See
+  Death:
+    LIZA A 0 A_Scream
+    LIZA GHIJKL 3 A_NoBlocking
+	LIZA L -1
+	stop
+  }
+}

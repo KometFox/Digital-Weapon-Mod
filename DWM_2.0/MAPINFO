@@ -1,0 +1,28 @@
+gameinfo
+{
+	//Main HUD
+	StatusBarClass = "RMD_BARHUD"
+
+	//CVAR 
+	AddEventHandlers = "RMD_CVARHandler"
+	//HUD info
+	AddEventHandlers = "RMD_BARINFO"
+	//Kills
+	AddEventHandlers = "RMD_Kills"
+	//Data money
+	AddEventHandlers = "RMD_MoneyHandler"
+	//Replacer
+	AddEventHandlers = "RMD_Replacer"
+	AddEventHandlers = "WelcomeScreen"
+	//Armor
+	AddEventHandlers = "RegenativeArmor"
+	//Ammo
+	AddEventHandlers = "ManaRegen"
+	//Buy menu
+	AddEventHandlers = "BuyMenuScript"
+	
+	//Monster drops
+	AddEventHandlers = "AmmoDropper"
+	AddEventHandlers = "ID_ScoreCalculator"
+	AddEventHandlers = "ID_ItemDropGenerator"
+}

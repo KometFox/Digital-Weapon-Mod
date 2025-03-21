@@ -1,0 +1,209 @@
+//Acid Barrel
+Class AcidBarrel : ExplosiveBarrel 
+{
+	Const DAMAGERADIUS = 150;
+	Const FULLDAMAGERADIUS = 90;
+	Const SPLASHDAMAGE = 100;
+
+	Default
+	{
+		DeathSound "Explosion/Barrel";
+		DamageType "BarrelChemical";
+		DeathType "Acid";
+		+NOBLOOD
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			IDLE A 5;
+			Loop;
+		
+		Death:
+			"####" A 0 Bright
+			{	
+				A_ScreamAndUnblock();
+				A_Explode(SPLASHDAMAGE, DAMAGERADIUS, 0, 0, FULLDAMAGERADIUS);
+				
+				//The Acidic Spew
+				for (int i = 0; i < 8; i++)
+				{
+					Actor Acid;
+					Bool Succ;
+					
+					[Succ, Acid] = A_SpawnItemEx("AcidBarrel_AcidSpew",0,0,0,0,0,-5);		
+				
+					if (Succ)
+					{
+						Float VelX = Frandom(-6, 6);
+						Float VelY = Frandom(-6, 6);
+						Float VelZ = Frandom(5, 12);
+					
+						Acid.Vel.X = VelX;
+						Acid.Vel.Y = VelY;
+						Acid.Vel.Z = VelZ;					
+					}
+				}
+				
+				//The Effects
+				//Explosion				
+				for (int i = 0; i < 8; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](1.25, 6.25);
+					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
+					let Particle = Spawn("RMD_ExplosionSprite", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Roll = Random(0, 360);
+					Particle.Scale = (0.65, 0.65);
+					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
+					Particle.SetShade("24ff3f");
+				}
+				
+				let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
+				int CVAR_LowQuality = CVARS.RMDV_ParticleLowQuality;;
+		
+				if (CVAR_LowQuality == 1)
+				{
+					Return;
+				}
+				
+				//Shockwave
+				for (int i = 0; i < 1; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25)).unit()*FRandom[FX](0.0, 0.0);
+					Vector3 RPos = (frandom(-2, 2), frandom(-2, 2), frandom(-2, 2));
+					let Particle = Spawn("RMD_Shockwave", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.25, 0.25);
+					Particle.SetShade("c8e2ff");
+				}
+				
+				//Smoke
+				for (int i = 0; i < 15; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 2.5)).unit()*FRandom[FX](7.0, 15.0);
+					Vector3 RPos = (frandom(-8, 8), frandom(-8, 8), frandom(-4, 4));
+					let Particle = Spawn("RMD_Smoke", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.15, 0.15);
+					Particle.Alpha = 0.075;
+				}
+				
+				//Flare
+				for (int i = 0; i < 1; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25)).unit()*FRandom[FX](0.01, 0.01);
+					Vector3 RPos = (frandom(-8, 8), frandom(-8, 8), frandom(-4, 4));
+					let Particle = Spawn("RMD_Flare", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (1.1, 1.1);
+					Particle.SetShade("c8e2ff");
+				}
+				
+			}
+			Stop;
+			//Goto Respawn;
+
+		Respawn:
+			"####" A 50 Bright;
+			"####" AAAA 3;
+			"####" A 0 A_BarrelDestroy;
+			"####" A 5 A_Respawn;
+			Wait; 
+	}
+}
+
+Class AcidBarrel_AcidSpew : Actor
+{
+	Const DAMAGERADIUS = 45;
+	Const FULLDAMAGERADIUS = 25;
+	Const SPLASHDAMAGE = 10;
+	int TTL;
+	
+	Property TimeToLife:TTL;
+
+	Default
+	{
+		Radius 8;
+		Height 8;
+		Gravity 1;
+		Scale 1.2;
+		RenderStyle "AddShaded";
+		Projectile;
+		Obituary "%o got melted down by industrial waste.";
+		DamageType "BarrelChemical";
+		DeathType "Acid";
+		AcidBarrel_AcidSpew.TimeToLife 175;
+		+NODAMAGETHRUST;
+		-NOGRAVITY;
+	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+		
+		TTL--;
+		
+		if (TTL <= 0)
+		{
+			Destroy();
+		}
+	
+	}
+	
+	States
+	{
+	
+		Spawn:
+			SMO2 A 0 NoDelay;
+			"####" A 0
+			{
+				SetShade("24ff3f");		
+			}
+			Goto Spawn2;
+	
+		Spawn2:
+			"####" A 2;
+			Loop;
+		
+		Death:
+			TNT1 A 0; 
+			TNT1 A 5 
+			{
+				A_Explode(SPLASHDAMAGE, DAMAGERADIUS, 0, 0, FULLDAMAGERADIUS);
+			
+				//Smoke
+				for (int i = 0; i < 2; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](3.5, 15.0)).unit()*FRandom[FX](0.8, 3.5);
+					Vector3 RPos = (frandom(-15, 15), frandom(-15, 15), frandom(0, 10));
+					let Particle = Spawn("RMD_Smoke", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.08, 0.08);
+					Particle.Alpha = 0.35;
+				}
+
+				//Acid
+				for (int i = 0; i < 3; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-0.5, 3.0)).unit()*FRandom[FX](0.6, 2.0);
+					Vector3 RPos = (frandom(-25, 25), frandom(-25, 25), frandom(0, 5));
+					let Particle = Spawn("RMD_Fire", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.45, 0.6);
+					Particle.Alpha = 0.75;
+					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
+					Particle.SetShade("24ff3f");
+				}
+			}
+			Loop;
+	}
+}
+

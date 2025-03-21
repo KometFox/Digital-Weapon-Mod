@@ -1,0 +1,37 @@
+#library "MAIN"
+#include "zcommon.acs"
+
+
+Script "rmod_SwitchMode" (VOID) NET
+{
+ GiveInventory("Switch_Mode", 1);
+}
+
+
+Script "rmod_Taunt" (VOID) NET
+{
+ GiveInventory("OneLiner", 1);
+}
+
+
+//Frezees the player
+//TODO: Use ZScript for this instead
+Script "RMD_FreezePlayer" (void)
+{
+	SetPlayerProperty(TRUE, TRUE, PROP_TOTALLYFROZEN);
+	SetPlayerProperty(TRUE, TRUE, PROP_FROZEN);
+}
+
+Script "RMD_UnfreezePlayer" (void)
+{
+	SetPlayerProperty(TRUE, FALSE, PROP_TOTALLYFROZEN);
+	SetPlayerProperty(TRUE, FALSE, PROP_FROZEN);
+}
+
+Script "RMD_MapOpen" OPEN
+{
+	//Make sure the player is unfrozen on next map.
+	SetPlayerProperty(TRUE, FALSE, PROP_TOTALLYFROZEN);
+	SetPlayerProperty(TRUE, FALSE, PROP_FROZEN);
+}
+

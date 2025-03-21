@@ -1,0 +1,22 @@
+//Red effects
+
+//Blue effects
+//BlueSpark = "80:111=[0, 74, 100]"
+
+//Green Effects
+
+
+//Plasma
+PlasmaBrightBlue = "0:255=#[0, 83, 99]"
+PlasmaBlue = "0:255=#[0, 17, 99]"
+
+//Explosions
+ExplosionYellow ="0:255=#[99, 55, 0]"
+
+ExplosionOrange = "0:255=#[255, 111, 40]"
+ExplosionCyan = "0:255=#[0, 116, 248]"
+
+//Special Effects
+Charred = "0:255=#[32, 32, 32]"
+Burning = "0:255=%[2.00,0.00,0.00]:[2.00,1.81,0.00]"
+PlasmaBurn = "0:255=%[0.00, 0.00, 2.00]:[0.00, 0.50, 2.00]"

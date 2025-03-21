@@ -1,0 +1,281 @@
+class RMD_EnergyDrink : BaseWeapon
+{
+	enum DRINKY
+	{
+		CLOSED = 0,
+		OPEN = 1,
+	}
+	
+	int OpenedUp;
+	int Drinked; 
+	int DrinkMax;
+
+	Default
+	{
+		Weapon.SlotNumber 1;
+		Weapon.SelectionOrder 0;
+		Weapon.AmmoUse 0;
+		Weapon.AmmoType "RMD_HealthAmmo";
+		Weapon.AmmoGive 0;
+		Inventory.PickupMessage "$GOTCHAINGUN";
+		Inventory.AltHudIcon "PIENGCAN";
+		Obituary "$OB_MPCHAINGUN";
+		Tag "Energy Drink";
+		
+		BaseWeapon.IronSight IRON_INACTIVE;
+		
+		BaseWeapon.MagazineMax 0;
+		BaseWeapon.Magazine 0;
+		
+	}
+
+	action bool CheckPAmmo()
+	{
+		if (Player.mo.CountInv(Invoker.AmmoType1) > 0)
+			return true;
+		
+		return false;
+	}
+	
+	Action state CondCheck1(statelabel JumpTo1, statelabel JumpTo2)
+	{
+		if (CheckPAmmo() && 
+			Invoker.Drinked < Invoker.DrinkMax && 
+			Invoker.OpenedUp == OPEN && 
+			CheckPlayerHealth())
+		{	
+			Return ResolveState(JumpTo1);				
+		}
+		else if (CheckPAmmo() && 
+				Invoker.OpenedUp == CLOSED) 
+		{
+			Return ResolveState(JumpTo2);
+		}		
+	
+		Return ResolveState("ReadyReal");	
+	}
+	
+	Action state DrinkLoopCheck()
+	{
+		if (Invoker.Drinked >= Invoker.DrinkMax)
+			Return ResolveState("HoldStop");					
+	
+		Return ResolveState("DrinkLoop");	
+	}
+
+	Action bool CheckPlayerHealth()
+	{
+		if (Player)
+		{
+			PlayerPawn CPlayer = Player.mo;
+		
+			if (CPlayer.Health < 100)
+				return true;
+		}
+			
+		return false;
+	}
+
+	action void DrinkUp()
+	{			
+		A_GiveInventory("RMD_EnergyDrink_DrinkUp", 1);
+		Invoker.Drinked += 1; 
+	}
+	
+	Action void SoundEffect()
+	{
+		A_StartSound("Items/Drink", CHAN_WEAPON);
+	}
+	
+	Action State CheckOpenFire()
+	{
+		if (Invoker.OpenedUp == OPEN)
+		{
+			return ResolveState("DrinkUp");
+		}	
+		
+		return ResolveState("ReadyReal");
+	}	
+	
+	Action State CheckOpen()
+	{
+		if (Invoker.OpenedUp == OPEN)
+		{
+			return ResolveState("ReadyOpen");
+		}
+		
+		return ResolveState("ReadyReal");
+	}
+
+	States
+	{
+
+	Ready:
+		CHGG A 0;
+		TNT1 A 0 
+		{
+			A_Jump(256, "Init");
+		
+		}
+	
+	Init:
+		TNT1 A 0 
+		{
+				TakeCounterItem();
+				RMD_BARINFO.Set_Mag(invoker.Magazine);
+				Invoker.DrinkMax = 25; 
+				Invoker.OpenedUp = CLOSED;
+				RMD_BARINFO.SetAmmoIcon("AMMOHP");
+				RMD_BARINFO.SetAmmo1("RMD_HealthAmmo");
+				
+		}
+		Goto ReadyReal;
+		
+	ReadyReal:
+		CHGG A 0;
+		TNT1 A 0 
+				{
+					A_StopSound(CHAN_WEAPON);
+					Invoker.Drinked = 0;
+				}
+		IDLE A 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB);
+		Loop;
+	
+	ReadyOpen:
+		TNT1 A 0 A_StopSound(CHAN_WEAPON);
+		OPEN Q 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB);
+		Loop;		
+
+	Deselect:
+		SELC FEDCBA 1 A_Lower;
+		SELC A 1 A_Lower;
+		TNT1 A 0 A_Lower(100);
+		Loop;
+		
+	Select:
+		TNT1 A 0 
+		{
+				//A_StartSound("Pistol/Select", CHAN_WEAPON +5);
+				A_TakeInventory("Reloading", 99);
+				RMD_BARINFO.Set_Mag(invoker.Magazine);
+				RMD_BARINFO.SetAmmoIcon("AMMOHP");
+				RMD_BARINFO.SetAmmo1("RMD_HealthAmmo");
+		}
+		SELC ABCDEF 1 A_Raise;
+		SELC F 1 A_Raise(100);
+        Goto ReadyReal;
+		
+	Fire:
+		TNT1 A 0 CondCheck1("DrinkUp", "OpenUp");
+		Goto ReadyReal;
+	
+
+	OpenUp:
+		OPEN ABCDEFGHI 2;
+		TNT1 A 0 
+		{
+			A_StartSound("Beer/Open");
+			Invoker.OpenedUp = OPEN;
+		}
+		OPEN JKLMNOPQ 2;
+		Goto ReadyOpen;
+	
+	DrinkUp:
+		TNT1 A 0 
+		{		
+			return CheckOpenFire() +1;
+		}	
+		DRNK ABCDEFG 2;
+		TNT1 A 0 A_StartSound("Beer/Drink", CHAN_WEAPON, CHANF_LOOP);
+		TNT1 A 0 A_TakeInventory(Invoker.AmmoType1, 1);
+		Goto DrinkLoop;
+	
+	DrinkLoopCheck:
+		TNT1 A 0 DrinkLoopCheck();
+		Goto HoldStop;
+	
+	DrinkLoop:
+		DRNK G 1 DrinkUp();
+		TNT1 A 0 A_ReFire("DrinkLoopCheck");
+		Goto DrinkLoopCheck;
+	HoldStop:
+		DRNK GFEDCBA 2;
+		TNT1 A 0 A_StopSound(CHAN_WEAPON);
+		TNT1 A 0 CheckOpen();
+		Goto ReadyReal;
+		
+	Throw:
+		THRW ABCD 2;
+		Goto Init;		
+	
+		
+	Reload:
+		TNT1 A 0 ReloadCheck();
+		Goto ReadyReal;
+	
+	
+	ReloadNow:
+		THRW ABCD 2;
+		TNT1 A 0
+		{
+			Actor ProjP1, ProjP2;
+			[ProjP1, ProjP2] = A_FireProjectile("EmptyEnergyCan1", 0, 0, -6, 8, BULLETFIRE);
+		
+			if (ProjP2)
+			{
+				ProjP2.Speed = 15;			
+			}
+		
+		}
+		SELC ABCDEF 2;
+		TNT1 A 0
+		{
+			A_TakeInventory("GoToReload", 1);
+			A_TakeInventory("NOAMMO");
+			ReloadGun(Invoker.AmmoType1, 0, 1, 1);
+			Invoker.OpenedUp = CLOSED;
+			RMD_BARINFO.Set_Mag(invoker.Magazine);			
+	
+			Return A_Jump(0, "ReadyReal");	
+		}
+		Goto ReadyReal;
+	}
+}
+
+class RMD_EnergyDrink_DrinkUp : PowerUp
+{
+	Default
+	{
+		-COUNTITEM
+		Inventory.Amount 0;
+		Inventory.MaxAmount 100;
+		Inventory.PickupMessage "";
+		Inventory.PickupSound "";
+		PowerUp.Duration 105;
+	}
+	
+	override void DoEffect()
+	{
+		if (!Owner)
+			return;
+	
+		if (Owner.Health <= 100)
+		{
+			int PrevHealth = Owner.Health;
+			
+			Owner.A_SetHealth(PrevHealth + 2);
+			Owner.Health = clamp(Owner.Health, 1, 100);
+		}
+		
+	}
+	
+		
+	States
+	{
+
+		Spawn:
+			IDLE A 0;
+			Stop;
+	}	
+}
+

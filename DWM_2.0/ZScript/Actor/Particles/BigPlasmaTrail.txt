@@ -1,0 +1,211 @@
+//------------------------------------------------------------------------------
+//Rocket Trail
+//------------------------------------------------------------------------------
+Class RMD_BigPlasma_Trail : RMD_BaseParticle
+{
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay;
+			TNT1 A 0 
+			{
+
+				if (true)
+				{
+					Vector3 PVel = (FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1)).unit()*FRandom[FX](0.05, 0.05);
+					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
+					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_BigPlasmaTrail_Fire", Pos + RPos));
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.25, 0.25);
+					Particle.ScaleGrowth = 1.01;
+					Particle.SetShade("00b9fd");
+				}
+				
+				for (int i = 0; i < 3; i++)
+				{
+					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](1.0, 2.5);
+					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
+					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_BigPlasmaSpark", Pos + RPos));
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.25, 0.25);
+					Particle.ScaleGrowth = 1.01;
+					Particle.SetShade("1d20ff");
+				}					
+				
+			}
+			Stop;
+	}
+
+
+}
+
+Class RMD_BigPlasmaTrail_Fire : RMD_ModelSparks
+{
+	Default
+	{
+		RenderStyle "AddShaded";
+		+Bright;
+		Gravity -0.2;
+		Alpha 0.45;
+	}
+	
+	Override void BeginPlay()
+	{
+		Super.BeginPlay();
+		
+		Roll = frandom(0, 360);	
+	}	
+	
+	Override void Tick()
+	{
+		Super.Tick();
+		
+		if (!isFrozen())
+		{
+			Roll += 0.5;	
+		}
+	}	
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			XBM9 RSTUV 1
+			{
+				A_SetScale(Scale.X * 0.92, Scale.Y * 0.92);
+				A_FadeOut(0.45 / 5);
+			}
+			Stop;	
+	}
+}
+
+Class RMD_BigPlasmaSpark : RMD_ModelSparks
+{
+	Default
+	{
+		+BRIGHT;
+		RenderStyle "AddShaded";
+		Alpha 1.0;
+		Scale 0.05;
+	}
+
+	override void BeginPlay()
+	{
+		float ScaleV = Frandom[FX](0.05, 0.08);
+	
+		Scale.X += ScaleV;
+		Scale.Y += ScaleV;
+		Speed = random(5, 10);
+		Gravity = 0;
+	}
+
+    States
+    {
+    Spawn:
+	   LEGY A 2 BRIGHT;
+       LEGY AAAAA 1 Bright A_FadeOut(0.2);
+       stop;
+    Death:
+       TNT1 A 0;
+       Stop;
+    }
+}
+
+
+Class RMD_BigPlasmaTrail_Flare : RMD_BaseParticle
+{
+
+	Default
+	{
+		RenderStyle "AddShaded";
+		Alpha 0.99;
+		+Bright;
+	}
+	
+	Override Void Tick()
+	{
+		Super.Tick();
+		
+		//Code taken from Lambda mod, thanks.
+		if (!isFrozen())
+		{
+		
+			if	(Target || (Target && Target.Health>0))
+			{
+				A_Warp(AAPTR_TARGET, flags:WARPF_INTERPOLATE);
+			}
+			
+			else
+			{
+				Destroy();
+			}
+		}
+	}
+	
+	States
+	{
+		Spawn:
+			LENS BB 1 NoDelay;
+			Loop;
+	}
+}
+
+
+
+Class RMD_BigPlasmaTrail_Smoke : RMD_BaseParticle
+{
+	Default
+	{
+		RenderStyle "AddShaded";
+		Alpha 0.8;
+		Gravity -0.5;
+		-NoGravity;
+	}
+	
+	Override void BeginPlay()
+	{
+		Super.BeginPlay();
+		
+		Roll = random(0, 360);	
+		Angle = random(0, 360);
+	}
+	
+	Override void Tick()
+	{
+		Super.Tick();
+		
+		if (!isFrozen())
+		{
+			A_SetScale(Scale.X * 0.97, Scale.Y * 0.97);
+		}
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay;
+			TNT1 A 0 A_Jump(256, "A", "B", "C", "D");
+			Goto Loopy;
+		A:
+			SMYA A 0;
+			Goto Loopy;
+		B:
+			SMYB A 0;
+			Goto Loopy;
+		C:
+			SMYC A 0;
+			Goto Loopy;
+		D:
+			SMYD A 0;
+			Goto Loopy;
+		Loopy:
+			"####" "#" 10
+			{
+				Roll += 3;
+			}			
+			Stop;
+	}
+}

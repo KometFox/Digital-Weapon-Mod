@@ -1,0 +1,15 @@
+material texture "Models/Decorations/AcidBarrel/AcidBarrel_Diffuse.png"
+{
+	normal "Models/Decorations/AcidBarrel/AcidBarrel_NormalGL.png"
+	metallic "Models/Decorations/AcidBarrel/AcidBarrel_Metallic.png"
+	roughness "Models/Decorations/AcidBarrel/AcidBarrel_Roughness.png"
+	ao "Models/Decorations/AcidBarrel/AcidBarrel_AO.png"
+}
+
+material texture "Models/Decorations/HEBarrel/HEBarrel_Diffuse.png"
+{
+	normal "Models/Decorations/HEBarrel/HEBarrel_NormalGL.png"
+	metallic "Models/Decorations/HEBarrel/HEBarrel_Metallic.png"
+	roughness "Models/Decorations/HEBarrel/HEBarrel_Roughness.png"
+	ao "Models/Decorations/HEBarrel/HEBarrel_AO.png"
+}

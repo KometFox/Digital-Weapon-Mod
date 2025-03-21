@@ -1,0 +1,36 @@
+//The UI elements...
+Class UIElement
+{
+	Vector2 rect_pos; //the position
+	int Row;  //The row
+	int Column;  //The column
+}
+
+//Interactable Element
+Class Entry : UIElement
+{
+	String Text; //The text to display
+	String Command; //The command to send
+	
+	String GetText()
+	{
+		return Text;
+	}
+	
+	String GetCommand()
+	{
+		return Command;
+	}
+}
+
+//Interactable Text Element
+Class TextEntry : Entry
+{
+
+}
+
+//Interactable Graphic Element
+Class GraphicEntry : Entry
+{
+	TextureID Graphic; //The graphic to display
+}

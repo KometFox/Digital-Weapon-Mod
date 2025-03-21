@@ -1,0 +1,89 @@
+Class RMD_Replacer : EventHandler
+{
+	RMD_CVARHandler CVARHandler;
+	
+	//Decorations
+	Enum DECORATIONS
+	{
+		REGULAR = 0,
+		MixItUp = 1,
+		Chemical = 2,
+		HE = 3,
+	}
+	
+	override void OnRegister()
+	{
+		CVARHandler = RMD_CVARHandler(StaticEventHandler.Find("RMD_CVARHandler"));
+
+		return;
+	}
+	
+	override void WorldLoaded(WorldEvent e)
+	{
+		CVARHandler = RMD_CVARHandler(StaticEventHandler.Find("RMD_CVARHandler"));
+
+		return;	
+	}
+
+
+	override void CheckReplacement(ReplaceEvent e)
+	{
+		//Some check, maybe place it somewhere else or remove it?
+		//e.isFinal = True; //Causes bug with Aracnocide mod. 
+		//Barrel
+		ReplaceBarrels(e);
+		
+		return;
+	}
+
+
+	void ReplaceBarrels(ReplaceEvent e)
+	{
+		//Barrel Replacement
+		int BarrelTypes = CVARHandler.RMDV_BarrelTypes;
+
+		if (e.Replacee == "ExplosiveBarrel")
+		{
+			if (BarrelTypes == REGULAR)
+			{
+				e.Replacement = "ExplosiveBarrel";
+			}
+			
+			else if (BarrelTypes == MIXITUP)
+			{
+				int Dice = Random(0, 1);
+				
+				Switch(Dice)
+				{
+					case 0:
+						e.Replacement = "AcidBarrel";
+						break;
+					
+					case 1:
+						e.Replacement = "HEBarrel";
+						break;
+				}
+			}
+			
+			else if (BarrelTypes == CHEMICAL)
+			{
+				e.Replacement = "AcidBarrel";
+			}
+			
+			else if (BarrelTypes == HE)
+			{
+				e.Replacement = "HEBarrel";
+			}
+		
+			else
+			{
+				e.Replacement = "ExplosiveBarrel";
+			}
+		
+		}
+		
+		return;
+	}
+
+
+}

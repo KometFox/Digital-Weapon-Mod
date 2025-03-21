@@ -1,0 +1,53 @@
+/////////Mutated Zombies
+$Random Cudgel/Growl {ZGROW1 ZGROW2}
+ZGROW1 ZGROW1
+ZGROW2 ZGROW2
+$Random Cudgel/Die {CUDDIE1}
+CUDDIE1 CUDDIE1
+
+/////////Generic Mutants
+Mutants/Hit ABALLB
+Mutants/LaserHit Laser2
+Mutants/PlasmaHit plasma
+
+Mutants/Spit LARFA
+Mutants/RangeAttack ABALLA
+Mutants/Attack MUTATT1
+Mutants/PlasmaAttack plasmaA
+
+$Random Mutants/Growl {MUTGRO1 MUTGRO2 MUTGRO3}
+MUTGRO1 MUTGRO1
+MUTGRO2 MUTGRO2
+MUTGRO3 MUTGRO3
+
+$Random Mutants/Pain {MUTPAI1 MUTPAI2}
+MUTPAI1 MUTPAI1
+MUTPAI2 MUTPAI2
+
+$Random Mutants/Die {MUTDIE1 MUTDIE2 MUTDIE3 MUTDIE4 MUTDIE5}
+MUTDIE1 MUTDIE1
+MUTDIE2 MUTDIE2
+MUTDIE3 MUTDIE3
+MUTDIE4 MUTDIE4
+MUTDIE5 MUTDIE5
+
+/////////Enemy Weapons
+CarbineGuy/Firing  HCSHOT
+CarbineGuy/Stabbing  HCSTAB
+
+/////////Generic Alien
+Alien/Growl reticul1
+Alien/Die reticul2
+
+//////////Generic Wisp
+Wisp/Idle WISIDLE
+$Random Wisp/Pain {WISPAI1 WISPAI2 WISPAI3}
+WISPAI1 WISPAI1
+WISPAI2 WISPAI2
+WISPAI3 WISPAI3
+
+/////////Psi Influence
+$Random Psi/Laughter {PSILau1 PSILau2 PSILau3}
+PSILau1 PSILau1
+PSILau2 PSILau2
+PSILau3 PSILau3

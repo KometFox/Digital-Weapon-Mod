@@ -1,0 +1,69 @@
+Class RMD_Kills : EventHandler
+{
+	
+	name GetDamageType(WorldEvent Event)
+	{
+		if (!Event)
+			return "None";
+			
+		name DamageType;
+			
+		if (Event.DamageType)
+		{
+			DamageType = Event.DamageType;
+		}
+		else if (Event.Inflictor)
+		{
+			DamageType = Event.Inflictor.DamageType != "None" ?  
+			Event.Inflictor.DamageType : Event.Inflictor.DeathType;
+		}
+		else if (Event.DamageSource)
+		{
+			DamageType = Event.DamageSource.DamageType != "None" ?  
+			Event.DamageSource.DamageType : Event.DamageSource.DeathType;
+		}
+
+		return DamageType; 
+	}
+
+	void SpawnDeathEffect(Actor Pawn, String Particle)
+	{
+		Actor CEffect = Pawn.Spawn("RMD_CorpseEffect", Pawn.Pos);
+			
+		if (CEffect)
+		{
+			RMD_CorpseEffect PEffect = RMD_CorpseEffect(CEffect);
+			PEffect.ParticleEffect = Particle;
+		}	
+	}
+
+
+	override void WorldThingDied(WorldEvent e)
+	{
+		if (!e.Thing)
+			return;
+		
+		name DamageType = GetDamageType(e);
+		
+		if (DamageType == 'Fire' ||
+			DamageType == 'Plasma')
+		{
+			if (!e.Thing.ResolveState('Fire') ||
+			!e.Thing.ResolveState('FireDeath') ||
+			!e.Thing.ResolveState("DeathFire"))
+			{
+				e.Thing.A_SetTranslation("Charred");
+			}
+		}
+		
+		if (DamageType == 'Plasma')
+			SpawnDeathEffect(e.Thing, "RMD_PlasmaDeath");
+		
+		if (DamageType == 'Fire')
+			SpawnDeathEffect(e.Thing, "RMD_FireDeath");
+			
+	}
+	
+
+}
+

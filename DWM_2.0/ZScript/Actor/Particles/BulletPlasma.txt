@@ -1,0 +1,76 @@
+Class RMD_BulletPlasmaImpact : Actor
+{
+
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 
+			{
+
+				//Explosion
+				for (int i = 0; i < 6; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](0.5, 1.75);
+					Vector3 RPos = (frandom(-1, 1), frandom(-1, 1), frandom(-1, 1));
+					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_Fire", Pos + RPos));
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.3, 0.3);
+					Particle.ScaleGrowth = 1.025;
+					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
+					Particle.SetShade("00afff");
+				}
+				
+				let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
+				int CVAR_LowQuality = CVARS.RMDV_ParticleLowQuality;;
+		
+				if (CVAR_LowQuality == 1)
+				{
+					Return;
+				}
+				
+				//Smoke
+				for (int i = 0; i < 3; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](1.0, 3.0);
+					Vector3 RPos = (frandom(-10, 10), frandom(-10, 10), frandom(-10, 10));
+					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_Smoke", Pos + RPos));
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.2, 0.2);
+					Particle.ScaleGrowth = 1.02;
+					Particle.TTL = 20;
+					Particle.A_SetRenderStyle(1.0, STYLE_Shaded);
+					Particle.SetShade("121212");
+				}
+					
+				//Spark
+				for (int i = 0; i < 5; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](8.0, 15.0);
+					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 8));
+					let Particle = Spawn("RMD_Sparks", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.08, 0.08);
+					Particle.SetShade("46b5ff");
+				}
+				
+				//Flare
+				for (int i = 0; i < 1; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25)).unit()*FRandom[FX](0.01, 0.01);
+					Vector3 RPos = (frandom(-8, 8), frandom(-8, 8), frandom(-4, 4));
+					let Particle = Spawn("RMD_Flare", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.3, 0.3);
+					Particle.SetShade("0054ff");
+				}
+			}
+			Stop;
+			
+	}
+}
+

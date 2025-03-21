@@ -1,0 +1,193 @@
+Model RifleCase
+{
+	Path "Models\Particles\Cases"
+	Model 0 "RifleCase.md3"
+	Skin 0 "Cart_Rifle.png"
+
+	Scale 4 4 4
+	USEACTORPITCH
+	USEACTORROLL
+
+	//Rotating
+	FrameIndex 556C A 0 0
+	FrameIndex 556C B 0 1
+	FrameIndex 556C C 0 2
+	FrameIndex 556C D 0 3
+	FrameIndex 556C E 0 4
+	FrameIndex 556C F 0 5
+	FrameIndex 556C G 0 6
+	FrameIndex 556C H 0 7
+	//Idle
+	FrameIndex 556C I 0 8
+	AngleOffset 180 //For some reason the model part doesn't work
+	FrameIndex 556C J 0 9
+}
+
+Model PistolCase
+{
+	Path "Models\Particles\Cases"
+	Model 0 "PistolCase.md3"
+	Skin 0 "Cart_Pistol.png"
+
+	Scale 4 4 4
+	USEACTORPITCH
+	USEACTORROLL
+
+	//Rotating
+	FrameIndex CAS1 A 0 0
+	FrameIndex CAS1 B 0 1
+	FrameIndex CAS1 C 0 2
+	FrameIndex CAS1 D 0 3
+	FrameIndex CAS1 E 0 4
+	FrameIndex CAS1 F 0 5
+	FrameIndex CAS1 G 0 6
+	FrameIndex CAS1 H 0 7
+	//Idle
+	FrameIndex CAS1 I 0 8
+	AngleOffset 180 //For some reason the model part doesn't work
+	FrameIndex CAS1 J 0 9
+}
+
+Model ShellCase
+{
+	Path "Models\Particles\Cases"
+	Model 0 "ShellCase.md3"
+	Skin 0 "Cart_Shotgun.png"
+
+	Scale 4 4 4
+	USEACTORPITCH
+	USEACTORROLL
+
+	//Rotating
+	FrameIndex 12CS A 0 0
+	FrameIndex 12CS B 0 1
+	FrameIndex 12CS C 0 2
+	FrameIndex 12CS D 0 3
+	FrameIndex 12CS E 0 4
+	FrameIndex 12CS F 0 5
+	FrameIndex 12CS G 0 6
+	FrameIndex 12CS H 0 7
+	//Idle
+	FrameIndex 12CS I 0 8
+	AngleOffset 180 //For some reason the model part doesn't work
+	FrameIndex 12CS J 0 9
+}
+
+Model EmptyMag
+{
+	Path "Models\Particles\Cases"
+	Model 0 "MagCase.md3"
+	Skin 0 "RifleMag.png"
+
+	Scale 4 4 4
+	USEACTORPITCH
+	USEACTORROLL
+
+	//Rotating
+	FrameIndex EMAG A 0 0
+	FrameIndex EMAG B 0 1
+	FrameIndex EMAG C 0 2
+	FrameIndex EMAG D 0 3
+	FrameIndex EMAG E 0 4
+	FrameIndex EMAG F 0 5
+	FrameIndex EMAG G 0 6
+	FrameIndex EMAG H 0 7
+	//Idle
+	FrameIndex EMAG I 0 8
+	AngleOffset 180 //For some reason the model part doesn't work
+	FrameIndex EMAG J 0 9
+}
+
+Model PistolMag
+{
+	Path "Models\Particles\Cases"
+	Model 0 "PistolMag.md3"
+	Skin 0 "PistolMag.png"
+
+	Scale 5 5 5
+	USEACTORPITCH
+	USEACTORROLL
+
+	//Rotating
+	FrameIndex EMAG A 0 0
+}
+
+Model SMGMag
+{
+	Path "Models\Particles\Cases"
+	Model 0 "PistolMag.md3"
+	Skin 0 "PistolMag.png"
+
+	Scale 6 4 4
+	USEACTORPITCH
+	USEACTORROLL
+
+	//Rotating
+	FrameIndex EMAG A 0 0
+}
+
+
+Model MGMag
+{
+	Path "Models\Particles\Cases"
+	Model 0 "MGMag.md3"
+	Skin 0 "MGAmmoBox.png"
+
+	Scale 4 4 4
+	USEACTORPITCH
+	USEACTORROLL
+
+	//Rotating
+	FrameIndex EMAG A 0 0
+}
+
+Model GrenadeCase
+{
+	Path "Models\Particles\Cases"
+	Model 0 "40mmCase.md3"
+	Skin 0 "Cart_40mm.png"
+
+	Scale 2 2 2
+	USEACTORPITCH
+	USEACTORROLL
+
+	//Rotating
+	FrameIndex 40MM A 0 0
+	FrameIndex 40MM B 0 1
+	FrameIndex 40MM C 0 2
+	FrameIndex 40MM D 0 3
+	FrameIndex 40MM E 0 4
+	FrameIndex 40MM F 0 5
+	FrameIndex 40MM G 0 6
+	FrameIndex 40MM H 0 7
+	//Idle
+	FrameIndex 40MM I 0 8
+	AngleOffset 180 //For some reason the model part doesn't work
+	FrameIndex 40MM J 0 9
+}
+
+
+Model RocketCase
+{
+	Path "Models\Particles\Cases"
+	Model 0 "40mmCase.md3"
+	Skin 0 "Cart_40mm.png"
+
+	Scale 2.5 3.5 2.5
+	USEACTORPITCH
+	USEACTORROLL
+
+	//Rotating
+	FrameIndex 40MM A 0 0
+	FrameIndex 40MM B 0 1
+	FrameIndex 40MM C 0 2
+	FrameIndex 40MM D 0 3
+	FrameIndex 40MM E 0 4
+	FrameIndex 40MM F 0 5
+	FrameIndex 40MM G 0 6
+	FrameIndex 40MM H 0 7
+	//Idle
+	FrameIndex 40MM I 0 8
+	AngleOffset 180 //For some reason the model part doesn't work
+	FrameIndex 40MM J 0 9
+}

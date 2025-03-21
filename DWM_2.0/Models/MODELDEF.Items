@@ -1,0 +1,171 @@
+//------------------------------------------------------------------------------
+//Health Items
+//------------------------------------------------------------------------------
+Model RMD_Baltika3
+{
+	Path "Models\Items\HealthBonus"
+	Model 0 "Baltika3.md3"
+	SurfaceSkin 0 0 "Baltika3.png"
+	Scale 5 5 5
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model RMD_Milk
+{
+	Path "Models\Items\HealthBonus"
+	Model 0 "Milk.md3"
+	SurfaceSkin 0 0 "Milk.png"
+	Scale 0.35 0.35 0.35
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model RMD_Beef
+{
+	Path "Models\Items\HealthBonus"
+	Model 0 "Beef.obj"
+	SurfaceSkin 0 0 "Beef.png"
+	Scale 15 15 15
+	
+	FrameIndex IDLE A 0 0
+}
+
+
+Model RMD_Fishmeat
+{
+	Path "Models\Items\HealthBonus"
+	Model 0 "Fishmeat.obj"
+	SurfaceSkin 0 0 "Fishmeat.png"
+	Scale 15 15 15
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model RMD_MiniHealthVial
+{
+	Path "Models\Items\MiniHealthVial"
+	Model 0 "MiniHealthVial.obj"
+	SurfaceSkin 0 0 "MiniHealthVial.png"
+	Scale 25 25 25
+	
+	FrameIndex IDLE A 0 0
+}
+
+
+
+Model RMD_Healthkeg
+{
+	Path "Models\Items\HealthKeg"
+	Model 0 "HealthKeg.md3"
+	SurfaceSkin 0 0 "HealthKeg.png"
+	Scale 1 1 1
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model RMD_StimEnergy
+{
+	Path "Models\Items\Stimpack"
+	Model 0 "StimEnergy.md3"
+	Path "Models\Weapons\Other"
+	SurfaceSkin 0 0 "Energy.png"
+	Scale 3 3 3
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model RMD_MediKitEnergy
+{
+	Path "Models\Items\Medkit"
+	Model 0 "MedikitEnergy.md3"
+	Path "Models\Weapons\Other"
+	SurfaceSkin 0 0 "Energy.png"
+	Scale 3 3 3
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model RMD_Stimpack
+{
+	Path "Models\Items\HealthVial"
+	Model 0 "HealthVial.obj"
+	SurfaceSkin 0 0 "HealthVial.png"
+	Scale 10 10 10
+	
+	FrameIndex IDLE A 0 0
+	FrameIndex IDLE B 0 1
+}
+
+Model RMD_Medikit
+{
+	Path "Models\Items\Medkit"
+	Model 0 "Medkit.md3"
+	SurfaceSkin 0 0 "Medkit.png"
+	Scale 0.5 0.5 0.5
+	
+	FrameIndex IDLE A 0 0
+	FrameIndex IDLE B 0 1
+}
+//------------------------------------------------------------------------------
+//Armor Items
+//------------------------------------------------------------------------------
+Model ArmorShard
+{
+	Path "Models\Items\Armor"
+	Model 0 "ArmorBonus.md3"
+	SurfaceSkin 0 0 "ArmorBonus.png"
+	Scale 4.5 4.5 4.5
+	
+	FrameIndex IDLE A 0 0
+}
+
+//Borrowed from Lambda till I figured I made my own one. 
+Model RMD_GreenArmor
+{
+	Path "Models\Items\Armor"
+	Model 0 "Armor.md3"
+	SurfaceSkin 0 0 "Chrome.png"
+	SurfaceSkin 0 1 "GreenArmor.png"
+	Scale 1.5 1.5 1.5
+	
+	FrameIndex IDLE A 0 0	
+	FrameIndex ARM1 A 0 0
+	FrameIndex ARM1 B 0 0
+}
+
+Model RMD_BlueArmor
+{
+	Path "Models\Items\Armor"
+	Model 0 "Armor.md3"
+	SurfaceSkin 0 0 "Chrome.png"
+	SurfaceSkin 0 1 "BlueArmor.png"
+	Scale 1.5 1.5 1.5
+	
+	FrameIndex IDLE A 0 0
+	FrameIndex ARM1 A 0 0
+	FrameIndex ARM1 B 0 0
+}
+//------------------------------------------------------------------------------
+//Power Up
+//------------------------------------------------------------------------------
+Model RMD_NBCSuit
+{
+	Path "MOdels/Items/RadSuit"
+	Model 0 "w_rad.md3"
+	SurfaceSkin 0 0 "w_rad.png"
+	Scale 0.9 0.9 0.9
+	
+	FrameIndex IDLE A 0 0
+	FrameIndex ARM2 A 0 0
+}
+
+Model RMD_SuperKeg
+{
+	Path "Models\Items\HealthKeg"
+	Model 0 "HealthKeg.md3"
+	SurfaceSkin 0 0 "SuperKeg.png"
+	Scale 1 1 1
+	
+	FrameIndex IDLE A 0 0
+}

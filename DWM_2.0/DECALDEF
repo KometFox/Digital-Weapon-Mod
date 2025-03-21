@@ -1,0 +1,206 @@
+
+Decal DBLOOD1
+{
+Pic DBLOOD1
+Shade "BloodDefault"
+X-Scale 0.5
+Y-Scale 0.5
+randomflipx
+randomflipy
+}
+
+Decal DBLOOD2
+{
+Pic DBLOOD2
+Shade "BloodDefault"
+X-Scale 0.5
+Y-Scale 0.5
+randomflipx
+randomflipy
+}
+
+Decal DBLOOD3
+{
+Pic DBLOOD3
+Shade "BloodDefault"
+X-Scale 0.5
+Y-Scale 0.5
+randomflipx
+randomflipy
+}
+
+Decal DBLOOD4
+{
+Pic DBLOOD4
+Shade "BloodDefault"
+X-Scale 0.5
+Y-Scale 0.5
+randomflipx
+randomflipy
+}
+
+Decal DBLOOD5
+{
+Pic DBLOOD5
+Shade "BloodDefault"
+X-Scale 0.5
+Y-Scale 0.5
+randomflipx
+randomflipy
+}
+
+Decal DBLOOD6
+{
+Pic DBLOOD6
+Shade "BloodDefault"
+X-Scale 0.5
+Y-Scale 0.5
+randomflipx
+randomflipy
+}
+
+Decal DBLOOD7
+{
+Pic DBLOOD7
+Shade "BloodDefault"
+X-Scale 0.5
+Y-Scale 0.5
+randomflipx
+randomflipy
+}
+
+Decal DBLOOD8
+{
+Pic DBLOOD8
+Shade "BloodDefault"
+X-Scale 0.5
+Y-Scale 0.5
+randomflipx
+randomflipy
+}
+
+Decal DBLOOD9
+{
+Pic DBLOOD9
+Shade "BloodDefault"
+X-Scale 0.5
+Y-Scale 0.5
+randomflipx
+randomflipy
+}
+
+decalgroup BloodSplat
+{
+	DBLOOD1	1
+	DBLOOD2	1
+	DBLOOD3	1
+	DBLOOD4	1
+	DBLOOD5	1
+	DBLOOD6	1
+	DBLOOD7	1
+	DBLOOD8	1
+	DBLOOD9	1
+}
+
+Decal RBLOOD1
+{
+Pic DBLOOD1
+Shade "56 00 00"
+X-Scale 0.5
+Y-Scale 0.5
+randomflipx
+randomflipy
+}
+
+Decal RBLOOD2
+{
+Pic DBLOOD2
+Shade "56 00 00"
+X-Scale 0.5
+Y-Scale 0.5
+randomflipx
+randomflipy
+}
+
+Decal RBLOOD3
+{
+Pic DBLOOD3
+Shade "56 00 00"
+X-Scale 0.5
+Y-Scale 0.5
+randomflipx
+randomflipy
+}
+
+Decal RBLOOD4
+{
+Pic DBLOOD4
+Shade "56 00 00"
+X-Scale 0.5
+Y-Scale 0.5
+randomflipx
+randomflipy
+}
+
+Decal RBLOOD5
+{
+Pic DBLOOD5
+Shade "56 00 00"
+X-Scale 0.5
+Y-Scale 0.5
+randomflipx
+randomflipy
+}
+
+Decal RBLOOD6
+{
+Pic DBLOOD6
+Shade "56 00 00"
+X-Scale 0.5
+Y-Scale 0.5
+randomflipx
+randomflipy
+}
+
+Decal RBLOOD7
+{
+Pic DBLOOD7
+Shade "56 00 00"
+X-Scale 0.5
+Y-Scale 0.5
+randomflipx
+randomflipy
+}
+
+Decal RBLOOD8
+{
+Pic DBLOOD8
+Shade "56 00 00"
+X-Scale 0.5
+Y-Scale 0.5
+randomflipx
+randomflipy
+}
+
+Decal RBLOOD9
+{
+Pic DBLOOD9
+Shade "56 00 00"
+X-Scale 0.5
+Y-Scale 0.5
+randomflipx
+randomflipy
+}
+
+decalgroup BloodSplatRed
+{
+	RBLOOD1	1
+	RBLOOD2	1
+	RBLOOD3	1
+	RBLOOD4	1
+	RBLOOD5	1
+	RBLOOD6	1
+	RBLOOD7	1
+	RBLOOD8	1
+	RBLOOD9	1
+}

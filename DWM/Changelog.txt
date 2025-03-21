@@ -7,6 +7,10 @@
 -Added SA 85-m
 -Added TOZ-34
 -Added Molotov Cocktail
+-Player starts out with a few health vials and medikits
+-Health items on maps are replaced with money
+-Code clean up
+-Bumped minimum GZDoom version to 4.12.0
 
 ================================================================================
 ***Version 1.1***

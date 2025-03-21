@@ -1,0 +1,23 @@
+pointlight MuzzleFlash1
+{
+    color 1 0.6 0.3
+    size 45
+}
+
+pointlight MuzzleFlash2
+{
+    color 1 0.6 0.3
+    size 30
+}
+
+pointlight MuzzleFlash3
+{
+    color 1 0.6 0.3
+    size 25
+}
+
+pointlight MuzzleFlash4
+{
+    color 1 0.6 0.3
+    size 20
+}

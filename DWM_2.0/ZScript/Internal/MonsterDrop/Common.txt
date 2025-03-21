@@ -1,0 +1,144 @@
+//------------------------------------------------------------------------------
+//Commonly used functionalities. 
+//------------------------------------------------------------------------------
+
+//Class for containing drop types
+Class LB_DropContainer 
+{
+	Class<Actor> Item; //The Item to drop
+	int Amount; //How much it should drop
+	int Rarity;  //How rare it is
+}
+
+//Class for Items with score values and probability chance
+Class LB_ItemDrop
+{ 
+	Class<Actor> Item; //The Item
+	int Amount; //How much it should spawn
+	int ScoreCost; //How much Score it cost 
+	float Weight; //Float Value 0.0 <-> 1.0	
+}
+
+//Class for Items with weights chance to it.
+Class LB_WeightedItems
+{
+	Class<Actor> Item; //The Item
+	int Amount; //How much it should spawn
+	float RollWeight; //How much weight it has
+	float AccWeight; //Accumulated Weight
+	bool Picked; //Internal value
+}
+
+Class LB_ChanceItems
+{
+	Class<Actor> Item; //The Item
+	int Amount; //How much it should spawn
+	float Chance; //Chance of Appearing
+	bool Picked; //Internal value
+}
+
+
+//Generic Functions
+class LB_GenericFunc 
+{
+	static bool ProbabilityFloat(Float Chance)
+	{
+		Chance = Clamp(Chance, 0, 1.0);
+		float Coin_ = frandom(0, 1.0);
+		float Calculation = 1.0 - Chance;
+
+		//Console.PrintF("Chance: %d Max: %d", Chance, Max);
+		//The 0 is a special case.
+		if (Chance == 0)
+		{
+			return false;
+		}
+			
+		if (Coin_ >= Calculation)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	static bool PerctChance(Float Chance)
+	{
+		float Coin_ = frandom[CX](0, 100);
+
+		if (Coin_ < Chance)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+		return false;
+	}	
+
+	static bool ProbabilityInt(int Chance)
+	{
+		Chance = Clamp(Chance, 0, 100);
+		int Coin_ = random(0, 100);
+		int Calculation = 100 - Chance;
+
+		//Console.PrintF("Chance: %d Max: %d", Chance, Max);
+		//The 0 is a special case.
+		if (Chance == 0)
+		{
+			return false;
+		}
+			
+		if (Coin_ >= Calculation)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+	}
+
+}
+
+class LB_WeightedRoll 
+{
+	float TotalWeight;	
+	
+	//ZScript doesn't support dictionary, so a array needs to be used instead. 
+	void InitProbability(array<LB_WeightedItems> Items)
+	{
+		TotalWeight = 0.0;
+		int ArraySize = Items.Size(); //Size of the array
+		
+		for (int I = 0; I < ArraySize; I++)
+		{
+			TotalWeight += Items[I].RollWeight;
+			Items[I].AccWeight = TotalWeight; 
+		}
+	}
+	
+	int PickSomeObject(array<LB_WeightedItems> Items)
+	{
+		float Roll = frandom(0.0, TotalWeight);
+		int ArraySize = Items.Size();
+		
+		for (int I = 0; I < ArraySize; I++)
+		{
+			if (Items[I].AccWeight > Roll)
+			{
+				return I;			
+			}
+		}	
+		
+		return 0;
+	}
+
+
+
+}

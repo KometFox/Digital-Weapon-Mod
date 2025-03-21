@@ -1,0 +1,105 @@
+//------------------------------------------------------------------------------
+//Hands
+//------------------------------------------------------------------------------
+material texture "Models/Textures/CSArms/CSHand.png"
+{
+	normal "Models/Textures/CSArms/CSHand_NormalGL.png"
+	metallic "Models/Textures/CSArms/CSHand_Metallic.png"
+	roughness "Models/Textures/CSArms/CSHand_Roughness.png"
+	ao "Models/Textures/CSArms/CSHand_AO.png"
+}
+
+//------------------------------------------------------------------------------
+//Pistols
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+//Submachine Guns
+//------------------------------------------------------------------------------
+material texture "Models/Weapons/SMG/MP5/MP5A4_Diffuse.png"
+{
+	normal "Models/Weapons/SMG/MP5/MP5A4_NormalGL.png"
+	metallic "Models/Weapons/SMG/MP5/MP5A4_Metallic.png"
+	roughness "Models/Weapons/SMG/MP5/MP5A4_Roughness.png"
+	ao "Models/Weapons/SMG/MP5/MP5A4_AO.png"
+}
+
+
+//------------------------------------------------------------------------------
+//Assault Rifle
+//------------------------------------------------------------------------------
+material texture "Models/Weapons/AR/MadsenLAR/MadsenLAR_Diffuse.png"
+{
+	normal "Models/Weapons/AR/MadsenLAR/MadsenLAR_NormalGL.png"
+	metallic "Models/Weapons/AR/MadsenLAR/MadsenLAR_Metallic.png"
+	roughness "Models/Weapons/AR/MadsenLAR/MadsenLAR_Roughness.png"
+	ao "Models/Weapons/AR/MadsenLAR/MadsenLAR_AO.png"
+}
+
+material texture "Models/Weapons/AR/AR70/AR70_Diffuse.png"
+{
+	normal "Models/Weapons/AR/AR70/AR70_NormalGL.png"
+	metallic "Models/Weapons/AR/AR70/AR70_Metallic.png"
+	roughness "Models/Weapons/AR/AR70/AR70_Roughness.png"
+	ao "Models/Weapons/AR/AR70/AR70_AO.png"
+}
+
+material texture "Models/Weapons/MG/M249SAW/M249SAW_Diffuse.png"
+{
+	normal "Models/Weapons/MG/M249SAW/M249SAW_NormalGL.png"
+	metallic "Models/Weapons/MG/M249SAW/M249SAW_Metallic.png"
+	roughness "Models/Weapons/MG/M249SAW/M249SAW_Roughness.png"
+	ao "Models/Weapons/MG/M249SAW/M249SAW_AO.png"
+}
+
+
+//------------------------------------------------------------------------------
+//Shotgun
+//------------------------------------------------------------------------------
+material texture "Models/Weapons/Shotgun/MolotVPO208/MolotVPO208_Diffuse.png"
+{
+	normal "Models/Weapons/Shotgun/MolotVPO208/MolotVPO208_NormalGL.png"
+	metallic "Models/Weapons/Shotgun/MolotVPO208/MolotVPO208_Metallic.png"
+	roughness "Models/Weapons/Shotgun/MolotVPO208/MolotVPO208_Roughness.png"
+	ao "Models/Weapons/Shotgun/MolotVPO208/MolotVPO208_AO.png"
+}
+
+material texture "Models/Weapons/Shotgun/MolotVPO208/MolotBullet_Diffuse.png"
+{
+	normal "Models/Weapons/Shotgun/MolotVPO208/MolotBullet_NormalGL.png"
+	metallic "Models/Weapons/Shotgun/MolotVPO208/MolotBullet_Metallic.png"
+	roughness "Models/Weapons/Shotgun/MolotVPO208/MolotBullet_Roughness.png"
+	ao "Models/Weapons/Shotgun/MolotVPO208/MolotBullet_AO.png"
+}
+
+
+//------------------------------------------------------------------------------
+//Launchers
+//------------------------------------------------------------------------------
+material texture "Models/Weapons/SMRL/LocustRL_Diffuse.png"
+{
+	normal "Models/Weapons/SMRL/LocustRL_NormalGL.png"
+	metallic "Models/Weapons/SMRL/LocustRL_Metallic.png"
+	roughness "Models/Weapons/SMRL/LocustRL_Roughness.png"
+	ao "Models/Weapons/SMRL/LocustRL_AO.png"
+}
+
+//------------------------------------------------------------------------------
+//Energy Weapons
+//------------------------------------------------------------------------------
+material texture "Models/Weapons/Energy/E20PC/E20PC_Diffuse.png"
+{
+	normal "Models/Weapons/Energy/E20PC/E20PC_NormalGL.png"
+	metallic "Models/Weapons/Energy/E20PC/E20PC_Metallic.png"
+	roughness "Models/Weapons/Energy/E20PC/E20PC_Roughness.png"
+	ao "Models/Weapons/Energy/E20PC/E20PC_AO.png"
+}
+
+
+material texture "Models/Weapons/Energy/FT12/FT12_Diffuse.png"
+{
+	normal "Models/Weapons/Energy/FT12/FT12_NormalGL.png"
+	metallic "Models/Weapons/Energy/FT12/FT12_Metallic.png"
+	roughness "Models/Weapons/Energy/FT12/FT12_Roughness.png"
+	ao "Models/Weapons/Energy/FT12/FT12_AO.png"
+}

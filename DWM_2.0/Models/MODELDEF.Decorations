@@ -1,0 +1,36 @@
+Model RMD_ExplosiveBarrel
+{
+	Path "Models\Decorations\ExplosiveBarrel"
+	Model 0 "ExplosiveBarrel.md3"
+	Skin 0 "ExplosiveBarrel.png"
+
+	Scale 6.5 6.5 6.5
+
+	FrameIndex IDLE A 0 0
+}
+
+Model AcidBarrel
+{
+	Path "Models\Decorations"
+	Model 0 "NewBarrel.md3"
+	Path "Models\Decorations\AcidBarrel"
+	Skin 0 "AcidBarrel_Diffuse.png"
+
+	Scale 22.5 22.5 22.5
+	
+	FrameIndex IDLE A 0 0
+}
+
+Model HEBarrel
+{
+	Path "Models\Decorations"
+	Model 0 "NewBarrel.md3"
+	Path "Models\Decorations\HEBarrel"
+	Skin 0 "HEBarrel_Diffuse.png"
+
+	Scale 22.5 22.5 22.5
+	
+	FrameIndex IDLE A 0 0
+}
+
+

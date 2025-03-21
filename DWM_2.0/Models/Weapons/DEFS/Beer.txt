@@ -1,0 +1,52 @@
+Model RMD_BeerDrink
+{
+	Path "Models\Textures\CSArms"
+	SurfaceSkin 0 0 "CSHand.png"
+	Path "Models\Weapons\Other"
+	Model 0 "Beer.md3"
+	SurfaceSkin 0 1 "Zubr.png"
+
+	//IDLE
+	FrameIndex IDLE A 0 0
+	//SELECT
+	FrameIndex SELC A 0 1
+	FrameIndex SELC B 0 2
+	FrameIndex SELC C 0 3
+	FrameIndex SELC D 0 4
+	FrameIndex SELC E 0 5
+	//Open
+	FrameIndex OPEN A 0 6
+	FrameIndex OPEN B 0 7
+	FrameIndex OPEN C 0 8
+	FrameIndex OPEN D 0 9
+	FrameIndex OPEN E 0 10
+	FrameIndex OPEN F 0 11
+	FrameIndex OPEN G 0 12
+	FrameIndex OPEN H 0 13
+	FrameIndex OPEN I 0 14
+	FrameIndex OPEN J 0 15
+	FrameIndex OPEN K 0 16
+	FrameIndex OPEN L 0 17
+	FrameIndex OPEN M 0 18
+	FrameIndex OPEN N 0 19
+	FrameIndex OPEN O 0 20
+	FrameIndex OPEN P 0 21
+	FrameIndex OPEN Q 0 22
+	FrameIndex OPEN R 0 23
+	FrameIndex OPEN S 0 24
+	//Drink
+	FrameIndex DRNK A 0 25
+	FrameIndex DRNK B 0 26
+	FrameIndex DRNK C 0 27
+	FrameIndex DRNK D 0 28
+	FrameIndex DRNK E 0 29
+	FrameIndex DRNK F 0 30
+	FrameIndex DRNK G 0 31
+	//Throw
+	FrameIndex THRW A 0 32
+	FrameIndex THRW B 0 33
+	FrameIndex THRW C 0 34
+	
+	
+	
+}

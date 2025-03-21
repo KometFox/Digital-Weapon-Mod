@@ -1,0 +1,71 @@
+====Changelog====
+
+================================================================================
+***Version 2.0***
+================================================================================
+-Added Chaingun
+-Added SA 85-m
+-Added TOZ-34
+-Added Molotov Cocktail
+-Disabled Monster loot drops
+-Set the money cap to 2000000 from 
+-Player starts out with a few health vials and medikits
+-Health items on maps are replaced with money
+-Code clean up
+-Bumped minimum GZDoom version to 4.12.0
+
+================================================================================
+***Version 1.1***
+================================================================================
+-M25 does 15 damage instead of 17
+-M25 Grenade does 200 splash damage instead of 230
+-Raptor AR-70 does 15 damage instead of 7
+-Madsen LAR does 20 damage instead of 18
+-Madsen Grenade does 400 splash damage instead of 380 splash damage 
+-Dragonfly Flamethrower does 7 splash damage and 85 splash radius instead of 18 splash damage and 64 splash radius
+-Kestrel Grenade Launcher does 250 splash damage and 200 splash radius instead of 160 splash damage and 90 splash radius
+-Pirate Bomb does 200 splash damage and 225 splash radius instead of 250 splash damage and 100 splash radius
+-M249 SAW does 18 damage instead of 8 damage
+-M249 SAW ammo capacity is reduced from 200 to 100 
+-M249 SAW fires faster
+-Enforcer does 17 damage instead of 50 damage
+-Locust Rocket Launcher does 280 splash damage and 180 splash radius instead of 375 splash damage and 120 splash radius
+-Plasma Cannon 20 does 1500 splash damage and 250 splash radius instead of 800 splash damage and 250 splash radius
+-Molot VPO does now 130 damage instead of 20 x 5 (100) damage 
+-Molot VPO 208 uses rifle rounds (3 ammo per shot) 
+-Mossberg 590 does now 25 x 5 (125) damage instead of 18 x 5 (90) damage
+-CBM-2 does 8 damage instead of 9 damage
+-MP-5 does 12 damage instead of 11 damage
+
+-Added Master Sword
+-Added CDS-4 Spear 
+-Added SMAW Launcher
+-Added buyable health ammo
+-Removed SMRL Launcher
+-Greatly reduced the chance of a monster getting gibbed from bullet weapons (tested on gore mods)
+-Replaced Ingots with Storage Mediums 
+-Replaced ammo drops now with multiple money items  
+-Player doesn't spawn with any weapon now
+-Reanimated
+ -Molot VPO 208
+ -Enforcer
+ -Mossberg 590 
+ -M25 Assault Rifle 
+-Retextured
+ -Mossberg 590 
+-Replaced armor with money 
+-Replaced armor bonus with health bonus
+-Purple super keg gives only 300 HP now 
+-Blue super keg gives only 100 HP now
+-Player armor is now regenative, (100% protection, max 100) 
+-Health Bonus items now only gives 2 HP and capped at 300 HP 
+-Monsters don't drop energy cans anymore
+-Enforcer uses pistol bullet ammo 
+-Tweaked HE Barrel explosion damage, smaller radius and lesser damage
+-Tweaked Energy Can drinking behavior 
+ 
+ 
+ ================================================================================
+***Version 1.0***
+================================================================================
+Initial Release

@@ -1,0 +1,211 @@
+class RMD_BeerDrink : BaseWeapon
+{
+	enum DRINKY
+	{
+		CLOSED = 0,
+		OPEN = 1,
+	}
+	
+	int OpenedUp;
+	
+
+	Default
+	{
+		Weapon.SlotNumber 1;
+		Weapon.SelectionOrder 0;
+		Weapon.AmmoUse 0;
+		Weapon.AmmoGive 0;
+		Weapon.AmmoType "RMD_PistolBullets";
+		Inventory.PickupMessage "$GOTCHAINGUN";
+		Inventory.AltHudIcon "PIBEER";
+		Obituary "$OB_MPCHAINGUN";
+		Tag "Beer Bottle";
+		
+		BaseWeapon.IronSight IRON_INACTIVE;
+		
+		BaseWeapon.MagazineMax 50;
+		BaseWeapon.Magazine 50;
+		
+	}
+
+	Action void DrinkUp()
+	{
+		if (Invoker.Magazine >= 1)
+		{
+			A_GiveInventory("RMD_BeerDrink_DrinkUp", 1);
+			Invoker.Magazine -= 1;
+			RMD_BARINFO.Set_Mag(invoker.Magazine);	
+		}
+	}
+	
+	Action void SoundEffect()
+	{
+		A_StartSound("Items/Drink", CHAN_WEAPON);
+	}
+	
+	Action State CheckOpen()
+	{
+		if (Invoker.OpenedUp == OPEN)
+		{
+			return ResolveState("ReadyOpen");
+		}
+		else
+		{
+			return ResolveState("ReadyReal");
+		}	
+		
+		return ResolveState("ReadyReal");
+	}
+
+	States
+	{
+
+	Ready:
+		CHGG A 0;
+		TNT1 A 0 
+		{
+			A_Jump(256, "Init");
+		
+		}
+	
+	Init:
+		TNT1 A 0 
+		{
+				TakeCounterItem();
+				RMD_BARINFO.Set_Mag(invoker.Magazine);
+				Invoker.OpenedUp = CLOSED;
+				RMD_BARINFO.SetAmmoIcon("");
+				RMD_BARINFO.SetAmmo1("None");
+		}
+		Goto ReadyReal;
+		
+	ReadyReal:
+		CHGG A 0;
+		TNT1 A 0 A_StopSound(CHAN_WEAPON);
+		IDLE A 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB);
+		Loop;
+	
+	ReadyOpen:
+		TNT1 A 0 A_StopSound(CHAN_WEAPON);
+		OPEN S 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB);
+		Loop;		
+
+	Deselect:
+		SELC EDCBA 1 A_Lower;
+		SELC A 1 A_Lower;
+		TNT1 A 0 A_Lower(100);
+		Loop;
+		
+	Select:
+		TNT1 A 0 
+		{
+				//A_StartSound("Pistol/Select", CHAN_WEAPON +5);
+				A_TakeInventory("Reloading", 99);
+				RMD_BARINFO.Set_Mag(invoker.Magazine);
+				RMD_BARINFO.SetAmmoIcon("");
+				RMD_BARINFO.SetAmmo1("None");
+		}
+		SELC ABCDE 1 A_Raise;
+		IDLE A 1 A_Raise(100);
+        Goto ReadyReal;
+		
+	Fire:
+		TNT1 A 0
+		{
+		
+			if (Invoker.Magazine > 0 && Invoker.OpenedUp == OPEN)
+			{	
+				Return ResolveState("DrinkUp");				
+			}
+			else if (Invoker.Magazine > 0 && Invoker.OpenedUp == CLOSED) 
+			{
+				Return ResolveState("OpenUp");
+			}		
+	
+			Return ResolveState("ReadyReal");					
+			
+		}
+		Goto ReadyReal;
+		
+	
+	
+	OpenUp:
+		OPEN ABCDEFGHI 2;
+		TNT1 A 0 
+		{
+			A_StartSound("Beer/Open");
+			Invoker.OpenedUp = OPEN;
+		}
+		OPEN JKLMNOPQRS 2;
+		Goto ReadyOpen;
+	
+	DrinkUp:
+		DRNK ABCDEFG 2;
+		TNT1 A 0 A_StartSound("Beer/Drink", CHAN_WEAPON, CHANF_LOOP);
+		Goto DrinkLoop;
+	
+	DrinkLoop:
+		TNT1 A 0 
+		{
+			if (Invoker.Magazine <= 0)
+			return CheckOpen();
+			
+			return ResolveState("DrinkLoop") +1;
+		}	
+		DRNK G 2 DrinkUp();
+		TNT1 A 0;
+		TNT1 A 0 A_ReFire("DrinkLoop");
+		DRNK GFED 2;
+		TNT1 A 0 A_StopSound(CHAN_WEAPON);
+		TNT1 A 0 CheckOpen();
+		Goto ReadyReal;
+		
+	Throw:
+		THRW ABC 2;
+		Goto Init;		
+	
+		
+	Reload:
+		TNT1 A 0 ReloadCheck();
+		Goto ReadyReal;
+	
+	
+	ReloadNow:
+		TNT1 A 0 A_TakeInventory("GotoReload", 1);
+		THRW ABC 2;
+		TNT1 A 0
+		{
+			Actor ProjP1, ProjP2;
+			[ProjP1, ProjP2] = A_FireProjectile("EmptyBeer1", 0, 0, -6, 8, BULLETFIRE);
+		
+			if (ProjP2)
+			{
+				ProjP2.Speed = 10;			
+			}
+		
+		}
+		SELC ABCDE 2;
+		TNT1 A 0
+		{
+			Invoker.Magazine = Invoker.MagazineMax;
+			Invoker.OpenedUp = CLOSED;
+			RMD_BARINFO.Set_Mag(invoker.Magazine);
+	
+			Return A_Jump(0, "ReadyReal");	
+		}
+		Goto ReadyReal;
+	}
+}
+
+class RMD_BeerDrink_DrinkUp : RMD_HealthBase
+{
+	Default
+	{
+		-COUNTITEM
+		Inventory.Amount 1;
+		Inventory.PickupMessage "";
+		Inventory.PickupSound "";
+	}
+}
+
+

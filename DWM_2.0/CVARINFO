@@ -1,0 +1,28 @@
+//Internal Usage
+user int RMDC_Money = 10000; //Player Geld
+
+//------------------------------------------------------------------------------
+//Game configuration
+//------------------------------------------------------------------------------
+//Decorations
+server int RMDC_BarrelTypes = 0; //Barrel Options
+
+//Effects
+user int RMDC_LowEffect = 0;
+
+//Money
+server int RMDC_MonsterMoneyDrop = 0;
+server int RMDC_MoneyMagnetType = 0;
+
+//Weapon Settings
+server int RMDC_WeaponReload = 1;
+
+//Weapon Damage
+server float RMDC_PistolBulletDamage = 1.0;
+server float RMDC_BuckshotDamage = 1.0;
+server float RMDC_SMGBulletDamage = 1.0;
+server float RMDC_ARBulletDamage = 1.0;
+server float RMDC_BulletDamage = 1.0; //Legacy
+server float RMDC_PlasmaDamage = 1.0;
+server float RMDC_LightExplosiveDamage = 1.0;
+server float RMDC_HeavyExplosiveDamage = 1.0;

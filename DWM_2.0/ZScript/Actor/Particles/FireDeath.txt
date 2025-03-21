@@ -1,0 +1,83 @@
+Class RMD_FireDeath : RMD_BaseParticle
+{
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay;
+			TNT1 A 0 
+			{
+
+				for (int i = 0; i < 2; i++)
+				{
+					Vector3 PVel = (FRandom[FX](-0.05, 0.05), FRandom[FX](-0.05, 0.05), FRandom[FX](-0.05, 1.5)).unit()*FRandom[FX](1.5, 4.5);
+					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
+					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_Fire", Pos + RPos));
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (2.5, 2.5);
+					Particle.ScaleGrowth = 0.9;
+					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
+					Particle.SetShade("ff5000");
+				}
+				
+				for (int i = 0; i < 1; i++)
+				{
+					Vector3 PVel = (FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 1.0)).unit()*FRandom[FX](3.0, 7.5);
+					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(25, 40));
+					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_Smoke", Pos + RPos));
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.25, 0.25);
+					Particle.Alpha = 0.4;
+					Particle.TTL = 12;
+					Particle.A_SetRenderStyle(1.0, STYLE_Shaded);
+					Particle.SetShade("1d1d1d");
+				}					
+				
+			}
+			Stop;
+	}
+}
+
+Class RMD_PlasmaDeath : RMD_BaseParticle
+{
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay;
+			TNT1 A 0 
+			{
+
+				for (int i = 0; i < 2; i++)
+				{
+					Vector3 PVel = (FRandom[FX](-0.05, 0.05), FRandom[FX](-0.05, 0.05), FRandom[FX](-0.05, 1.5)).unit()*FRandom[FX](1.5, 4.5);
+					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
+					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_Fire", Pos + RPos));
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (2.5, 2.5);
+					Particle.ScaleGrowth = 0.9;
+					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
+					Particle.SetShade("1f54ff");					
+				}
+				
+				for (int i = 0; i < 1; i++)
+				{
+					Vector3 PVel = (FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 1.0)).unit()*FRandom[FX](3.0, 7.5);
+					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(25, 40));
+					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_Smoke", Pos + RPos));
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.25, 0.25);
+					Particle.Alpha = 0.4;
+					Particle.TTL = 12;
+					Particle.A_SetRenderStyle(1.0, STYLE_Shaded);
+					Particle.SetShade("1d1d1d");					
+				}					
+				
+			}
+			Stop;
+	}
+}

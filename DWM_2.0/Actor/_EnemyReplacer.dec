@@ -1,0 +1,78 @@
+actor ZombieManReplacer : RandomSpawner replaces ZombieMan 
+{
+	DropItem "Cudgel", 255, 12
+	DropItem "SMGGuy1", 255, 5
+    DropItem "LesserGreyImp", 255, 1
+}
+
+actor DoomImpReplacer : RandomSpawner replaces DoomImp 
+{
+    DropItem "LesserGreyImp", 255, 1
+}
+
+actor ShotgunGuyReplacer : RandomSpawner replaces ShotgunGuy
+{
+	DropItem "New_ShotgunGuy", 255, 8
+	DropItem "CarbineGuy", 255, 1
+}
+
+actor LostSoulReplacer : RandomSpawner replaces LostSoul
+{
+	DropItem "Wisp", 255, 1
+}
+
+
+actor DemonReplacer : RandomSpawner replaces Demon
+{
+	DropItem "Goober", 255, 1
+}
+
+actor CacodemonReplacer : RandomSpawner replaces Cacodemon
+{
+	DropItem "ManOWar", 255, 1
+}
+
+actor BaronOfHellReplacer : RandomSpawner replaces BaronOfHell
+{
+	DropItem "ArmoredMuton", 255, 20
+	DropItem "MutonTypeA", 255, 1
+}
+
+
+actor ChainGunGuyReplacer : RandomSpawner replaces ChainGunGuy
+{
+	DropItem "CarbineGuy", 255, 10
+	DropItem "Cudgel", 255, 4
+	DropItem "SMGGuy", 255, 2
+		
+}
+
+actor ArchvileReplacer : RandomSpawner replaces Archvile
+{
+	DropItem "ManOWar", 255, 1
+}
+
+actor PainElementalReplacer : RandomSpawner replaces PainElemental
+{
+	DropItem "ManOWar", 255, 1
+}
+
+actor HellKnightReplacer : RandomSpawner replaces HellKnight
+{
+	DropItem "ArmoredMuton", 255, 1
+}
+
+actor RevenantReplacer : RandomSpawner replaces Revenant
+{
+	DropItem "LesserGreyImp", 255, 1
+}
+
+
+actor WolfenSteinSSReplacer : RandomSpawner replaces WolfenSteinSS
+{
+	DropItem "CarbineGuy", 255, 8	
+	DropItem "Cudgel", 255, 1
+	
+}
+
+

@@ -1,0 +1,26 @@
+Class RMD_Math
+{
+	//For some reason GZDoom log math function doesn't take a base.
+	static float Log(int x, float base)
+	{
+		if (x < base)
+		{
+			return 0.0;
+		}
+		
+		return 1 + RMD_Math.Log(x/base, base);
+	}
+	
+	//Return absolute value of a integer 
+	static int AbsInt(int x)
+	{
+		if (x < 0)
+		{
+			return -x;
+		}
+		
+		return x;
+	}
+	
+
+}

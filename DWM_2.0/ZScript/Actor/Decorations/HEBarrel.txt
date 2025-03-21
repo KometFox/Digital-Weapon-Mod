@@ -1,0 +1,40 @@
+//HE Barrel
+Class HEBarrel : ExplosiveBarrel 
+{
+	Const DAMAGERADIUS = 140;
+	Const FULLDAMAGERADIUS = 80;
+	Const SPLASHDAMAGE = 200;
+
+	Default
+	{
+		DeathSound "Explosion/Small";
+		DamageType "Explosive";
+		DeathType "Explosive";
+		+NOBLOOD
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			IDLE A 5;
+			Loop;
+		
+		Death:
+			"####" A 0 Bright
+			{	
+				A_ScreamAndUnblock();
+				A_Explode(SPLASHDAMAGE, DAMAGERADIUS, 0, 0, FULLDAMAGERADIUS);
+				A_SpawnItemEx("RMD_BarrelExplosionSpawner", 0, 0, 0);
+			}
+			Stop;
+			//Goto Respawn;
+
+		Respawn:
+			"####" A 50 Bright;
+			"####" AAAA 3;
+			"####" A 0 A_BarrelDestroy;
+			"####" A 5 A_Respawn;
+			Wait; 
+	}
+}

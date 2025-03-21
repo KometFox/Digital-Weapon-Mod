@@ -1,0 +1,58 @@
+Model RMD_KestrelGL
+{
+	Path "Models\Textures\CSArms"
+	SurfaceSkin 0 0 "CSHand.png"
+	Path "Models\Weapons\Grenade\G20GL"
+	Model 0 "G20GL.md3"
+	SurfaceSkin 0 1 "G20GrenadeLauncher.png"
+
+	//IDLE
+	FrameIndex IDLE A 0 0
+	//SELECT
+	FrameIndex SELC A 0 1
+	FrameIndex SELC B 0 2
+	FrameIndex SELC C 0 3
+	FrameIndex SELC D 0 4
+	FrameIndex SELC E 0 5
+	FrameIndex SELC F 0 6
+	FrameIndex SELC G 0 7
+	//FIRE
+	FrameIndex FIRE A 0 8
+	FrameIndex FIRE B 0 9
+	FrameIndex FIRE C 0 10
+	FrameIndex FIRE D 0 11
+	FrameIndex FIRE E 0 12
+	FrameIndex FIRE F 0 13
+	//RELOAD
+	FrameIndex RELO A 0 14
+	FrameIndex RELO B 0 15
+	FrameIndex RELO C 0 16
+	FrameIndex RELO D 0 17
+	FrameIndex RELO E 0 18
+	FrameIndex RELO F 0 19
+	FrameIndex RELO G 0 20
+	FrameIndex RELO H 0 21
+	FrameIndex RELO I 0 22
+	FrameIndex RELO J 0 23
+	FrameIndex RELO K 0 24
+	FrameIndex RELO L 0 25
+	FrameIndex RELO M 0 26
+	FrameIndex RELO N 0 27
+	FrameIndex RELO O 0 28
+	FrameIndex RELO P 0 29
+	FrameIndex RELO Q 0 30
+	FrameIndex RELO R 0 31
+	FrameIndex RELO S 0 32
+	//IRONSIGHT
+	FrameIndex IRON A 0 33
+	FrameIndex IRON B 0 34
+	FrameIndex IRON C 0 35
+	FrameIndex IRON D 0 36
+	//IRONSIGHT FIRE
+	FrameIndex IFIR A 0 37
+	FrameIndex IFIR B 0 38
+	FrameIndex IFIR C 0 39
+	FrameIndex IFIR D 0 40
+	FrameIndex IFIR E 0 41
+	FrameIndex IFIR F 0 42
+}

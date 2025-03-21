@@ -1,0 +1,202 @@
+//------------------------------------------------------------------------------
+//Bullets
+//------------------------------------------------------------------------------
+Decal RMD_SMGShot1
+{
+	pic Shot1
+	shade "50 40 40"
+	x-scale 0.095
+	y-scale 0.095
+	randomflipx
+	randomflipy
+	solid
+}
+ 
+ Decal RMD_SMGShot2
+{
+	pic Shot2
+	shade "50 40 40"
+	x-scale 0.095
+	y-scale 0.095
+	randomflipx
+	randomflipy
+	solid
+}
+
+Decal RMD_SMGShot3
+{
+	pic Shot3
+	shade "50 40 40"
+	x-scale 0.095
+	y-scale 0.095
+	randomflipx
+	randomflipy
+	solid
+}
+
+DecalGroup RMD_SMG_BulletHoles
+{
+	RMD_SMGShot1 1
+	RMD_SMGShot2 1
+	RMD_SMGShot3 1
+}
+
+
+Decal RMD_PistolShot1
+{
+	pic Shot1
+	shade "50 40 40"
+	x-scale 0.08
+	y-scale 0.08
+	randomflipx
+	randomflipy
+	solid
+}
+ 
+ Decal RMD_PistolShot2
+{
+	pic Shot2
+	shade "50 40 40"
+	x-scale 0.08
+	y-scale 0.08
+	randomflipx
+	randomflipy
+	solid
+}
+
+Decal RMD_PistolShot3
+{
+	pic Shot3
+	shade "50 40 40"
+	x-scale 0.08
+	y-scale 0.08
+	randomflipx
+	randomflipy
+	solid
+}
+
+DecalGroup RMD_Pistol_BulletHoles
+{
+	RMD_PistolShot1 1
+	RMD_PistolShot2 1
+	RMD_PistolShot3 1
+}
+
+
+Decal RMD_BuckShot1
+{
+	pic Shot1
+	shade "50 40 40"
+	x-scale 0.087
+	y-scale 0.087
+	randomflipx
+	randomflipy
+	solid
+}
+ 
+ Decal RMD_BuckShot2
+{
+	pic Shot2
+	shade "50 40 40"
+	x-scale 0.087
+	y-scale 0.087
+	randomflipx
+	randomflipy
+	solid
+}
+
+Decal RMD_BuckShot3
+{
+	pic Shot3
+	shade "50 40 40"
+	x-scale 0.087
+	y-scale 0.087
+	randomflipx
+	randomflipy
+	solid
+}
+
+DecalGroup RMD_Buckshot_BulletHoles
+{
+	RMD_BuckShot1 1
+	RMD_BuckShot2 1
+	RMD_BuckShot3 1
+}
+
+
+Decal RMD_ARShot1
+{
+	pic Shot1
+	shade "50 40 40"
+	x-scale 0.089
+	y-scale 0.089
+	randomflipx
+	randomflipy
+	solid
+}
+ 
+ Decal RMD_ARShot2
+{
+	pic Shot2
+	shade "50 40 40"
+	x-scale 0.089
+	y-scale 0.089
+	randomflipx
+	randomflipy
+	solid
+}
+
+Decal RMD_ARShot3
+{
+	pic Shot3
+	shade "50 40 40"
+	x-scale 0.089
+	y-scale 0.089
+	randomflipx
+	randomflipy
+	solid
+}
+
+DecalGroup RMD_AR_BulletHoles
+{
+	RMD_ARShot1 1
+	RMD_ARShot2 1
+	RMD_ARShot2 1
+}
+
+
+//------------------------------------------------------------------------------
+//Explosion
+//------------------------------------------------------------------------------
+Decal RMD_SmallScorch1 
+{
+	pic XScorch1
+	shade "50 40 40"
+	x-scale 0.35
+	y-scale 0.35
+	randomflipx
+	randomflipy
+	solid
+}
+
+DecalGroup RMD_SmallExplosion
+{
+	RMD_SmallScorch1 1
+}
+
+
+Decal RMD_LargeScorch1 
+{
+	pic XScorch1
+	shade "50 40 40"
+	x-scale 0.7
+	y-scale 0.7
+	randomflipx
+	randomflipy
+	solid
+}
+
+DecalGroup RMD_LargeExplosion
+{
+	RMD_LargeScorch1 1
+}

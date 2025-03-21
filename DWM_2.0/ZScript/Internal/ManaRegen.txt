@@ -1,0 +1,54 @@
+Class ManaRegen : EventHandler
+{
+	int Timer; //Timer to do its Regeneration
+
+	override void WorldLoaded(WorldEvent e) 
+	{
+		Timer = 5;
+	}
+	
+
+	// PLAY scope : collect data
+	override void WorldTick()	// PLAY scope
+	{
+		let Player = Players[0].mo;
+
+		if (Player)
+		{
+			if (Timer == 0)
+			{
+				Player.GiveInventory("RMD_BlueMana", 2);
+			
+				//Reset the Timer
+				Timer = 5;
+			}
+	
+			Timer--;
+		
+		}
+	}
+
+}
+
+
+Class RM_Accu_Timer : Inventory
+{
+	Default
+	{
+	-COUNTITEM;
+	+INVENTORY.UNDROPPABLE;
+	Inventory.Amount 1;
+	Inventory.MaxAmount 1;
+	Inventory.InterHubAmount 1;
+	}
+	
+	States
+	{
+		Held:
+			TNT1 A 1;
+			Stop;
+	}
+	
+}
+
+
