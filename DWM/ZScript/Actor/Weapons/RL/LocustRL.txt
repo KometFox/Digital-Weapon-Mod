@@ -77,7 +77,7 @@ class RMD_LocustRL : BaseWeapon
 		
 	ReadyReal:
 		CHGG A 0;
-		IDLE A 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB);
+		IDL1 A 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB);
 		Loop;	
 
 	Deselect:
@@ -90,7 +90,7 @@ class RMD_LocustRL : BaseWeapon
 		TNT1 A 0 B_InitWeapon();
 		SEL1 ABCDEFGH 1;
 		SEL1 H 1 A_Raise(int.max);
-		IDLE A 1 A_Raise(int.max);
+		IDL1 A 1 A_Raise(int.max);
         Goto ReadyReal;
 			
 	//Ironsight Mode
@@ -99,8 +99,8 @@ class RMD_LocustRL : BaseWeapon
 		Loop;
 		
 	IronSightDeselect:
-		IDLE A 0 ZoomOut();
-		IDLE A 7;
+		IDL1 A 0 ZoomOut();
+		IDL1 A 7;
 		Goto ReadyReal;
 		
 	AltFire:
@@ -136,21 +136,22 @@ class RMD_LocustRL : BaseWeapon
 		
 	ReloadNow:
 		TNT1 A 0 A_TakeInventory("GotoReload", 1);
-		REL1 ABCDEFGHIJK 2;
+		REL1 ABCDEFGHIJKLMN 2;
 		TNT1 A 0
 		{
 			A_StartSound("LocustRL/MagOut", CHAN_WEAPON);
 		}
-		REL1 LMNOPQRSTUVWXYZ 2;
-		REL2 ABCDEFGHI 2;
+		REL1 OPQRSTUVWXYZ 2;
+		REL2 ABCDEF 2;
 		TNT1 A 0
 		{
 			A_StartSound("LocustRL/MagIn", CHAN_WEAPON +1);	
 			ReloadGun(Invoker.AmmoType1, 0, 1, 1);
 		}
-		REL2 JKLMN 2;
+		REL2 GH 2;
 		Goto ReadyReal;
 		
+
 	}
 }
 
@@ -164,9 +165,9 @@ Class RMD_LocustRL_Rocket : HeavyExplosives
 		//Impact 
 		BaseProjectile.ImpactDamage 0;
 		//Splash 
-		BaseProjectile.SplashDamage 330;
+		BaseProjectile.SplashDamage 365;
 		BaseProjectile.FullSplashDamage 100;
-		BaseProjectile.SplashRadius 130;
+		BaseProjectile.SplashRadius 140;
 		
 		BaseProjectile.NormalDamageRandom 1.0;
 		BaseProjectile.NerfDamageRandom 1.0;
@@ -176,21 +177,8 @@ Class RMD_LocustRL_Rocket : HeavyExplosives
 	States
 	{
 		Spawn:
-			TNT1 A 0 NoDelay
-			{
-				/*
-				Actor Flare;
-				
-				Flare = Spawn("RMD_SMRL_Flare", Pos, ALLOW_REPLACE);
-						
-				If (Flare)
-				{
-					Flare.Target = Self;
-					Flare.Scale = (0.12, 0.12);
-					Flare.SetShade("Lavender");	
-				}
-				*/
-			}
+			IDLE A 0 NoDelay;
+			IDLE A 5;
 			Goto SpawnLoop;
 		SpawnLoop:	
 			IDLE A 1 A_SpawnItemEx("RMD_LocustRocketTrail", 0, 0, 0);
