@@ -173,5 +173,10 @@ Thanks to these people and groups for assets used by this mod.
 -Jamms Weapon Sound Pack
  -Sounds
  
+-JSRS P1 Weapon Sound Mod
+ -Sounds 
+ 
+-Kriegsland
+ -Sounds
  
   
