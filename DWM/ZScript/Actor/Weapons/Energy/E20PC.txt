@@ -123,14 +123,14 @@ class RMD_E20PlasmaCannon : BaseWeapon
 		Goto ReadyReal;
 		
 	FireNow:
-		TNT1 A 0 CheckIfAmmo(Invoker.Magazine + AmmoConsum - 1, "ReadyReal");
+		TNT1 A 0 CheckIfAmmo(Invoker.Magazine, "ReadyReal");
 		FIR1 A 2 FirePlasma();
 		FIR1 BCDEFGHIJKL 2;
 		FIR1 A 0 A_Refire("FireNow");
 		Goto ReadyReal;
 
 	IronFireNow:
-		TNT1 A 0 CheckIfAmmo(Invoker.Magazine + AmmoConsum - 1, "IronReady");
+		TNT1 A 0 CheckIfAmmo(Invoker.Magazine, "IronReady");
 		SCOA A 2 FirePlasma(); 
 		SCOA AAAAAAAAAAA 2;
 		SCOA A 0 A_Refire("IronFireNow");
