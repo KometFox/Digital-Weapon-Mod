@@ -96,6 +96,45 @@ Class RMD_Fire : RMD_BaseParticle
 			Stop;
 	}
 }
+
+
+
+Class RMD_FireFast : RMD_BaseParticle
+{
+
+	Default
+	{
+		RenderStyle "Add";
+		Alpha 1.0;
+		+Bright;
+	}
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		Roll = Random[FX](0, 360);
+		Angle = Random[FX](0, 360);	
+	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+		
+		if (!Level.IsFrozen())
+		{
+			A_SetScale(Scale.X * ScaleGrowth, Scale.Y * ScaleGrowth);	
+		}	
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			FIR9 JKLMNOP 1;
+			Stop;
+	}
+}
 //------------------------------------------------------------------------------
 //Other
 //------------------------------------------------------------------------------
@@ -349,6 +388,40 @@ Class RMD_Sparks : RMD_ModelSparks
     }
 }
 
+
+Class RMD_ShinySpark : RMD_ModelSparks
+{
+	Default
+	{
+		+BRIGHT;
+		RenderStyle "AddShaded";
+		Alpha 1.33;
+		Gravity 0;
+	}
+
+	override void BeginPlay()
+	{
+		float ScaleD = Frandom(0.1, 0.12);
+	
+		Scale.X = ScaleD;
+		Scale.Y = ScaleD;
+		Speed = random(6, 14);
+		SetShade("ff4f2b");
+	}
+
+    States
+    {
+    Spawn:
+	   LEGW A 13;
+       LEGW AAAAA 1 A_FadeOut(0.266);
+       stop;
+    Death:
+       TNT1 A 0;
+       Stop;
+    }
+}
+
+
 Class RMD_TSpark : RMD_ModelSparks
 {
 	Default
@@ -365,28 +438,47 @@ Class RMD_TSpark : RMD_ModelSparks
 		+THRUGHOST
 		+NOTELEPORT
 		RenderStyle "Add";
-		speed 26;
+		speed 18;
 		Scale 0.12;
-		Gravity 0.7;
+		Gravity 0.0;
 		RADIUS 1;
 		HEIGHT 1;
-		BounceCount 0;
+		BounceCount 10;
 		BounceFactor 0;
 		WallBounceFactor 0;
 		BounceType "None";
+		Alpha 2.0;
 		-NOCLIP
 	}
+	
     States
     {
     Spawn:
-	   SPKO S 6 BRIGHT;
-       SPKO SSSSS 1 Bright A_FadeOut(0.2);
+	   SPKO S 8 BRIGHT;
+       SPKO SSSSS 1 Bright A_FadeOut(0.4);
        Stop;
     Death:
        TNT1 A 0;
 	   Stop;
     }
 }
+
+Class RMD_TSparkSlow : RMD_TSpark
+{
+	Default
+	{
+		speed 11;
+	}
+	
+    States
+    {
+    Spawn:
+	   SPKO S 4 BRIGHT;
+       SPKO SSSSS 1 Bright A_FadeOut(0.4);
+       Stop;
+    }
+}
+
 
 
 Class RMD_EmberShaded : RMD_ModelSparks

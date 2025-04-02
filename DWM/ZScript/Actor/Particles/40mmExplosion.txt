@@ -40,10 +40,11 @@ Class RMD_40mmExplosionSpawner : Actor
 					let Particle = Spawn("RMD_Shockwave", Pos + RPos);
 					
 					Particle.Vel = PVel;
-					Particle.Scale = (0.18, 0.18);
+					Particle.Scale = (0.12, 0.12);
 					Particle.SetShade("c8e2ff");
 				}
 				
+
 				//Smoke
 				for (int i = 0; i < 12; ++i)
 				{
@@ -60,11 +61,17 @@ Class RMD_40mmExplosionSpawner : Actor
 				}
 				
 				//Sparks
-				for (int i = 0; i < 20; ++i)
+				for (int i = 0; i < 12; ++i)
 				{
 					A_CustomMissile("RMD_TSpark", 2, 0, frandom(0,1) * frandom (0, 360), 2, frandom(0,1)*frandom (30, 360));
 				
 				}
+				
+				for (int i = 0; i < 12; ++i)
+				{
+					A_CustomMissile("RMD_ShinySpark", 2, 0, frandom(0,1) * frandom (0, 360), 2, frandom(0,1)*frandom (30, 360));
+				
+				}								
 			}
 			Stop;
 			

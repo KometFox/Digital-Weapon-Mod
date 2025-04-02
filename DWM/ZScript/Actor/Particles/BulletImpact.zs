@@ -46,19 +46,19 @@ Class RMD_BulletImpact : RMD_ParticleSpawner
 				Return;
 			}
 	
-			for (int i = 0; i < 6; i++)
+			//Sparks
+			for (int i = 0; i < 14; ++i)
 			{
-				RMD_BaseParticle Particle = RMD_BaseParticle(A_SpawnProjectile("RMD_Sparks", 2, 0, frandom(0,1)*frandom (0, 360), 2, frandom (30, 360)));
-				Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](6.0, 20.0);
+				Actor Particle = A_SpawnProjectile("RMD_TSparkSlow", 2, 0, frandom(0,1) * frandom (0, 360), 2, frandom(0,1)*frandom (30, 360));
 				
 				if (Particle)
 				{
-					Particle.SetShade("ff1d00");
-					Particle.Vel = PVel;
-					Particle.Scale = (0.04, 0.04);
-					Particle.TTL = 7;
+					Particle.Speed = 15;
+					Particle.Gravity = 0;		
+					Particle.Scale = (0.05, 0.05);
 				}
 			}
+		
 		
 			for (int i = 0; i < 3; ++i)
 			{
@@ -69,7 +69,7 @@ Class RMD_BulletImpact : RMD_ParticleSpawner
 				Particle.Vel = PVel;
 				Particle.Scale = (0.08, 0.08);
 				Particle.ScaleGrowth = 1.08;
-				Particle.TTL = 7;
+				Particle.TTL = 9;
 				Particle.Alpha = 0.12;
 			}
 		

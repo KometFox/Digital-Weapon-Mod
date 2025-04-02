@@ -9,3 +9,14 @@ Model RMD_TSpark
    PITCHFROMMOMENTUM 
    FrameIndex SPKO S 0 0         
 }
+
+Model RMD_TSparkSlow      
+{
+   Path "Models\Projectile"    
+   Model 0 "OldTracer.md3"    
+   Skin 0 "OldTracer.tga"    
+   Scale 1.5 1.5 6.0 
+   PITCHFROMMOMENTUM 
+   FrameIndex SPKO S 0 0         
+}
+
