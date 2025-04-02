@@ -17,6 +17,7 @@
 //Submachine Gun
 #Include "ZScript/Actor/Weapons/SMG/MP5.txt"
 #Include "ZScript/Actor/Weapons/SMG/CBM2.txt"
+#Include "ZScript/Actor/Weapons/SMG/Uzi.txt"
 //Assault Rifle
 #Include "ZScript/Actor/Weapons/AR/AR70.txt"
 #Include "ZScript/Actor/Weapons/AR/M25.txt"
@@ -24,6 +25,7 @@
 #Include "ZScript/Actor/Weapons/AR/SA85m.txt"
 //Machine Guns
 #Include "ZScript/Actor/Weapons/MG/M249SAW.txt"
+#Include "ZScript/Actor/Weapons/MG/Sumitomo63.txt"
 #Include "ZScript/Actor/Weapons/MG/CHaingun.txt"
 //Shotgun
 #Include "ZScript/Actor/Weapons/SG/Mossberg590.txt"

@@ -97,12 +97,20 @@ Extend Class BuyMenuScript
 		Elementy.Column = 5;
 		Elementy.rect_pos.x = 150;
 		Elementy.rect_pos.y = 130 + (Elementy.Column * 9);
+		Elementy.Text = "Machine Guns";
+		Elementy.Command = "MachineGun";
+		AddElements(Elementy);
+
+		Elementy = new("TextEntry");
+		Elementy.Column = 6;
+		Elementy.rect_pos.x = 150;
+		Elementy.rect_pos.y = 130 + (Elementy.Column * 9);
 		Elementy.Text = "Shotgun";
 		Elementy.Command = "Shotgun";
 		AddElements(Elementy);	
 
 		Elementy = new("TextEntry");
-		Elementy.Column = 6;
+		Elementy.Column = 7;
 		Elementy.rect_pos.x = 150;
 		Elementy.rect_pos.y = 130 + (Elementy.Column * 9);
 		Elementy.Text = "Grenade";
@@ -110,7 +118,7 @@ Extend Class BuyMenuScript
 		AddElements(Elementy);	
 
 		Elementy = new("TextEntry");
-		Elementy.Column = 7;
+		Elementy.Column = 8;
 		Elementy.rect_pos.x = 150;
 		Elementy.rect_pos.y = 130 + (Elementy.Column * 9);
 		Elementy.Text = "Launcher";

@@ -53,6 +53,9 @@ MP5/MagOut "Sounds/Weapons/SMG/MP5/MagOut.wav"
 CBM2/Fire "Sounds/Weapons/SMG/CBM2/Fire.ogg"
 $Volume CBM2/Fire 1.0
 
+//Uzi
+Uzi/Fire "Sounds/Weapons/SMG/Uzi/Fire.ogg"
+
 //------------------------------------------------------------------------------
 //Shotguns
 //------------------------------------------------------------------------------
@@ -65,8 +68,8 @@ Mossberg590/Insert "Sounds/Weapons/SG/AoMShotgun/Insert.ogg"
 
 
 //TOZ-34
-TOZ34/Fire1 "Sounds/Weapons/SG/TOZ-34/Fire1.ogg"
-TOZ34/Fire2 "Sounds/Weapons/SG/TOZ-34/Fire2.ogg"
+TOZ34/Fire1 "Sounds/Weapons/SG/TOZ-34/Fire.ogg"
+TOZ34/Fire2 "Sounds/Weapons/SG/TOZ-34/Fire.ogg"
 
 TOZ34/Open "Sounds/Weapons/SG/TOZ-34/Open.ogg"
 TOZ34/Insert "Sounds/Weapons/SG/TOZ-34/Insert.ogg"
@@ -222,6 +225,7 @@ AR70/MagOut "Sounds/Weapons/AR/AR70/MagOut.ogg"
 //------------------------------------------------------------------------------
 //Machine Guns
 //------------------------------------------------------------------------------
+//M249 SAW
 $Random M249SAW/Fire {M249SAW/Fire1}
 
 $Volume M249SAW/Fire 1.0
@@ -234,6 +238,9 @@ M249SAW/HatchOpen "Sounds/Weapons/MG/M249SAW/HatchOpen.ogg"
 M249SAW/HatchClose "Sounds/Weapons/MG/M249SAW/HatchClose.ogg"
 M249SAW/MagIn "Sounds/Weapons/AR/Madsen/MagIn.ogg"
 M249SAW/MagOut "Sounds/Weapons/AR/Madsen/MagOut.ogg"
+
+//Sumitomo 63
+Sumitomo63/Fire "Sounds/Weapons/MG/Sumitomo63/Fire.ogg"
 
 
 //Chaingun

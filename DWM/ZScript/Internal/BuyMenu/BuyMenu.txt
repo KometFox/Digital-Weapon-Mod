@@ -311,6 +311,16 @@ Class BuyMenuScript : EventHandler
 		
 		}
 
+		else if (CMD == "MachineGun")
+		{
+			ReinitMenu();
+			
+			let Obj = new("BM_MGWeapons");
+			
+			AddItems(Obj);
+		
+		}
+
 		else if (CMD == "Shotgun")
 		{
 			ReinitMenu();
