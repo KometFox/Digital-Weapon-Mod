@@ -166,23 +166,26 @@ Class RMD_Diamond : MaterialBase
 	}
 }
 
-Class RMD_Treasure : MaterialBase 
-{
-	Default
-	{
-		MaterialBase.Money 400;
-		MaterialBase.ItemColor "e6e6e6";
-		Inventory.pickupmessage "Treasure! +400C";
-	}
-}
+
 
 Class RMD_LatniumBar : MaterialBase 
 {
 	Default
 	{
+		MaterialBase.Money 1000;
+		MaterialBase.ItemColor "e6e6e6";
+		Inventory.pickupmessage "Latnium Bar! +1000C";
+	}
+}
+
+
+Class RMD_Treasure : MaterialBase 
+{
+	Default
+	{
 		MaterialBase.Money 500;
 		MaterialBase.ItemColor "e6e6e6";
-		Inventory.pickupmessage "Latnium Bar! +500C";
+		Inventory.pickupmessage "Treasure! +500C";
 	}
 }
 
@@ -190,9 +193,9 @@ Class RMD_GoldBar : MaterialBase
 {
 	Default
 	{
-		MaterialBase.Money 100;
+		MaterialBase.Money 120;
 		MaterialBase.ItemColor "e6e6e6";
-		Inventory.pickupmessage "Gold bar +100c";
+		Inventory.pickupmessage "Gold bar +120c";
 	}
 }
 
@@ -200,9 +203,9 @@ Class RMD_GoldGoblet : MaterialBase
 {
 	Default
 	{
-		MaterialBase.Money 50;
+		MaterialBase.Money 60;
 		MaterialBase.ItemColor "e6e6e6";
-		Inventory.pickupmessage "Gold Goblet +50C";
+		Inventory.pickupmessage "Gold Goblet +60C";
 	}
 }
 
@@ -220,9 +223,9 @@ Class RMD_SmallPearl : MaterialBase
 {
 	Default
 	{
-		MaterialBase.Money 15;
+		MaterialBase.Money 20;
 		MaterialBase.ItemColor "e6e6e6";
-		Inventory.pickupmessage "Small Pearl +15C";
+		Inventory.pickupmessage "Small Pearl +20C";
 	}
 }
 
@@ -230,9 +233,9 @@ Class RMD_SilverRing : MaterialBase
 {
 	Default
 	{
-		MaterialBase.Money 25;
+		MaterialBase.Money 30;
 		MaterialBase.ItemColor "e6e6e6";
-		Inventory.pickupmessage "Silver Ring +25C";
+		Inventory.pickupmessage "Silver Ring +30C";
 	}
 }
 
