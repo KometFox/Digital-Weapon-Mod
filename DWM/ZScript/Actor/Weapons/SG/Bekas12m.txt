@@ -149,6 +149,7 @@ class RMD_Bekas12m : BaseWeapon
 			A_StartSound("Bekas12m/Insert", CHAN_WEAPON);
 			
 			ReloadGun(Invoker.AmmoType1, 0, 1, 1, True);
+			ReloadGun(Invoker.AmmoType1, 0, 1, 1, True);
 			
 			if (invoker.Magazine == invoker.MagazineMax)
 			{

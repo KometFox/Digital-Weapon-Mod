@@ -347,9 +347,9 @@ Class RMD_M25_Grenade : LightExplosives
 		//Impact 
 		BaseProjectile.ImpactDamage 0;
 		//Splash 
-		BaseProjectile.SplashDamage 325;
+		BaseProjectile.SplashDamage 350;
 		BaseProjectile.FullSplashDamage 50;
-		BaseProjectile.SplashRadius 160;
+		BaseProjectile.SplashRadius 180;
 		//Randomizer
 		BaseProjectile.NormalDamageRandom 1.4;
 		BaseProjectile.NerfDamageRandom 1.4;

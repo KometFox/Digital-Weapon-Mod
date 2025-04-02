@@ -17,8 +17,8 @@ class MP5 : BaseWeapon
 		
 		BaseWeapon.IronSight IRON_INACTIVE;
 		
-		BaseWeapon.MagazineMax 60;
-		BaseWeapon.Magazine 60;
+		BaseWeapon.MagazineMax 50;
+		BaseWeapon.Magazine 50;
 		
 	}
 

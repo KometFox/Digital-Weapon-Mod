@@ -29,7 +29,7 @@ class RMD_MolotVPO208 : BaseWeapon
 		{
 
 			//A_FireProjectile("RMD_MolotVPO208Proj",frandom(-FireAngle, FireAngle), 1, 6, 4, CMF_AIMDIRECTION, frandom(-FireAngle, FireAngle));
-			A_FireBullets(0.08, 0.08, -1, 185, "RMD_BulletImpact", FBF_NoRandom); 
+			A_FireBullets(0.08, 0.08, -1, 200, "RMD_BulletImpact", FBF_NoRandom); 
 			
 			B_MuzzleFlash("RMD_BuckshotMuzzleFlash", (9, 1.8, -1.0));
 			Actor Case_ = Casings(B_SpawnCasing("RifleCase", (7, -6.5, -3.0)));
@@ -44,7 +44,7 @@ class RMD_MolotVPO208 : BaseWeapon
 		else
 		{
 			//A_FireProjectile("RMD_MolotVPO208Proj",frandom(-IronFireAngle, IronFireAngle), 1, 0, 4, CMF_AIMDIRECTION, frandom(-IronFireAngle, IronFireAngle));
-			A_FireBullets(0.04, 0.04, -1, 140, "RMD_BulletImpact", FBF_NoRandom); 
+			A_FireBullets(0.04, 0.04, -1, 200, "RMD_BulletImpact", FBF_NoRandom); 
 			
 			B_MuzzleFlash("RMD_BuckshotMuzzleFlash", (7, 0, -0.5));
 			Actor Case_ = Casings(B_SpawnCasing("RifleCase", (2, 0, -1.15)));

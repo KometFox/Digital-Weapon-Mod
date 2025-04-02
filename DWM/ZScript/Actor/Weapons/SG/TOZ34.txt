@@ -54,7 +54,7 @@ class RMD_TOZ34 : BaseWeapon
 			if (Invoker.Magazine <= 0)
 				return;
 		
-			BCount = 6;
+			BCount = 9;
 			Acc = 2;
 			Invoker.Magazine -= 1;
 			TOZFire = "TOZ34/Fire1";
@@ -64,7 +64,7 @@ class RMD_TOZ34 : BaseWeapon
 			if (Invoker.Magazine <= 1)
 				return;
 
-			BCount = 12;
+			BCount = 18;
 			Acc = 1;
 			Invoker.Magazine -= 2;
 			TOZFire = "TOZ34/Fire2";
@@ -76,7 +76,7 @@ class RMD_TOZ34 : BaseWeapon
 			for (int i = 0; i < BCount; i++)
 			{
 				//A_FireProjectile("RMD_TOZ34_Bullet",frandom(-2.8, 2.8) / Acc, 1, 6, 4, CMF_AIMDIRECTION, frandom(-2.8, 2.8) / Acc);
-				A_FireBullets(2.8, 2.8, -1, 24, "RMD_BulletImpact", FBF_NoRandom); 
+				A_FireBullets(2.8, 2.8, -1, 22, "RMD_BulletImpact", FBF_NoRandom); 
 			}
 			
 			B_MuzzleFlash("RMD_BuckshotMuzzleFlash", (9, 1.8, -1.0));	
@@ -86,7 +86,7 @@ class RMD_TOZ34 : BaseWeapon
 			for (int i = 0; i < BCount; i++)
 			{
 				//A_FireProjectile("RMD_TOZ34_Bullet",frandom(-0.7, 0.7) / Acc, 1, 0, 4, CMF_AIMDIRECTION, frandom(-0.7, 0.7) / Acc);
-				A_FireBullets(0.7, 0.7, -1, 24, "RMD_BulletImpact", FBF_NoRandom); 
+				A_FireBullets(0.7, 0.7, -1, 22, "RMD_BulletImpact", FBF_NoRandom); 
 			}
 			
 			B_MuzzleFlash("RMD_BuckshotMuzzleFlash", (7, 0, -0.5));	

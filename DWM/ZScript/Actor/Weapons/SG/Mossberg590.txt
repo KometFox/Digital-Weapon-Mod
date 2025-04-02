@@ -153,7 +153,7 @@ class RMD_Mossberg590 : BaseWeapon
 			A_StartSound("Mossberg590/Insert", CHAN_WEAPON);
 			
 			ReloadGun(Invoker.AmmoType1, 0, 1, 1, True);
-			RMD_BARINFO.Set_Mag(invoker.Magazine);
+			ReloadGun(Invoker.AmmoType1, 0, 1, 1, True);
 			
 			if (invoker.Magazine == invoker.MagazineMax)
 			{

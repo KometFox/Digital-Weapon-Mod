@@ -14,8 +14,8 @@ class CBM3 : BaseWeapon
 		
 		BaseWeapon.IronSight IRON_INACTIVE;
 		
-		BaseWeapon.MagazineMax 44;
-		BaseWeapon.Magazine 44;
+		BaseWeapon.MagazineMax 75;
+		BaseWeapon.Magazine 75;
 		
 	}
 
