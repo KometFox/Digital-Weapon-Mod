@@ -81,6 +81,13 @@ $Random Bekas12m/Fire {Bekas12m/Fire1}
 $Volume Bekas12m/Fire 0.9
 Bekas12m/Fire1 "Sounds/Weapons/SG/Bekas12m/Fire.wav"
 
+//Baikal Izh 81
+Izh81/Fire "Sounds/Weapons/SG/Izh81/Fire.ogg"
+Izh81/CockStart "Sounds/Weapons/SG/Izh81/CockStart.ogg"
+Izh81/CockEnd "Sounds/Weapons/SG/Izh81/CockEnd.ogg"
+Izh81/Insert "Sounds/Weapons/SG/Izh81/Insert.ogg"
+
+
 //Shell
 Bekas12m/CockStart "Sounds/Weapons/SG/Bekas12m/CockStart.wav"
 Bekas12m/CockEnd "Sounds/Weapons/SG/Bekas12m/CockEnd.ogg"
