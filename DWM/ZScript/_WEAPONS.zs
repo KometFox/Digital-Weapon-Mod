@@ -30,6 +30,7 @@
 //Shotgun
 #Include "ZScript/Actor/Weapons/SG/Mossberg590.txt"
 #Include "ZScript/Actor/Weapons/SG/Bekas12m.txt"
+#Include "ZScript/Actor/Weapons/SG/Izh81.txt"
 #Include "ZScript/Actor/Weapons/SG/TOZ34.txt"
 #Include "ZScript/Actor/Weapons/SG/MolotVPO208.txt"
 #Include "ZScript/Actor/Weapons/SG/CarcanoM91.txt"

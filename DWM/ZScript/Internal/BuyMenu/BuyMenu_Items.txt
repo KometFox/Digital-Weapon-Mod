@@ -37,7 +37,7 @@ Class BM_Melee : BMItems
 			Item.ItemName = "MasterSword";
 			Item.Graphic = TexMan.CheckForTexture("PIMASS", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Pistol/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 600;
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -48,7 +48,7 @@ Class BM_Melee : BMItems
 			Item.ItemName = "Spear CDS-4";
 			Item.Graphic = TexMan.CheckForTexture("PICDS4", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Pistol/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 200;
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -69,7 +69,7 @@ Class BM_PistolWeapons : BMItems
 			Item.ItemName = "Enforcer";
 			Item.Graphic = TexMan.CheckForTexture("PIENF", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Pistol/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 0;
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -80,7 +80,7 @@ Class BM_PistolWeapons : BMItems
 			Item.ItemName = "Smith & Wesson Model 19";
 			Item.Graphic = TexMan.CheckForTexture("PISWM19", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Pistol/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 2200;
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -101,7 +101,7 @@ Class BM_SMGWeapons : BMItems
 			Item.ItemName = "MP5";
 			Item.Graphic = TexMan.CheckForTexture("PIMP5", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "SMG/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 450;
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -112,7 +112,7 @@ Class BM_SMGWeapons : BMItems
 			Item.ItemName = "Benelli CB-M3";
 			Item.Graphic = TexMan.CheckForTexture("PICBM3", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "SMG/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 300;
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -124,7 +124,7 @@ Class BM_SMGWeapons : BMItems
 			Item.ItemName = "IMI Uzi";
 			Item.Graphic = TexMan.CheckForTexture("Uzi", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "SMG/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 800;
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -143,7 +143,7 @@ Class BM_MGWeapons : BMItems
 			Item.ItemName = "M249 SAW";
 			Item.Graphic = TexMan.CheckForTexture("PIM249SW", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Assault/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 7500; 
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -153,7 +153,7 @@ Class BM_MGWeapons : BMItems
 			Item.ItemName = "Sumitomo 63";
 			Item.Graphic = TexMan.CheckForTexture("Sumitomo", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Assault/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 10000; 
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -163,7 +163,7 @@ Class BM_MGWeapons : BMItems
 			Item.ItemName = "Chaingun";
 			Item.Graphic = TexMan.CheckForTexture("PICHAIN", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Assault/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 10000; 
 			Item.Amount = 1;
 			ArItems.Push(Item);	
@@ -181,10 +181,10 @@ Class BM_ARWeapons : BMItems
 			
 			let Item = new("BuyMenuItems");
 			Item.ID = "RMD_SA85m";
-			Item.ItemName = "AK-4/M";
+			Item.ItemName = "AK-47M";
 			Item.Graphic = TexMan.CheckForTexture("PISA85m", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Assault/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 1000; 
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -194,7 +194,7 @@ Class BM_ARWeapons : BMItems
 			Item.ItemName = "Raptor AR-70";
 			Item.Graphic = TexMan.CheckForTexture("PIAR70", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Assault/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 2500; 
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -204,7 +204,7 @@ Class BM_ARWeapons : BMItems
 			Item.ItemName = "M25";
 			Item.Graphic = TexMan.CheckForTexture("PIM25", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Assault/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 4000; 
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -214,7 +214,7 @@ Class BM_ARWeapons : BMItems
 			Item.ItemName = "Madsen LAR";
 			Item.Graphic = TexMan.CheckForTexture("PIMADLAR", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Assault/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 5000; 
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -224,7 +224,7 @@ Class BM_ARWeapons : BMItems
 			Item.ItemName = "E12 Plasma Rifle";
 			Item.Graphic = TexMan.CheckForTexture("PIE12PR", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Assault/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 12000; 
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -245,7 +245,7 @@ Class BM_ShotgunWeapons : BMItems
 			Item.ItemName = "Mossberg 590";
 			Item.Graphic = TexMan.CheckForTexture("PISHOT1", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Shotgun/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 500;
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -256,18 +256,30 @@ Class BM_ShotgunWeapons : BMItems
 			Item.ItemName = "Bekas 12m";
 			Item.Graphic = TexMan.CheckForTexture("PIBEK12", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Shotgun/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 500;
 			Item.Amount = 1;
 			ArItems.Push(Item);
 	
+	
+			//Bekas 12m
+			Item = new("BuyMenuItems");
+			Item.ID = "RMD_Izh81";
+			Item.ItemName = "Baikal Izh 81";
+			Item.Graphic = TexMan.CheckForTexture("PIZH81", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Buy/Purchase";
+			Item.Cost = 800;
+			Item.Amount = 1;
+			ArItems.Push(Item);
+			
 			//TOZ-34
 			Item = new("BuyMenuItems");
 			Item.ID = "RMD_TOZ34";
 			Item.ItemName = "TOZ-34";
 			Item.Graphic = TexMan.CheckForTexture("PITOZ34", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Shotgun/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 2000;
 			Item.Amount = 1;
 			ArItems.Push(Item);	
@@ -278,7 +290,7 @@ Class BM_ShotgunWeapons : BMItems
 			Item.ItemName = "Molot VPO-208";
 			Item.Graphic = TexMan.CheckForTexture("PIMOL208", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Shotgun/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 2500;
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -289,7 +301,7 @@ Class BM_ShotgunWeapons : BMItems
 			Item.ItemName = "Carcano M91";
 			Item.Graphic = TexMan.CheckForTexture("PICARM91", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Shotgun/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 2000;
 			Item.Amount = 1;
 			ArItems.Push(Item);					
@@ -308,7 +320,7 @@ Class BM_GrenadeWeapons: BMItems
 			Item.ItemName = "Pirate Bomb";
 			Item.Graphic = TexMan.CheckForTexture("PIPIBOMB", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "RocketLauncher/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 800;
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -319,7 +331,7 @@ Class BM_GrenadeWeapons: BMItems
 			Item.ItemName = "Molotov Cocktail";
 			Item.Graphic = TexMan.CheckForTexture("PIMOLOC", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "RocketLauncher/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 2000;
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -340,7 +352,7 @@ Class BM_LauncherWeapons : BMItems
 			Item.ItemName = "G20 Grenade Launcher";
 			Item.Graphic = TexMan.CheckForTexture("PIG20", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "RocketLauncher/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 5000;
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -351,7 +363,7 @@ Class BM_LauncherWeapons : BMItems
 			Item.ItemName = "Locust Rocket Launcher";
 			Item.Graphic = TexMan.CheckForTexture("PILORL", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "RocketLauncher/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 15000;
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -362,7 +374,7 @@ Class BM_LauncherWeapons : BMItems
 			Item.ItemName = "Mk-153 SMAW";
 			Item.Graphic = TexMan.CheckForTexture("PISMAW", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "RocketLauncher/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 40000;
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -372,7 +384,7 @@ Class BM_LauncherWeapons : BMItems
 			Item.ItemName = "Dragonfly Flamethrower";
 			Item.Graphic = TexMan.CheckForTexture("PIDF12", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "RocketLauncher/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 20000;
 			Item.Amount = 1;
 			ArItems.Push(Item);	
@@ -382,7 +394,7 @@ Class BM_LauncherWeapons : BMItems
 			Item.ItemName = "E20 Plasma Cannon";
 			Item.Graphic = TexMan.CheckForTexture("PIE20", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "RocketLauncher/Select";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 50000;
 			Item.Amount = 1;
 			ArItems.Push(Item);	
@@ -403,7 +415,7 @@ Class BM_AmmoItems : BMItems
 			Item.ItemName = "Pistol Bullets";
 			Item.Graphic = TexMan.CheckForTexture("AMMOSMG", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Items/SMGBullet";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 150;
 			Item.Amount = 100;
 			ArItems.Push(Item);
@@ -413,7 +425,7 @@ Class BM_AmmoItems : BMItems
 			Item.ItemName = "Rifle Bullets";
 			Item.Graphic = TexMan.CheckForTexture("AMMOAR", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Items/ARBullet";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 350;
 			Item.Amount = 100;
 			ArItems.Push(Item);
@@ -423,7 +435,7 @@ Class BM_AmmoItems : BMItems
 			Item.ItemName = "Shells";
 			Item.Graphic = TexMan.CheckForTexture("AMMOSHEL", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Items/Shells";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 300;
 			Item.Amount = 25;
 			ArItems.Push(Item);			
@@ -433,7 +445,7 @@ Class BM_AmmoItems : BMItems
 			Item.ItemName = "Explosives";
 			Item.Graphic = TexMan.CheckForTexture("AMMONADE", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Items/SmallRocket";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 800;
 			Item.Amount = 10;
 			ArItems.Push(Item);	
@@ -443,7 +455,7 @@ Class BM_AmmoItems : BMItems
 			Item.ItemName = "Fuels";
 			Item.Graphic = TexMan.CheckForTexture("AMMOFUEL", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Items/Fuel";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 800;
 			Item.Amount = 100;
 			ArItems.Push(Item);			
@@ -453,7 +465,7 @@ Class BM_AmmoItems : BMItems
 			Item.ItemName = "Cells Pack";
 			Item.Graphic = TexMan.CheckForTexture("AMMOCELL", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "Items/Cells";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 800;
 			Item.Amount = 100;
 			ArItems.Push(Item);	
@@ -479,7 +491,7 @@ Class BM_Supplies : BMItems
 			Item.Graphic = TexMan.CheckForTexture("ITHPVL", TexMan.Type_Any);
 			//Item.Category = "Health";
 			Item.Command = "Buy";
-			Item.BuySound = "Items/MiniPotion";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 5000;
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -490,7 +502,7 @@ Class BM_Supplies : BMItems
 			Item.Graphic = TexMan.CheckForTexture("ITPHPVL", TexMan.Type_Any);
 			//Item.Category = "Health";
 			Item.Command = "Buy";
-			Item.BuySound = "Items/MiniPotion";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 12000;
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -501,7 +513,7 @@ Class BM_Supplies : BMItems
 			Item.Graphic = TexMan.CheckForTexture("ITHPMED", TexMan.Type_Any);
 			//Item.Category = "Health";
 			Item.Command = "Buy";
-			Item.BuySound = "Items/MiniPotion";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 800;
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -512,7 +524,7 @@ Class BM_Supplies : BMItems
 			Item.Graphic = TexMan.CheckForTexture("ITHPKEG", TexMan.Type_Any);
 			//Item.Category = "Health";
 			Item.Command = "Buy";
-			Item.BuySound = "Items/MiniPotion";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 25000;
 			Item.Amount = 1;
 			ArItems.Push(Item);
@@ -547,7 +559,7 @@ Class BM_Supplies : BMItems
 			Item.ItemName = "NBC Suit";
 			Item.Graphic = TexMan.CheckForTexture("SUITA0", TexMan.Type_Any);
 			Item.Command = "Buy";
-			Item.BuySound = "pickup/Suit";
+			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 50000;
 			Item.Amount = 1;
 			ArItems.Push(Item);

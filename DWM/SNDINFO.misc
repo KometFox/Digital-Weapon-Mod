@@ -35,6 +35,8 @@ pickup/Map MAP
 pickup/weapon DSWPNUP
 $random pickup/material {DSMAT1 DSMAT2}
 
+Buy/Purchase "Sounds/Items/Purchased.ogg"
+
 use/WaterBottle S_WATER
 
 //Powerups

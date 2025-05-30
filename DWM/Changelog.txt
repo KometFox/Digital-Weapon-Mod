@@ -7,12 +7,18 @@
 -Added AK-47M
 -Added TOZ-34
 -Added Molotov Cocktail
+-Added Baikal Izh 81 
 -Player starts out with a few health vials and medikits
 -Health items on maps are replaced with money
 -Code clean up
 -Added new Renamon sprite, credit: Heavy Swag
 -Added new hand texture, credit: Heavy Swag
+-Updated credits text
+-Removed GL material definition of models
+-Various new Graphics 
+-Fixed Carcano M91 animation
 -Bumped minimum GZDoom version to 4.12.0
+-Replaced hardware items with valueable items
 
 
 ================================================================================
