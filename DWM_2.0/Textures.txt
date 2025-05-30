@@ -1,3 +1,0 @@
-Sprite "IDLE" ,1 ,1 {}
-Sprite "RLA1" ,1 ,1 {}
-Sprite "RLB1" ,1 ,1 {}

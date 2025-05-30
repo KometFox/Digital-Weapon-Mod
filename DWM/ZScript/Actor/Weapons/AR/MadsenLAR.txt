@@ -22,8 +22,8 @@ class RMD_MadsenLAR : BaseWeapon
 		BaseWeapon.IronSight IRON_INACTIVE;
 		BaseWeapon.FireMode BULLET;
 		
-		BaseWeapon.MagazineMax 50;
-		BaseWeapon.Magazine 50;	
+		BaseWeapon.MagazineMax 40;
+		BaseWeapon.Magazine 40;	
 		
 		BaseWeapon.MagazineMax2 1;
 		BaseWeapon.Magazine2 1;
@@ -362,6 +362,7 @@ Class RMD_Madsen_Grenade : LightExplosives
 		//Randomizer
 		BaseProjectile.NormalDamageRandom 1.0;
 		BaseProjectile.NerfDamageRandom 1.0;
+		DamageType "Explosive";
 	}
 	
 	States

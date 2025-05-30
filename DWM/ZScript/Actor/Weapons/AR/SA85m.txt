@@ -12,12 +12,12 @@ class RMD_SA85m : BaseWeapon
 		Inventory.PickupMessage "$GOTCHAINGUN";
 		Inventory.AltHudIcon "PISA85m";
 		Obituary "$OB_MPCHAINGUN";
-		Tag "SA 85-m";
+		Tag "AK-47M";
 		
 		BaseWeapon.IronSight IRON_INACTIVE;
 		
-		BaseWeapon.MagazineMax 50;
-		BaseWeapon.Magazine 50;	
+		BaseWeapon.MagazineMax 40;
+		BaseWeapon.Magazine 40;	
 	}
 	
 	Action state ReloadCheck()
@@ -44,7 +44,7 @@ class RMD_SA85m : BaseWeapon
 		if (Invoker.IronSight == IRON_INACTIVE)
 		{	
 			//A_FireProjectile("RMD_SA85m_Bullet",frandom(-0.75, 0.75), 1, 6, 4, CMF_AIMDIRECTION,frandom(-0.75, 0.75));
-			A_FireBullets(0.75, 0.75, -1, 27, "RMD_BulletImpact", FBF_NoRandom); 
+			A_FireBullets(0.75, 0.75, -1, 28, "RMD_BulletImpact", FBF_NoRandom); 
 			
 			B_MuzzleFlash("RMD_BulletMuzzleFlash", (13, 2.5, -2.0));	
 			B_SpawnCasing("RifleCase", (-30, 7, 1.5), 180);
@@ -52,7 +52,7 @@ class RMD_SA85m : BaseWeapon
 		else if (Invoker.IronSight == IRON_ACTIVE)
 		{
 			//A_FireProjectile("RMD_SA85m_Bullet",frandom(-0.15, 0.15), 1, 0, 4, CMF_AIMDIRECTION,frandom(-0.15, 0.15));
-			A_FireBullets(0.15, 0.15, -1, 27, "RMD_BulletImpact", FBF_NoRandom); 
+			A_FireBullets(0.15, 0.15, -1, 28, "RMD_BulletImpact", FBF_NoRandom); 
 			
 			B_MuzzleFlash("RMD_BulletMuzzleFlash", (10, -0.3, -1.0));
 			B_SpawnCasing("RifleCase", (-25, 2, -4), 180);

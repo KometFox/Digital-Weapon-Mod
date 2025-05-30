@@ -4,13 +4,16 @@
 ***Version 1.2***
 ================================================================================
 -Added Chaingun
--Added SA 85-m
+-Added AK-47M
 -Added TOZ-34
 -Added Molotov Cocktail
 -Player starts out with a few health vials and medikits
 -Health items on maps are replaced with money
 -Code clean up
+-Added new Renamon sprite, credit: Heavy Swag
+-Added new hand texture, credit: Heavy Swag
 -Bumped minimum GZDoom version to 4.12.0
+
 
 ================================================================================
 ***Version 1.1***

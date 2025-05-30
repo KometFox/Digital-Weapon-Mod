@@ -1,7 +1,7 @@
 //This is safe to remove, for any case you want to use 
 //different class.
 clearplayerclasses 
-addplayerclass "D3Marine"
+//addplayerclass "D3Marine"
 addplayerclass "Renamon"
 
 

@@ -181,7 +181,7 @@ Class BM_ARWeapons : BMItems
 			
 			let Item = new("BuyMenuItems");
 			Item.ID = "RMD_SA85m";
-			Item.ItemName = "SA 85-M";
+			Item.ItemName = "AK-4/M";
 			Item.Graphic = TexMan.CheckForTexture("PISA85m", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Assault/Select";

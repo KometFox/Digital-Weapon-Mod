@@ -69,9 +69,36 @@ Thanks to these people and groups for assets used by this mod.
 -Cherno
  -Shader
  
--Dejiko 
+-Heavy swag/Swag master
+ -Re-coding
+ -Re-textures
  -Sprites
+ -Graphics
+ -editor 
+ -sounds
+ 
+-Moa dixon/Endie
+ -Sounds
+ -Codes
+ 
+-Nyx
+ -Sounds
 
+-Wild weasel
+ -Sounds
+ 
+-JMature99
+ -Sounds
+ 
+-Jimmy
+ -Fonts
+ 
+-DeVloek
+ -Codes
+ -Sounds
+ -Sprites
+ 
+ 
 [Groups]
 -Sven Co-op modders
 -GameBanana

@@ -108,6 +108,7 @@ override void Init()
 			int AmmoStash = Playa.CountInv(VAmmo);
 			String AmmoIcon = TexMan.GetName(BarInfo.GetAmmoIcon());
 			String MuggyShot = TexMan.GetName(GetMugshot(3));
+			String Renamonbodydisplay = "Renabody";
 			String VCrosshair = "XHAIRB1";
 			String HUDe1 = "BOX1";
 			String HUDe2 = "BOX2";
@@ -121,8 +122,11 @@ override void Init()
 			AddImage(HUDe2, 69, 200, 1.0, 1.0);
 			
 			//HUD Face
-			AddImage(MiniBox, 150, 200, 1.0, 1.0);
-			
+			//AddImage(MiniBox, 150, 200, 1.0, 1.0);
+			AddImage(Renamonbodydisplay, 160, 200, 1.4, 1.4);
+			//DoomFace 
+			AddImage(MuggyShot, 160, 198, 1.2, 1.2);
+				
 			//Item Box
 			AddImage(MiniBox, 65, 150, 1.0, 1.0); 
 			
@@ -166,9 +170,7 @@ override void Init()
 				AddText(String.Format("%d", Playa.CountInv(VAmmo)), Font.CR_CYAN, 80, 180, 0.75, 0.75);
 			}
 			
-			//DoomFace 
-			AddImage(MuggyShot, 150, 200, 0.8, 0.8);
-			
+
 			//Selected Inventory
 			if (Playa.InvSel)
 			{

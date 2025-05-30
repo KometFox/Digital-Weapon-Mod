@@ -1,3 +1,4 @@
+//TODO: Redo the model of it. 
 class RMD_Bekas12m : BaseWeapon
 {
 	Default
