@@ -1,6 +1,8 @@
 class RMD_ASMDShockRifle : BaseWeapon
 {
 	double ScopeZoom;
+	const AmmoConsume = 3; 
+	const ImpDamage = 250;
 
 	Enum E_FireMode
 	{
@@ -24,18 +26,20 @@ class RMD_ASMDShockRifle : BaseWeapon
 		BaseWeapon.IronSight IRON_INACTIVE;
 		BaseWeapon.FireMode BULLET;
 		
-		BaseWeapon.MagazineMax 16;
-		BaseWeapon.Magazine 16;
+		BaseWeapon.MagazineMax 20;
+		BaseWeapon.Magazine 20;
 		+ALWAYSPUFF;
 	}
 	
 	//Blam blam
 	Action Void FireBullets()
 	{
+	
+	
 		Invoker.Magazine -= 1;
 		RMD_BARINFO.Set_Mag(invoker.Magazine);
 		
-		A_FireBullets(0.5, 0.5, -1, 350, "RMD_BulletPlasmaImpact", FBF_NoRandom); 
+		A_FireBullets(0.5, 0.5, -1, ImpDamage, "RMD_BulletPlasmaImpact", FBF_NoRandom); 
 			
 		if (Invoker.IronSight == IRON_INACTIVE)
 		{				
@@ -127,18 +131,18 @@ class RMD_ASMDShockRifle : BaseWeapon
 
 	//Bullets
 	FireNow:
-		TNT1 A 0 CheckIfAmmo(Invoker.Magazine, "ReadyReal");
+		TNT1 A 0 CheckIfAmmo(AmmoConsume, "ReadyReal");
 		FIR1 A 1 FireBullets();
 		FIR1 BCDEFG 1;
-		FIR1 A 12;
+		FIR1 A 17;
 		FIR1 A 0 A_ReFire("FireNow");
 		Goto ReadyReal;
 	
 	IronFireNow:
-		TNT1 A 0 CheckIfAmmo(Invoker.Magazine, "IronReady");
+		TNT1 A 0 CheckIfAmmo(AmmoConsume, "IronReady");
 		SCOA C 1 FireBullets();
 		SCOA CCCCC 1;
-		SCOA C 12;
+		SCOA C 17;
 		SCOA C 0 A_ReFire("IronFireNow");
 		Goto IronReady;	
 		
@@ -162,7 +166,7 @@ class RMD_ASMDShockRifle : BaseWeapon
 			A_StartSound("M16A3/MagIn", CHAN_WEAPON +4);
 			A_StartSound("E12PR/CellIn", CHAN_WEAPON +2);
 			
-			ReloadGun(Invoker.AmmoType1, 0, 1, 1);
+			ReloadGun(Invoker.AmmoType1, 0, 1, AmmoConsume);
 		}
 		REL1 TUVWXYZ 2;
 		REL2 AB 2;
