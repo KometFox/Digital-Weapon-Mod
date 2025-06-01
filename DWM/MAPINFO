@@ -26,3 +26,71 @@ gameinfo
 	AddEventHandlers = "ID_ScoreCalculator"
 	AddEventHandlers = "ID_ItemDropGenerator"
 }
+
+
+skill easy
+{
+   AmmoFactor = 1
+   DamageFactor = 1.0
+   SpawnFilter = easy
+   textcolor = green
+   name = "-Easy"
+   Key = "1"
+}
+
+skill medium
+{
+   AmmoFactor = 1
+   DamageFactor = 1.0
+   SpawnFilter = normal
+   textcolor = yellow
+   name = "-Medium"
+   Key = "2"
+}
+
+
+skill hard
+{
+   AmmoFactor = 1
+   DamageFactor = 1.0
+   SpawnFilter = hard
+   textcolor = orange
+   name = "-Hard"
+   defaultskill
+   Key = "3"
+}
+
+skill hardfast
+{
+   AmmoFactor = 1
+   DamageFactor = 1.0
+   SpawnFilter = hard
+   textcolor = Red
+   name = "-Hardcore"
+   FastMonsters
+   mustconfirm = "Game mode: Think fast, Hard enemy spawns. Monsters are twice as faster. Press Y or N"
+}
+
+skill hardfasttough
+{
+   MonsterHealth = 2.0
+   AmmoFactor = 1
+   DamageFactor = 1.0
+   SpawnFilter = hard
+   textcolor = Black
+   name = "-Insanity"
+   FastMonsters
+   mustconfirm = "Game mode: Ehh...are you sure. tried to beating hardest difficulity don't do that. whatever, You died easily! Press Y or N"
+}
+
+Intermission Inter_Cast
+{
+	Image
+	{
+		// This is only here to initialize the background and the music
+		Background = "DWMEnd"
+		Time = -1
+		Music = "DWENDING"
+	}
+	Link = Doom2Cast
+}

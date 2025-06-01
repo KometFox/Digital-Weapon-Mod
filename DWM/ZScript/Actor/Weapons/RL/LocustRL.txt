@@ -12,7 +12,7 @@ class RMD_LocustRL : BaseWeapon
 		Inventory.PickupMessage "$GOTCHAINGUN";
 		Inventory.AltHudIcon "PILORL";
 		Obituary "$OB_MPCHAINGUN";
-		Tag "Locust RL";
+		Tag "Locust Rocket Launcher";
 		
 		BaseWeapon.IronSight IRON_INACTIVE;
 		
@@ -165,9 +165,9 @@ Class RMD_LocustRL_Rocket : HeavyExplosives
 		//Impact 
 		BaseProjectile.ImpactDamage 0;
 		//Splash 
-		BaseProjectile.SplashDamage 365;
-		BaseProjectile.FullSplashDamage 100;
-		BaseProjectile.SplashRadius 140;
+		BaseProjectile.SplashDamage 260;
+		BaseProjectile.FullSplashDamage 90;
+		BaseProjectile.SplashRadius 130;
 		
 		BaseProjectile.NormalDamageRandom 1.0;
 		BaseProjectile.NerfDamageRandom 1.0;
@@ -188,7 +188,7 @@ Class RMD_LocustRL_Rocket : HeavyExplosives
 			TNT1 A 0 
 			{
 				A_StartSound("Explosion/Small");
-				A_SpawnItemEx("RMD_40mmExplosionSpawner", 0, 0, 0);
+				A_SpawnItemEx("RMD_UTBoomMed", 0, 0, 0);
 			}
 			Stop;	
 	}

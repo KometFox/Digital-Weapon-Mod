@@ -1,3 +1,9 @@
 Sprite "IDLE" ,1 ,1 {}
 Sprite "RLA1" ,1 ,1 {}
 Sprite "RLB1" ,1 ,1 {}
+
+
+Graphic "INTERPIC", 1050,581
+{
+    Patch "RENAINTE", 0, 0
+}

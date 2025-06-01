@@ -188,7 +188,7 @@ Class RMD_G20GL_Grenade : LightExplosives
 			TNT1 A 0 
 			{
 				A_StartSound("Explosion/Small");
-				A_SpawnItemEx("RMD_40mmExplosionSpawner", 0, 0, 0);
+				A_SpawnItemEx("RMD_UTBoomMed", 0, 0, 0);
 			}
 			Stop;	
 	}

@@ -10,7 +10,7 @@ class RMD_Bekas12m : BaseWeapon
 		Weapon.AmmoType "RMD_Shells";
 		Inventory.PickupMessage "$GOTCHAINGUN";
 		Obituary "$OB_MPCHAINGUN";
-		Tag "Bekas 12m";
+		Tag "Molot Bekas 12m";
 		Inventory.AltHudIcon "PIBEK12";
 		BaseWeapon.IronSight IRON_INACTIVE;
 
@@ -21,17 +21,18 @@ class RMD_Bekas12m : BaseWeapon
 	
 	Action void FireBullets()
 	{	
+		//.410 caliber with 5 pellets 
 		if (Invoker.IronSight == IRON_INACTIVE)
 		{
 			//A_FireProjectile("RMD_Bekas12mProj",frandom(-2.85, 2.85), 1, 6, 4, CMF_AIMDIRECTION, frandom(-2.85, 2.85));
-			A_FireBullets(2.85, 2.85, 9, 20, "RMD_BulletImpact", FBF_NoRandom); 
+			A_FireBullets(3.25, 3.25, 5, 17, "RMD_BulletImpact", FBF_NoRandom); 
 			
 			B_MuzzleFlash("RMD_BuckshotMuzzleFlash", (9, 1.8, -1.0));	
 		}
 		else
 		{
 			//A_FireProjectile("RMD_Bekas12mProj",frandom(-1.0, 1.0), 1, 0, 4, CMF_AIMDIRECTION, frandom(-1.0, 1.0));
-			A_FireBullets(1.0, 1.0, 9, 20, "RMD_BulletImpact", FBF_NoRandom); 
+			A_FireBullets(1.5, 1.5, 5, 17, "RMD_BulletImpact", FBF_NoRandom); 
 			
 			B_MuzzleFlash("RMD_BuckshotMuzzleFlash", (7, 0, -0.5));	
 		}	

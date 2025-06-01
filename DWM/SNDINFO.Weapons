@@ -69,7 +69,11 @@ Mossberg590/Insert "Sounds/Weapons/SG/AoMShotgun/Insert.ogg"
 
 //TOZ-34
 TOZ34/Fire1 "Sounds/Weapons/SG/TOZ-34/Fire.ogg"
-TOZ34/Fire2 "Sounds/Weapons/SG/TOZ-34/Fire.ogg"
+TOZ34/Fire2 "Sounds/Weapons/SG/TOZ-34/BothFire.ogg"
+
+$Volume TOZ34/Fire1 0.5
+$Volume TOZ34/Fire2 0.5
+
 
 TOZ34/Open "Sounds/Weapons/SG/TOZ-34/Open.ogg"
 TOZ34/Insert "Sounds/Weapons/SG/TOZ-34/Insert.ogg"
@@ -140,8 +144,8 @@ $Volume Kestrel/Fire 0.65
 //Locust RL
 
 LocustRL/Fire "Sounds/Weapons/Launcher/LocustRL/Fire.ogg"
-LocustRL/MagOut "Sounds/Weapons/Launcher/LocustRL/MagOut.wav"
-LocustRL/MagIn "Sounds/Weapons/Launcher/LocustRL/MagIn.wav"
+LocustRL/MagOut "Sounds/Weapons/Launcher/LocustRL/MagOut.ogg"
+LocustRL/MagIn "Sounds/Weapons/Launcher/LocustRL/MagIn.ogg"
 
 $Volume LocustRL/Fire 0.9
 
@@ -234,10 +238,11 @@ AR70/MagOut "Sounds/Weapons/AR/AR70/MagOut.ogg"
 //------------------------------------------------------------------------------
 //M249 SAW
 $Random M249SAW/Fire {M249SAW/Fire1}
-
-$Volume M249SAW/Fire 1.0
-						
 M249SAW/Fire1 "Sounds/Weapons/MG/M249SAW/Fire.ogg"
+
+$Volume M249SAW/Fire 0.5
+$Volume M249SAW/Fire1 0.5
+
 						
 M249SAW/Bolt "Sounds/Weapons/MG/M249SAW/Bolt.ogg"
 M249SAW/Belt "Sounds/Weapons/MG/M249SAW/Belt.ogg"

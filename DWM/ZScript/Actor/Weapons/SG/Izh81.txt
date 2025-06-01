@@ -13,8 +13,8 @@ class RMD_Izh81 : BaseWeapon
 		Inventory.AltHudIcon "PIZH81";
 		BaseWeapon.IronSight IRON_INACTIVE;
 
-		BaseWeapon.MagazineMax 6;
-		BaseWeapon.Magazine 6;
+		BaseWeapon.MagazineMax 8;
+		BaseWeapon.Magazine 8;
 		
 	}
 	
@@ -24,7 +24,7 @@ class RMD_Izh81 : BaseWeapon
 		{
 			A_FireBullets(2.5, 2.5, 9, 27, "RMD_BulletImpact", FBF_NoRandom); 
 
-			B_MuzzleFlash("RMD_BuckshotMuzzleFlash", (9, 1.8, -1.0));	
+			B_MuzzleFlash("RMD_BuckshotMuzzleFlash", (9, 1.33, -1.0));	
 		}
 		else
 		{

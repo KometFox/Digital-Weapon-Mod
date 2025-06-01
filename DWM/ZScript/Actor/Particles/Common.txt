@@ -60,6 +60,65 @@ Class RMD_ExplosionSprite2 : RMD_BaseParticle
 
 
 
+Class RMD_UTBoomSprite : RMD_BaseParticle
+{
+
+	Default
+	{
+		RenderStyle "Add";
+		Alpha 1.0;
+		+Bright;
+	}
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		Roll = Random[FX](0, 360);
+		Angle = Random[FX](0, 360);	
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			YOM2 A 12;
+			YOM2 AAAAA 1 A_FadeOut(0.1668);
+			Stop;			
+	}
+}
+
+
+
+Class RMD_SmoothBoom : RMD_BaseParticle
+{
+
+	Default
+	{
+		RenderStyle "Add";
+		Alpha 1.0;
+		+Bright;
+	}
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		Roll = Random[FX](0, 360);
+		Angle = Random[FX](0, 360);	
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			XBUM ABC 2;
+			XBUM DE 2 A_FadeOut(0.45);
+			Stop;			
+	}
+}
+
+
 Class RMD_Fire : RMD_BaseParticle
 {
 
@@ -211,6 +270,37 @@ Class RMD_Smoke : RMD_BaseParticle
 	}
 }
 
+
+Class RMD_DoomSmoke : RMD_BaseParticle
+{
+	Default
+	{
+		RenderStyle "Translucent";
+		Alpha 1.0;
+		RMD_BaseParticle.TimeToLife 10;
+	}
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		Roll = frandom(0, 360);	
+		Angle = Random[FX](0, 360);	
+	}
+	
+
+	States
+	{
+		Spawn:
+			TNT1 A 0;	
+			SMZZ A 0;
+			Goto Smoky;
+		Smoky:
+			"####" A 1;
+			Loop;
+			
+	}
+}
 
 
 

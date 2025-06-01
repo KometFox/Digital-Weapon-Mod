@@ -1,3 +1,36 @@
+DEFAULTLISTMENU
+{
+	Font "DBIGFONT", "Yellow", "cyan"
+	
+	Selector "RENAHead", -35, -15
+	Linespacing 18
+}
+
+
+LISTMENU "MainMenu"
+{
+	StaticPatch 95, -8, "DM_Doom"
+	Position 75, 75
+		
+	TextItem "Let's Begin!",  "n",	"PlayerclassMenu"
+	TextItem "Options setting",	     "o",	"OptionsMenu"
+	TextItem "Load",         "l",	"LoadGameMenu"
+	TextItem "Save",         "s",	"SaveGameMenu"
+	TextItem "Exit",	 "q",	"QuitMenu"
+}
+
+ListMenu "SkillMenu"
+{
+		Selector "RENAHead", -35, -15
+		Font "main", "White", "cyan"
+		LineSpacing 17
+		StaticText 62, 19, "New Adventure"
+		StaticText 36, 34, "Choose diffculties"
+		Position 48, 63
+}
+
+
+
 AddOptionMenu "OptionsMenu"
 {
 	SubMenu "DWM Doom Options", "DWM Doom Settings"
