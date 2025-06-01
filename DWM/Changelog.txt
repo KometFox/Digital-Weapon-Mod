@@ -8,6 +8,7 @@
 -Added TOZ-34
 -Added Molotov Cocktail
 -Added Baikal Izh 81 
+-Added ASMD Shock Rifle
 -Player starts out with a few health vials and medikits
 -Health items on maps are replaced with money
 -Code clean up

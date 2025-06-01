@@ -161,25 +161,25 @@ Model RMD_PirateBomb_Bomb
 	FrameIndex IDLE A 0 0
 }
 
-/*
-Model LightningBeamTrailBase
-{
-   Path "Models"
-   MODEL 0 "lightning.md3"
-   Scale 1 1 1.2
-   INHERITACTORPITCH
 
-   SKIN 0 "lgtning1.png"		FrameIndex NULL A 0 0 //0
-   SKIN 0 "laserbeam1.png"		FrameIndex NULL B 0 0 //1
-   SKIN 0 "smoke1.png"			FrameIndex NULL C 0 0 //2
-   SKIN 0 "GLUONBM"				FrameIndex NULL D 0 0 //3
-   SKIN 0 "tongue.png" 			FrameIndex NULL E 0 0 //4
-   SKIN 0 "laserbeam2.png" 		FrameIndex NULL F 0 0 //5
-   SKIN 0 "GLUONBM2"			FrameIndex NULL G 0 0 //6
-   SKIN 0 "plasma1.png" 		FrameIndex NULL H 0 0 //7
-   SKIN 0 "ebeam0.png" 			FrameIndex NULL I 0 0 //8
-   SKIN 0 "ebeam1.png" 			FrameIndex NULL J 0 0 //9
-   SKIN 0 "ebeam2.png" 			FrameIndex NULL K 0 0 //10
-   
+Model "BEAMZ_LaserBeam"
+{
+	Path "Models/Projectile"
+	Model 0 "beam.md3"
+	Skin 0 "beam.png"
+	USEACTORPITCH
+	DONTCULLBACKFACES
+	
+	FrameIndex MODL A 0 0
 }
-*/
+Model "PulseLaser"
+{
+	Path "Models/Projectile"
+	Model 0 "beam_cyl.md3"
+	Skin 0 "beam_cyl.png"
+	USEACTORPITCH
+	DONTCULLBACKFACES
+	
+	FrameIndex MODL A 0 0
+}
+

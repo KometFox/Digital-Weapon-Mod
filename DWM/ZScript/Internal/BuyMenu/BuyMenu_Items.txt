@@ -291,7 +291,7 @@ Class BM_ShotgunWeapons : BMItems
 			Item.Graphic = TexMan.CheckForTexture("PIMOL208", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 2500;
+			Item.Cost = 2000;
 			Item.Amount = 1;
 			ArItems.Push(Item);
 			
@@ -302,7 +302,7 @@ Class BM_ShotgunWeapons : BMItems
 			Item.Graphic = TexMan.CheckForTexture("PICARM91", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 2000;
+			Item.Cost = 4000;
 			Item.Amount = 1;
 			ArItems.Push(Item);					
 
@@ -313,7 +313,7 @@ Class BM_ShotgunWeapons : BMItems
 			Item.Graphic = TexMan.CheckForTexture("PASMD", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 4000;
+			Item.Cost = 20000;
 			Item.Amount = 1;
 			ArItems.Push(Item);	
 		}
