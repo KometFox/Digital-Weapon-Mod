@@ -1,6 +1,12 @@
 Class RMD_BulletPlasmaImpact : Actor
 {
 
+	Default
+	{
+		+ALWAYSPUFF;
+		+PUFFONACTORS;
+	}
+
 	States
 	{
 		Spawn:

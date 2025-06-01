@@ -27,6 +27,7 @@ gameinfo
 	AddEventHandlers = "ID_ItemDropGenerator"
 }
 
+clearskills
 
 skill easy
 {

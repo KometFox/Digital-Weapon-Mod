@@ -26,6 +26,7 @@
 #Include "Models/Weapons/DEFS/LocustRL.txt"
 #Include "Models/Weapons/DEFS/SMAW.txt"
 #Include "Models/Weapons/DEFS/E12PR.txt"
+#Include "Models/Weapons/DEFS/ASMDShockRifle.txt"
 #Include "Models/Weapons/DEFS/E20PC.txt"
 //Other Weapons
 #Include "Models/Weapons/DEFS/Beer.txt"

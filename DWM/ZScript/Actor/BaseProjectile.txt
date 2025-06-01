@@ -405,4 +405,60 @@ Class HeavyExplosivesFast : BaseProjectileFast
 
 }
 
+Class EffectBase : Actor
+{
+	Default
+	{
+		RenderStyle "Add";
+		+NOINTERACTION
+		+CLIENTSIDEONLY
+		+FORCEXYBILLBOARD
+		+NOBLOCKMAP
+		+DONTSPLASH
+		+THRUACTORS
+		+NOTRIGGER
+		//-ACTIVATEPCROSS
+		//-ACTIVATEIMPACT
+		+NOBLOCKMAP
+		+NOBLOCKMONST
+		+NOTONAUTOMAP
+		+CANNOTPUSH
+		+ROLLSPRITE
+		+INTERPOLATEANGLES
+		Radius 0.5;
+		Height 1;
+		Gravity 0.66;
+		Species "VFX";
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 10;
+		Stop;
+	}
+}
 
+Class BlankPuff : Actor
+{
+	Default
+	{
+		Height 0;
+		VSpeed 0;
+		+ALWAYSPUFF
+		+NOGRAVITY
+		+PUFFONACTORS
+		+SKYEXPLODE
+		+NOTIMEFREEZE
+		+BLOODLESSIMPACT
+		+NOTRIGGER
+		+THRUACTORS
+		+FORCEDECAL
+		Decal "";
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 4;// NoDelay A_SpawnParticle("White",0,1,5);
+		Stop;
+	}
+}

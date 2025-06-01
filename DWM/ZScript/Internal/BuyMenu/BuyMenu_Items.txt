@@ -305,6 +305,17 @@ Class BM_ShotgunWeapons : BMItems
 			Item.Cost = 2000;
 			Item.Amount = 1;
 			ArItems.Push(Item);					
+
+			//ASMD Shock Rifle
+			Item = new("BuyMenuItems");
+			Item.ID = "RMD_ASMDShockRifle";
+			Item.ItemName = "ASMD Shock Rifle";
+			Item.Graphic = TexMan.CheckForTexture("PASMD", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Buy/Purchase";
+			Item.Cost = 4000;
+			Item.Amount = 1;
+			ArItems.Push(Item);	
 		}
 
 }
