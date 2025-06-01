@@ -499,7 +499,7 @@ class ASMDLaser : BEAMZ_LaserBeam
 		
 		Timer++;
 		
-		If (Timer >= 4)
+		If (Timer >= 6)
 		{
 			Destroy();
 		}
@@ -507,7 +507,7 @@ class ASMDLaser : BEAMZ_LaserBeam
 	
 	override void BeamTick()
 	{
-		Alpha = 0.75;
+		Alpha = 1.5;
 		aimAtCrosshair();
 	}
  }

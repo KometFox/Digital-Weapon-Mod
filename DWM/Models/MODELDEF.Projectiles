@@ -183,3 +183,14 @@ Model "PulseLaser"
 	FrameIndex MODL A 0 0
 }
 
+
+Model "ASMDLaser"
+{
+	Path "Models/Projectile"
+	Model 0 "beam_cyl.md3"
+	Skin 0 "beam_cyl.png"
+	USEACTORPITCH
+	DONTCULLBACKFACES
+	
+	FrameIndex MODL A 0 0
+}

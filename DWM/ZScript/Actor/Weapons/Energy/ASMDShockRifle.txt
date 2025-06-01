@@ -42,21 +42,25 @@ class RMD_ASMDShockRifle : BaseWeapon
 		
 		A_FireBullets(0.5, 0.5, -1, ImpDamage, "RMD_BulletPlasmaImpact", FBF_NoRandom); 
 		
-		// Create Laser
-		/*
-		invoker.beam = invoker.beam.BeamAdd(Self, 5, 2.0, -0.75, 0, 2, type:"ASMDLaser");
-		invoker.beam.trackPSprite = false;
-		invoker.beam.aimWithWeapon = false; 
-		invoker.beam.SetEnabled(true);
-		*/
+		
 			
 		if (Invoker.IronSight == IRON_INACTIVE)
 		{				
+			// Create Laser
+			invoker.beam = invoker.beam.BeamAdd(Self, 5, 2.0, -0.75, 0, 2, type:"ASMDLaser");
+			invoker.beam.trackPSprite = false;
+			invoker.beam.aimWithWeapon = false; 
+			invoker.beam.SetEnabled(true);
+
 			B_MuzzleFlash("RMD_PlasmaFlash", (10, 2.0, -0.7));	
 		}
 		else if (Invoker.IronSight == IRON_ACTIVE)
 		{
-			
+			// Create Laser
+			invoker.beam = invoker.beam.BeamAdd(Self, 5, 0.0, -0.75, 0, 2, type:"ASMDLaser");
+			invoker.beam.trackPSprite = false;
+			invoker.beam.aimWithWeapon = false; 
+			invoker.beam.SetEnabled(true);
 		}
 		
 		A_AlertMonsters();
