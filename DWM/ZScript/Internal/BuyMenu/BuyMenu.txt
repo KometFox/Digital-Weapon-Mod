@@ -570,6 +570,7 @@ Class BuyMenuScript : EventHandler
 			if (Enabled == False)
 			{
 				VPlayer = Players[e.Player].mo;
+				//PlayerInfo VPlayer2 = Players[e.Player];
 				
 				if (!VPlayer)
 					return;
@@ -579,6 +580,8 @@ Class BuyMenuScript : EventHandler
 
 				Enabled = True;
 				CallACS("RMD_FreezePlayer");
+				Level.SetFrozen(true);
+				//VPlayer2.Cheats |= CF_TotallyFrozen;
 			}
 			else
 			{
@@ -587,6 +590,8 @@ Class BuyMenuScript : EventHandler
 
 				Enabled = False;
 				CallACS("RMD_UnfreezePlayer");
+				Level.SetFrozen(false);
+				//VPlayer2.Cheats -= CF_TotallyFrozen;
 			}
 			
 		}
