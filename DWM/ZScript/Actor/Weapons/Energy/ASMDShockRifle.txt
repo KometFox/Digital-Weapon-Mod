@@ -1,8 +1,8 @@
 class RMD_ASMDShockRifle : BaseWeapon
 {
 	double ScopeZoom;
-	const AmmoConsume = 4; 
-	const ImpDamage = 500;
+	const AmmoConsume = 2; 
+	const ImpDamage = 340;
 	BEAMZ_LaserBeam beam;
 
 	Enum E_FireMode

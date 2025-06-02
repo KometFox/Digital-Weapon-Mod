@@ -183,6 +183,7 @@ Class E20PC_PlasmaBall : HeavyExplosivesFast
 		//Randomizer
 		BaseProjectileFast.NerfDamageRandom 1.0;
 		BaseProjectileFast.NormalDamageRandom 1.0;
+		BaseProjectileFast.HurtPlayer false; 
 		
 		DamageType "Plasma";
 		DeathType "Plasma";

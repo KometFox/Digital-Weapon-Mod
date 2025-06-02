@@ -96,7 +96,7 @@ override void Init()
 		RMD_BARINFO BarInfo = RMD_BARINFO(EventHandler.Find("RMD_BARINFO"));		
 		
 		
-		if (Playa && (state == HUD_StatusBar) || (state == HUD_Fullscreen)
+		if (Playa && (state == HUD_Fullscreen)
 			&& AutoMapDrawn == False)
 		{
 			int ArmorV = GetArmorAmount(); 

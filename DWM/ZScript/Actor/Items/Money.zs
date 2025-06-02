@@ -160,9 +160,9 @@ Class RMD_Diamond : MaterialBase
 {
 	Default
 	{
-		MaterialBase.Money 1000;
+		MaterialBase.Money 5000;
 		MaterialBase.ItemColor "e6e6e6";
-		Inventory.pickupmessage "Diamond! +1000C";
+		Inventory.pickupmessage "Diamond! +5000C";
 	}
 }
 
@@ -172,9 +172,9 @@ Class RMD_LatniumBar : MaterialBase
 {
 	Default
 	{
-		MaterialBase.Money 1000;
+		MaterialBase.Money 10000;
 		MaterialBase.ItemColor "e6e6e6";
-		Inventory.pickupmessage "Latnium Bar! +1000C";
+		Inventory.pickupmessage "Latnium Bar! +10000C";
 	}
 }
 
@@ -183,9 +183,9 @@ Class RMD_Treasure : MaterialBase
 {
 	Default
 	{
-		MaterialBase.Money 500;
+		MaterialBase.Money 2000;
 		MaterialBase.ItemColor "e6e6e6";
-		Inventory.pickupmessage "Treasure! +500C";
+		Inventory.pickupmessage "Treasure! +2000C";
 	}
 }
 
@@ -193,9 +193,9 @@ Class RMD_GoldBar : MaterialBase
 {
 	Default
 	{
-		MaterialBase.Money 120;
+		MaterialBase.Money 250;
 		MaterialBase.ItemColor "e6e6e6";
-		Inventory.pickupmessage "Gold bar +120c";
+		Inventory.pickupmessage "Gold bar +250c";
 	}
 }
 
@@ -203,9 +203,9 @@ Class RMD_GoldGoblet : MaterialBase
 {
 	Default
 	{
-		MaterialBase.Money 60;
+		MaterialBase.Money 100;
 		MaterialBase.ItemColor "e6e6e6";
-		Inventory.pickupmessage "Gold Goblet +60C";
+		Inventory.pickupmessage "Gold Goblet +100C";
 	}
 }
 
@@ -213,9 +213,9 @@ Class RMD_CoinPile : MaterialBase
 {
 	Default
 	{
-		MaterialBase.Money 10;
+		MaterialBase.Money 30;
 		MaterialBase.ItemColor "e6e6e6";
-		Inventory.pickupmessage "Coin pile +10C";
+		Inventory.pickupmessage "Coin pile +30C";
 	}
 }
 
@@ -223,9 +223,9 @@ Class RMD_SmallPearl : MaterialBase
 {
 	Default
 	{
-		MaterialBase.Money 20;
+		MaterialBase.Money 50;
 		MaterialBase.ItemColor "e6e6e6";
-		Inventory.pickupmessage "Small Pearl +20C";
+		Inventory.pickupmessage "Small Pearl +50C";
 	}
 }
 
@@ -233,9 +233,9 @@ Class RMD_SilverRing : MaterialBase
 {
 	Default
 	{
-		MaterialBase.Money 30;
+		MaterialBase.Money 60;
 		MaterialBase.ItemColor "e6e6e6";
-		Inventory.pickupmessage "Silver Ring +30C";
+		Inventory.pickupmessage "Silver Ring +60C";
 	}
 }
 

@@ -182,7 +182,11 @@ Class BaseProjectileFast : FastProjectile
 	float NerfDmgRand; //Nerfed damage randomizer
 	float NormalDmgRand; //Normal damage randomizer
 	
+	bool HurtPlayer;
+	int SplashFlags;
+	
 	property ImpactDamage:ImpDmg;
+	property HurtPlayer:HurtPlayer; 
 	property SplashDamage:SplashDmg;
 	property FullSplashDamage: FSplashDmg;
 	property SplashRadius:SplashRad;
@@ -209,13 +213,29 @@ Class BaseProjectileFast : FastProjectile
 		+FORCERADIUSDMG;
 	}
 
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		
+		if (HurtPlayer == false)
+		{
+			SplashFlags = 0;
+		}
+		else
+		{
+			SplashFlags = XF_HURTSOURCE;
+		}
+	}
+
+
 	States
 	{
 	Spawn:
 		IDLE A 1 NoDelay;
 		Stop;
 	Death:
-		TNT1 A 0 A_Explode(SplashDmg * Frandom(1.0, NormalDmgRand), SplashRad, XF_HURTSOURCE, 1, FSplashDmg);			
+		TNT1 A 0 A_Explode(SplashDmg * Frandom(1.0, NormalDmgRand), SplashRad, SplashFlags, 1, FSplashDmg);			
 		TNT1 A 0 A_Jump(256, "Explode");
 		Goto Explode;
 	Explode:
