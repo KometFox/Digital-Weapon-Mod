@@ -301,21 +301,6 @@ Class PistolCase : Casings
 //------------------------------------------------------------------------------
 //Rifle
 //------------------------------------------------------------------------------
-Class RifleCaseSpawn : Actor
-{
-	Default
-	{
-		Speed 10;
-	}
-	States
-	{
-		Spawn:
-			TNT1 AA 1 A_SpawnProjectile("RifleCase",0 , 0, random(-55, -80), 2, random(20, 40));
-			Stop;
-	}
-}
-
-
 Class RifleCase : Casings
 {
 	Mixin CaseTrail;
@@ -339,21 +324,6 @@ Class RifleCase : Casings
 //------------------------------------------------------------------------------
 //Shell
 //------------------------------------------------------------------------------
-Class ShellCaseSpawn : Actor
-{
-	Default
-	{
-		Speed 12;
-	}
-	States
-	{
-		Spawn:
-			TNT1 AA 1 A_SpawnProjectile("ShellCase",0 , 0, random(-35, -65), 2, random(25, 45));
-			Stop;
-	}
-}
-
-
 Class ShellCase : Casings
 {
 	Mixin CaseTrail;

@@ -324,6 +324,29 @@ Enum E_IronSight
 
 		Item.RecoilStrength = Strength;	
 	}
+	
+	action void GrenadeThrow()
+	{
+		/*
+		bugged...
+		//Spawn the grenade
+		Actor Proj;
+		Vector3 x, y, z;
+		[x, y, z] = dt_Matrix4.GetAxes(pitch, angle, roll);
+		Vector3 Origin = Vec2OffsetZ(0,0, viewz) + 10.0 * x +3.0 * y -1.8 * z;
+	
+	
+		Proj = Spawn("RMD_PirateBomb_Bomb", Origin);
+		
+		if (Proj)
+		{
+			Proj.Vel *= 40;
+		}
+		//Lower the weapon
+		*/
+	}
+	
+	
 
 States
 {

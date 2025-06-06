@@ -15,6 +15,7 @@
 
 //Ammunition
 #Include "ZScript/Internal/ManaRegen.txt"
+#Include "ZScript/Internal/GrenadeThrow.txt"
 
 //Looty
 #Include "ZScript/Internal/MonsterDrop/Core.txt"

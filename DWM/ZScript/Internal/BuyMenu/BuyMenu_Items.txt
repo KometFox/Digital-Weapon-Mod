@@ -118,6 +118,17 @@ Class BM_SMGWeapons : BMItems
 			ArItems.Push(Item);
 
 
+			//Mac 10
+			Item = new("BuyMenuItems");
+			Item.ID = "RMD_Mac10";
+			Item.ItemName = "Mac 10";
+			Item.Graphic = TexMan.CheckForTexture("GMac10", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Buy/Purchase";
+			Item.Cost = 600;
+			Item.Amount = 1;
+			ArItems.Push(Item);
+
 			//Uzi nine millimeter
 			Item = new("BuyMenuItems");
 			Item.ID = "RMD_Uzi";

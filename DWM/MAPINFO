@@ -25,6 +25,8 @@ gameinfo
 	AddEventHandlers = "AmmoDropper"
 	AddEventHandlers = "ID_ScoreCalculator"
 	AddEventHandlers = "ID_ItemDropGenerator"
+
+	AddEventHandlers = "RMD_GrenadeThrow"
 }
 
 clearskills

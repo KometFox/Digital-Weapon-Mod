@@ -32,7 +32,7 @@ Class RMD_BigPlasmaSpawner : Actor
 					
 					Particle.Vel = PVel;
 					Particle.Roll = Random(0, 360);
-					Particle.Scale = (2.6, 2.6);
+					Particle.Scale = (2.7, 2.7);
 					Particle.ScaleGrowth = 1.03;
 					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
 					Particle.SetShade("30C7FF");
@@ -81,6 +81,7 @@ Class RMD_BigPlasmaSpawner : Actor
 				}
 				
 				//Trail
+				/*
 				for (int i = 0; i < 5; ++i)
 				{
 					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](22.0, 44.0);
@@ -88,6 +89,7 @@ Class RMD_BigPlasmaSpawner : Actor
 					
 					Particle.Vel = PVel;
 				}
+				*/
 
 			}
 			Stop;

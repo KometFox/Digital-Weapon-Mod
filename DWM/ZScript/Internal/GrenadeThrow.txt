@@ -1,0 +1,28 @@
+Class RMD_GrenadeThrow : EventHandler
+{
+	override void NetworkProcess(ConsoleEvent e)
+	{
+
+		//Grenade Call
+		/*
+		if (e.Name == "GrenadeThrow")
+		{
+			PlayerInfo Player = Players[e.Player];
+			Weapon CurrentWeapon; 
+
+			CurrentWeapon = Player.ReadyWeapon;
+			
+			if (!CurrentWeapon || !Player)
+			{
+				return;
+			}
+			
+			BaseWeapon TheGun = BaseWeapon(CurrentWeapon);
+			
+			TheGun.GrenadeThrow();
+
+		}
+		*/
+	}
+
+}

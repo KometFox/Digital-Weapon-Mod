@@ -18,6 +18,7 @@
 #Include "ZScript/Actor/Weapons/SMG/MP5.txt"
 #Include "ZScript/Actor/Weapons/SMG/CBM2.txt"
 #Include "ZScript/Actor/Weapons/SMG/Uzi.txt"
+#Include "ZScript/Actor/Weapons/SMG/Mac10.txt"
 //Assault Rifle
 #Include "ZScript/Actor/Weapons/AR/AR70.txt"
 #Include "ZScript/Actor/Weapons/AR/M25.txt"

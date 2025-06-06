@@ -12,9 +12,15 @@ addmenukey "Reload Weapon" +Reload
 addmenukey "Ironsight Mode" +AltAttack
 addmenukey "Switch Firemode" +User1
 
+addmenukey "Quick Grenade Throw" GrenadeThrow
+alias GrenadeThrow "NetEvent GrenadeThrow"
+
+
 //Shop Menu
 addmenukey "Open Shop Menu" RMD_TestMenuOpen
 alias RMD_TestMenuOpen "NetEvent BUYMENU"
+
+
 
 //TODO...
 //addmenukey "Buy Primary Ammo" RMD_BuyAmmo1

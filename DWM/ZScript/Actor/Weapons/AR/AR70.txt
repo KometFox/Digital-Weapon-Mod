@@ -16,8 +16,8 @@ class RMD_AR70 : BaseWeapon
 		
 		BaseWeapon.IronSight IRON_INACTIVE;
 		
-		BaseWeapon.MagazineMax 70;
-		BaseWeapon.Magazine 70;	
+		BaseWeapon.MagazineMax 100;
+		BaseWeapon.Magazine 100;	
 	}
 	
 	Action state ReloadCheck()
