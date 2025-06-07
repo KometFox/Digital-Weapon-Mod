@@ -230,16 +230,7 @@ Class BM_ARWeapons : BMItems
 			Item.Amount = 1;
 			ArItems.Push(Item);
 
-			Item = new("BuyMenuItems");
-			Item.ID = "RMD_E12PR";
-			Item.ItemName = "E12 Plasma Rifle";
-			Item.Graphic = TexMan.CheckForTexture("PIE12PR", TexMan.Type_Any);
-			Item.Command = "Buy";
-			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 12000; 
-			Item.Amount = 1;
-			ArItems.Push(Item);
-		}		
+	}		
 
 }
 
@@ -261,18 +252,6 @@ Class BM_ShotgunWeapons : BMItems
 			Item.Amount = 1;
 			ArItems.Push(Item);
 
-			//Bekas 12m
-			Item = new("BuyMenuItems");
-			Item.ID = "RMD_Bekas12m";
-			Item.ItemName = "Bekas 12m";
-			Item.Graphic = TexMan.CheckForTexture("PIBEK12", TexMan.Type_Any);
-			Item.Command = "Buy";
-			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 500;
-			Item.Amount = 1;
-			ArItems.Push(Item);
-	
-	
 			//Bekas 12m
 			Item = new("BuyMenuItems");
 			Item.ID = "RMD_Izh81";
@@ -369,18 +348,8 @@ Class BM_LauncherWeapons : BMItems
 		override void AddItems()
 		{
 			//G20GL
-			let Item = new("BuyMenuItems");
-			Item.ID = "RMD_KestrelGL";
-			Item.ItemName = "G20 Grenade Launcher";
-			Item.Graphic = TexMan.CheckForTexture("PIG20", TexMan.Type_Any);
-			Item.Command = "Buy";
-			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 5000;
-			Item.Amount = 1;
-			ArItems.Push(Item);
-
 			//Locust RL
-			Item = new("BuyMenuItems");
+			let Item = new("BuyMenuItems");
 			Item.ID = "RMD_LocustRL";
 			Item.ItemName = "Locust Rocket Launcher";
 			Item.Graphic = TexMan.CheckForTexture("PILORL", TexMan.Type_Any);
