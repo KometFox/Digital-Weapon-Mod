@@ -3,7 +3,7 @@ class RMD_PirateBomb : BaseWeapon
 
 	Default
 	{
-		Weapon.SlotNumber 6;
+		Weapon.SlotNumber 0;
 		Weapon.SelectionOrder 0;
 		Weapon.AmmoUse 0;
 		Weapon.AmmoGive 0;
