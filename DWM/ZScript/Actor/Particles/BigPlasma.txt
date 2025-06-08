@@ -35,7 +35,7 @@ Class RMD_BigPlasmaSpawner : Actor
 					Particle.Scale = (4.0, 4.0);
 					Particle.ScaleGrowth = 1.03;
 					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-					Particle.SetShade("30C7FF");
+					Particle.SetShade("1f4fff");
 				}
 				
 				let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));

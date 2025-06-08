@@ -18,10 +18,10 @@ Class RMD_UTBoomMedBlue : Actor
 					Particle.TeleportMove(Pos + RPos, false);
 					Particle.Vel = PVel;
 					Particle.Roll = Random(0, 360);
-					Particle.Scale = (1.35, 1.35);
+					Particle.Scale = (1.6, 1.6);
 					Particle.ScaleGrowth = 1.07;
 					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-					Particle.SetShade("4acaff");
+					Particle.SetShade("1f4fff");
 					//Particle.Color = 0x4acaff;
 				}
 				

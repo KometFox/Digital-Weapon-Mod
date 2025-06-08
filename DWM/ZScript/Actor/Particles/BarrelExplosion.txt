@@ -13,10 +13,10 @@ Class RMD_BarrelExplosionSpawner : Actor
 				{
 					Vector3 PVel = (FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25)).unit()*FRandom[FX](0.0, 0.0);
 					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
-					let Particle = Spawn("RMD_ExplosionSprite", Pos + RPos);
+					let Particle = Spawn("RMD_Boom2", Pos + RPos);
 					
 					Particle.Vel = PVel;
-					Particle.Scale = (1.15, 1.15);
+					Particle.Scale = (1.7, 1.7);
 				}
 				
 				let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
