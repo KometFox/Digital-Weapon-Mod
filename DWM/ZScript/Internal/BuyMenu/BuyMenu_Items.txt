@@ -358,6 +358,16 @@ Class BM_LauncherWeapons : BMItems
 			Item.Cost = 15000;
 			Item.Amount = 1;
 			ArItems.Push(Item);
+
+			Item = new("BuyMenuItems");
+			Item.ID = "RMD_AVRIL";
+			Item.ItemName = "Plasma AVRIL";
+			Item.Graphic = TexMan.CheckForTexture("GAVRIL", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Buy/Purchase";
+			Item.Cost = 8000;
+			Item.Amount = 1;
+			ArItems.Push(Item);
 			
 			//SMRL
 			Item = new("BuyMenuItems");

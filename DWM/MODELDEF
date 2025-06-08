@@ -25,6 +25,7 @@
 #Include "Models/Weapons/DEFS/FT12.txt"
 #Include "Models/Weapons/DEFS/KestrelGL.txt"
 #Include "Models/Weapons/DEFS/LocustRL.txt"
+#Include "Models/Weapons/DEFS/AVRIL.txt"
 #Include "Models/Weapons/DEFS/SMAW.txt"
 #Include "Models/Weapons/DEFS/E12PR.txt"
 #Include "Models/Weapons/DEFS/ASMDShockRifle.txt"

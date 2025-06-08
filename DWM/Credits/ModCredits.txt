@@ -206,4 +206,7 @@ Thanks to these people and groups for assets used by this mod.
 -Kriegsland
  -Sounds
  
+-War Rooster
+ -Sounds
+ 
   

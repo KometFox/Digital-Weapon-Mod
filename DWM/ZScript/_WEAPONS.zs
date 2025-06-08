@@ -38,6 +38,7 @@
 //Explosive Weapons
 #Include "ZScript/Actor/Weapons/RL/SMAW.txt"
 #Include "ZScript/Actor/Weapons/RL/LocustRL.txt"
+#Include "ZScript/Actor/Weapons/RL/AVRIL.txt"
 #Include "ZScript/Actor/Weapons/Grenade/G20GL.txt"
 //Special Weapons
 #Include "ZScript/Actor/Weapons/Energy/FT12.txt"

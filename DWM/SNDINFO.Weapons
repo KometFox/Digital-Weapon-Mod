@@ -149,6 +149,13 @@ LocustRL/MagIn "Sounds/Weapons/Launcher/LocustRL/MagIn.ogg"
 
 $Volume LocustRL/Fire 0.9
 
+//Plasma AVRIL
+
+AVRIL/Fire "Sounds/Weapons/Launcher/AVRIL/Fire.ogg"
+AVRIL/MagOut "Sounds/Weapons/Launcher/AVRIL/MagOut.ogg"
+AVRIL/MagIn "Sounds/Weapons/Launcher/AVRIL/MagIn.ogg"
+
+
 //------------------------------------------------------------------------------
 //Energy Weapons
 //------------------------------------------------------------------------------

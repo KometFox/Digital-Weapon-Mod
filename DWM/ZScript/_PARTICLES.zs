@@ -18,6 +18,7 @@
 #Include "ZScript/Actor/Particles/40mmExplosion.txt"
 #Include "Zscript/Actor/Particles/UTBoomSmall.txt"
 #Include "Zscript/Actor/Particles/UTBoomMed.txt"
+#Include "Zscript/Actor/Particles/UTBoomMedBlue.txt"
 #Include "Zscript/Actor/Particles/UTBoomBig.txt"
 #Include "ZScript/Actor/Particles/MolotovExplosion.txt"
 #Include "ZScript/Actor/Particles/BarrelExplosion.txt"
