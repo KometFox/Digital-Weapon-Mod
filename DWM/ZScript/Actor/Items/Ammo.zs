@@ -151,9 +151,9 @@ Class RMD_Cells : Ammo
 	{
 	Inventory.PickupMessage "You picked up some Cells.";
 	Inventory.Amount 1;
-	Inventory.MaxAmount 2000;
+	Inventory.MaxAmount 5000;
 	Ammo.BackpackAmount 0;
-	Ammo.BackpackMaxAmount 2000;
+	Ammo.BackpackMaxAmount 5000;
 	Inventory.Icon "AMMOCELL";
 	+INVENTORY.UNDROPPABLE;
 	+INVENTORY.UNCLEARABLE;

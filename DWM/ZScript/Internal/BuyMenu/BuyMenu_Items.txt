@@ -437,7 +437,7 @@ Class BM_AmmoItems : BMItems
 			Item.Graphic = TexMan.CheckForTexture("AMMOSMG", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 150;
+			Item.Cost = 40;
 			Item.Amount = 100;
 			ArItems.Push(Item);
 			
@@ -467,7 +467,7 @@ Class BM_AmmoItems : BMItems
 			Item.Graphic = TexMan.CheckForTexture("AMMONADE", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 800;
+			Item.Cost = 1000;
 			Item.Amount = 10;
 			ArItems.Push(Item);	
 		
@@ -477,7 +477,7 @@ Class BM_AmmoItems : BMItems
 			Item.Graphic = TexMan.CheckForTexture("AMMOFUEL", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 800;
+			Item.Cost = 1000;
 			Item.Amount = 100;
 			ArItems.Push(Item);			
 		
@@ -487,8 +487,8 @@ Class BM_AmmoItems : BMItems
 			Item.Graphic = TexMan.CheckForTexture("AMMOCELL", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 800;
-			Item.Amount = 100;
+			Item.Cost = 2000;
+			Item.Amount = 200;
 			ArItems.Push(Item);	
 
 		}

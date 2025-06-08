@@ -234,9 +234,8 @@ SA85m/Cocking "Sounds/Weapons/AR/SA85m/Cocking.ogg"
 SA85m/MagOut "Sounds/Weapons/AR/SA85m/MagOut.ogg"
 SA85m/MagIn "Sounds/Weapons/AR/SA85m/MagIn.ogg"
 
-//AR-70
+//Raptor AR-70
 AR70/Fire "Sounds/Weapons/AR/AR70/Fire.ogg"
-$Volume AR70/Fire 0.95
 AR70/Cocking "Sounds/Weapons/AR/AR70/Cocking.ogg"
 AR70/MagIn "Sounds/Weapons/AR/AR70/MagIn.ogg"
 AR70/MagOut "Sounds/Weapons/AR/AR70/MagOut.ogg"

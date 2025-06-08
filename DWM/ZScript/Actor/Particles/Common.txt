@@ -89,6 +89,35 @@ Class RMD_UTBoomSprite : RMD_BaseParticle
 }
 
 
+Class RMD_Boom2 : RMD_BaseParticle
+{
+
+	Default
+	{
+		RenderStyle "Add";
+		Alpha 1.0;
+		+Bright;
+	}
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		Roll = Random[FX](0, 360);
+		Angle = Random[FX](0, 360);	
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			XBU1 ABCDE 2;
+			XBU1 FGH 2 A_FadeOut(0.33);
+			Stop;			
+	}
+}
+
+
 
 Class RMD_SmoothBoom : RMD_BaseParticle
 {

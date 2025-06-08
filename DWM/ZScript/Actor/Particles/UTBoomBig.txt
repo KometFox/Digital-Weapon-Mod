@@ -13,14 +13,14 @@ Class RMD_UTBoomBig : Actor
 				{
 					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](0.1, 0.2);
 					Vector3 RPos = (frandom(-20, 20), frandom(-20, 16), frandom(-20, 20));
-					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_SmoothBoom", RPos + Pos));
+					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_Boom2", RPos + Pos));
 					
 					Particle.TeleportMove(Pos + RPos, false);
 					Particle.Vel = PVel;
 					Particle.Roll = Random(0, 360);
-					Particle.Scale = (2.2, 2.2);
+					Particle.Scale = (2.8, 2.8);
 					Particle.ScaleGrowth = 1.07;
-					Particle.A_SetRenderStyle(1.0, STYLE_Normal);
+					Particle.A_SetRenderStyle(1.0, STYLE_Add);
 					//Particle.SetShade("ff9d2b");
 				}
 				
