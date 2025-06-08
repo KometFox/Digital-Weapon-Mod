@@ -27,8 +27,8 @@ class RMD_ASMDShockRifle : BaseWeapon
 		BaseWeapon.IronSight IRON_INACTIVE;
 		BaseWeapon.FireMode BULLET;
 		
-		BaseWeapon.MagazineMax 25;
-		BaseWeapon.Magazine 25;
+		BaseWeapon.MagazineMax 40;
+		BaseWeapon.Magazine 40;
 		+ALWAYSPUFF;
 	}
 	

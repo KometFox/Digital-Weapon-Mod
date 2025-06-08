@@ -174,7 +174,7 @@ E12PR/FireA "Sounds/Weapons/Energy/E12PR/FireA.ogg"
 E12PR/FireB "Sounds/Weapons/Energy/E12PR/FireB.ogg"
 E12PR/FireC "Sounds/Weapons/Energy/E12PR/FireC.ogg"
 
-ASMD/Fire "Sounds/Weapons/Energy/ASMD/Fire.ogg"
+ASMD/Fire "Sounds/Weapons/Energy/ASMD/UTFire.wav"
 
 //------------------------------------------------------------------------------
 //Assault Rifle
@@ -183,12 +183,12 @@ ASMD/Fire "Sounds/Weapons/Energy/ASMD/Fire.ogg"
 //M25
 $Random M25/Fire {M25/Fire1}
 //Fire
-M25/Fire1 "Sounds/Weapons/AR/M25/Fire.ogg"
+M25/Fire1 "Sounds/Weapons/AR/M25/UTFire.wav"
 
 $Volume M25/Fire 0.85
 
 $Random M25/GrenadeFire {M25GFire1}
-M25GFire1 "Sounds/Weapons/AR/M25/GrenadeFire.ogg"
+M25GFire1 "Sounds/Weapons/AR/M25/UTGrenadeFire.wav"
 
 //Reload
 M25/Cocking "Sounds/Weapons/AR/M25/Cock.ogg"

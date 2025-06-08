@@ -230,6 +230,16 @@ Class BM_ARWeapons : BMItems
 			Item.Amount = 1;
 			ArItems.Push(Item);
 
+
+			Item = new("BuyMenuItems");
+			Item.ID = "RMD_E12PR";
+			Item.ItemName = "E12 Plasma Rifle";
+			Item.Graphic = TexMan.CheckForTexture("PIE12PR", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Buy/Purchase";
+			Item.Cost = 9000; 
+			Item.Amount = 1;
+			ArItems.Push(Item);
 	}		
 
 }
@@ -303,7 +313,7 @@ Class BM_ShotgunWeapons : BMItems
 			Item.Graphic = TexMan.CheckForTexture("PASMD", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 20000;
+			Item.Cost = 2500;
 			Item.Amount = 1;
 			ArItems.Push(Item);	
 		}
@@ -347,9 +357,29 @@ Class BM_LauncherWeapons : BMItems
 
 		override void AddItems()
 		{
-			//G20GL
-			//Locust RL
 			let Item = new("BuyMenuItems");
+			Item.ID = "RMD_AVRIL";
+			Item.ItemName = "Plasma AVRIL";
+			Item.Graphic = TexMan.CheckForTexture("GAVRIL", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Buy/Purchase";
+			Item.Cost = 8000;
+			Item.Amount = 1;
+			ArItems.Push(Item);
+
+			//G20GL
+			Item = new("BuyMenuItems");
+			Item.ID = "RMD_KestrelGL";
+			Item.ItemName = "Kestrel Grenade Launcher";
+			Item.Graphic = TexMan.CheckForTexture("PIG20", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Buy/Purchase";
+			Item.Cost = 13000;
+			Item.Amount = 1;
+			ArItems.Push(Item);
+
+			//Locust RL
+			Item = new("BuyMenuItems");
 			Item.ID = "RMD_LocustRL";
 			Item.ItemName = "Locust Rocket Launcher";
 			Item.Graphic = TexMan.CheckForTexture("PILORL", TexMan.Type_Any);
@@ -359,16 +389,6 @@ Class BM_LauncherWeapons : BMItems
 			Item.Amount = 1;
 			ArItems.Push(Item);
 
-			Item = new("BuyMenuItems");
-			Item.ID = "RMD_AVRIL";
-			Item.ItemName = "Plasma AVRIL";
-			Item.Graphic = TexMan.CheckForTexture("GAVRIL", TexMan.Type_Any);
-			Item.Command = "Buy";
-			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 8000;
-			Item.Amount = 1;
-			ArItems.Push(Item);
-			
 			//SMRL
 			Item = new("BuyMenuItems");
 			Item.ID = "RMD_SMAW";
