@@ -28,7 +28,7 @@ class MP5 : BaseWeapon
 		{
 
 			//A_FireProjectile("RMD_MP5_Projectile",frandom(-0.5, 0.5), 1, 6, 4, CMF_AIMDIRECTION, frandom(-0.5, 0.5));
-			A_FireBullets(0.5, 0.5, -1, 8, "RMD_BulletImpact", FBF_NoRandom); 
+			A_FireBullets(0.5, 0.5, -1, 2*random(6,9), "RMD_BulletImpact", FBF_NoRandom); 
 			
 			B_MuzzleFlash("RMD_BulletMuzzleFlash", (13, 2.7, -2.0));	
 			B_SpawnCasing("PistolCase", (12, -15.0, 3.0));
@@ -37,7 +37,7 @@ class MP5 : BaseWeapon
 		else
 		{
 			//A_FireProjectile("RMD_MP5_Projectile",frandom(-0.25, 0.25), 1, 0, 4, CMF_AIMDIRECTION,frandom(-0.25, 0.25));
-			A_FireBullets(0.25, 0.25, -1, 8, "RMD_BulletImpact", FBF_NoRandom);
+			A_FireBullets(0.25, 0.25, -1, 2*random(6,9), "RMD_BulletImpact", FBF_NoRandom);
 			
 			B_MuzzleFlash("RMD_BulletMuzzleFlash", (13, 0.0, -1.2));	
 			B_SpawnCasing("PistolCase", (12, 0.0, -2.0));

@@ -42,7 +42,7 @@ class RMD_Enforcer : BaseWeapon
 		if (Invoker.IronSight == IRON_INACTIVE)
 		{
 			//A_FireProjectile("RMD_EnforcerBullet",frandom(-0.5, 0.5), 1, 0, 4, CMF_AIMDIRECTION,frandom(-0.4, 0.4));
-			A_FireBullets(0.5, 0.5, -1, 45, "RMD_BulletImpact", FBF_NoRandom); 
+			A_FireBullets(0.5, 0.5, -1, 4*random(4,12), "RMD_BulletImpact", FBF_NoRandom); 
 		
 			//Effect
 			B_MuzzleFlash("RMD_BulletMuzzleFlash", (12, 1.5, -0.5));	
@@ -52,7 +52,7 @@ class RMD_Enforcer : BaseWeapon
 		else
 		{
 			//A_FireProjectile("RMD_EnforcerBullet",frandom(-0.2, 0.2), 1, 0, 4, CMF_AIMDIRECTION,frandom(-0.14, 0.14));
-			A_FireBullets(0.2, 0.2, -1, 45, "RMD_BulletImpact", FBF_NoRandom); 
+			A_FireBullets(0.2, 0.2, -1, 4*random(4,12), "RMD_BulletImpact", FBF_NoRandom); 
 
 			
 			B_MuzzleFlash("RMD_BulletMuzzleFlash", (12, 0, -1.0));	

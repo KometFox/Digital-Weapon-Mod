@@ -2,7 +2,7 @@ class RMD_ASMDShockRifle : BaseWeapon
 {
 	double ScopeZoom;
 	const AmmoConsume = 2; 
-	const ImpDamage = 340;
+	const ImpDamage = 145;
 	BEAMZ_LaserBeam beam;
 
 	Enum E_FireMode
@@ -27,8 +27,8 @@ class RMD_ASMDShockRifle : BaseWeapon
 		BaseWeapon.IronSight IRON_INACTIVE;
 		BaseWeapon.FireMode BULLET;
 		
-		BaseWeapon.MagazineMax 20;
-		BaseWeapon.Magazine 20;
+		BaseWeapon.MagazineMax 25;
+		BaseWeapon.Magazine 25;
 		+ALWAYSPUFF;
 	}
 	

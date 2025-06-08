@@ -155,9 +155,9 @@ Class RMD_G20GL_Grenade : LightExplosives
 		//Impact 
 		BaseProjectile.ImpactDamage 0;
 		//Splash 
-		BaseProjectile.SplashDamage 275;
-		BaseProjectile.FullSplashDamage 95;
-		BaseProjectile.SplashRadius 200;
+		BaseProjectile.SplashDamage 250;
+		BaseProjectile.FullSplashDamage 90;
+		BaseProjectile.SplashRadius 180;
 		
 		BaseProjectile.NormalDamageRandom 1.0;
 		BaseProjectile.NerfDamageRandom 1.0;

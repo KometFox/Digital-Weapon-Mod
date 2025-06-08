@@ -62,7 +62,7 @@ class RMD_MadsenLAR : BaseWeapon
 		if (Invoker.IronSight == IRON_INACTIVE)
 		{
 			//A_FireProjectile("RMD_MadsenLAR_Bullet",frandom(-0.7, 0.7), 1, 6, 4, CMF_AIMDIRECTION,frandom(-0.5, 0.5));
-			A_FireBullets(0.7, 0.7, -1, 27, "RMD_BulletImpact", FBF_NoRandom); 
+			A_FireBullets(0.7, 0.7, -1, 3*random(5,9), "RMD_BulletImpact", FBF_NoRandom); 
 			
 			B_SpawnCasing("RifleCase", (8, -9.5, -3.25));
 			B_MuzzleFlash("RMD_BulletMuzzleFlash", (13, 2.1, -1.2));	
@@ -70,7 +70,7 @@ class RMD_MadsenLAR : BaseWeapon
 		else if (Invoker.IronSight == IRON_ACTIVE)
 		{
 			//A_FireProjectile("RMD_MadsenLAR_Bullet",frandom(-0.2, 0.2), 1, 0, 4, CMF_AIMDIRECTION,frandom(-0.2, 0.2));
-			A_FireBullets(0.2, 0.2, -1, 27, "RMD_BulletImpact", FBF_NoRandom); 
+			A_FireBullets(0.2, 0.2, -1, 3*random(5,9), "RMD_BulletImpact", FBF_NoRandom); 
 			
 			B_SpawnCasing("RifleCase", (12, 0.0, -2.5));
 			B_MuzzleFlash("RMD_BulletMuzzleFlash", (10, 0, -0.8));	

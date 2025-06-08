@@ -16,8 +16,8 @@ class RMD_AVRIL : BaseWeapon
 		
 		BaseWeapon.IronSight IRON_INACTIVE;
 		
-		BaseWeapon.MagazineMax 3;
-		BaseWeapon.Magazine 3;
+		BaseWeapon.MagazineMax 5;
+		BaseWeapon.Magazine 5;
 		
 	}
 
@@ -158,22 +158,22 @@ class RMD_AVRIL : BaseWeapon
 	}
 }
 
-Class RMD_AVRIL_Rocket : HeavyExplosives
+Class RMD_AVRIL_Rocket : HeavyExplosivesFast
 {
 	Default
 	{
-		Speed 70;
+		Speed 75;
 		Decal "RMD_SmallExplosion";
 
 		//Impact 
-		BaseProjectile.ImpactDamage 0;
+		BaseProjectileFast.ImpactDamage 0;
 		//Splash 
-		BaseProjectile.SplashDamage 680;
-		BaseProjectile.FullSplashDamage 75;
-		BaseProjectile.SplashRadius 200;
+		BaseProjectileFast.SplashDamage 230;
+		BaseProjectileFast.FullSplashDamage 60;
+		BaseProjectileFast.SplashRadius 180;
 		
-		BaseProjectile.NormalDamageRandom 1.0;
-		BaseProjectile.NerfDamageRandom 1.0;
+		BaseProjectileFast.NormalDamageRandom 1.0;
+		BaseProjectileFast.NerfDamageRandom 1.0;
 		DamageType "Explosive";
 		
 	}

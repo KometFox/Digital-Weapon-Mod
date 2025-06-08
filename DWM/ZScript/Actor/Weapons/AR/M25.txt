@@ -60,7 +60,7 @@ class RMD_M25 : BaseWeapon
 		if (Invoker.IronSight == IRON_INACTIVE)
 		{
 			//A_FireProjectile("RMD_M25_Bullet",frandom(-0.7, 0.7), 1, 6, 4, CMF_AIMDIRECTION,frandom(-0.5, 0.5));
-			A_FireBullets(0.7, 0.7, -1, 24, "RMD_BulletImpact", FBF_NoRandom); 
+			A_FireBullets(0.7, 0.7, -1, 2*random(6,9), "RMD_BulletImpact", FBF_NoRandom); 
 			
 			B_MuzzleFlash("RMD_BulletMuzzleFlash", (13, 2.7, -2.0));	
 			C_SpawnCasing("RifleCase", (12, 6.5, -2.0));
@@ -69,7 +69,7 @@ class RMD_M25 : BaseWeapon
 		else if (Invoker.IronSight == IRON_ACTIVE)
 		{
 			//A_FireProjectile("RMD_M25_Bullet",frandom(-0.3, 0.3), 1, 0, 4, CMF_AIMDIRECTION,frandom(-0.3, 0.3));
-			A_FireBullets(0.3, 0.3, -1, 24, "RMD_BulletImpact", FBF_NoRandom); 
+			A_FireBullets(0.3, 0.3, -1, 2*random(6,9), "RMD_BulletImpact", FBF_NoRandom); 
 			
 			B_MuzzleFlash("RMD_BulletMuzzleFlash",(10, 0, -0.5));
 			C_SpawnCasing("RifleCase", (12, -2.5, -2.5));
@@ -347,7 +347,7 @@ Class RMD_M25_Grenade : LightExplosives
 		//Impact 
 		BaseProjectile.ImpactDamage 0;
 		//Splash 
-		BaseProjectile.SplashDamage 350;
+		BaseProjectile.SplashDamage 250;
 		BaseProjectile.FullSplashDamage 50;
 		BaseProjectile.SplashRadius 180;
 		//Randomizer

@@ -1,7 +1,7 @@
 class RMD_E20PlasmaCannon : BaseWeapon
 {
 	double ScopeZoom;
-	const AmmoConsum = 40;
+	const AmmoConsum = 100;
 
 	Default
 	{
@@ -177,7 +177,7 @@ Class E20PC_PlasmaBall : HeavyExplosivesFast
 		//Splash 
 		
 		
-		BaseProjectileFast.SplashDamage 2000;
+		BaseProjectileFast.SplashDamage 5000;
 		BaseProjectileFast.FullSplashDamage 160;
 		BaseProjectileFast.SplashRadius 240;
 		//Randomizer
