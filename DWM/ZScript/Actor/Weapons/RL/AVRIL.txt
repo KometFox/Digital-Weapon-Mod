@@ -175,7 +175,8 @@ Class RMD_AVRIL_Rocket : HeavyExplosivesFast
 		BaseProjectileFast.NormalDamageRandom 1.0;
 		BaseProjectileFast.NerfDamageRandom 1.0;
 		BaseProjectileFast.HurtPlayer false; 
-		DamageType "Explosive";
+		DamageType "Plasma";
+		DeathType "Plasma";
 		
 	}
 	
