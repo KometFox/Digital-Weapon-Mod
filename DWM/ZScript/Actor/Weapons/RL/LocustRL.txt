@@ -171,7 +171,9 @@ Class RMD_LocustRL_Rocket : HeavyExplosives
 		
 		BaseProjectile.NormalDamageRandom 1.0;
 		BaseProjectile.NerfDamageRandom 1.0;
+		BaseProjectile.HurtPlayer true; 
 		DamageType "Explosive";
+		
 		
 	}
 	

@@ -176,6 +176,7 @@ Class SMAW_Rocket : HeavyExplosivesFast
 		//Randomizer
 		BaseProjectileFast.NerfDamageRandom 1.0;
 		BaseProjectileFast.NormalDamageRandom 1.0;
+		BaseProjectileFast.HurtPlayer true; 
 		+ExtremeDeath;
 		DamageType "Explosive";
 	}

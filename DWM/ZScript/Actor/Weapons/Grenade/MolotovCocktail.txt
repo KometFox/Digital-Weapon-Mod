@@ -140,6 +140,7 @@ Class RMD_MolotovGrenade : LightExplosives
 		//Randomizer
 		BaseProjectile.NormalDamageRandom 1.0;
 		BaseProjectile.NerfDamageRandom 1.0;
+		BaseProjectile.HurtPlayer true; 
 	}
 	
 	States

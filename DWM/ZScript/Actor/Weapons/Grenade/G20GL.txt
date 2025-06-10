@@ -161,6 +161,7 @@ Class RMD_G20GL_Grenade : LightExplosives
 		
 		BaseProjectile.NormalDamageRandom 1.0;
 		BaseProjectile.NerfDamageRandom 1.0;
+		BaseProjectile.HurtPlayer true; 
 		DamageType "Explosive";
 	}
 	

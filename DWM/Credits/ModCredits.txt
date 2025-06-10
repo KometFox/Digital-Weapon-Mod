@@ -5,6 +5,9 @@ Thanks to these people and groups for assets used by this mod.
 -Agent_Ash
  -Coding help
 
+-themistercat
+ -Coding help
+
 -No0b_101
  -Sprites
  

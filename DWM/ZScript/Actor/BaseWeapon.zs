@@ -336,7 +336,7 @@ Enum E_IronSight
 		Bool Succ;
 		Vector3 NeoPos;
 		Vector2 Angle;
-		NeoPos.z = 40;
+		NeoPos.z = 45;
 		Angle = AngleToVector(Player.mo.angle, 27);
 		NeoPos += Angle; 
 	
@@ -348,7 +348,7 @@ Enum E_IronSight
 		{
 			Proj.Vel3DFromAngle(30, player.mo.angle, player.mo.pitch); 
 			Proj.Master = Player.mo;
-			Proj.target = Self; 
+			Proj.target = Invoker; 
 			
 			BaseProjectile BPProj = BaseProjectile(Proj);
 			BPProj.HurtPlayer = false;

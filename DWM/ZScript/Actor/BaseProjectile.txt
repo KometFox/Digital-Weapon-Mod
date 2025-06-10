@@ -217,14 +217,9 @@ Class BaseProjectileFast : FastProjectile
 	{
 		Super.PostBeginPlay();
 		
-		
-		if (HurtPlayer == false)
+		if (HurtPlayer == true)
 		{
-			SplashFlags = 0;
-		}
-		else
-		{
-			SplashFlags = XF_HURTSOURCE;
+			SplashFlags |= XF_HURTSOURCE;
 		}
 	}
 
@@ -270,15 +265,11 @@ Class BaseProjectile : Actor
 	{
 		Super.PostBeginPlay();
 		
+		if (HurtPlayer == true)
+		{
+			SplashFlags |= XF_HURTSOURCE;
+		}
 		
-		if (HurtPlayer == false)
-		{
-			SplashFlags = 0;
-		}
-		else
-		{
-			SplashFlags = XF_HURTSOURCE;
-		}
 	}	
 	
 	Default
