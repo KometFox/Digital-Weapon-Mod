@@ -336,12 +336,12 @@ Enum E_IronSight
 		Bool Succ;
 		Vector3 NeoPos;
 		Vector2 Angle;
-		NeoPos.z = 30;
-		Angle = AngleToVector(Player.mo.angle, 20);
+		NeoPos.z = 40;
+		Angle = AngleToVector(Player.mo.angle, 27);
 		NeoPos += Angle; 
 	
 		//Projectile Spawn
-		Proj = Spawn("RMD_PirateBomb_Bomb", Player.mo.pos + NeoPos);  
+		Proj = Invoker.Spawn("RMD_PirateBomb_Bomb", Player.mo.pos + NeoPos);  
 			
 		//Projectile variables 
 		if (Proj)
@@ -349,6 +349,9 @@ Enum E_IronSight
 			Proj.Vel3DFromAngle(30, player.mo.angle, player.mo.pitch); 
 			Proj.Master = Player.mo;
 			Proj.target = Self; 
+			
+			BaseProjectile BPProj = BaseProjectile(Proj);
+			BPProj.HurtPlayer = false;
 		}
 		
 		//Lower the weapon
