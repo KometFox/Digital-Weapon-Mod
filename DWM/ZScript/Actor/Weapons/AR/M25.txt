@@ -22,8 +22,8 @@ class RMD_M25 : BaseWeapon
 		BaseWeapon.IronSight IRON_INACTIVE;
 		BaseWeapon.FireMode BULLET;
 	
-		BaseWeapon.MagazineMax 45;
-		BaseWeapon.Magazine 45;	
+		BaseWeapon.MagazineMax 60;
+		BaseWeapon.Magazine 60;	
 		
 		BaseWeapon.MagazineMax2 1;
 		BaseWeapon.Magazine2 1;

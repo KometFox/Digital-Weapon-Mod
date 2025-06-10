@@ -179,7 +179,7 @@ Class RMD_LocustRL_Rocket : HeavyExplosives
 	{
 		Spawn:
 			IDLE A 0 NoDelay;
-			IDLE A 5;
+			IDLE A 0;
 			Goto SpawnLoop;
 		SpawnLoop:	
 			IDLE A 1 A_SpawnItemEx("RMD_LocustRocketTrail", 0, 0, 0);

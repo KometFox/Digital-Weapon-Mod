@@ -13,8 +13,8 @@ class RMD_Mossberg590 : BaseWeapon
 		Inventory.AltHudIcon "PISHOT1";
 		BaseWeapon.IronSight IRON_INACTIVE;
 
-		BaseWeapon.MagazineMax 7;
-		BaseWeapon.Magazine 7;
+		BaseWeapon.MagazineMax 9;
+		BaseWeapon.Magazine 9;
 		
 	}
 	

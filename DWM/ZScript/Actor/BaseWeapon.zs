@@ -325,25 +325,36 @@ Enum E_IronSight
 		Item.RecoilStrength = Strength;	
 	}
 	
-	action void GrenadeThrow()
+	action void GrenadeThrow(PlayerInfo Player)
 	{
-		/*
-		bugged...
-		//Spawn the grenade
-		Actor Proj;
-		Vector3 x, y, z;
-		[x, y, z] = dt_Matrix4.GetAxes(pitch, angle, roll);
-		Vector3 Origin = Vec2OffsetZ(0,0, viewz) + 10.0 * x +3.0 * y -1.8 * z;
-	
-	
-		Proj = Spawn("RMD_PirateBomb_Bomb", Origin);
+		//Check for Delay 
+		if (Player.mo.CountInv("RMD_GrenadeDelay") > 0)
+			return;
 		
+		//Variable Init;
+		Actor Proj;
+		Bool Succ;
+		Vector3 NeoPos;
+		Vector2 Angle;
+		NeoPos.z = 30;
+		Angle = AngleToVector(Player.mo.angle, 20);
+		NeoPos += Angle; 
+	
+		//Projectile Spawn
+		Proj = Spawn("RMD_PirateBomb_Bomb", Player.mo.pos + NeoPos);  
+			
+		//Projectile variables 
 		if (Proj)
 		{
-			Proj.Vel *= 40;
+			Proj.Vel3DFromAngle(30, player.mo.angle, player.mo.pitch); 
+			Proj.Master = Player.mo;
+			Proj.target = Self; 
 		}
+		
 		//Lower the weapon
-		*/
+
+		//Add Delay
+		Player.mo.A_GiveInventory("RMD_GrenadeDelay", 1); 
 	}
 	
 	
@@ -630,5 +641,26 @@ class RMD_PitchRecoil : Powerup
 }
 
 
+
+
+class RMD_GrenadeDelay : PowerUp
+{
+	Default
+	{
+		-COUNTITEM
+		Inventory.Amount 0;
+		Inventory.MaxAmount 1;
+		Inventory.PickupMessage "";
+		Inventory.PickupSound "";
+		PowerUp.Duration 45;
+	}
+		
+	States
+	{
+		Spawn:
+			IDLE A 0;
+			Stop;
+	}	
+}
 
 

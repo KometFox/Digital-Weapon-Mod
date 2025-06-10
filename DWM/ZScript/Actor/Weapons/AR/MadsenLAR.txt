@@ -22,8 +22,8 @@ class RMD_MadsenLAR : BaseWeapon
 		BaseWeapon.IronSight IRON_INACTIVE;
 		BaseWeapon.FireMode BULLET;
 		
-		BaseWeapon.MagazineMax 40;
-		BaseWeapon.Magazine 40;	
+		BaseWeapon.MagazineMax 45;
+		BaseWeapon.Magazine 45;	
 		
 		BaseWeapon.MagazineMax2 1;
 		BaseWeapon.Magazine2 1;
@@ -290,7 +290,7 @@ class RMD_MadsenLAR : BaseWeapon
 		REL1 P 2
 		{
 			A_StartSound("MadsenLAR/MagIn", CHAN_WEAPON +2);
-			ReloadGun(Invoker.AmmoType1, 0, 1, 2);
+			ReloadGun(Invoker.AmmoType1, 0, 1, 1);
 		}
 		REL1 QRST 2;		
 		REL1 U 2 A_StartSound("MadsenLAR/Cocking", CHAN_WEAPON +3);

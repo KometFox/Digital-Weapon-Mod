@@ -123,6 +123,17 @@ Model RMD_LocustRL_Rocket
 	FrameIndex IDLE A 0 0
 }
 
+Model RMD_AVRIL_Rocket
+{
+	Path "Models\Projectile"
+	Model 0 "60mmRocket.obj"
+	Skin 0 "60mmRocket.png"
+	PITCHFROMMOMENTUM
+	Scale 14 15 15
+	
+	FrameIndex IDLE A 0 0
+}
+
 
 Model RMD_M25_Grenade
 {

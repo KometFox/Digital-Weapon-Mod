@@ -4,7 +4,6 @@ Class RMD_GrenadeThrow : EventHandler
 	{
 
 		//Grenade Call
-		/*
 		if (e.Name == "GrenadeThrow")
 		{
 			PlayerInfo Player = Players[e.Player];
@@ -19,10 +18,9 @@ Class RMD_GrenadeThrow : EventHandler
 			
 			BaseWeapon TheGun = BaseWeapon(CurrentWeapon);
 			
-			TheGun.GrenadeThrow();
+			TheGun.GrenadeThrow(Player);
 
 		}
-		*/
 	}
 
 }
