@@ -56,7 +56,11 @@ $Volume CBM2/Fire 1.0
 //Uzi
 Uzi/Fire "Sounds/Weapons/SMG/Uzi/Fire.ogg"
 
-$Volume Uzi/Fire 0.5
+$Volume Uzi/Fire 0.85
+
+//Ingram Mac 10
+M10/Fire "Sounds/Weapons/SMG/M10/Fire.ogg"
+
 
 //------------------------------------------------------------------------------
 //Shotguns

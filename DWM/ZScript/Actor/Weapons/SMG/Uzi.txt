@@ -14,8 +14,8 @@ class RMD_Uzi : BaseWeapon
 		
 		BaseWeapon.IronSight IRON_INACTIVE;
 		
-		BaseWeapon.MagazineMax 40;
-		BaseWeapon.Magazine 40;
+		BaseWeapon.MagazineMax 60;
+		BaseWeapon.Magazine 60;
 		
 	}
 

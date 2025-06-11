@@ -130,22 +130,22 @@ class MP5 : BaseWeapon
 
 	ReloadNow:
 		TNT1 A 0 A_TakeInventory("GotoReload", 1);
-		REL1 ABCDEFGHIJKLMNO 2;
+		REL1 ABCDEFGHIJKLMNO 1;
 		TNT1 A 0
 		{
 			A_StartSound("MP5/MagOut", CHAN_WEAPON);
 			A_FireProjectile("SMGMagSpawn",-5,0,8,-4);
 		}
-		REL1 PQRSTUVWXYZ 2;
-		REL2 AB 2;
+		REL1 PQRSTUVWXYZ 1;
+		REL2 AB 1;
 		TNT1 A 0
 		{
 			A_StartSound("MP5/MagIn", CHAN_WEAPON +1);		
 			ReloadGun(Invoker.AmmoType1, 0, 1, 1);
 		}
-		REL2 CDEFGHI 2;		
+		REL2 CDEFGHI 1;		
 		TNT1 A 0 A_StartSound("MP5/Cocking", CHAN_WEAPON);
-		REL2 JKLMNOPQRSTUVWXYZ 2;
+		REL2 JKLMNOPQRSTUVWXYZ 1;
 		Goto ReadyReal;
 
 	}

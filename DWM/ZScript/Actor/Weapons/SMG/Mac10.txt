@@ -14,7 +14,7 @@ class RMD_Mac10 : BaseWeapon
 		
 		BaseWeapon.IronSight IRON_INACTIVE;
 		
-		BaseWeapon.MagazineMax 40;
+		BaseWeapon.MagazineMax 60;
 		BaseWeapon.Magazine 40;
 	}
 
@@ -39,7 +39,7 @@ class RMD_Mac10 : BaseWeapon
 		}
 
 		
-		A_StartSound("Uzi/Fire", CHAN_WEAPON);
+		A_StartSound("M10/Fire", CHAN_WEAPON);
 		A_AlertMonsters();
 		Invoker.Magazine -= 1;
 		RMD_BARINFO.Set_Mag(invoker.Magazine);
