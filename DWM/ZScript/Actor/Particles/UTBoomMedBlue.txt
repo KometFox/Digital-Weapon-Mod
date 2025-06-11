@@ -21,8 +21,7 @@ Class RMD_UTBoomMedBlue : Actor
 					Particle.Scale = (1.6, 1.6);
 					Particle.ScaleGrowth = 1.07;
 					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-					Particle.SetShade("1f4fff");
-					//Particle.Color = 0x4acaff;
+					Particle.SetShade("2e81fd");
 				}
 				
 				let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));

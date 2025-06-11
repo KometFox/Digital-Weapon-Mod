@@ -46,13 +46,14 @@ Class RMD_ExplosionSprite2 : RMD_BaseParticle
 		
 		Roll = Random[FX](0, 360);
 		Angle = Random[FX](0, 360);	
+		Gravity -= 0.33;
 	}
 	
 	States
 	{
 		Spawn:
 			TNT1 A 0;
-			YOM2 A 12;
+			YOM2 A 16;
 			YOM2 AAAAA 1 A_FadeOut(0.1668);
 			Stop;			
 	}
@@ -67,7 +68,10 @@ Class RMD_UTBoomSprite : RMD_BaseParticle
 	{
 		RenderStyle "Add";
 		Alpha 1.0;
+		Gravity -0.17;
 		+Bright;
+		-NoGravity;
+		-NOINTERACTION;
 	}
 	
 	override void PostBeginPlay()
@@ -82,7 +86,7 @@ Class RMD_UTBoomSprite : RMD_BaseParticle
 	{
 		Spawn:
 			TNT1 A 0;
-			YOM2 A 12;
+			YOM2 A 14;
 			YOM2 AAAAA 1 A_FadeOut(0.1668);
 			Stop;			
 	}
