@@ -9,6 +9,8 @@
 -Added Molotov Cocktail
 -Added Baikal Izh 81 
 -Added ASMD Shock Rifle
+-Added Ingram M10
+-Added Plasma AVRIL 
 -Player starts out with a few health vials and medikits
 -Health items on maps are replaced with money
 -Code clean up
