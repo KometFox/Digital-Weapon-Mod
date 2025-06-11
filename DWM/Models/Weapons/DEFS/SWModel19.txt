@@ -4,7 +4,7 @@ Model RMD_SWModel19
 	SurfaceSkin 0 1 "CSHand.png"
 	Path "Models\Weapons\Pistol\SWModel19"
 	Model 0 "SWModel19.md3"
-	SurfaceSkin 0 0 "SWModel19.png"
+	SurfaceSkin 0 0 "SW19.png"
 	Scale -1 1 1
 	AngleOffset 90 
 	
