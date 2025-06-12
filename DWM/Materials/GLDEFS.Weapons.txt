@@ -1,1 +1,159 @@
-//
+material texture "Models/Textures/CSArms/CSHand.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/AR/AR70/AR70_Diffuse.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/AR/M25/M26AR.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/AR/MadsenLAR/MadsenLAR_Diffuse.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/AR/SA85m/SA85m.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/Energy/ASMDShockRifle/ShockRifle.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/Energy/E12PR/E12PR.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/Energy/E20PC/E20PC_Diffuse.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/Energy/FT12/FT12_Diffuse.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/Grenade/G20GL/G20GrenadeLauncher.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/Grenade/MolotovCocktail/MolotovCocktail.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/Grenade/PirateBomb/PirateBomb.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/Melee/CDSSpear/Spear.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/Melee/MasterSword/MasterSword.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+
+material texture "Models/Weapons/MG/Chaingun/Chaingun.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/MG/M249SAW/M249SAW_Diffuse.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/MG/Sumitomo63/MG.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/Pistol/SWModel19/SW19.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+
+material texture "Models/Weapons/Pistol/Enforcer/Enforcer.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/RL/AVRIL/AVRIL.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+
+material texture "Models/Weapons/RL/LocustRL/LocustRL.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/RL/SMAW/SMAW.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/Shotgun/CarcanoM91/Rifle.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/Shotgun/Izh81/Baikal12.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+
+material texture "Models/Weapons/Shotgun/MolotVPO208/MolotVPO208_Diffuse.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/Shotgun/Mossberg590/Mossberg590.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/Shotgun/TOZ-34/TOZ-34.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+
+material texture "Models/Weapons/SMG/CBM2/CB-M2.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/SMG/Mac10/Mac10.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/SMG/MP5/MP5A4_Diffuse.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/SMG/Uzi/Uzi.png" 
+{
+    shader "shaders/simsun.fp"
+}

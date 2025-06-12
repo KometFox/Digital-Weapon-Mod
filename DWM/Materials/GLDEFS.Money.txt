@@ -1,1 +1,59 @@
+material texture "Models/Money/CoinPile/Coin.png" 
+{
+    shader "shaders/simsun.fp"
+}
 
+material texture "Models/Money/Crystals/Blue.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Money/Crystals/Green.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Money/Crystals/Purple.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Money/Crystals/Red.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Money/Crystals/Yellow.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Money/Diamond/Diamond.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Money/GoldGoblet/Gold.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Money/LatniumBar/Gold.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Money/SilverRIng/SilverRing.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Money/SmallPearl/Pearl.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Money/Treasure/Treasure.png" 
+{
+    shader "shaders/simsun.fp"
+}
