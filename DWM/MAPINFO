@@ -1,5 +1,18 @@
 gameinfo
 {
+    cursorpic = "RENACURS"
+	titlepage = "DWTITLE"
+	infopage = "DWTITLE"
+	titlemusic = "DWMENU"
+	intermissionmusic = "DWINTER"
+    menufontcolor_title = "Yellow" 
+	menufontcolor_label = "White"
+	menufontcolor_value = "White"
+	menufontcolor_action = "White"
+	menufontcolor_header = "Purple" 
+	menufontcolor_highlight = "Yellow"
+	menufontcolor_selection = "Cyan"
+
 	//Main HUD
 	StatusBarClass = "RMD_BARHUD"
 

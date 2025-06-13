@@ -229,17 +229,6 @@ Class BM_ARWeapons : BMItems
 			Item.Cost = 5000; 
 			Item.Amount = 1;
 			ArItems.Push(Item);
-
-
-			Item = new("BuyMenuItems");
-			Item.ID = "RMD_E12PR";
-			Item.ItemName = "E12 Plasma Rifle";
-			Item.Graphic = TexMan.CheckForTexture("PIE12PR", TexMan.Type_Any);
-			Item.Command = "Buy";
-			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 9000; 
-			Item.Amount = 1;
-			ArItems.Push(Item);
 	}		
 
 }
@@ -306,16 +295,6 @@ Class BM_ShotgunWeapons : BMItems
 			Item.Amount = 1;
 			ArItems.Push(Item);					
 
-			//ASMD Shock Rifle
-			Item = new("BuyMenuItems");
-			Item.ID = "RMD_ASMDShockRifle";
-			Item.ItemName = "ASMD Shock Rifle";
-			Item.Graphic = TexMan.CheckForTexture("PASMD", TexMan.Type_Any);
-			Item.Command = "Buy";
-			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 2500;
-			Item.Amount = 1;
-			ArItems.Push(Item);	
 		}
 
 }
@@ -358,14 +337,6 @@ Class BM_LauncherWeapons : BMItems
 		override void AddItems()
 		{
 			let Item = new("BuyMenuItems");
-			Item.ID = "RMD_AVRIL";
-			Item.ItemName = "Plasma AVRIL";
-			Item.Graphic = TexMan.CheckForTexture("GAVRIL", TexMan.Type_Any);
-			Item.Command = "Buy";
-			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 8000;
-			Item.Amount = 1;
-			ArItems.Push(Item);
 
 			//G20GL
 			Item = new("BuyMenuItems");
@@ -410,6 +381,47 @@ Class BM_LauncherWeapons : BMItems
 			Item.Amount = 1;
 			ArItems.Push(Item);	
 	
+
+		}
+
+}
+
+//A Class that adds Energy Weapons 
+Class BM_EnergyWeapons : BMItems 
+{
+
+		override void AddItems()
+		{
+			let Item = new("BuyMenuItems");
+			Item.ID = "RMD_E12PR";
+			Item.ItemName = "E12 Plasma Rifle";
+			Item.Graphic = TexMan.CheckForTexture("PIE12PR", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Buy/Purchase";
+			Item.Cost = 9000; 
+			Item.Amount = 1;
+			ArItems.Push(Item);
+
+			Item = new("BuyMenuItems");
+			Item.ID = "RMD_ASMDShockRifle";
+			Item.ItemName = "ASMD Shock Rifle";
+			Item.Graphic = TexMan.CheckForTexture("PASMD", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Buy/Purchase";
+			Item.Cost = 2500;
+			Item.Amount = 1;
+			ArItems.Push(Item);	
+
+			Item = new("BuyMenuItems");
+			Item.ID = "RMD_AVRIL";
+			Item.ItemName = "Plasma AVRIL";
+			Item.Graphic = TexMan.CheckForTexture("GAVRIL", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Buy/Purchase";
+			Item.Cost = 8000;
+			Item.Amount = 1;
+			ArItems.Push(Item);	
+			
 			Item = new("BuyMenuItems");
 			Item.ID = "RMD_E20PlasmaCannon";
 			Item.ItemName = "E20 Plasma Cannon";
@@ -422,6 +434,8 @@ Class BM_LauncherWeapons : BMItems
 		}
 
 }
+
+
 
 //A Class that adds Ammo items
 Class BM_AmmoItems : BMItems 
@@ -553,38 +567,46 @@ Class BM_Supplies : BMItems
 //------------------------------------------------------------------------------
 //Armor Items
 //------------------------------------------------------------------------------
-			/*
-			Item = new("BuyMenuItems");
-			Item.ID = "RMD_EnergyDrink";
-			Item.ItemName = "Energy Can";
-			Item.Graphic = TexMan.CheckForTexture("PIENGCAN", TexMan.Type_Any);
-			Item.Command = "Buy";
-			Item.BuySound = "Items/CanRoll";
-			Item.Cost = 0;
-			Item.Amount = 1;
-			ArItems.Push(Item);
-			
-			Item = new("BuyMenuItems");
-			Item.ID = "RMD_HealthAmmo";
-			Item.ItemName = "Health Ammo";
-			Item.Graphic = TexMan.CheckForTexture("PIENGCAN", TexMan.Type_Any);
-			Item.Command = "Buy";
-			Item.BuySound = "Items/CanRoll";
-			Item.Cost = 500;
-			Item.Amount = 1;
-			ArItems.Push(Item);
-			*/
-			
+
 			Item = new("BuyMenuItems");
 			Item.ID = "RMD_NBCSuit";
 			Item.ItemName = "NBC Suit";
-			Item.Graphic = TexMan.CheckForTexture("SUITA0", TexMan.Type_Any);
+			Item.Graphic = TexMan.CheckForTexture("NBCSA0", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 50000;
+			Item.Cost = 500;
 			Item.Amount = 1;
 			ArItems.Push(Item);
 
+			Item = new("BuyMenuItems");
+			Item.ID = "RMD_ArmorUpgrade2";
+			Item.ItemName = "Armor Cell T2";
+			Item.Graphic = TexMan.CheckForTexture("ARMORT1", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Buy/Purchase";
+			Item.Cost = 5000;
+			Item.Amount = 1;
+			ArItems.Push(Item);
+
+			Item = new("BuyMenuItems");
+			Item.ID = "RMD_ArmorUpgrade3";
+			Item.ItemName = "Armor Cell T3";
+			Item.Graphic = TexMan.CheckForTexture("ARMORT2", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Buy/Purchase";
+			Item.Cost = 10000;
+			Item.Amount = 1;
+			ArItems.Push(Item);
+			
+			Item = new("BuyMenuItems");
+			Item.ID = "RMD_ArmorUpgrade4";
+			Item.ItemName = "Armor Cell T4";
+			Item.Graphic = TexMan.CheckForTexture("ARMORT3", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Buy/Purchase";
+			Item.Cost = 15000;
+			Item.Amount = 1;
+			ArItems.Push(Item);
 
 		}
 

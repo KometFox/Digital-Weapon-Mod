@@ -347,6 +347,15 @@ Class BuyMenuScript : EventHandler
 			
 			AddItems(Obj);			
 		}		
+
+		else if (CMD == "Energy")
+		{
+			ReinitMenu();
+			
+			let Obj = new("BM_EnergyWeapons");
+			
+			AddItems(Obj);			
+		}
 		
 		//Purchases
 		else if (CMD == "Buy")

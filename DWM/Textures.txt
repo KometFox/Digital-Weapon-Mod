@@ -3,6 +3,121 @@ Sprite "RLA1" ,1 ,1 {}
 Sprite "RLB1" ,1 ,1 {}
 
 
+
+Sprite "IDLE", 1, 1
+{
+}
+
+Sprite "RLA1", 1, 1
+{
+}
+
+Sprite "RLB1", 1, 1
+{
+}
+
+Graphic "SRMDEAD0", 62, 43
+{
+	Offset 30, 20
+	Patch "SRMDEAD0", 0, 0
+}
+
+Graphic "SRMEVL3", 62, 43
+{
+	Offset 30, 20
+	Patch "SRMEVL3", 0, 0
+}
+
+Graphic "SRMEVL4", 62, 43
+{
+	Offset 30, 20
+	Patch "SRMEVL4", 0, 0
+}
+
+Graphic "SRMKILL3", 62, 43
+{
+	Offset 30, 20
+	Patch "SRMKILL3", 0, 0
+}
+
+Graphic "SRMKILL4", 62, 43
+{
+	Offset 30, 20
+	Patch "SRMKILL4", 0, 0
+}
+
+Graphic "SRMOUCH3", 62, 43
+{
+	Offset 30, 20
+	Patch "SRMOUCH3", 0, 0
+}
+
+Graphic "SRMOUCH4", 62, 43
+{
+	Offset 30, 20
+	Patch "SRMOUCH4", 0, 0
+}
+
+Graphic "SRMST30", 62, 43
+{
+	Offset 30, 20
+	Patch "SRMST30", 0, 0
+}
+
+Graphic "SRMST31", 62, 43
+{
+	Offset 30, 20
+	Patch "SRMST31", 0, 0
+}
+
+Graphic "SRMST32", 62, 43
+{
+	Offset 30, 20
+	Patch "SRMST32", 0, 0
+}
+
+Graphic "SRMST40", 62, 43
+{
+	Offset 30, 20
+	Patch "SRMST40", 0, 0
+}
+
+Graphic "SRMST41", 62, 43
+{
+	Offset 30, 20
+	Patch "SRMST41", 0, 0
+}
+
+Graphic "SRMST42", 62, 43
+{
+	Offset 30, 20
+	Patch "SRMST42", 0, 0
+}
+
+Graphic "SRMTR30", 62, 43
+{
+	Offset 30, 20
+	Patch "SRMTR30", 0, 0
+}
+
+Graphic "SRMTR40", 62, 43
+{
+	Offset 30, 20
+	Patch "SRMTR40", 0, 0
+}
+
+Graphic "SRMTL30", 62, 43
+{
+	Offset 23, 20
+	Patch "SRMTL30", 7, 0
+}
+
+Graphic "SRMTL40", 62, 43
+{
+	Offset 23, 20
+	Patch "SRMTL40", 7, 0
+}
+
 Graphic "INTERPIC", 1050,581
 {
     Patch "RENAINTE", 0, 0

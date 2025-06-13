@@ -1,6 +1,10 @@
 Class RegenativeArmor : EventHandler
 {
 	PlayerPawn Player[8];
+	int ArmorAmount;
+	name ItemArmor[2][4];
+	const ITEM_ARMOR_SIZE = 4;
+	
 
 
 	override void WorldLoaded(WorldEvent e)
@@ -13,8 +17,19 @@ Class RegenativeArmor : EventHandler
 				Player[Index] = Players[Index].mo;
 			}		
 		}
-	
-	
+		
+		ArmorAmount = 3;
+		
+		ItemArmor[0][0] = 'RegenArmorCell';
+		ItemArmor[0][1] = 'RMD_ArmorUpgrade2';
+		ItemArmor[0][2] = 'RMD_ArmorUpgrade3';
+		ItemArmor[0][3] = 'RMD_ArmorUpgrade4';
+
+		ItemArmor[1][0] = 'RegenArmorCell';
+		ItemArmor[1][1] = 'RMD_ArmorCellT2';
+		ItemArmor[1][2] = 'RMD_ArmorCellT3';
+		ItemArmor[1][3] = 'RMD_ArmorCellT4';
+		
 	}
 
 
@@ -28,7 +43,14 @@ Class RegenativeArmor : EventHandler
 
 			if (Player[Index])
 			{	
+				Tics++;
+			
 				Inventory PArmor = Player[Index].FindInventory("ArmorHitDelay");
+
+				if (Tics >= 2)
+				{
+					Tics = 0;
+				}
 				
 				if (PArmor)
 				{
@@ -38,22 +60,23 @@ Class RegenativeArmor : EventHandler
 					{
 						ArmorDelay--;
 						Player[Index].SetInventory("ArmorHitDelay", ArmorDelay);
-					}
+						return;
+					}			
 
-					if (ArmorDelay == 0 && Tics == 0)
+					if (ArmorDelay == 0)
 					{
-						Player[Index].GiveInventory("RegenArmorCell", 3);
+						for (int i = 0; i < ITEM_ARMOR_SIZE; i++)
+						{
+							if (Player[Index].FindInventory(ItemArmor[0][i]))
+							{
+								Player[Index].A_GiveInventory(ItemArmor[1][i]);			
+								
+							}
+						}					
 					}
-					
+
 				}
 
-				Tics++;
-
-				if (Tics > 2)
-				{
-					Tics = 0;
-				}
-				
 			}		
 		}
 	}
@@ -70,3 +93,7 @@ Class ArmorHitDelay : SpecialItem
 		+INVENTORY.KEEPDEPLETED //Needed so that the whole system works.		
 	}
 }
+
+
+
+

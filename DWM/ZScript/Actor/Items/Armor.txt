@@ -29,7 +29,6 @@ Class RMD_ArmorBase : ArmorBonus
 			loop;
 	}
 }
-
 //The Armor cell for regeneration
 Class RegenArmorCell : RMD_ArmorBase
 {
@@ -40,6 +39,96 @@ Class RegenArmorCell : RMD_ArmorBase
 		Armor.Savepercent 100;
 		Armor.Saveamount 2;
 		Armor.Maxsaveamount 100;
+	}
+}
+
+Class RMD_ArmorCellT2 : RMD_ArmorBase
+{
+	Default
+	{
+		Inventory.Pickupmessage "Charged up your armor a little. <+2 Armor>";
+		Inventory.PickupSound "Items/SmallArmorCell";
+		Armor.Savepercent 100;
+		Armor.Saveamount 2;
+		Armor.Maxsaveamount 200;
+	}
+}
+
+Class RMD_ArmorCellT3 : RMD_ArmorBase
+{
+	Default
+	{
+		Inventory.Pickupmessage "Charged up your armor a little. <+2 Armor>";
+		Inventory.PickupSound "Items/SmallArmorCell";
+		Armor.Savepercent 100;
+		Armor.Saveamount 2; 
+		Armor.Maxsaveamount 400;
+	}
+}
+
+Class RMD_ArmorCellT4 : RMD_ArmorBase
+{
+	Default
+	{
+		Inventory.Pickupmessage "Charged up your armor a little. <+2 Armor>";
+		Inventory.PickupSound "Items/SmallArmorCell";
+		Armor.Savepercent 100;
+		Armor.Saveamount 2;
+		Armor.Maxsaveamount 600;
+	}
+}
+
+
+//The Armor cell for regeneration
+Class RMD_ArmorRegenBase : SpecialItem
+{
+	name CellArmor;
+	
+	Property CellArmor:CellArmor;
+
+	Default
+	{
+		Inventory.Pickupmessage "Armor Charge";
+		Inventory.PickupSound "Items/SmallArmorCell";
+		Inventory.Amount 1;
+		Inventory.MaxAmount 1;
+		
+		RMD_ArmorRegenBase.CellArmor "RMD_ArmorCellT2";
+	}
+	
+	override bool TryPickup(in out Actor Toucher)
+	{
+		bool received = Super.TryPickup(Toucher);
+		if (received)
+		{
+			Toucher.TakeInventory("BasicArmor", 0xFFFFFF);
+			Toucher.A_GiveInventory(CellArmor, 1);
+		}
+		return received;
+	}
+}
+
+Class RMD_ArmorUpgrade2 : RMD_ArmorRegenBase
+{
+	Default
+	{
+		RMD_ArmorRegenBase.CellArmor "RMD_ArmorCellT2";
+	}
+}
+
+Class RMD_ArmorUpgrade3 : RMD_ArmorRegenBase
+{
+	Default
+	{
+		RMD_ArmorRegenBase.CellArmor "RMD_ArmorCellT3";
+	}
+}
+
+Class RMD_ArmorUpgrade4 : RMD_ArmorRegenBase
+{
+	Default
+	{
+		RMD_ArmorRegenBase.CellArmor "RMD_ArmorCellT2";
 	}
 }
 
