@@ -149,7 +149,7 @@ $Volume Kestrel/Fire 0.65
 
 //Locust RL
 
-LocustRL/Fire "Sounds/Weapons/Launcher/LocustRL/Fire.ogg"
+LocustRL/Fire "Sounds/Weapons/Launcher/LocustRL/Fire.wav"
 LocustRL/MagOut "Sounds/Weapons/Launcher/LocustRL/MagOut.ogg"
 LocustRL/MagIn "Sounds/Weapons/Launcher/LocustRL/MagIn.ogg"
 
@@ -171,15 +171,14 @@ E20PC/Fire "Sounds/Weapons/Energy/E20PC/Fire.ogg"
 E20PC/CellOut "Sounds/Weapons/Energy/E20PC/CellOut.ogg"
 E20PC/CellIn "Sounds/Weapons/Energy/E20PC/CellIn.ogg"
 
+
+//E12 Plasma Rifle
 E12PR/CellOut "Sounds/Weapons/Energy/E12PR/MagOut.ogg"
 E12PR/CellIn "Sounds/Weapons/Energy/E12PR/MagIn.ogg"
 
-$Random E12PR/Fire {E12PR/FireA E12PR/FireB E12PR/FireC}
+E12PR/Fire "Sounds/Weapons/Energy/E12PR/Fire.ogg"
 
-E12PR/FireA "Sounds/Weapons/Energy/E12PR/FireA.ogg"
-E12PR/FireB "Sounds/Weapons/Energy/E12PR/FireB.ogg"
-E12PR/FireC "Sounds/Weapons/Energy/E12PR/FireC.ogg"
-
+//ASMD Shock RIfle
 ASMD/Fire "Sounds/Weapons/Energy/ASMD/UTFire.wav"
 
 //------------------------------------------------------------------------------
