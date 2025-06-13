@@ -17,12 +17,12 @@ Class RMD_MolotovExplosion : Actor
 					Actor Particle;
 					Bool Spawned;
 					
-					[Spawned, Particle] = A_SpawnItemEx("RMD_ExplosionSprite", flags: FXFLAG);
+					[Spawned, Particle] = A_SpawnItemEx("RMD_Boom2", flags: FXFLAG);
 					
 					Particle.TeleportMove(Pos + RPos, false);
 					Particle.Vel = PVel;
 					Particle.Roll = Random(0, 360);
-					Particle.Scale = (0.87, 0.87);
+					Particle.Scale = (1.4, 1.4);
 				}
 				
 				let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
