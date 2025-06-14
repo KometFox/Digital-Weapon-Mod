@@ -93,7 +93,7 @@ Class RMD_ArmorRegenBase : SpecialItem
 		Inventory.Amount 1;
 		Inventory.MaxAmount 1;
 		
-		RMD_ArmorRegenBase.CellArmor "RMD_ArmorCellT2";
+		RMD_ArmorRegenBase.CellArmor "RegenArmorCell";
 	}
 	
 	override bool TryPickup(in out Actor Toucher)
@@ -101,7 +101,7 @@ Class RMD_ArmorRegenBase : SpecialItem
 		bool received = Super.TryPickup(Toucher);
 		if (received)
 		{
-			Toucher.TakeInventory("BasicArmor", 0xFFFFFF);
+			//Toucher.TakeInventory("BasicArmor", 0xFFFFFF);
 			Toucher.A_GiveInventory(CellArmor, 1);
 		}
 		return received;

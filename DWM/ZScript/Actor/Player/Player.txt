@@ -14,7 +14,8 @@ Class RMD_Player : DoomPlayer
 		Health 100;
 		RMD_Player.HealthTake 3;
 	
-		Player.StartItem "RMD_CellArmor", 0;
+		Player.StartItem "RMD_CellArmor", 1;
+		Player.StartItem "RMD_ArmorRegenBase", 1;
 		//Player.StartItem "RMD_EnergyDrink", 1;
 		Player.StartItem "RMD_Enforcer", 1;
 		Player.StartItem "RMD_PistolBullets", 250;

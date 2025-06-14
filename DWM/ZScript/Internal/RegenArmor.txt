@@ -20,7 +20,7 @@ Class RegenativeArmor : EventHandler
 		
 		ArmorAmount = 3;
 		
-		ItemArmor[0][0] = 'RegenArmorCell';
+		ItemArmor[0][0] = 'RMD_ArmorRegenBase';
 		ItemArmor[0][1] = 'RMD_ArmorUpgrade2';
 		ItemArmor[0][2] = 'RMD_ArmorUpgrade3';
 		ItemArmor[0][3] = 'RMD_ArmorUpgrade4';
