@@ -38,16 +38,16 @@ class RMD_SpearCDS4 : BaseWeapon
 	
 	action void MeleeAttack()
 	{
-		A_CustomPunch(75 * frandom(1.0, 1.4), true, CPF_NOTURN, "RMD_Spearpuff", 180, 0, 0, "", "Spear/Hit", "Spear/Swing");
+		A_CustomPunch(75 * frandom(1.0, 1.4), true, CPF_NOTURN, "RMD_BulletImpact", 180);	
 	}
 	
 	Action void B_InitWeapon()
 	{
 		RMD_InitWeapon CIWpn = new("RMD_InitWeapon");
 		
-		//CIWpn.AmmoIcon = "TNT1A0";
-		//CIWpn.Ammo1 = "Clip";
-		//CIWpn.Magazine = 0;
+		CIWpn.AmmoIcon = "TNT1A0";
+		CIWpn.Ammo1 = "Clip";
+		CIWpn.Magazine = 0;
 		
 		InitWeapon(CIWpn);	
 	}	
