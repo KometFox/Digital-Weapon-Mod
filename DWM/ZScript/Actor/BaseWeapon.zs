@@ -348,10 +348,13 @@ Enum E_IronSight
 		{
 			Proj.Vel3DFromAngle(30, player.mo.angle, player.mo.pitch); 
 			Proj.Master = Player.mo;
-			Proj.target = Player.mo; 
+			Proj.target = Invoker; 
+
+			//Proj.Master = Player.mo;
+			//Proj.target = Player.mo; 
 			
 			BaseProjectile BPProj = BaseProjectile(Proj);
-			BPProj.HurtPlayer = false;
+			BPProj.HurtPlayer = true;
 			BPProj.SplashRad = 140;
 		}
 		

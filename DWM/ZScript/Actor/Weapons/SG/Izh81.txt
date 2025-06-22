@@ -22,13 +22,13 @@ class RMD_Izh81 : BaseWeapon
 	{	
 		if (Invoker.IronSight == IRON_INACTIVE)
 		{
-			A_FireBullets(2.5, 2.5, 9, 27, "RMD_BulletImpact", FBF_NoRandom); 
+			A_FireBullets(2.97, 2.97, 9, 27, "RMD_BulletImpact", FBF_NoRandom); 
 
 			B_MuzzleFlash("RMD_BuckshotMuzzleFlash", (9, 1.33, -1.0));	
 		}
 		else
 		{
-			A_FireBullets(0.7, 0.7, 9, 27, "RMD_BulletImpact", FBF_NoRandom); 
+			A_FireBullets(0.9, 0.9, 9, 27, "RMD_BulletImpact", FBF_NoRandom); 
 
 			B_MuzzleFlash("RMD_BuckshotMuzzleFlash", (7, 0, -0.5));	
 		}	
