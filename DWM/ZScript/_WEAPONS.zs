@@ -46,3 +46,4 @@
 #Include "ZScript/Actor/Weapons/Energy/E20PC.txt"
 #Include "ZScript/Actor/Weapons/Energy/E12PR.txt"
 #Include "ZScript/Actor/Weapons/Energy/ASMDShockRifle.txt"
+#Include "ZScript/Actor/Weapons/Energy/PR72.txt"
