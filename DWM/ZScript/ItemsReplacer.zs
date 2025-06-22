@@ -125,9 +125,8 @@ Class MoneyDrop_Medium : MultiItemSpawner
 {
 	override void PostBeginPlay()
 	{
-		AddItem("RMD_GoldGoblet", 0.72, 2);
-		AddItem("RMD_CoinPile", 0.30, 2);
-		AddItem("RMD_SilverRing", 0.65, 1);
+		AddItem("RMD_GoldGoblet", 0.5, 1);
+		AddItem("RMD_GoldBar", 0.70, 2);
 
 		Super.PostBeginPlay();
 	}
