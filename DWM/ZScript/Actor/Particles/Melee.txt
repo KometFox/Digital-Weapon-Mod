@@ -1,0 +1,191 @@
+Class RMD_SwordPuff : RMD_BulletImpact
+{ 
+    Default
+	{
+	Damagetype "melee";
+    +NOEXTREMEDEATH;
+	Decal "None";
+	}
+	States
+	{
+	Spawn:
+		Melee:
+		TNT1 A 0 A_SpawnItemEx("RMD_Swordhiteffect", 0, 0, 4.0 + 0.1 * random(-10, 10));
+		TNT1 CD 4;
+		Stop;
+	Crash:
+		TNT1 A 0 A_StartSound("Sword/WallHit", 3);
+		TNT1 A 0
+		{
+			//The Actors
+			bool Bool_Sparky;
+			Actor Sparky;
+			bool Bool_BulletFlare;
+			Actor BulletFlare;
+				
+			Actor USparks1, USparks2;	
+			
+			[Bool_Sparky, Sparky] = A_SpawnItemEx("RMD_BulletSpark", flags: PARTICLE_FLAGS);
+		
+			if (Sparky)
+			{
+				Sparky.Scale = (0.20, 0.20);			
+			}
+		
+		
+			let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
+			int CVAR_LowQuality = CVARS.RMDV_ParticleLowQuality;;
+		
+			if (CVAR_LowQuality == 1)
+			{
+				Return;
+			}
+	
+			//Sparks
+			for (int i = 0; i < 14; ++i)
+			{
+				Actor Particle = A_SpawnProjectile("RMD_TSparkSlow", 2, 0, frandom(0,1) * frandom (0, 360), 2, frandom(0,1)*frandom (30, 360));
+				
+				if (Particle)
+				{
+					Particle.Speed = 15;
+					Particle.Gravity = 0;		
+					Particle.Scale = (0.05, 0.05);
+				}
+			}
+		
+		
+			for (int i = 0; i < 3; ++i)
+			{
+				Vector3 PVel = (FRandom[FX](-0.5, 0.5), FRandom[FX](-0.5, 0.5), FRandom[FX](1.0, 2.0)).unit()*FRandom[FX](0.75, 7.0);
+				Vector3 RPos = (frandom(-3, 3), frandom(-3, 8), frandom(-1, 1));
+				RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_Smoke", Pos + RPos));
+					
+				Particle.Vel = PVel;
+				Particle.Scale = (0.08, 0.08);
+				Particle.ScaleGrowth = 1.08;
+				Particle.TTL = 9;
+				Particle.Alpha = 0.12;
+			}
+		
+		}	
+		Stop;
+	}
+}
+
+Class RMD_Swordhiteffect : RMD_BulletImpact
+{
+   Default
+   {
+   Radius 1;
+   Height 1;
+  +NOINTERACTION;
+  +FORCEXYBILLBOARD;
+  +NOGRAVITY;
+  +BRIGHT;
+  Scale 1;
+  Renderstyle "Add";
+  }
+  States
+  {
+  Spawn:
+	BSEF ABCDEFGH 1;
+	Stop;
+	}
+}
+
+Class RMD_SpearPuff : RMD_BulletImpact
+{ 
+    Default
+	{
+	Damagetype "Melee";
+    +NOEXTREMEDEATH;
+	Decal "None";
+	}
+	States
+	{
+	Spawn:
+		Melee:
+		TNT1 A 0 A_SpawnItemEx("RMD_Spearhiteffect", 0, 0, 4.0 + 0.1 * random(-10, 10));
+		TNT1 CD 4;
+		Stop;
+	Crash:
+		TNT1 A 0 A_StartSound("Spear/WallHit", 3);
+		TNT1 A 0
+		{
+			//The Actors
+			bool Bool_Sparky;
+			Actor Sparky;
+			bool Bool_BulletFlare;
+			Actor BulletFlare;
+				
+			Actor USparks1, USparks2;	
+			
+			[Bool_Sparky, Sparky] = A_SpawnItemEx("RMD_BulletSpark", flags: PARTICLE_FLAGS);
+		
+			if (Sparky)
+			{
+				Sparky.Scale = (0.20, 0.20);			
+			}
+		
+		
+			let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
+			int CVAR_LowQuality = CVARS.RMDV_ParticleLowQuality;;
+		
+			if (CVAR_LowQuality == 1)
+			{
+				Return;
+			}
+	
+			//Sparks
+			for (int i = 0; i < 14; ++i)
+			{
+				Actor Particle = A_SpawnProjectile("RMD_TSparkSlow", 2, 0, frandom(0,1) * frandom (0, 360), 2, frandom(0,1)*frandom (30, 360));
+				
+				if (Particle)
+				{
+					Particle.Speed = 15;
+					Particle.Gravity = 0;		
+					Particle.Scale = (0.05, 0.05);
+				}
+			}
+		
+		
+			for (int i = 0; i < 3; ++i)
+			{
+				Vector3 PVel = (FRandom[FX](-0.5, 0.5), FRandom[FX](-0.5, 0.5), FRandom[FX](1.0, 2.0)).unit()*FRandom[FX](0.75, 7.0);
+				Vector3 RPos = (frandom(-3, 3), frandom(-3, 8), frandom(-1, 1));
+				RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_Smoke", Pos + RPos));
+					
+				Particle.Vel = PVel;
+				Particle.Scale = (0.08, 0.08);
+				Particle.ScaleGrowth = 1.08;
+				Particle.TTL = 9;
+				Particle.Alpha = 0.12;
+			}
+		
+		}	
+		Stop;
+	}
+}
+
+Class RMD_Spearhiteffect : RMD_BulletImpact
+{
+   Default
+   {
+   Radius 1;
+   Height 1;
+  +NOINTERACTION;
+  +FORCEXYBILLBOARD;
+  +NOGRAVITY;
+  +BRIGHT;
+  Scale 1;
+  Renderstyle "Add";
+  }
+  States
+  {
+  Spawn:
+	GSEF ABCDEFGHIJKLMNOPQR 1;
+	Stop;
+	}
+}

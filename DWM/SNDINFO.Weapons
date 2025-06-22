@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-//Sword
+//Melee
 //------------------------------------------------------------------------------
 Sword/Swing1 "Sounds/Weapons/Sword/Swing1.wav"
 Sword/Swing2 "Sounds/Weapons/Sword/Swing2.wav"
@@ -10,6 +10,13 @@ Sword/MetalHit1 "Sounds/Weapons/Sword/HitMetal1.ogg"
 Sword/MetalHit2 "Sounds/Weapons/Sword/HitMetal2.ogg"
 Sword/MetalHit3 "Sounds/Weapons/Sword/HitMetal3.ogg"
 $Random Sword/MetalHit {Sword/MetalHit1 Sword/MetalHit2 Sword/MetalHit3}
+
+Sword/WallHit "Sounds/Weapons/Sword/Wallhit.ogg"
+
+//Spear 
+Spear/Hit "Sounds/Weapons/Spear/SpearHit.ogg"
+Spear/Wallhit "Sounds/Weapons/Spear/SpearWallHit.ogg"
+Spear/Swing "Sounds/Weapons/Spear/SpearWhoosh.ogg"
 
 //------------------------------------------------------------------------------
 //Pistols

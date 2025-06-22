@@ -25,7 +25,11 @@
 #Include "ZScript/Actor/Particles/LargeExplosion.txt"
 #Include "ZScript/Actor/Particles/BulletPlasma.txt"
 #Include "ZScript/Actor/Particles/BigPlasma.txt"
+
+#Include "ZScript/Actor/Particles/Melee.txt"
+
 //Trails
 #Include "ZScript/Actor/Particles/LocustRocketTrail.txt"
 #Include "ZScript/Actor/Particles/RocketTrail.txt"
 #Include "ZScript/Actor/Particles/BigPlasmaTrail.txt"
+
