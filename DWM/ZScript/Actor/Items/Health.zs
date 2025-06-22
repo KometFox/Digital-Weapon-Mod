@@ -327,12 +327,12 @@ Class RMD_HPPotentVial : BaseHealthItem
 		Inventory.Amount 1;
 		Inventory.MaxAmount 6;
 		Inventory.InterhubAmount 6;
-		BaseHealthItem.MaxHeal 200;
-		Health 200;
+		BaseHealthItem.MaxHeal 300;
+		Health 300;
 		Inventory.PickupMessage "Picked up a Potent Health Vial";
 		Inventory.UseSound "Items/Potion";
 		Inventory.Icon "ITPHPVL";
-		Tag "Potent Health Vial +200 (200)";
+		Tag "Potent Health Vial +300 (300 Max)";
 	}
 }
 
