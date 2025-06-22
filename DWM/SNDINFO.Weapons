@@ -245,6 +245,8 @@ AR70/Cocking "Sounds/Weapons/AR/AR70/Cocking.ogg"
 AR70/MagIn "Sounds/Weapons/AR/AR70/MagIn.ogg"
 AR70/MagOut "Sounds/Weapons/AR/AR70/MagOut.ogg"
 
+$Volume AR70/Fire 0.455
+
 
 //------------------------------------------------------------------------------
 //Machine Guns
