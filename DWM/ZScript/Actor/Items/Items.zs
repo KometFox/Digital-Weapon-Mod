@@ -127,6 +127,21 @@ Class RMD_God : CustomInventory
 	}
 }
 
+
+Class RMD_CashToken : Inventory
+{
+	Default
+	{	
+		Inventory.Amount 1;
+		Inventory.MaxAmount 1;
+		Inventory.InterHubAmount 0;
+		-INVENTORY.PERSISTENTPOWER;
+		+INVENTORY.HUBPOWER;
+		
+	}
+}
+
+
 //Emergency Money
 class RMD_EmergencyCash : Inventory
 {
@@ -140,12 +155,20 @@ class RMD_EmergencyCash : Inventory
 		Inventory.PickupSound "";
 		Inventory.PickupMessage "You got some emergency cash.";
 		Inventory.UseSound "Items/IngotTake";
-		Tag "Emergency Cash (7500 Credits)";
+		Tag "Emergency Cash (5000 Credits)";
 	}
 	
 	override bool Use(bool pickup)
 	{
-		Owner.A_GiveInventory("Material", 7500);		
+		if (Owner.CheckInventory("RMD_CashToken", 1))
+		{
+			Console.PrintF("You already got your emergency cash for this map");			
+		
+			return false;
+		}
+	
+		Owner.A_GiveInventory("Material", 5000);		
+		Owner.A_GiveInventory("RMD_CashToken", 1);
 		
 		let MoneyH = RMD_MoneyHandler(StaticEventHandler.Find('RMD_MoneyHandler'));
 		MoneyH.SaveMoney();
