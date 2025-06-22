@@ -42,16 +42,16 @@ class RMD_MasterSword : BaseWeapon
 	
 	action void MeleeAttack()
 	{
-		A_CustomPunch(150 * frandom(1.0, 1.4), true, CPF_NOTURN, "RMD_BulletImpact", 95, 0, 0, "", "Sword/MetalHit", "Sword/Swing");	
+		A_CustomPunch(150 * frandom(1.0, 1.4), true, CPF_NOTURN, "RMD_Swordpuff", 95, 0, 0, "", "Sword/MetalHit", "Sword/Swing");	
 	}
 	
 	Action void B_InitWeapon()
 	{
 		RMD_InitWeapon CIWpn = new("RMD_InitWeapon");
 		
-		CIWpn.AmmoIcon = "TNT1A0";
-		CIWpn.Ammo1 = "Clip";
-		CIWpn.Magazine = 0;
+		//CIWpn.AmmoIcon = "TNT1A0";
+		//CIWpn.Ammo1 = "Clip";
+		//CIWpn.Magazine = 0;
 		
 		InitWeapon(CIWpn);	
 	}
