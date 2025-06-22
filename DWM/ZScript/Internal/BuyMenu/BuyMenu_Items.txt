@@ -519,8 +519,17 @@ Class BM_Supplies : BMItems
 //------------------------------------------------------------------------------
 //Health Items	
 //------------------------------------------------------------------------------
-
 			let Item = new("BuyMenuItems");
+			Item.ID = "RMD_EmergencyCash";
+			Item.ItemName = "Emergency Cash";
+			Item.Graphic = TexMan.CheckForTexture("GOBAR", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Buy/Purchase";
+			Item.Cost = 0;
+			Item.Amount = 1;
+			ArItems.Push(Item);
+
+			Item = new("BuyMenuItems");
 			Item.ID = "RMD_HPVial";
 			Item.ItemName = "Health Vial (+50 HP / 200 Max)";
 			Item.Graphic = TexMan.CheckForTexture("ITHPVL", TexMan.Type_Any);

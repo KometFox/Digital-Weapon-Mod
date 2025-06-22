@@ -126,3 +126,43 @@ Class RMD_God : CustomInventory
 			Loop;
 	}
 }
+
+//Emergency Money
+class RMD_EmergencyCash : Inventory
+{
+	Default
+	{
+		Inventory.Amount 1;
+		Inventory.MaxAmount 2;
+		+INVENTORY.INVBAR 
+		//Inventory.PickupFlash "PickupFlash";
+		Inventory.Icon "GOBAR";
+		Inventory.PickupSound "";
+		Inventory.PickupMessage "You got some emergency cash.";
+		Inventory.UseSound "Items/IngotTake";
+		Tag "Emergency Cash (7500 Credits)";
+	}
+	
+	override bool Use(bool pickup)
+	{
+		Owner.A_GiveInventory("Material", 7500);		
+		
+		let MoneyH = RMD_MoneyHandler(StaticEventHandler.Find('RMD_MoneyHandler'));
+		MoneyH.SaveMoney();
+	
+		return true;
+	}	
+	
+	States
+	{
+	Spawn:
+		IDLE A -1;
+		Stop;
+	}
+	
+	
+	
+	
+	
+}
+
