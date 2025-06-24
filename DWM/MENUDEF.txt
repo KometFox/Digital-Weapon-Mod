@@ -12,11 +12,11 @@ LISTMENU "MainMenu"
 	StaticPatch 95, -8, "DM_Doom"
 	Position 75, 75
 		
-	TextItem "Let's Begin!",  "n",	"PlayerclassMenu"
-	TextItem "Options setting",	     "o",	"OptionsMenu"
-	TextItem "Load",         "l",	"LoadGameMenu"
-	TextItem "Save",         "s",	"SaveGameMenu"
-	TextItem "Exit",	 "q",	"QuitMenu"
+	TextItem "Start Game",  "n",	"PlayerclassMenu"
+	TextItem "Options",	     "o",	"OptionsMenu"
+	TextItem "Load Game",         "l",	"LoadGameMenu"
+	TextItem "Save Game",         "s",	"SaveGameMenu"
+	TextItem "Exit to Windows",	 "q",	"QuitMenu"
 }
 
 ListMenu "SkillMenu"
