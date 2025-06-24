@@ -21,6 +21,7 @@
 -Various new Graphics 
 -Fixed Carcano M91 animation
 -Bumped minimum GZDoom version to 4.12.0
+-Added Emergency Cash
 -Replaced hardware items with valueable items
 
 
