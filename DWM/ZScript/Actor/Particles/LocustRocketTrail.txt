@@ -10,15 +10,6 @@ Class RMD_LocustRocketTrail : RMD_BaseParticle
 			TNT1 A 0 NoDelay;
 			TNT1 A 0 
 			{
-			
-				let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
-				int CVAR_LowQuality = CVARS.RMDV_ParticleLowQuality;;
-		
-				if (CVAR_LowQuality == 1)
-				{
-					Return;
-				}
-				
 				if (true)
 				{
 					Vector3 PVel = (FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1), FRandom[FX](0.75, 0.75));
@@ -26,27 +17,12 @@ Class RMD_LocustRocketTrail : RMD_BaseParticle
 					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_LocustFire", Pos + RPos));
 					
 					Particle.Vel = PVel;
-					Particle.Scale = (0.31, 0.31);
-					Particle.ScaleGrowth = 0.90;
+					Particle.Scale = (0.22, 0.22);
+					Particle.ScaleGrowth = 1.02;
 					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
 					Particle.SetShade("ff3900");
 				}		
-			
-				if (true)
-				{
-					Vector3 PVel = (FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1), FRandom[FX](0.1, 0.3));
-					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
-					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_Smoke", Pos + RPos));
-					
-					Particle.Vel = PVel;
-					Particle.Scale = (0.066, 0.066);
-					Particle.ScaleGrowth = 1.01;
-					Particle.TTL = 18;
-					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-					Particle.SetShade("6d6d6d");
-				}			
-			
-				
+	
 			}
 			Stop;
 	}
@@ -76,8 +52,33 @@ Class RMD_LocustFire : RMD_BaseParticle
 	{
 		Spawn:
 			TNT1 A 0;
-			ROM1 A 6;
-			ROM1 AAA 2 A_FadeOut(0.33);
+			YOM3 A 6;
+			TNT1 A 0
+			{
+				let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
+				int CVAR_LowQuality = CVARS.RMDV_ParticleLowQuality;;
+		
+				if (CVAR_LowQuality == 1)
+				{
+					Return;
+				}
+				
+				if (true)
+				{
+					Vector3 PVel = (FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1), FRandom[FX](0.1, 0.3));
+					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
+					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_Smoke", Pos + RPos));
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.24, 0.24);
+					Particle.ScaleGrowth = 1.0025;
+					Particle.TTL = 14;
+					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
+					Particle.SetShade("6d6d6d");
+				}				
+			
+			}
+			YOM3 AAA 2 A_FadeOut(0.33);
 			Stop;			
 	}
 }
