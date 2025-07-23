@@ -165,7 +165,7 @@ Class SMAW_Rocket : HeavyExplosivesFast
 	{
 		Speed 75;
 		Decal "RMD_LargeExplosion";
-		MissileType "RMD_SMRL_RocketTrail";
+		MissileType "RMD_RocketTrail";
 		
 		//Impact 
 		BaseProjectileFast.ImpactDamage 0;

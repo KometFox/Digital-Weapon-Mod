@@ -87,15 +87,15 @@ class RMD_MolotovCocktail : BaseWeapon
 		Goto ReadyReal;
 	
 	FireNow:
-		PUL1 ABCD 3;
+		PUL1 ABCD 2;
 		TNT1 A 0 A_StartSound("Grenade/PullPin", CHAN_WEAPON, 0, 0.75); 
-		PUL1 EFG 3;
-		THW1 ABC 3 A_ChargeThrow();
+		PUL1 EFG 2;
+		THW1 AB 2; 
 		Goto FireLoop;
 		
 	FireLoop:
 		THW1 C 1;
-		THW1 C 1 
+		THW1 C 1
 		{
 			A_ReFire("FireLoop");
 			A_WeaponReady(WRF_NOFIRE | WRF_NOBOB);
@@ -134,9 +134,9 @@ Class RMD_MolotovGrenade : LightExplosives
 		//Impact 
 		BaseProjectile.ImpactDamage 0;
 		//Splash 
-		BaseProjectile.SplashDamage 45;
-		BaseProjectile.FullSplashDamage 80;
-		BaseProjectile.SplashRadius 200;
+		BaseProjectile.SplashDamage 15;
+		BaseProjectile.FullSplashDamage 10;
+		BaseProjectile.SplashRadius 150;
 		//Randomizer
 		BaseProjectile.NormalDamageRandom 1.0;
 		BaseProjectile.NerfDamageRandom 1.0;
@@ -171,20 +171,25 @@ Class RMD_MolotovGrenade : LightExplosives
 				A_SpawnItemEx("RMD_MolotovExplosion", 0, 0, 0);
 				A_AlertMonsters(800);
 			}
-			TNT1 A 10;
+			TNT1 A 1;
 			Goto ExplodeLoop;		
 		ExplodeLoop:
 			TNT1 A 0
 			{
 				
-				for (int I = 0; I < 16; I++)
+				for (int I = 0; I < 30; I++)
 				{
 					int R;
-					R = 110;
+					int RVel;
+					int RZVel;
+
+					R = 4;
+					RVel = 10;
+					RZVel = 13;
 				
-					A_SpawnItemEx("RMD_MolotovFire", +FRandom(-R, R), +Frandom(-R, R));			
+					A_SpawnItemEx("RMD_MolotovFire", +FRandom(-R, R), +Frandom(-R, R), Frandom(4, 5), Frandom(-RVel, RVel), Frandom(-RVel, RVel), Frandom(RZVel * 0.5, RZVel));	
+					A_SpawnItemEx("RMD_MolotovFire_Sound", 0, 0, 10); 
 				}
-				
 			}
 			Goto DieOut;	
 		DieOut:
@@ -205,9 +210,11 @@ Class RMD_MolotovFire : Actor
 	Default
 	{
 		Speed 0;
+		Radius 8;
+		Height 8;
 		Gravity 1.0;
-		Scale 0.2;
-		RMD_MolotovFire.TimeToLife TICRATE * 5;
+		Scale 1.25;
+		RMD_MolotovFire.TimeToLife (TICRATE * 5);
 		RenderStyle "Add";
 		DamageType "Fire";
 		DeathType "Fire";
@@ -215,6 +222,8 @@ Class RMD_MolotovFire : Actor
 		+NOBLOODDECALS;
 		+BLOODLESSIMPACT;
 		+DONTSPLASH;
+		+MISSILE;
+		+THRUACTORS; 
 		-BLOODSPLATTER;
 	}
 	
@@ -233,22 +242,15 @@ Class RMD_MolotovFire : Actor
 		
 		if (TTL <= 0)
 		{
-			return ResolveState("FireDeath");
+			return ResolveState("Gone");
 		}
 		
-		if (GetAge() % 12 == 0)
+		if (GetAge() % 8 == 0)
 		{
-			A_Explode(14 * FRandom(0, 1.4), 75, XF_HURTSOURCE, 0, 50);	
+			A_Explode(10, 65, XF_HURTSOURCE, 0, 60 * 0.33);	
 		}
 		
-		if (GetAge() % TICRATE * 2 == 0)
-		{
-			A_StartSound("Fire/Loop", 10, CHANF_LOOP, 0.7);
-		}
-		
-		A_SpawnItemEx("RMD_FireDeath", 0, 0, 0);
-		
-		int GiveRadius = 75;
+		int GiveRadius = 80;
 
 		BlockThingsIterator it = BlockThingsIterator.Create(self, GiveRadius);
 		while (it.Next())
@@ -261,36 +263,108 @@ Class RMD_MolotovFire : Actor
 			}
 		}
 		
+		if (Pos.Z - FloorZ >= Height)
+		{
+			return ResolveState("Spawn");
+		}
 		
 		return ResolveState(Null);
-	}
-	
-	void A_Start()
-	{
-		A_SetScale(Scale.X * 1.12, Scale.Y * 1.12);
-	}
-	
-	void A_DieOut()
-	{
-		A_SetScale(Scale.X * 0.75, Scale.Y * 0.75);
-		A_FadeOut(0.25);	
 	}
 	
 	States
 	{
 		Spawn:
-			TNT1 A 1 NoDelay;
-			//FIRY ABCDEFGHIJKLMN 1 A_Start(); 
-			Goto FireLoop;
-		FireLoop:
+			TNT1 A 0 NoDelay;
+			TNT1 A 1 
+			{
+				A_SpawnItemEx("RMD_RocketTrail");
+				
+				if (Pos.Z - FloorZ <= Height)
+				{
+					Return ResolveState("Burn");
+				}
+			
+				
+				Return ResolveState(Null);
+			}
+			Loop;
+		Death:
+			TNT1 A 1;
+			Goto Burn;
+		Burn:
 			FIRY ABCDEFGHIJKLMN 2 A_Do();
 			Loop;
-		FireDeath:
-			TNT1 A 0;
-			//FIRY KLMN 2 A_DieOut();
+		Gone:
+			FIRY JKLMN 2
+			{
+				Scale.X *= 0.92;
+				Scale.Y *= 0.92;
+				A_FadeOut(0.23, 0);
+			}
 			Stop;
 			
 	}	
 
 }
+
+
+Class RMD_MolotovFire_Sound : Actor
+{
+	int TTL;
+	
+	Property TimeToLife:TTL;
+
+	Default
+	{
+		Speed 0;
+		Gravity 0.0;
+		Scale 0.2;
+		RMD_MolotovFire_Sound.TimeToLife (TICRATE * 6) * 2;
+		RenderStyle "Add";
+		DamageType "Fire";
+		DeathType "Fire";
+		+NOBLOOD;
+		+NOBLOODDECALS;
+		+BLOODLESSIMPACT;
+		+DONTSPLASH;
+		+MISSILE;
+		-BLOODSPLATTER;
+	}
+	
+	
+	state A_Do()
+	{
+		TTL = TTL - 1;
+		
+		if (TTL <= 0)
+		{
+			return ResolveState("Gone");
+		}
+
+		if (GetAge() % TICRATE * 2 == 0)
+		{
+			A_StartSound("Fire/Loop", 10, CHANF_LOOP, 0.6);
+		}
+		
+		return ResolveState(Null);
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay;
+			TNT1 A 1;
+			Goto Death; 
+		Death:
+			TNT1 A 1 A_Do();
+			Loop; 
+		Gone:
+			TNT1 A 1;
+			Stop;
+			
+	}	
+
+}
+
+
 

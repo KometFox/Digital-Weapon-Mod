@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 //Rocket Trail
 //------------------------------------------------------------------------------
-Class RMD_LocustRocketTrail : RMD_BaseParticle
+Class RMD_RocketTrail : RMD_BaseParticle
 {
 	
 	States
@@ -10,77 +10,120 @@ Class RMD_LocustRocketTrail : RMD_BaseParticle
 			TNT1 A 0 NoDelay;
 			TNT1 A 0 
 			{
-				if (true)
+
+				for (int i = 0; i < 4; i++)
 				{
-					Vector3 PVel = (FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1), FRandom[FX](0.75, 0.75));
+					Vector3 PVel = (FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1)).unit()*FRandom[FX](0, 0);
 					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
-					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_LocustFire", Pos + RPos));
+					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_RocketTrail_Fire", Pos + RPos));
 					
 					Particle.Vel = PVel;
-					Particle.Scale = (0.22, 0.22);
-					Particle.ScaleGrowth = 1.02;
-					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-					Particle.SetShade("ff3900");
-				}		
-	
+					Particle.Scale = (0.5, 0.5);
+					Particle.ScaleGrowth = 0.92;
+					Particle.SetShade("ff3300");
+				}
+				
+				
 			}
 			Stop;
 	}
+
+
+}
+
+Class RMD_BlueRocketTrail : RMD_BaseParticle
+{
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay;
+			TNT1 A 0 
+			{
+
+				if (true)
+				{
+					Vector3 PVel = (FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1)).unit()*FRandom[FX](0.05, 0.05);
+					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
+					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_RocketTrail_Fire", Pos + RPos));
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (0.7, 0.7);
+					Particle.ScaleGrowth = 1.01;
+					Particle.SetShade("00d1ff");
+				}
+				
+
+			}
+			Stop;
+	}
+
+
 }
 
 
 
-Class RMD_LocustFire : RMD_BaseParticle
-{
 
+Class RMD_RocketTrail_Fire : RMD_ModelSparks
+{
 	Default
 	{
-		RenderStyle "Add";
-		Alpha 1.0;
+		RenderStyle "AddShaded";
 		+Bright;
+		Gravity -0.2;
+		Alpha 1.0;
 	}
 	
-	override void PostBeginPlay()
+	Override void BeginPlay()
 	{
-		Super.PostBeginPlay();
+		Super.BeginPlay();
 		
-		Roll = Random[FX](0, 360);
-		Angle = Random[FX](0, 360);	
-	}
+		Roll = frandom(0, 360);	
+	}	
+	
 	
 	States
 	{
 		Spawn:
 			TNT1 A 0;
-			YOM3 A 6;
-			TNT1 A 0
+			YOM3 AAAAAAA 1
 			{
-				let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
-				int CVAR_LowQuality = CVARS.RMDV_ParticleLowQuality;;
-		
-				if (CVAR_LowQuality == 1)
-				{
-					Return;
-				}
-				
-				if (true)
-				{
-					Vector3 PVel = (FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1), FRandom[FX](0.1, 0.3));
-					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
-					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_Smoke", Pos + RPos));
-					
-					Particle.Vel = PVel;
-					Particle.Scale = (0.24, 0.24);
-					Particle.ScaleGrowth = 1.0025;
-					Particle.TTL = 14;
-					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-					Particle.SetShade("6d6d6d");
-				}				
-			
+				A_SetScale(Scale.X * 0.94, Scale.Y * 0.94);
+				A_FadeOut(0.07);
 			}
-			YOM3 AAA 2 A_FadeOut(0.33);
-			Stop;			
+			Stop;	
 	}
 }
 
+Class RMD_RocketTrail_Spark : RMD_ModelSparks
+{
+	Default
+	{
+		+BRIGHT;
+		RenderStyle "AddShaded";
+		Alpha 1.0;
+		Scale 0.05;
+	}
+
+	override void BeginPlay()
+	{
+		float ScaleV = Frandom[FX](0.05, 0.08);
+	
+		Scale.X += ScaleV;
+		Scale.Y += ScaleV;
+		Speed = random(5, 10);
+		Gravity = 0;
+	}
+
+    States
+    {
+    Spawn:
+	   LEGY A 6 BRIGHT;
+       LEGY AAAAA 1 Bright A_FadeOut(0.2);
+       stop;
+    Death:
+       TNT1 A 0;
+       Stop;
+    }
+}
 

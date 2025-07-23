@@ -334,6 +334,7 @@ Class LightExplosives : BaseProjectile
 	Default
 	{
 		DamageType "Explosive";
+		+ExtremeDeath; 
 	}
 
 }
@@ -366,6 +367,7 @@ Class LightExplosivesFast : BaseProjectileFast
 	Default
 	{
 		DamageType "Explosive";
+		+ExtremeDeath; 
 	}
 
 }
@@ -374,6 +376,8 @@ Class LightExplosivesFast : BaseProjectileFast
 //------------------------------------------------------------------------------
 Class HeavyExplosives : BaseProjectile
 {
+
+
 
 	Override void PostBeginPlay()
 	{
@@ -399,6 +403,7 @@ Class HeavyExplosives : BaseProjectile
 	Default
 	{
 		DamageType "Explosive";
+		+ExtremeDeath; 
 	}
 
 }
@@ -431,6 +436,7 @@ Class HeavyExplosivesFast : BaseProjectileFast
 	Default
 	{
 		DamageType "Explosive";
+		+ExtremeDeath; 
 	}
 
 }

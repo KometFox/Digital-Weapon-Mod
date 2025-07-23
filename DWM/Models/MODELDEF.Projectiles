@@ -160,6 +160,19 @@ Model RMD_Madsen_Grenade
 }
 
 
+Model RMD_OICW_Grenade
+{
+	Path "Models\Projectile"
+	Model 0 "SMRLRocket.md3"
+	Path "Models\Weapons\SMRL"
+	Skin 0 "SMRLRocket.png"
+	PITCHFROMMOMENTUM
+	Scale 3 2 2
+
+	FrameIndex IDLE A 0 0
+}
+
+
 Model RMD_PirateBomb_Bomb
 {
 	Path "Models\Projectile"

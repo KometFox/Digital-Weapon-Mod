@@ -157,3 +157,13 @@ material texture "Models/Weapons/SMG/Uzi/Uzi.png"
 {
     shader "shaders/simsun.fp"
 }
+
+material texture "Models/Weapons/SMG/KrissVector/KrissVector.png" 
+{
+    shader "shaders/simsun.fp"
+}
+
+material texture "Models/Weapons/AR/OICW/OICW.png" 
+{
+    shader "shaders/simsun.fp"
+}

@@ -161,7 +161,7 @@ Class Chainsaw_Replacer: RandomSpawner Replaces Chainsaw
 {
 	Default
 	{
-		DropItem "RMD_GoldBar", 256, 1;
+		DropItem "RMD_Treasure", 256, 1;
 	}
 }
 
@@ -169,7 +169,7 @@ Class Pistol_Replacer : RandomSpawner Replaces Pistol
 {
 	Default
 	{
-		DropItem "RMD_GoldBar", 256, 1;
+		DropItem "RMD_Treasure", 256, 1;
 	}
 }
 
@@ -177,7 +177,7 @@ Class Shotgun_Replacer : RandomSpawner Replaces Shotgun
 {
 	Default
 	{
-		DropItem "RMD_GoldBar", 256, 1;
+		DropItem "RMD_Treasure", 256, 1;
 	}
 }
 
@@ -185,7 +185,7 @@ Class Chaingun_Replacer : RandomSpawner Replaces Chaingun
 {
 	Default
 	{
-		DropItem "RMD_GoldBar", 256, 1;
+		DropItem "RMD_Treasure", 256, 1;
 	}
 }
 
@@ -211,7 +211,7 @@ Class PlasmaRifle_Replacer : RandomSpawner Replaces PlasmaRifle
 {
 	Default
 	{
-		DropItem "RMD_Diamond", 256, 1;
+		DropItem "RMD_Treasure", 256, 1;
 	}
 }
 

@@ -3,9 +3,11 @@ Class RMD_BaseParticle : Actor
 	float TTL;
 	float TTLInit;
 	float ScaleGrowth; 
+	bool FadeOut;
 
 	Property TimeToLife:TTL;
 	Property ScaleGrowth:ScaleGrowth; 
+	Property FadeOut:FadeOut;
 
 	Default
 	{
@@ -19,6 +21,7 @@ Class RMD_BaseParticle : Actor
 		
 		RMD_BaseParticle.TimeToLife 50;
 		RMD_BaseParticle.ScaleGrowth 1.05;
+		RMD_BaseParticle.FadeOut true;
 	}
 	
 	override void Tick()
@@ -28,7 +31,10 @@ Class RMD_BaseParticle : Actor
 		if (Level.IsFrozen())
 			return;
 		
-		Fade();
+		if (FadeOut == true)
+		{
+			Fade();
+		}
 		ReduceTTL();
 		
 		Scale.X = Scale.X * ScaleGrowth;

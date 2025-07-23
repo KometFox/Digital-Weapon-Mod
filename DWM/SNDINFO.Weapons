@@ -25,7 +25,7 @@ Enforcer/MagIn "Sounds/Weapons/Pistols/Enforcer/MagIn.wav"
 Enforcer/MagOut "Sounds/Weapons/Pistols/Enforcer/MagOut.wav"
 
 $Random Enforcer/Fire {EnforcerFire1}
-EnforcerFire1 "Sounds/Weapons/Pistols/Enforcer/Fire.ogg"
+EnforcerFire1 "Sounds/Weapons/Pistols/Enforcer/Fire.wav"
 
 $Volume Enforcer/Fire 0.85
 
@@ -62,11 +62,16 @@ $Volume CBM2/Fire 1.0
 
 //Uzi
 Uzi/Fire "Sounds/Weapons/SMG/Uzi/Fire.ogg"
+Uzi/MagOut "Sounds/Weapons/SMG/Uzi/MagOut.ogg"
+Uzi/MagIn "Sounds/Weapons/SMG/Uzi/MagIn.ogg"
 
 $Volume Uzi/Fire 0.85
 
 //Ingram Mac 10
 M10/Fire "Sounds/Weapons/SMG/M10/Fire.ogg"
+
+//Kriss Vector
+KrissVector/Fire "Sounds/Weapons/SMG/KrissVector/Fire.ogg"
 
 
 //------------------------------------------------------------------------------
@@ -185,6 +190,8 @@ E12PR/CellIn "Sounds/Weapons/Energy/E12PR/MagIn.ogg"
 
 E12PR/Fire "Sounds/Weapons/Energy/E12PR/Fire.ogg"
 
+$Volume E12PR/Fire 0.622
+
 //ASMD Shock RIfle
 ASMD/Fire "Sounds/Weapons/Energy/ASMD/UTFire.wav"
 
@@ -195,9 +202,9 @@ ASMD/Fire "Sounds/Weapons/Energy/ASMD/UTFire.wav"
 //M25
 $Random M25/Fire {M25/Fire1}
 //Fire
-M25/Fire1 "Sounds/Weapons/AR/M25/UTFire.wav"
+M25/Fire1 "Sounds/Weapons/AR/M25/Fire.ogg"
 
-$Volume M25/Fire 0.85
+$Volume M25/Fire 0.73
 
 $Random M25/GrenadeFire {M25GFire1}
 M25GFire1 "Sounds/Weapons/AR/M25/UTGrenadeFire.wav"
@@ -253,6 +260,12 @@ AR70/MagIn "Sounds/Weapons/AR/AR70/MagIn.ogg"
 AR70/MagOut "Sounds/Weapons/AR/AR70/MagOut.ogg"
 
 $Volume AR70/Fire 0.455
+
+//XM-29 OICW
+OICW/Fire "Sounds/Weapons/AR/OICW/Fire.ogg"
+OICW/FireGrenade "Sounds/Weapons/AR/OICW/FireG.ogg"
+OICW/MagOut "Sounds/Weapons/AR/OICW/MagOut.ogg"
+OICW/MagIn "Sounds/Weapons/AR/OICW/MagIn.ogg"
 
 
 //------------------------------------------------------------------------------

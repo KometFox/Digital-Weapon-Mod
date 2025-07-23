@@ -1,44 +1,60 @@
 Class RMD_FireDeath : RMD_BaseParticle
 {
+
+	int Timer;
+	
+	property Timer:Timer;
+
+	Default
+	{
+		RMD_BaseParticle.FadeOut false;
+		RMD_BaseParticle.TimeToLife 9999;
+		RMD_FireDeath.Timer (TICRATE * 5);
+		RenderStyle "Add";
+	}
+	
+	override void BeginPlay()
+	{
+		Super.BeginPlay();
+		
+		Scale.X = 1.3;
+		Scale.Y = 1.3;
+		ScaleGrowth = 1.0;
+		SetShade("ff7e00");
+	}
+	
+	state A_Stuff()
+	{
+		if (Timer <= 0)
+		{
+			Return ResolveState("Death");
+		}
+
+		Timer--;
+		Return ResolveState(Null);
+	}
+	
 	
 	States
 	{
 		Spawn:
-			TNT1 A 0 NoDelay;
-			TNT1 A 0 
+			TNT1 AA 0 NoDelay;
+			Goto Loopy;
+		Loopy:
+			FIRY ABCDEFGHIJKLMN 2 A_Stuff();
+			Loop;
+		Death:
+			TNT1 A 0;
+			FIRY ABCDEFGHIJKLMN 2
 			{
-
-				for (int i = 0; i < 2; i++)
-				{
-					Vector3 PVel = (FRandom[FX](-0.05, 0.05), FRandom[FX](-0.05, 0.05), FRandom[FX](-0.05, 1.5)).unit()*FRandom[FX](1.5, 4.5);
-					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
-					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_Fire", Pos + RPos));
-					
-					Particle.Vel = PVel;
-					Particle.Scale = (2.5, 2.5);
-					Particle.ScaleGrowth = 0.9;
-					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-					Particle.SetShade("ff5000");
-				}
-				
-				for (int i = 0; i < 1; i++)
-				{
-					Vector3 PVel = (FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 0.1), FRandom[FX](-0.1, 1.0)).unit()*FRandom[FX](3.0, 7.5);
-					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(25, 40));
-					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_Smoke", Pos + RPos));
-					
-					Particle.Vel = PVel;
-					Particle.Scale = (0.25, 0.25);
-					Particle.Alpha = 0.4;
-					Particle.TTL = 12;
-					Particle.A_SetRenderStyle(1.0, STYLE_Shaded);
-					Particle.SetShade("1d1d1d");
-				}					
-				
+				A_FadeOut(0.08);
+				Scale.X *= 0.9;
+				Scale.Y *= 0.9;
 			}
 			Stop;
 	}
 }
+
 
 Class RMD_PlasmaDeath : RMD_BaseParticle
 {

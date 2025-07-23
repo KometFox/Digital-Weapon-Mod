@@ -37,7 +37,7 @@ class RMD_Chaingun : BaseWeapon
 	Action void FireBullets()
 	{
 		//A_FireProjectile("RMD_Chaingun_Bullet",frandom(-1.6, 1.6), 1, 6, 4, CMF_AIMDIRECTION,frandom(-1.6, 1.6));
-		A_FireBullets(1.4, 1.4, -1, 5*random(6,13), "RMD_BulletImpact", FBF_NoRandom); 
+		A_FireBullets(1.4, 1.4, -1, random(15,25), "RMD_BulletImpact", FBF_NoRandom); 
 			
 			
 		B_MuzzleFlash("RMD_BulletMuzzleFlash", (15, 3.2, -3.0));	

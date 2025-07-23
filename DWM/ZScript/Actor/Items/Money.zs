@@ -183,9 +183,9 @@ Class RMD_Treasure : MaterialBase
 {
 	Default
 	{
-		MaterialBase.Money 2000;
+		MaterialBase.Money 500;
 		MaterialBase.ItemColor "e6e6e6";
-		Inventory.pickupmessage "Treasure! +2000C";
+		Inventory.pickupmessage "Treasure! +500C";
 	}
 }
 
@@ -248,7 +248,7 @@ Class RMD_IngotBase : MaterialBase
 	Default
 	{
 		Inventory.PickupMessage "";
-		Inventory.PickupSound "Items/MoneyTake";
+		Inventory.PickupSound "Items/CrystalTake";
 		Inventory.PickupFlash "";
 		MaterialBase.Money 0;
 		-COUNTITEM;
@@ -260,9 +260,9 @@ Class RMD_PurpleCrystal : RMD_IngotBase
 {
 	Default
 	{
-		MaterialBase.Money 300;
+		MaterialBase.Money 100;
 		MaterialBase.ItemColor "ffa400";
-		Inventory.pickupmessage "Purple Crystal +250C";
+		Inventory.pickupmessage "Purple Crystal +100C";
 	}
 }
 
@@ -271,9 +271,9 @@ Class RMD_BlueCrystal : RMD_IngotBase
 {
 	Default
 	{
-		MaterialBase.Money 100;
+		MaterialBase.Money 40;
 		MaterialBase.ItemColor "21e500";
-		Inventory.pickupmessage "Blue Crystal +80C";
+		Inventory.pickupmessage "Blue Crystal +25C";
 	}
 }
 
@@ -281,9 +281,9 @@ Class RMD_GreenCrystal : RMD_IngotBase
 {
 	Default
 	{
-		MaterialBase.Money 30;
+		MaterialBase.Money 10;
 		MaterialBase.ItemColor "0005f6";
-		Inventory.pickupmessage "Green Crystal +30C";
+		Inventory.pickupmessage "Green Crystal +10C";
 	}
 
 }
@@ -292,9 +292,9 @@ Class RMD_YellowCrystal : RMD_IngotBase
 {
 	Default
 	{
-		MaterialBase.Money 12;
+		MaterialBase.Money 5;
 		MaterialBase.ItemColor "bf00ff";
-		Inventory.pickupmessage "Yellow Crystal +12C";
+		Inventory.pickupmessage "Yellow Crystal +5C";
 	}
 
 }

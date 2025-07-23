@@ -19,9 +19,11 @@
 #Include "ZScript/Actor/Weapons/SMG/CBM2.txt"
 #Include "ZScript/Actor/Weapons/SMG/Uzi.txt"
 #Include "ZScript/Actor/Weapons/SMG/Mac10.txt"
+#Include "ZScript/Actor/Weapons/SMG/KrissVector.txt"
 //Assault Rifle
 #Include "ZScript/Actor/Weapons/AR/AR70.txt"
 #Include "ZScript/Actor/Weapons/AR/M25.txt"
+#Include "ZScript/Actor/Weapons/AR/OICW.txt"
 #Include "ZScript/Actor/Weapons/AR/MadsenLAR.txt"
 #Include "ZScript/Actor/Weapons/AR/SA85m.txt"
 //Machine Guns

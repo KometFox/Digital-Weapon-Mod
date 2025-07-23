@@ -1,0 +1,143 @@
+class RMD_KrissVector : BaseWeapon
+{
+	Default
+	{
+		Weapon.SelectionOrder 2;
+		Weapon.SlotNumber 3;
+		Weapon.AmmoUse 0;
+		Weapon.AmmoGive 0;
+		Weapon.AmmoType "RMD_PistolBullets";
+		Inventory.PickupMessage "$GOTCHAINGUN";
+		Inventory.AltHudIcon "KrissV";
+		Obituary "$OB_MPCHAINGUN";
+		Tag "Kriss Vector";
+		
+		BaseWeapon.IronSight IRON_INACTIVE;
+		
+		BaseWeapon.MagazineMax 60;
+		BaseWeapon.Magazine 60;
+		
+	}
+
+	Action void FireBullets()
+	{
+		if (Invoker.IronSight == IRON_INACTIVE)
+		{
+			//A_FireProjectile("RMD_CBM3_Projectile",frandom(-0.7, 0.7), 1, 6, 4, CMF_AIMDIRECTION,frandom(-0.5, 0.5));
+			A_FireBullets(0.7, 0.7, -1, 2*random(4,7), "RMD_BulletImpact", FBF_NoRandom); 
+		
+			B_MuzzleFlash("RMD_BulletMuzzleFlash", (15, 4, -2.5));	
+			C_SpawnCasing("PistolCase", (3, -5, 0.0), 90);
+		}
+		else
+		{
+			//A_FireProjectile("RMD_CBM3_Projectile",frandom(-0.4, 0.4), 1, 0, 4, CMF_AIMDIRECTION,frandom(-0.4, 0.4));
+			A_FireBullets(0.35, 0.35, -1, 2*random(4,7), "RMD_BulletImpact", FBF_NoRandom); 
+			
+			B_MuzzleFlash("RMD_BulletMuzzleFlash", (13, 0.0, -1.5));	
+			C_SpawnCasing("PistolCase", (3, 0, -2.0), 90);
+		}
+
+		
+		A_StartSound("KrissVector/Fire", CHAN_WEAPON);
+		A_AlertMonsters();
+		Invoker.Magazine -= 1;
+		RMD_BARINFO.Set_Mag(invoker.Magazine);
+	}
+
+	Action void B_InitWeapon()
+	{
+		RMD_InitWeapon CIWpn = new("RMD_InitWeapon");
+		
+		CIWpn.AmmoIcon = "AMMOPIST";
+		CIWpn.Ammo1 = Invoker.AmmoType1.GetClassName();
+		CIWpn.Magazine = Invoker.Magazine;
+		
+		InitWeapon(CIWpn);	
+	}
+
+	States
+	{
+
+	Ready:
+		CHGG A 0;
+		IDLE A 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB);
+		Loop;
+
+	Deselect:
+		SEL1 FEDCBA 1 A_Lower;
+		SEL1 A 1 A_Lower;
+		TNT1 A 0 A_Lower(100);
+		Loop;
+		
+	Select:
+		TNT1 A 0 B_InitWeapon();
+		SEL1 ABCDEF 1 A_Raise;
+		IDLE A 1 A_Raise(100);
+        Goto Ready;
+			
+	//Ironsight Mode
+	IronReady:
+		IRO1 D 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_NOBOB);
+		Loop;
+	
+	IronSightAnim:
+		TNT1 A 0 A_SetCrosshair(99);
+		IRO1 ABCD 2 A_ZoomFactor(1.5);
+		Goto IronReady;
+		
+	IronSightDeselect:
+		TNT1 A 0  A_SetCrosshair(0);
+		IRO1 DCBA 2 A_ZoomFactor(1.0);
+		Goto Ready;
+		
+	AltFire:
+		TNT1 A 0 B_GoToIronSight("IronSightAnim", "IronSightDeselect");
+		Goto Ready;
+		
+	Fire:
+		TNT1 A 0 FireCheck();
+		Goto Ready;
+	
+	FireNow:	
+		TNT1 A 0 CheckIfAmmo(Invoker.Magazine, "ReadyReal");
+		FIR1 A 1 FireBullets();
+		FIR1 BC 1;
+		FIR1 D 0 A_ReFire;
+		FIR1 DEF 1; 
+		Goto Ready;
+		
+	IronFireNow:
+		TNT1 A 0 CheckIfAmmo(Invoker.Magazine, "IronReady");
+		IFI1 A 1 FireBullets();
+		IFI1 BC 1;
+		IFI1 D 0 A_ReFire;
+		IFI1 DEF 1;
+		Goto IronReady;	
+		
+	Reload:
+		TNT1 A 0 ReloadCheck();
+		Goto Ready;
+
+	ReloadNow:
+		TNT1 A 0 A_TakeInventory("GotoReload", 1);
+		REL1 ABCDEFGHI 2;
+		TNT1 A 0;
+		TNT1 A 0
+		{
+			A_StartSound("MP5/MagOut", CHAN_WEAPON);
+			A_FireProjectile("SMGMagSpawn",-5,0,8,-4);
+		}
+		REL1 IJKLMNOPQ 2;
+		TNT1 A 0
+		{
+			A_StartSound("MP5/MagIn", CHAN_WEAPON +1);	
+			ReloadGun(Invoker.AmmoType1, 0, 1, 1);
+		}
+		REL1 QRSTUVWXYZ 2;
+		REL2 AB 2;
+		Goto Ready;
+		
+	}
+}
+

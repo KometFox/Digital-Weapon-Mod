@@ -12,17 +12,17 @@ Class RMD_MolotovExplosion : Actor
 				//Explosion				
 				for (int i = 0; i < 8; ++i)
 				{
-					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](2.0, 7.0);
-					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
-					Actor Particle;
-					Bool Spawned;
-					
-					[Spawned, Particle] = A_SpawnItemEx("RMD_Boom2", flags: FXFLAG);
+					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](0.5, 2.5);
+					Vector3 RPos = (frandom(-32, 32), frandom(-32, 32), frandom(-32, 32));
+					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_NeoBoom", RPos + Pos));
 					
 					Particle.TeleportMove(Pos + RPos, false);
 					Particle.Vel = PVel;
 					Particle.Roll = Random(0, 360);
-					Particle.Scale = (1.4, 1.4);
+					Particle.Scale = (1.6, 1.6);
+					Particle.ScaleGrowth = 1.0;
+					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
+					Particle.SetShade("ff3300");
 				}
 				
 				let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
@@ -33,14 +33,14 @@ Class RMD_MolotovExplosion : Actor
 					Return;
 				}
 
-				for (int i = 0; i < 35; ++i)
+				for (int i = 0; i < 40; ++i)
 				{
 					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-0.05, 0.05)).unit()*FRandom[FX](11.0, 11.0);
-					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 0));
+					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(10, 14));
 					Actor Particle;
 					Bool Spawned;
 					
-					[Spawned, Particle] = A_SpawnItemEx("RMD_ExplosionSprite", flags: FXFLAG);
+					[Spawned, Particle] = A_SpawnItemEx("RMD_NeoBoom", flags: FXFLAG);
 					
 					Particle.TeleportMove(Pos + RPos, false);
 					Particle.A_SetRenderStyle(1.0, Style_AddShaded);
@@ -63,26 +63,31 @@ Class RMD_MolotovExplosion : Actor
 				}
 				
 				//Smoke
-				for (int i = 0; i < 16; ++i)
-				{
-					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](1.5, 5.0);
-					Vector3 RPos = (frandom(-8, 8), frandom(-8, 8), frandom(-4, 4));
-					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_Smoke", Pos + RPos));
-										
-					Particle.Vel = PVel;
-					Particle.Scale = (0.1, 0.1);
-					Particle.TTL = 35;
-				}
-				
-				//Sparks
 				for (int i = 0; i < 20; ++i)
 				{
-					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-0.1, 1.0)).unit()*FRandom[FX](8.0, 30.0);
-					Vector3 RPos = (frandom(-8, 8), frandom(-8, 8), frandom(-4, 4));
+					Vector3 PVel = (FRandom[FX](-0.2, 0.2), FRandom[FX](-0.2, 0.2), FRandom[FX](-0.3, 0.6)).unit()*FRandom[FX](2.5, 6.0);
+					Vector3 RPos = (frandom(-0, 0), frandom(-0, 0), frandom(-0, 0));
+					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_DoomSmoke", Pos + RPos));
+										
+					Particle.Vel = PVel;
+					Particle.Scale = (0.44, 0.44);
+					Particle.TTL = 50;
+					Particle.ScaleGrowth = 1.03;
+					Particle.A_SetRenderStyle(1.0, Style_Shaded);
+					Particle.SetShade("202020");
+				}	
+				
+				//Sparks
+				for (int i = 0; i < 18; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](15.0, 25.0);
+					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 8));
 					let Particle = Spawn("RMD_Sparks", Pos + RPos);
 					
 					Particle.Vel = PVel;
-				}
+					Particle.A_SetRenderStyle(1.0, Style_AddShaded);
+					Particle.SetShade("ffb01c");
+				}	
 				
 			}
 			Stop;

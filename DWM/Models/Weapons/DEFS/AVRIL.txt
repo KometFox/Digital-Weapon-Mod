@@ -52,7 +52,17 @@ Model RMD_AVRIL
 	FrameIndex REL1 X 0 38
 	FrameIndex REL1 Y 0 39
 	FrameIndex REL1 Z 0 40
+	FrameIndex REL2 A 0 41
+	FrameIndex REL2 B 0 42
+	FrameIndex REL2 C 0 43
+	FrameIndex REL2 D 0 44
+	FrameIndex REL2 E 0 45
+	FrameIndex REL2 F 0 46
+	FrameIndex REL2 G 0 47
+	FrameIndex REL2 H 0 48
 
+
+	
 
 
 

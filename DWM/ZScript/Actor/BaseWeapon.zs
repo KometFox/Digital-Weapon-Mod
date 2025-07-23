@@ -472,9 +472,6 @@ class RMD_FireInv : Powerup
 
 		OldTrans = Owner.Translation;
 		OldSpeed = Owner.Speed; 
-		//Owner.Speed = 24;
-		//Owner.bFRIGHTENED = true;
-		//Owner.bFRIGHTENING = true;
 		
 		Return True; 
 	}	
@@ -495,19 +492,21 @@ class RMD_FireInv : Powerup
 		
         if (!Owner)
 			return;
-	
-		Owner.A_SetTranslation(SetTrans);
 			
-		if (GetAge() % 3 == 0)
-			Spawn(FireParticle, Owner.Pos);
+		if (GetAge() % TICRATE * 4 == 0)
+		{
+			//Spawn(FireParticle, Owner.Pos);
+			return;
+		}
+		
 			
-		if (GetAge() % 5 == 0)
+		if (GetAge() % TICRATE * 2 == 0)
 		{
 			if (!Owner)
 				return;
 		
 			Owner.ResolveState("Pain");	
-			Owner.DamageMobj(Self, Target, 15 * FRandom(0, 1.8), 'Fire', DMGMFlag);
+			Owner.DamageMobj(Self, Target, 1 + FRandom(0, 6), 'Fire', DMGMFlag);
         }		
 
     }
@@ -517,7 +516,7 @@ class RMD_FireInv : Powerup
 		if (!Owner)
 			return;
 
-		Owner.A_SetTranslation("Charred");
+		Owner.Translation = OldTrans;
 		Owner.BBuddha = false; 
 		Owner.Speed = OldSpeed; 
 		Owner.bFRIGHTENED = false;
@@ -537,7 +536,7 @@ Class RMD_CorpseEffect : Actor
 	
 	Default
 	{
-		RMD_CorpseEffect.Timer TICRATE * 5;	
+		RMD_CorpseEffect.Timer TICRATE * 12;	
 	}
 	
 	void DoTime()
@@ -555,8 +554,10 @@ Class RMD_CorpseEffect : Actor
 		if (Level.IsFrozen())
 			return;
 		
-		if (GetAge() % 8 == 0)
-			A_SpawnItemEx(ParticleEffect, 0, 0, 0);	
+		if (GetAge() % 3 == 0)
+		{
+			//A_SpawnItemEx(ParticleEffect, 0, 0, 0);
+		}
 			
 		DoTime();
 	}

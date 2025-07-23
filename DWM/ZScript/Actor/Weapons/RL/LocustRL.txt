@@ -165,7 +165,7 @@ Class RMD_LocustRL_Rocket : HeavyExplosives
 		//Impact 
 		BaseProjectile.ImpactDamage 0;
 		//Splash 
-		BaseProjectile.SplashDamage 340;
+		BaseProjectile.SplashDamage 460;
 		BaseProjectile.FullSplashDamage 95;
 		BaseProjectile.SplashRadius 170;
 		
@@ -184,7 +184,7 @@ Class RMD_LocustRL_Rocket : HeavyExplosives
 			IDLE A 0;
 			Goto SpawnLoop;
 		SpawnLoop:	
-			IDLE A 1 A_SpawnItemEx("RMD_LocustRocketTrail", 0, 0, 0);
+			IDLE A 1 A_SpawnItemEx("RMD_RocketTrail", 0, 0, 0);
 			Loop;
 		Explode:
 			TNT1 A 0 

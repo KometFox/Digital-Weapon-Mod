@@ -60,16 +60,16 @@ Class RMD_BulletImpact : RMD_ParticleSpawner
 			}
 		
 		
-			for (int i = 0; i < 3; ++i)
+			for (int i = 0; i < 5; ++i)
 			{
 				Vector3 PVel = (FRandom[FX](-0.5, 0.5), FRandom[FX](-0.5, 0.5), FRandom[FX](1.0, 2.0)).unit()*FRandom[FX](0.75, 7.0);
 				Vector3 RPos = (frandom(-3, 3), frandom(-3, 8), frandom(-1, 1));
 				RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_Smoke", Pos + RPos));
 					
 				Particle.Vel = PVel;
-				Particle.Scale = (0.08, 0.08);
+				Particle.Scale = (0.13, 0.13);
 				Particle.ScaleGrowth = 1.08;
-				Particle.TTL = 9;
+				Particle.TTL = 12;
 				Particle.Alpha = 0.12;
 			}
 		

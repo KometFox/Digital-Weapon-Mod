@@ -15,8 +15,8 @@ class RMD_FT12FlameThrower : BaseWeapon
 		
 		BaseWeapon.IronSight IRON_INACTIVE;
 		
-		BaseWeapon.MagazineMax 100;
-		BaseWeapon.Magazine 100;
+		BaseWeapon.MagazineMax 250;
+		BaseWeapon.Magazine 250;
 		
 	}
 	
@@ -127,8 +127,10 @@ class RMD_FT12FlameThrower : BaseWeapon
 Class RMD_FT12_Flame : Actor
 {
 
-		double Timer;
+		int Timer;
 		double FireScale;
+		
+		Property Timer:Timer;
 
 Default
 	{
@@ -136,7 +138,7 @@ Default
 		Radius 3;
 		Scale 0.15;
 		Speed 37;
-		Alpha 0.35;
+		Alpha 0.05;
 		PROJECTILE;
 		+BOUNCEONACTORS;
 		+ROLLSPRITE;
@@ -160,6 +162,8 @@ Default
 		WallBounceFactor 0.42;
 		
 		ProjectileKickBack 0;
+		
+		RMD_FT12_Flame.Timer 6;
 	}
 	
 	Override Void BeginPlay()
@@ -168,7 +172,6 @@ Default
 		
 		Roll = Random(0, 360);
 		SetShade("ffa119");
-		Timer = 0;
 		FireScale = 0.25;
 	}
 
@@ -177,7 +180,7 @@ Default
 		int GiveRadius = 85;	
 		
 		A_SetScale(Scale.X * 1.08, Scale.Y * 1.08);
-		A_Explode(4 * FRandom(0, 1.5), 70, XF_NOSPLASH);
+		A_Explode(1 + FRandom[FX](0, 5), 80, XF_NOSPLASH);
 		
 		BlockThingsIterator it = BlockThingsIterator.Create(self, GiveRadius);
 		while (it.Next())
@@ -193,13 +196,7 @@ Default
 		Roll += 1;
 	}
 	
-	override void Tick()
-	{
-		super.Tick();
 
-		FireScale = FireScale * 1.08;
-	}
-	
 	void SFX() 
 	{
 
@@ -221,14 +218,14 @@ Default
 			Particle.Scale = (0.14, 0.14);
 		}
 		
-		for (int i = 0; i < 3; ++i)
+		for (int i = 0; i < 4; ++i)
 		{
-			Vector3 PVel = (FRandom[FX](-1.5, 1.5), FRandom[FX](-1.5, 1.5), FRandom[FX](-0.5, 2.5)).unit()*FRandom[FX](0.5, 1.5);
+			Vector3 PVel = (FRandom[FX](-2.0, 2.0), FRandom[FX](-2.0, 2.0), FRandom[FX](-2.0, 2.5)).unit()*FRandom[FX](0.1, 0.5);
 			Vector3 RPos = (frandom(0.1, 0.1), frandom(0.1, 0.1), frandom(0.1, 0.1));
 			let Particle = Spawn("SFX_FT12_Fire", Pos + RPos);
 					
 			Particle.Vel = PVel;
-			Particle.Scale = (FireScale, FireScale);
+			Particle.Scale = (0.09, 0.09);
 		}
 			
 		
@@ -243,23 +240,29 @@ Default
 			TNT1 A 0
 			{
 				Roll = frandom(0, 360);		
-			}		
-		
+			}	
 		Goto Loopy;
 		Loopy:
-			LENS CCCCCCCCCC 2
+			LENS C 1 SFX();
+			LENS C 1 
 			{
-				SFX();
-				FireAttack();			
+				Invoker.Timer--;
+
+				FireAttack();
+				SFX();			
+				
+				if (Invoker.Timer <= 0)
+				{
+					return ResolveState("Gone");
+				}
+				
+				Return ResolveState(Null);
 			}
-			LENS CCC 1
-			{
-				SFX();
-				A_FadeOut(0.1166);
-			}
-			TNT1 A 0 FireAttack();
-			Stop;
+			Loop;
 		Death:
+			TNT1 A 0;
+			Stop;
+		Gone:
 			TNT1 A 0;
 			Stop;
 	}
@@ -280,16 +283,33 @@ Class SFX_FT12_Fire : RMD_BaseParticle
 	{
 		Super.BeginPlay();
 		
-		//Roll = Random(0, 360);
-		SetShade("ff5000");
+		Roll = Random(0, 360);
+		SetShade("ff4500");
 	}	
+	
+	override void Tick()
+	{
+		if (Level.IsFrozen() == true)
+		{
+			return;
+		}
+		
+		float Scaly = 1 + (3.5 / 100);
+		
+		Scale.X *= Scaly;
+		Scale.Y *= Scaly;	
+	
+		Super.Tick();
+	}
 	
 	States
 	{
 		Spawn:
 			TNT1 A 0;
-			FIR9 JKLMN 1;
-			FIR9 OP 1 A_FadeOut(0.5);
+			XBU4 ABCDEFGHIJ 2
+			{
+				A_FadeOut(1 / 12, 0);			
+			}
 			Stop;
 
 	}

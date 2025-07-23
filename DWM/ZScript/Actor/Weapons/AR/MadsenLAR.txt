@@ -22,8 +22,8 @@ class RMD_MadsenLAR : BaseWeapon
 		BaseWeapon.IronSight IRON_INACTIVE;
 		BaseWeapon.FireMode BULLET;
 		
-		BaseWeapon.MagazineMax 45;
-		BaseWeapon.Magazine 45;	
+		BaseWeapon.MagazineMax 60;
+		BaseWeapon.Magazine 60;	
 		
 		BaseWeapon.MagazineMax2 1;
 		BaseWeapon.Magazine2 1;
@@ -356,9 +356,9 @@ Class RMD_Madsen_Grenade : LightExplosives
 		//Impact 
 		BaseProjectile.ImpactDamage 0;
 		//Splash 
-		BaseProjectile.SplashDamage 200;
+		BaseProjectile.SplashDamage 522;
 		BaseProjectile.FullSplashDamage 70;
-		BaseProjectile.SplashRadius 120;
+		BaseProjectile.SplashRadius 195;
 		//Randomizer
 		BaseProjectile.NormalDamageRandom 1.0;
 		BaseProjectile.NerfDamageRandom 1.0;

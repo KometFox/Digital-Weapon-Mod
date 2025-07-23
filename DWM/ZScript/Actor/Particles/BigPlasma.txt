@@ -27,16 +27,16 @@ Class RMD_BigPlasmaSpawner : Actor
 				for (int i = 0; i < 12; ++i)
 				{
 					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](0.5, 2.5);
-					Vector3 RPos = (frandom(-20, 20), frandom(-20, 20), frandom(-20, 20));
-					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_UTBoomSprite", RPos + Pos));
+					Vector3 RPos = (frandom(-60, 60), frandom(-60, 60), frandom(-60, 60));
+					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_NeoBoom", RPos + Pos));
 					
 					Particle.TeleportMove(Pos + RPos, false);
 					Particle.Vel = PVel;
 					Particle.Roll = Random(0, 360);
-					Particle.Scale = (1.08, 1.08);
-					Particle.ScaleGrowth = 1.09;
-					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-					Particle.SetShade("30C7FF");
+					Particle.Scale = (3.8, 3.8);
+					Particle.ScaleGrowth = 1.00;
+					Particle.A_SetRenderStyle(1.0, Style_AddShaded);
+					Particle.SetShade("268aff");
 				}
 				
 				let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
@@ -47,42 +47,43 @@ Class RMD_BigPlasmaSpawner : Actor
 					Return;
 				}
 				
-				for (int i = 0; i < 8; ++i)
+				//Flare
+				for (int i = 0; i < 1; ++i)
 				{
-					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-0.3, 0.3)).unit()*FRandom[FX](4.0, 9.0);
-					Vector3 RPos = (frandom(-12, 12), frandom(-12, 12), frandom(-12, 12));
+					Vector3 PVel = (FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25), FRandom[FX](-0.25, 0.25)).unit()*FRandom[FX](0.01, 0.01);
+					Vector3 RPos = (frandom(-8, 8), frandom(-8, 8), frandom(-4, 4));
+					let Particle = Spawn("RMD_Flare", Pos + RPos);
+					
+					Particle.Vel = PVel;
+					Particle.Scale = (1.7, 1.7);
+					Particle.SetShade("268aff");
+				}			
+				
+				//Smoke
+				for (int i = 0; i < 14; ++i)
+				{
+					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-0.3, 0.3)).unit()*FRandom[FX](2.5, 6.0);
+					Vector3 RPos = (frandom(-0, 0), frandom(-0, 0), frandom(-0, 0));
 					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_DoomSmoke", Pos + RPos));
 										
 					Particle.Vel = PVel;
-					Particle.Scale = (1.4, 1.4);
-					Particle.TTL = 22;
-					Particle.ScaleGrowth = 1.02;
+					Particle.Scale = (1.7, 1.7);
+					Particle.TTL = 32;
+					Particle.ScaleGrowth = 1.0;
 					Particle.A_SetRenderStyle(1.0, Style_Shaded);
-					Particle.SetShade("7c7c7c");
-				}	
-				
-				for (int i = 0; i < 25; ++i)
-				{
-					Actor Part;
-					
-					Part = A_SpawnProjectile("RMD_TSpark", 2, 0, frandom(0,1) * frandom (0, 360), 2, frandom(0,1)*frandom (30, 360));
-				
-					if (Part)
-					{
-						Part.Speed = 35;					
-					}
+					Particle.SetShade("202020");
 				}
 				
-				//Trail
-				/*
-				for (int i = 0; i < 5; ++i)
+				for (int i = 0; i < 20; ++i)
 				{
-					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](22.0, 44.0);
-					let Particle = Spawn("RMD_BigPlasmaTrail", Pos);
+					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](15.0, 25.0);
+					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 8));
+					let Particle = Spawn("RMD_Sparks", Pos + RPos);
 					
-					Particle.Vel = PVel;
+					Particle.Vel = PVel * 1.5;
+					Particle.A_SetRenderStyle(1.0, Style_AddShaded);
+					Particle.SetShade("268aff");
 				}
-				*/
 
 			}
 			Stop;

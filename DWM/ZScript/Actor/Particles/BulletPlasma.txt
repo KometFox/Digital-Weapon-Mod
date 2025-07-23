@@ -24,8 +24,8 @@ Class RMD_BulletPlasmaImpact : Actor
 					Particle.Vel = PVel;
 					Particle.Scale = (0.3, 0.3);
 					Particle.ScaleGrowth = 1.025;
-					Particle.A_SetRenderStyle(1.0, STYLE_AddShaded);
-					Particle.SetShade("00afff");
+					Particle.A_SetRenderStyle(1.0, Style_AddShaded);
+					Particle.SetShade("268aff");
 				}
 				
 				let CVARS = RMD_CVARHandler(StaticEventHandler.Find('RMD_CVARHandler'));
@@ -52,15 +52,15 @@ Class RMD_BulletPlasmaImpact : Actor
 				}
 					
 				//Spark
-				for (int i = 0; i < 5; ++i)
+				for (int i = 0; i < 6; ++i)
 				{
-					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](8.0, 15.0);
+					Vector3 PVel = (FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0), FRandom[FX](-1.0, 1.0)).unit()*FRandom[FX](5.0, 12.0);
 					Vector3 RPos = (frandom(0, 0), frandom(0, 0), frandom(0, 8));
 					let Particle = Spawn("RMD_Sparks", Pos + RPos);
 					
 					Particle.Vel = PVel;
-					Particle.Scale = (0.08, 0.08);
-					Particle.SetShade("46b5ff");
+					Particle.A_SetRenderStyle(1.0, Style_AddShaded);
+					Particle.SetShade("268aff");
 				}
 				
 				//Flare

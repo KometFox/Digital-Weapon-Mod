@@ -52,7 +52,7 @@ Class RMD_Kills : EventHandler
 			!e.Thing.ResolveState('FireDeath') ||
 			!e.Thing.ResolveState("DeathFire"))
 			{
-				e.Thing.A_SetTranslation("Charred");
+				//e.Thing.A_SetTranslation("Charred");
 			}
 		}
 		

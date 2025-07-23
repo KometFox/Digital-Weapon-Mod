@@ -106,6 +106,17 @@ Class BM_SMGWeapons : BMItems
 			Item.Amount = 1;
 			ArItems.Push(Item);
 
+			//Kriss Vector
+			Item = new("BuyMenuItems");
+			Item.ID = "RMD_KrissVector";
+			Item.ItemName = "Kriss Vector";
+			Item.Graphic = TexMan.CheckForTexture("KrissV", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Buy/Purchase";
+			Item.Cost = 500;
+			Item.Amount = 1;
+			ArItems.Push(Item);
+
 			//Beneli CB-M2
 			Item = new("BuyMenuItems");
 			Item.ID = "CBM3";
@@ -227,6 +238,17 @@ Class BM_ARWeapons : BMItems
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 5000; 
+			Item.Amount = 1;
+			ArItems.Push(Item);
+
+
+			Item = new("BuyMenuItems");
+			Item.ID = "RMD_XM29OICW";
+			Item.ItemName = "XM-29 OICW";
+			Item.Graphic = TexMan.CheckForTexture("WOICW", TexMan.Type_Any);
+			Item.Command = "Buy";
+			Item.BuySound = "Buy/Purchase";
+			Item.Cost = 8000; 
 			Item.Amount = 1;
 			ArItems.Push(Item);
 	}		
@@ -452,7 +474,7 @@ Class BM_AmmoItems : BMItems
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 40;
-			Item.Amount = 100;
+			Item.Amount = 150;
 			ArItems.Push(Item);
 			
 			Item = new("BuyMenuItems");
@@ -462,7 +484,7 @@ Class BM_AmmoItems : BMItems
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 400;
-			Item.Amount = 100;
+			Item.Amount = 150;
 			ArItems.Push(Item);
 
 			Item = new("BuyMenuItems");
@@ -472,7 +494,7 @@ Class BM_AmmoItems : BMItems
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
 			Item.Cost = 200;
-			Item.Amount = 25;
+			Item.Amount = 30;
 			ArItems.Push(Item);			
 
 			Item = new("BuyMenuItems");
@@ -481,8 +503,8 @@ Class BM_AmmoItems : BMItems
 			Item.Graphic = TexMan.CheckForTexture("AMMONADE", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 1000;
-			Item.Amount = 10;
+			Item.Cost = 1500;
+			Item.Amount = 15;
 			ArItems.Push(Item);	
 		
 			Item = new("BuyMenuItems");
@@ -491,8 +513,8 @@ Class BM_AmmoItems : BMItems
 			Item.Graphic = TexMan.CheckForTexture("AMMOFUEL", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 1000;
-			Item.Amount = 100;
+			Item.Cost = 2500;
+			Item.Amount = 200;
 			ArItems.Push(Item);			
 		
 			Item = new("BuyMenuItems");
@@ -501,7 +523,7 @@ Class BM_AmmoItems : BMItems
 			Item.Graphic = TexMan.CheckForTexture("AMMOCELL", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 1000;
+			Item.Cost = 3000;
 			Item.Amount = 200;
 			ArItems.Push(Item);	
 
