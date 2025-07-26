@@ -168,22 +168,11 @@ Class RMD_G20GL_Grenade : LightExplosives
 	States
 	{
 		Spawn:
-			TNT1 A 0 NoDelay
-			{
-				Actor Flare;
-						
-				Flare = Spawn("RMD_SMRL_Flare", Pos, ALLOW_REPLACE);
-						
-				If (Flare)
-				{
-					Flare.Target = Self;
-					Flare.Scale = (0.23, 0.23);
-					Flare.SetShade("Lavender");	
-				}			
-			}
+			TNT1 A 0 NoDelay;
+			TNT1 A 0; 
 			Goto SpawnLoop;
 		SpawnLoop:	
-			IDLE A 1 A_SpawnItemEx("RMD_GrenadeTrail", 0, 0, 0);
+			IDLE A 1 A_SpawnItemEx("RMD_25mmTrail", 0, 0, 0);
 			Loop;
 		Explode:
 			TNT1 A 0 

@@ -374,7 +374,7 @@ Class RMD_M25_Grenade : LightExplosives
 			}
 			Goto SpawnLoop;
 		SpawnLoop:	
-			IDLE A 1 A_SpawnItemEx("RMD_GrenadeTrail", 0, 0, 0);
+			IDLE A 1 A_SpawnItemEx("RMD_25mmTrail", 0, 0, 0);
 			Loop;
 		Explode:
 			TNT1 A 0 

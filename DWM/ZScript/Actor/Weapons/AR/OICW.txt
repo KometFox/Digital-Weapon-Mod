@@ -13,7 +13,7 @@ class RMD_XM29OICW : BaseWeapon
 		Weapon.AmmoUse 0;
 		Weapon.AmmoGive 0;
 		Weapon.AmmoType1 "RMD_MediumBullets";
-		Weapon.AmmoType2 "RMD_Explosives";
+		Weapon.AmmoType2 "RMD_MediumBullets";
 		Inventory.PickupMessage "$GOTCHAINGUN";
 		Inventory.AltHudIcon "WOICW";
 		Obituary "$OB_MPCHAINGUN";
@@ -22,11 +22,11 @@ class RMD_XM29OICW : BaseWeapon
 		BaseWeapon.IronSight IRON_INACTIVE;
 		BaseWeapon.FireMode BULLET;
 	
-		BaseWeapon.MagazineMax 50;
-		BaseWeapon.Magazine 50;	
+		BaseWeapon.MagazineMax 75;
+		BaseWeapon.Magazine 75;	
 		
-		BaseWeapon.MagazineMax2 6;
-		BaseWeapon.Magazine2 6;
+		BaseWeapon.MagazineMax2 10;
+		BaseWeapon.Magazine2 10;
 	}
 	
 	action state ReloadCheck()
@@ -119,7 +119,7 @@ class RMD_XM29OICW : BaseWeapon
 			case GRENADE:
 				RMD_BARINFO.Set_Mag(invoker.Magazine2);
 				RMD_BARINFO.SetAmmoIcon("AMMONADE");
-				RMD_BARINFO.SetAmmo1("RMD_Explosives");
+				RMD_BARINFO.SetAmmo1("RMD_MediumBullets");
 				Break;
 		}
 	
@@ -307,7 +307,7 @@ class RMD_XM29OICW : BaseWeapon
 		{
 			A_StartSound("OICW/MagIn", CHAN_WEAPON +1);
 			
-			ReloadGun(Invoker.AmmoType2, 1, 1, 1);
+			ReloadGun(Invoker.AmmoType2, 1, 1, 5);
 		}
 		REG1 MNOPQR 2;		
 		Goto ReadyReal;		
@@ -327,15 +327,15 @@ Class RMD_OICW_Grenade : LightExplosivesFast
 {
 	Default
 	{
-		Speed 90;
+		Speed 85;
 		Decal "RMD_SmallExplosion";
 		Gravity 0.35;
 		//Impact 
 		BaseProjectileFast.ImpactDamage 0;
 		//Splash 
-		BaseProjectileFast.SplashDamage 140;
+		BaseProjectileFast.SplashDamage 100;
 		BaseProjectileFast.FullSplashDamage 50;
-		BaseProjectileFast.SplashRadius 75;
+		BaseProjectileFast.SplashRadius 80;
 		//Randomizer
 		BaseProjectileFast.NormalDamageRandom 1.4;
 		BaseProjectileFast.NerfDamageRandom 1.4;
@@ -348,7 +348,7 @@ Class RMD_OICW_Grenade : LightExplosivesFast
 			TNT1 A 0 NoDelay;
 			Goto SpawnLoop;
 		SpawnLoop:	
-			IDLE A 1 A_SpawnItemEx("RMD_GrenadeTrail", 0, 0, 0);
+			IDLE A 1 A_SpawnItemEx("RMD_25mmTrail", 0, 0, 0);
 			Loop;
 		Explode:
 			TNT1 A 0 

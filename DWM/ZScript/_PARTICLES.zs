@@ -14,6 +14,7 @@
 #Include "ZScript/Actor/Particles/FireDeath.txt"
 #Include "ZScript/Actor/Particles/MediumExplosion.zs"
 #Include "ZScript/Actor/Particles/25mmGyro.txt"
+#Include "ZScript/Actor/Particles/25mmTrail.txt"
 #Include "ZScript/Actor/Particles/25mmExplosion.txt"
 #Include "ZScript/Actor/Particles/40mmExplosion.txt"
 #Include "Zscript/Actor/Particles/UTBoomSmall.txt"
