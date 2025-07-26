@@ -558,7 +558,7 @@ Class BM_Supplies : BMItems
 			//Item.Category = "Health";
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 5000;
+			Item.Cost = 800;
 			Item.Amount = 1;
 			ArItems.Push(Item);
 
@@ -569,7 +569,7 @@ Class BM_Supplies : BMItems
 			//Item.Category = "Health";
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 12000;
+			Item.Cost = 20000;
 			Item.Amount = 1;
 			ArItems.Push(Item);
 
@@ -591,7 +591,7 @@ Class BM_Supplies : BMItems
 			//Item.Category = "Health";
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 25000;
+			Item.Cost = 40000;
 			Item.Amount = 1;
 			ArItems.Push(Item);
 			
@@ -605,7 +605,7 @@ Class BM_Supplies : BMItems
 			Item.Graphic = TexMan.CheckForTexture("NBCSA0", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 500;
+			Item.Cost = 1000;
 			Item.Amount = 1;
 			ArItems.Push(Item);
 
@@ -615,7 +615,7 @@ Class BM_Supplies : BMItems
 			Item.Graphic = TexMan.CheckForTexture("ARMORT1", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 5000;
+			Item.Cost = 10000;
 			Item.Amount = 1;
 			ArItems.Push(Item);
 
@@ -625,7 +625,7 @@ Class BM_Supplies : BMItems
 			Item.Graphic = TexMan.CheckForTexture("ARMORT2", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 10000;
+			Item.Cost = 50000;
 			Item.Amount = 1;
 			ArItems.Push(Item);
 			
@@ -635,7 +635,7 @@ Class BM_Supplies : BMItems
 			Item.Graphic = TexMan.CheckForTexture("ARMORT3", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 15000;
+			Item.Cost = 100000;
 			Item.Amount = 1;
 			ArItems.Push(Item);
 

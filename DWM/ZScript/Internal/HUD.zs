@@ -144,13 +144,13 @@ override void Init()
 			else
 				FormHealth = Playa.HealtH;
 			
-			AddText(String.Format("%d", FormHealth), Font.CR_CYAN, 20, 157, 1.0, 1.0);
+			AddText(String.Format("%d HP", FormHealth), Font.CR_CYAN, 20, 157, 0.8, 0.8);
 			
 			//Armor
-			AddText(String.Format("%d", ArmorV), Font.CR_CYAN, 20, 175, 1.0, 1.0);
+			AddText(String.Format("%d AP", ArmorV), Font.CR_CYAN, 20, 175, 0.8, 0.8);
 			
 			//Credits
-			AddText(String.Format("%d", Geld), Font.CR_CYAN, 40, 193, 0.5, 0.5);
+			AddText(String.Format("%d C", Geld), Font.CR_CYAN, 40, 193, 0.5, 0.5);
 
 			//Firemode
 			AddText(String.Format("<FM> %s", VFireMode), Font.CR_CYAN, 85, 152, 0.25, 0.25);
@@ -162,12 +162,12 @@ override void Init()
 			AddImage(AmmoIcon, 90, 150, 0.6, 0.6);
 
 			//Ammo
-			AddText(String.Format("%d", Mag1), Font.CR_CYAN, 80, 163, 0.75, 0.75);
+			AddText(String.Format("%d Mag", Mag1), Font.CR_CYAN, 95, 163, 0.6, 0.6);
 			
 			//Ammo in Stash
 			if (VAmmo != "None")
 			{
-				AddText(String.Format("%d", Playa.CountInv(VAmmo)), Font.CR_CYAN, 80, 180, 0.75, 0.75);
+				AddText(String.Format("%d Bag", Playa.CountInv(VAmmo)), Font.CR_CYAN, 95, 180, 0.6, 0.6);
 			}
 			
 
