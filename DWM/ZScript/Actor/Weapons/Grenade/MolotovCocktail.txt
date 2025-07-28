@@ -236,7 +236,7 @@ Class RMD_MolotovFire : Actor
 		
 		if (GetAge() % 8 == 0)
 		{
-			A_Explode(10, 65, XF_HURTSOURCE, 0, 60 * 0.33);	
+			A_Explode(10, 90, XF_HURTSOURCE, 0, 60);	
 		}
 		
 		int GiveRadius = 80;
