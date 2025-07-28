@@ -48,53 +48,72 @@ class RMD_HealthBase : CustomInventory
 	}	
 }
 
-Class RMD_Milk : RMD_HealthBase
+Class RMD_Health : Health
 {
 	Default
 	{
-		Inventory.Amount 4;
+		Inventory.MaxAmount 100;
+		+BRIGHT;
+	}
+
+	States
+	{
+		Spawn:
+			IDLE A -1;
+			Stop;	
+	}
+}
+
+
+Class RMD_Milk : RMD_Health
+{
+	Default
+	{
+		Inventory.Amount 12;
+		Inventory.MaxAmount 100;
 		Inventory.PickupMessage "You drink a box of milk.";
 		Inventory.PickupSound "Items/Drink";	
 	}
 }
 
 
-Class RMD_Beef : RMD_HealthBase
+Class RMD_Baltika3 : RMD_Health
 {
 	Default
 	{
-		Inventory.Amount 2;
+		Inventory.Amount 12;
+		Inventory.PickupMessage "You drink a Beer.";
+		Inventory.PickupSound "Items/Drink";	
+	}
+}
+
+
+Class RMD_Beef : RMD_Health
+{
+	Default
+	{
+		Inventory.Amount 30;
 		Inventory.PickupMessage "You ate a beef.";
 		Inventory.PickupSound "Items/Eat";	
 	}
 }
 
-Class RMD_Fishmeat : RMD_HealthBase
+Class RMD_Fishmeat : RMD_Health
 {
 	Default
 	{
-		Inventory.Amount 3;
+		Inventory.Amount 30;
 		Inventory.PickupMessage "You ate a Fish.";
 		Inventory.PickupSound "Items/Eat";	
 	}
 }
 
 
-Class RMD_Baltika3 : RMD_HealthBase
+Class RMD_MiniHealthVial : RMD_Health
 {
 	Default
 	{
 		Inventory.Amount 3;
-		Inventory.PickupMessage "You drink a Beer.";
-		Inventory.PickupSound "Items/Drink";	
-	}
-}
-
-Class RMD_MiniHealthVial : RMD_HealthBase
-{
-	Default
-	{
-		Inventory.Amount 2;
 		Inventory.PickupMessage "You drink a mini potion.";
 		Inventory.PickupSound "Items/Potion";
 	}

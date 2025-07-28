@@ -245,9 +245,33 @@ Class CellPackReplacer : MoneyDrop_Medium replaces CellPack {}
 //------------------------------------------------------------------------------
 //Health
 //------------------------------------------------------------------------------
-Class Medikit_Replacer : MoneyDrop_Small Replaces Medikit {}
+Class HealthBonus_Replacer : RandomSpawner Replaces HealthBonus 
+{
+	Default
+	{
+		DropItem "RMD_MiniHealthVial", 256, 1;
+	}
+}
 
-Class Stimpack_Replacer : MoneyDrop_Small Replaces Stimpack {}
+Class Medikit_Replacer : RandomSpawner Replaces Medikit 
+{
+	Default
+	{
+		DropItem "RMD_Beef", 256, 1;
+		DropItem "RMD_Fishmeat", 256, 1;
+	}
+
+}
+
+Class Stimpack_Replacer : RandomSpawner Replaces Stimpack 
+{
+	Default
+	{
+		DropItem "RMD_Milk", 256, 1;
+		DropItem "RMD_Baltika3", 256, 1;	
+	}
+
+}
 
 Class SoulSphere_Replacer : MoneyDrop_Large Replaces SoulSphere {}
 
@@ -263,7 +287,6 @@ Class BlueArmor_Replacer : MoneyDrop_Large Replaces BlueArmor {}
 //Bonus
 //------------------------------------------------------------------------------
 Class ArmorBonus_Replacer : MoneyDrop_Small Replaces ArmorBonus {}
-Class HealthBonus_Replacer : MoneyDrop_Small Replaces HealthBonus {}
 
 
 //------------------------------------------------------------------------------
