@@ -367,7 +367,7 @@ Class BM_LauncherWeapons : BMItems
 			Item.Graphic = TexMan.CheckForTexture("PIG20", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 13000;
+			Item.Cost = 15000;
 			Item.Amount = 1;
 			ArItems.Push(Item);
 
@@ -382,14 +382,14 @@ Class BM_LauncherWeapons : BMItems
 			Item.Amount = 1;
 			ArItems.Push(Item);
 
-			//SMRL
+			//SMAW
 			Item = new("BuyMenuItems");
 			Item.ID = "RMD_SMAW";
 			Item.ItemName = "Mk-153 SMAW";
 			Item.Graphic = TexMan.CheckForTexture("PISMAW", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 40000;
+			Item.Cost = 20000;
 			Item.Amount = 1;
 			ArItems.Push(Item);
 	
@@ -415,12 +415,12 @@ Class BM_EnergyWeapons : BMItems
 		override void AddItems()
 		{
 			let Item = new("BuyMenuItems");
-			Item.ID = "RMD_E12PR";
-			Item.ItemName = "E12 Plasma Rifle";
-			Item.Graphic = TexMan.CheckForTexture("PIE12PR", TexMan.Type_Any);
+			Item.ID = "RMD_PR75";
+			Item.ItemName = "Plasma Rifle M-75";
+			Item.Graphic = TexMan.CheckForTexture("WP75", TexMan.Type_Any);
 			Item.Command = "Buy";
 			Item.BuySound = "Buy/Purchase";
-			Item.Cost = 9000; 
+			Item.Cost = 10000; 
 			Item.Amount = 1;
 			ArItems.Push(Item);
 

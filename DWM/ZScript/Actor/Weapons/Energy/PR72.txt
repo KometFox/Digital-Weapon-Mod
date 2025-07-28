@@ -1,4 +1,4 @@
-class RMD_PR72 : BaseWeapon
+class RMD_PR75 : BaseWeapon
 {
 	double ScopeZoom;
 
@@ -10,9 +10,9 @@ class RMD_PR72 : BaseWeapon
 		Weapon.AmmoGive 0;
 		Weapon.AmmoType1 "RMD_MediumBullets";
 		Inventory.PickupMessage "$GOTCHAINGUN";
-		Inventory.AltHudIcon "PIAR70";
+		Inventory.AltHudIcon "WP75";
 		Obituary "$OB_MPCHAINGUN";
-		Tag "Raptor AR-70";
+		Tag "Plasma Rifle M-75";
 		
 		BaseWeapon.IronSight IRON_INACTIVE;
 		
