@@ -1,7 +1,7 @@
 class RMD_SMAW : BaseWeapon
 {
 	double ScopeZoom;
-	const AmmoUsage = 5;
+	const AmmoUsage = 2;
 
 	Default
 	{
@@ -170,9 +170,9 @@ Class SMAW_Rocket : HeavyExplosivesFast
 		//Impact 
 		BaseProjectileFast.ImpactDamage 0;
 		//Splash 
-		BaseProjectileFast.SplashDamage 2700;
-		BaseProjectileFast.FullSplashDamage 180;
-		BaseProjectileFast.SplashRadius 300;
+		BaseProjectileFast.SplashDamage 1200;
+		BaseProjectileFast.FullSplashDamage 140;
+		BaseProjectileFast.SplashRadius 230;
 		//Randomizer
 		BaseProjectileFast.NerfDamageRandom 1.0;
 		BaseProjectileFast.NormalDamageRandom 1.0;
