@@ -18,7 +18,7 @@ Class RMD_RocketTrail : RMD_BaseParticle
 					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_RocketTrail_Fire", Pos + RPos));
 					
 					Particle.Vel = PVel;
-					Particle.Scale = (0.5, 0.5);
+					Particle.Scale = (0.27, 0.27);
 					Particle.ScaleGrowth = 0.92;
 					Particle.SetShade("ff3300");
 				}
@@ -48,7 +48,7 @@ Class RMD_BlueRocketTrail : RMD_BaseParticle
 					RMD_BaseParticle Particle = RMD_BaseParticle(Spawn("RMD_RocketTrail_Fire", Pos + RPos));
 					
 					Particle.Vel = PVel;
-					Particle.Scale = (0.7, 0.7);
+					Particle.Scale = (0.27, 0.27);
 					Particle.ScaleGrowth = 1.01;
 					Particle.SetShade("00d1ff");
 				}

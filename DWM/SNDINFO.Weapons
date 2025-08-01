@@ -194,6 +194,7 @@ $Volume E12PR/Fire 0.622
 
 //ASMD Shock RIfle
 ASMD/Fire "Sounds/Weapons/Energy/ASMD/UTFire.wav"
+ASMD/AltFire "Sounds/Weapons/Energy/ASMD/AltFire.ogg"
 
 //------------------------------------------------------------------------------
 //Assault Rifle

@@ -5,6 +5,10 @@ Class RMD_BulletPlasmaImpact : Actor
 	{
 		+ALWAYSPUFF;
 		+PUFFONACTORS;
+		
+		
+		DamageType "Plasma";
+		DeathType "Plasma";		
 	}
 
 	States
